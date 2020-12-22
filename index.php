@@ -62,7 +62,7 @@ if($usuario==$nombre && $password==$pass && $usuario!="" && $password!=""){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>ADEK | Panel de Control</title>
+	<title>Cabastic | Panel de Control</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -83,7 +83,14 @@ if($usuario==$nombre && $password==$pass && $usuario!="" && $password!=""){
 	<!-- Theme JS files -->
 	<script src="full/assets/js/app.js"></script>
 	<!-- /theme JS files -->
-
+	<style>
+    .cabastic{
+    	--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    	
+    	color:white;
+    }
+    </style>
 </head>
 
 <body>
@@ -92,8 +99,10 @@ if($usuario==$nombre && $password==$pass && $usuario!="" && $password!=""){
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="index.php" class="d-inline-block" style="display: none;">
-				<img src="global_assets/images/logo_light.png" alt="">
+				<img src="images/logo_cabastic.png" alt="">
+				
 			</a>
+			<div class="cabastic">Cabastic</div>
 		</div>
 
 		<div class="d-md-none">

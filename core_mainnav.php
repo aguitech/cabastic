@@ -2,8 +2,13 @@
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="index.html" class="d-inline-block">
+				<img src="images/logo_cabastic.png" alt="">
+				
+				<!--
 				<img src="global_assets/images/logo_light.png" alt="">
+				-->
 			</a>
+			<span style="color:white;">Cabastic</span>
 		</div>
 
 		<div class="d-md-none">

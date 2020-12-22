@@ -1,21 +1,20 @@
 <?php include("includes/includes.php"); 
 //2020-08-28
-//$fecha_val = '2020-08-28';
-$fecha_val = $_POST["fecha"];
+$fecha_val = '2020-08-28';
 $fecha_val_start = $fecha_val . ' 00:00:00';
 $fecha_val_end = $fecha_val . ' 23:59:59';
 //$qry_hours = "select * from ds_tbl_venta where Fecha_Venta = date('2020-08-28')";
 //MontoTotalMXN
 //$qry_hours = "select *, sum(MontoTotal) as sumatoria from ds_tbl_venta where Fecha_Venta >= '{$fecha_val_start}' and Fecha_Venta <= '{$fecha_val_end}'";
 $qry_hours = "select *, sum(MontoTotalMXN) as sumatoria from ds_tbl_venta where Fecha_Venta >= '{$fecha_val_start}' and Fecha_Venta <= '{$fecha_val_end}'";
-//echo $qry_hours;
+echo $qry_hours;
 $res_hours = $obj->get_results($qry_hours);
-//print_r($res_hours);
+print_r($res_hours);
 
 
 $value_percent = 100 / $res_hours[0]->sumatoria;
 
-//echo $value_percent;
+echo $value_percent;
 ?>
 <hr />
 <style>

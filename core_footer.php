@@ -9,7 +9,7 @@
 
 				<div class="navbar-collapse collapse" id="navbar-footer">
 					<span class="navbar-text">
-						&copy; 2020 - 2021. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">SDM Robotics</a>
+						&copy; 2020. <a href="#">Cabastic</a> by <a href="" target="_blank">DIVAG</a>
 					</span>
 
 					<ul class="navbar-nav ml-lg-auto">

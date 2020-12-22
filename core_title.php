@@ -1,1 +1,1 @@
-<title>ADEK | Panel de Control</title>
+<title>Cabastic | Panel de Control</title>

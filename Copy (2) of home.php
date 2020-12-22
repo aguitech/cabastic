@@ -5,8 +5,6 @@ if($_GET["fecha"] != ""){
 }else{
     $fecha_val = date("Y-m-d");
 }
-$nombre_seccion = "Home";
-
 ?>
 <?php /**echo date("DAY"); ?>
 <br />
@@ -48,7 +46,7 @@ switch ($newDate){
         $val_sab = +5;
         $val_dom = +6;
         break;
-    case 2:
+    case 1:
         echo "Martes";
         $val_lun = -1;
         $val_mar = 0;
@@ -58,7 +56,7 @@ switch ($newDate){
         $val_sab = +4;
         $val_dom = +5;
         break;
-    case 3:
+    case 1:
         echo "Miercoles";
         $val_lun = -2;
         $val_mar = -1;
@@ -68,7 +66,7 @@ switch ($newDate){
         $val_sab = +3;
         $val_dom = +4;
         break;
-    case 4:
+    case 1:
         echo "Jueves";
         $val_lun = -3;
         $val_mar = -2;
@@ -78,7 +76,7 @@ switch ($newDate){
         $val_sab = +2;
         $val_dom = +3;
         break;
-    case 5:
+    case 1:
         echo "Viernes";
         $val_lun = -4;
         $val_mar = -3;
@@ -88,7 +86,7 @@ switch ($newDate){
         $val_sab = +1;
         $val_dom = +2;
         break;
-    case 6:
+    case 1:
         echo "Sabado";
         $val_lun = -5;
         $val_mar = -4;
@@ -140,9 +138,7 @@ $value_percent = 100 / $res_semana->sumatoria;
 	include "core_title.php";
 
 	 ?>
-	<?php /**
-	<link href="css/main.css" rel="stylesheet" type="text/css">
-	*/ ?>
+
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -255,7 +251,7 @@ $value_percent = 100 / $res_semana->sumatoria;
 			<div class="page-header page-header-light">
 				<div class="page-header-content header-elements-md-inline">
 					<div class="page-title d-flex">
-						<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold"><?php echo $nombre_seccion; ?></span></h4>
+						<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Usuarios</span> - Listado</h4>
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 					</div>
 
@@ -272,10 +268,8 @@ $value_percent = 100 / $res_semana->sumatoria;
 					<div class="d-flex">
 						<div class="breadcrumb">
 							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<!-- 
 							<a href="usuarios.php" class="breadcrumb-item">Usuarios</a>
 							<span class="breadcrumb-item active">Listado</span>
-							-->
 						</div>
 
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -316,7 +310,7 @@ $value_percent = 100 / $res_semana->sumatoria;
 				<!-- Basic datatable -->
 				<div class="card">
 					<div class="card-header header-elements-inline">
-						<h5 class="card-title"><?php echo $nombre_seccion; ?></h5>
+						<h5 class="card-title">Usuarios</h5>
 						<div class="header-elements">
 							<div class="list-icons">
 		                		<a class="list-icons-item" data-action="collapse"></a>
@@ -327,13 +321,8 @@ $value_percent = 100 / $res_semana->sumatoria;
 					</div>
 
 					<div class="card-body">
-						Gr&aacute;ficas de ventas semanales realizadas.
-					</div>
-					<?php /**
-					<div class="card-body">
 						La lista de <code>Usuarios</code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
 					</div>
-					*/ ?>
 
 					<div>
 					
@@ -361,8 +350,7 @@ $value_percent = 100 / $res_semana->sumatoria;
                 		<style>
                         .graph_home{
                         	background:orange;
-                        	/*background: linear-gradient(180deg, red, yellow);*/
-                        	background: linear-gradient(180deg, #2b8bf2, yellowgreen);
+                        	background: linear-gradient(180deg, red, yellow);
                         	width:10%;
                         	margin:0 2%;
                         	cursor:pointer;
@@ -503,13 +491,13 @@ $value_percent = 100 / $res_semana->sumatoria;
                             	</div>
                             	<div style="height:30px;  width:100%; display:flex; align-items:baseline; justify-content:center;">
                             		<div style="width:0px; height:100%;"></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_lun, 1, '.', ','); ?>%<br />$<?php echo number_format($res_lun->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_mar, 1, '.', ','); ?>%<br />$<?php echo number_format($res_mar->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_mie, 1, '.', ','); ?>%<br />$<?php echo number_format($res_mie->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_jue, 1, '.', ','); ?>%<br />$<?php echo number_format($res_jue->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_vie, 1, '.', ','); ?>%<br />$<?php echo number_format($res_vie->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_sab, 1, '.', ','); ?>%<br />$<?php echo number_format($res_sab->sumatoria, 1, '.', ','); ?></div>
-                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_dom, 1, '.', ','); ?>%<br />$<?php echo number_format($res_dom->sumatoria, 1, '.', ','); ?></div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_lun, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_mar, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_mie, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_jue, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_vie, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_sab, 1, '.', ','); ?>%</div>
+                                	<div class="graph_home_percent" style=""><?php echo number_format($percent_dom, 1, '.', ','); ?>%</div>
                             	</div>
                             </div>
                             <div id="graph_home_hours" style="display:none;">
@@ -526,187 +514,6 @@ $value_percent = 100 / $res_semana->sumatoria;
                         
                         //print_r($res);
                         ?>
-					
-					
-					<br /><br /><br />
-					
-						<div class="row clearfix">
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div style="text-align:right;">
-                                    <a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
-                                    <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                                </div>
-                            </div>
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                <div class="row clearfix">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card text-center">
-                            <div class="body">
-                                <p class="m-b-20"><i class="zmdi zmdi-assignment zmdi-hc-3x col-blue"></i></p>
-                                <span>Ventas totales</span>
-                                <h3 class="m-b-10 number count-to" data-from="0" data-to="595" data-speed="2000" data-fresh-interval="700">40</h3>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card text-center">
-                            <div class="body">
-                                <p class="m-b-20"><i class="zmdi zmdi-account-box zmdi-hc-3x col-green"></i></p>
-                                <span>Clientes registrados</span>
-                                <h3 class="m-b-10 number count-to" data-from="0" data-to="486" data-speed="2000" data-fresh-interval="700">100</h3>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card text-center">
-                            <div class="body">
-                                <p class="m-b-20"><i class="zmdi zmdi-balance zmdi-hc-3x col-amber"></i></p>
-                                <span>Productos en préstamo</span>
-                                <h3 class="m-b-10 number count-to" data-from="0" data-to="50" data-speed="2000" data-fresh-interval="700">49</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card text-center">
-                            <div class="body">
-                                <p class="m-b-20"><i class="zmdi zmdi-shopping-basket zmdi-hc-3x"></i></p>
-                                <span>Consumo promedio visita</span>
-                                <h3 class="m-b-10">$<span class="number count-to" data-from="0" data-to="8035.1178662292" data-speed="2000" data-fresh-interval="700">8035.1178662292</span></h3>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card text-center">
-                            <div class="body">
-                                <p class="m-b-20"><i class="zmdi zmdi-account-circle zmdi-hc-3x col-brown"></i></p>
-                                <span>Promedio visitas cliente</span>
-                                <h3 class="m-b-10"><span class="number count-to" data-from="0" data-to="1.2243" data-speed="2000" data-fresh-interval="700">1.2243</span></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h2>Productos mas vendidos</h2>
-                            </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="87" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">PIANISSIMO  <span class="float-right">1251%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-dark" role="progressbar" aria-valuenow="1251" aria-valuemin="0" aria-valuemax="100" style="width: 1251%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="65" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">LEGEND  <span class="float-right">934%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-dark" role="progressbar" aria-valuenow="934" aria-valuemin="0" aria-valuemax="100" style="width: 934%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="50" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">ADEQUAN  <span class="float-right">719%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-dark" role="progressbar" aria-valuenow="719" aria-valuemin="0" aria-valuemax="100" style="width: 719%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="49" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">PERFORMIX <span class="float-right">704%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-dark" role="progressbar" aria-valuenow="704" aria-valuemin="0" aria-valuemax="100" style="width: 704%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="39" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">HORSE RIDING VEST CARTIDGE <span class="float-right">560%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-dark" role="progressbar" aria-valuenow="560" aria-valuemin="0" aria-valuemax="100" style="width: 560%;"></div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h2>Productos menos vendidos</h2>
-                            </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="1" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">TEMPEST SWEAT WOMEN 2019 <span class="float-right">14%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="1" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">LORIENT V GRIP BREEEC <span class="float-right">14%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="1" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">COLLIER DE CHASSE A PONT REGLABLE CONTACT 003 NR B <span class="float-right">14%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="1" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">HELIOS ML <span class="float-right">14%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%;"></div>
-                                    </div>
-                                </div>
-                                <div class="body m-b-10">
-                                    <h5 class="m-b-0 number count-to" data-from="0" data-to="1" data-speed="2000" data-fresh-interval="700">2651</h5>
-                                    <p class="text-muted">FIRST LADDY CARBONE 2X <span class="float-right">14%</span></p>
-                                    <div class="progress m-b-20">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%;"></div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 					
 					</div>
