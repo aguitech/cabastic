@@ -9,6 +9,7 @@ if($_POST["id"] != ""){
     //print_r($resultado);
 }
 ?>
+<?php //echo $qry_id; ?>
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
 <form id="" method="post" action="?">
@@ -78,7 +79,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
 
 </div>
 <div>
-<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>CREAR<?php endif; ?> <i class="material-icons right">send</i></button>
+	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
 </div>
 </form>
 </div> 

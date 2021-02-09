@@ -393,13 +393,7 @@ include_once("db.php");
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
-                            	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                <?php /**
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                            	
-                            	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                                */ ?>
+                            	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="cargar_crear()"><i class="material-icons right">add</i> Agregar <?php echo $nombre_simple; ?></button>
                             </div>
                         </div>
                         <br />
@@ -420,10 +414,6 @@ include_once("db.php");
 	                	</div>
 					</div>
 
-					<div class="card-body">
-						La lista de <code><?php echo $nombre_seccion; ?></code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
-					</div>
-
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
@@ -440,97 +430,6 @@ include_once("db.php");
 						</thead>
 						<tbody>
 							
-
-                        <?php 
-                        /**
-                         $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                         
-                          $resultt = $mysqli->query($qt);
-                          while ($rowt = $resultt->fetch_row()){
-
-                            $id_usuario=$rowt[0];
-                            $nombre=$rowt[1];
-                            $pass=$rowt[2];
-                            $id_nivel=$rowt[3];
-                            $extension=$rowt[4];
-                            $area=$rowt[5];
-							$completo=$rowt[6];
-							$niveles=$rowt[7];
-
-
-							///////////////////////////////////////NIVELES
-							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-								$niveles=$id_nivel;
-
-								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-								//echo $sq;
-								//$resul = $mysqli->query($sq);
-							}
-							if($niveles!=""){
-								//echo "NIVELES: ".$niveles." - ";
-								$niveles = explode(",", $niveles);
-								$losniveles="";
-								for ($i=0;$i<count($niveles);$i++)    
-								{
-									$losniveles .= $niveles[$i].",";
-								} 
-								$losniveles = substr($losniveles,0,-1);
-								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-								$nivelesarray = explode(",", $losniveles);
-								for ($i=0;$i<count($nivelesarray);$i++)    
-								{
-									$sq .= " OR id_nivel=".$nivelesarray[$i];
-								} 
-								//echo $sq;
-								$resul = $mysqli->query($sq);
-								$niveles_nombres="";
-								while ($row = $resul->fetch_row()){
-
-									$id_nivel=$row[0];
-									$nombre_nivel=$row[1];
-									//echo " ".$nombre_nivel." <br>";
-									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-								}
-								//$niveles_nombres = substr($niveles_nombres,0,-2);
-								$area = $niveles_nombres;
-							}
-							/////////////////////////////////////////////NIVELES
-
-
-
-                            */
-
-                        ?>  
-                        
-                        
-                        	<?php /**?>
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $pass; ?></td>
-								
-								<td><?php echo $extension; ?></td>
-								<td><?php echo $area; ?></td>
-								<td><?php echo $completo; ?></td>
-
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-
-							*/ ?>
 
 							<?php
 							//}

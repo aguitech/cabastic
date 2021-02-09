@@ -10,9 +10,24 @@ if($_POST["id"] != ""){
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
 <form id="" method="post" action="?">
+
+<div class="card-header header-elements-inline">
+	<h5 class="card-title">&nbsp;</h5>
+	<div class="header-elements">
+		<div class="list-icons">
+    		<!-- 
+    		<a class="list-icons-item" data-action="collapse"></a>
+    		<a class="list-icons-item" data-action="reload"></a>
+    		-->
+    		<a class="list-icons-item" data-action="remove" onclick="cerrar_cargar()"></a>
+    	</div>
+	</div>
+</div>
+<?php /**
 <div onclick="cerrar_cargar()">
 cerrar
 </div>
+*/ ?>
 <input type="hidden" name="editar" value="<?php echo $resultado->Id_Color; ?>" />
 <div>
 <h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> cliente</h3>
@@ -101,14 +116,27 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             </div>
             
             <div>
-            	<input type="submit" />
-            </div>
+    			<div class="form-row">
+                    <div class="form-group col-md-6">
+                         &nbsp;
+                    </div>
+                    <div class="form-group col-md-6">
+                     	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                    </div>
+                </div>
+    			
+    		</div>
 
 <?php /**
 
 
 
 
+
+</div>
+<div>
+<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>CREAR<?php endif; ?> <i class="material-icons right">send</i></button>
+</div>
 
 
 
@@ -123,9 +151,5 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
 
 <br />
 
-</div>
-<div>
-<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>CREAR<?php endif; ?> <i class="material-icons right">send</i></button>
-</div>
 </form>
 </div> 

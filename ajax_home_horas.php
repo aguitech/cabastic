@@ -26,7 +26,7 @@ $value_percent = 100 / $res_hours[0]->sumatoria;
 }
 .graph_home_hour{
 	background:purple;
-	background: linear-gradient(-90deg, red, yellow);
+	background: linear-gradient(-90deg, #2b8bf2, yellowgreen);
 	width:70%;
 	height:16px;
 	

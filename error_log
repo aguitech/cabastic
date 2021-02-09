@@ -1,3 +1,1117 @@
 [14-Dec-2020 13:11:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
 [15-Dec-2020 15:06:29 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
 [15-Dec-2020 15:11:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 17:44:14 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 17:58:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 18:07:51 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 18:10:58 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 18:23:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 18:24:58 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 18:42:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/colores.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 19:53:37 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 21:18:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[20-Dec-2020 21:29:41 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/home.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 12:37:03 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 12:37:03 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[22-Dec-2020 23:23:31 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/ventas.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 23:23:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/ventas.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ventas.php on line 264
+[22-Dec-2020 23:27:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/ventas.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 23:27:44 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/ventas.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ventas.php on line 264
+[22-Dec-2020 23:27:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/ventas.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 23:27:46 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/ventas.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ventas.php on line 264
+[22-Dec-2020 23:27:48 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/ventas.php:1) in /home2/cabastic/public_html/login.php on line 33
+[22-Dec-2020 23:27:48 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/ventas.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ventas.php on line 264
+[22-Dec-2020 23:29:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/ventas.php:1) in /home2/cabastic/public_html/login.php on line 33
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:24:25 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 124
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:25:09 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 124
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:26 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 124
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:48 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:26:48 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:00 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:09 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[08-Jan-2021 20:27:09 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[08-Jan-2021 21:03:54 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/iniciar_venta.php on line 752
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:01 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:01 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:02 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:04 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:24:04 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 27
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:25:18 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:25:21 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:26:16 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:15 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:17 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:19 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:28:58 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(common_files/sesion.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:29:02 America/Chicago] PHP Warning:  include(): Failed opening 'common_files/sesion.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 3
+[09-Jan-2021 00:32:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:33 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:41 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:32:45 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:54 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:33:58 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:37:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:37:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:37:58 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:37:58 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:38:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:38:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:38:05 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:38:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:39:03 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:03 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:03 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:03 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:39:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:58 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:58 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:39:58 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:40:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:02 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:40:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:33 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:40:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:39 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:40:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:42:23 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:23 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:23 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:42:27 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:27 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:27 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:42:29 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:29 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:29 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:42:29 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:43:53 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:43:53 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:43:53 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:43:53 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:46:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:46:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:46:52 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:46:52 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:50:10 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:50:10 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:50:10 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:50:10 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:52:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:52:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:52:09 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:52:09 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:53:31 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:53:31 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:53:31 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:53:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:54:22 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:54:22 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:54:22 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:54:22 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 29
+[09-Jan-2021 00:55:11 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:11 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:11 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:11 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 30
+[09-Jan-2021 00:55:13 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:13 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:13 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:13 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 30
+[09-Jan-2021 00:55:17 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:17 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:17 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:55:17 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 30
+[09-Jan-2021 00:56:19 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:19 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:19 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:19 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 00:56:27 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:27 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:27 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 00:56:35 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:35 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:35 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:35 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 91
+[09-Jan-2021 00:56:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:39 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 00:56:43 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:43 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:43 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:43 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 00:56:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:52 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:56:52 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 91
+[09-Jan-2021 00:57:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:57:09 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:57:09 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:57:09 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 00:59:04 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:59:04 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:59:04 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 00:59:04 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:04:18 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:18 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:18 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:18 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:04:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:25 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:04:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:13:35 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:13:35 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:13:35 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:13:35 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:14:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:30 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:30 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:14:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:33 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:14:34 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:34 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:34 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:14:34 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:15:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:15:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:15:26 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:15:26 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:33
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 33
+[09-Jan-2021 01:18:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:18:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:18:15 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[09-Jan-2021 01:18:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:26:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:41 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:41 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:26:55 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:27:42 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:27:42 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:27:42 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:27:42 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:29:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:29:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:29:33 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:29:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:30:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:30:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:30:00 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:30:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:33:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:47 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:33:49 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:49 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:49 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:33:49 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:37:51 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:51 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:51 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:51 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:37:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:55 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:55 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:37:55 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:39:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:39 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:39 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:39:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:40 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:39:40 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:42:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:42:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:42:05 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:42:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 19:51:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:51:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:51:46 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 19:51:46 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:03:16 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:03:16 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:03:16 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:03:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:04:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:46 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:46 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:04:54 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:05:34 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:34 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:34 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:34 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:05:50 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:50 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:50 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:05:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:52 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:05:52 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:38 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:38 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:40 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:40 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:41 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:41 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:41 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:43 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:43 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:43 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:43 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:44 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:44 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:44 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:44 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:06:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:45 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:06:45 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:07:28 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:28 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:28 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:28 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:07:38 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:09:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:09:33 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:09:33 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:09:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:10:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:10:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:10:07 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:10:07 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:11:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[10-Jan-2021 20:11:19 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[10-Jan-2021 20:11:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[10-Jan-2021 20:11:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[10-Jan-2021 20:12:44 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:12:44 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:12:44 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:12:44 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:13:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:13:52 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:13:52 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:13:52 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:18:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:25 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:18:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:26 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:26 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:26 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:18:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:54 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:54 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:18:54 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:21:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:21:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:21:07 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:21:07 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:22:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:22:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:22:47 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:22:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:35
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 35
+[10-Jan-2021 20:26:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:26:40 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:26:40 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:26:40 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 99
+[10-Jan-2021 20:27:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:27:25 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:27:25 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:27:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:39
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 39
+[10-Jan-2021 20:29:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:29:02 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:29:02 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:29:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 40
+[10-Jan-2021 20:31:32 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:31:32 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:31:32 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:31:32 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 40
+[10-Jan-2021 20:32:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:45 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:45 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:45 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 40
+[10-Jan-2021 20:32:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:47 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:47 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:32:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 40
+[10-Jan-2021 20:35:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:35:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:35:30 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:35:30 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 40
+[10-Jan-2021 20:37:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:37:00 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:37:00 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 2
+[10-Jan-2021 20:37:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php:41
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 41
+[10-Jan-2021 22:56:23 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[10-Jan-2021 22:56:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[11-Jan-2021 12:38:57 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[11-Jan-2021 12:38:57 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[11-Jan-2021 22:04:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[11-Jan-2021 22:04:11 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[11-Jan-2021 22:05:47 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[11-Jan-2021 22:05:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[12-Jan-2021 00:54:10 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 00:54:10 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 00:54:10 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 00:54:10 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 132
+[12-Jan-2021 01:05:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:05:07 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:05:07 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:05:07 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:26
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 26
+[12-Jan-2021 01:18:50 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:18:50 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:18:50 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:18:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:19:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:19:05 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:19:05 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:19:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:22:13 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:13 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:13 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:13 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:22:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:30 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:30 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:22:30 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:24:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:24:46 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:24:46 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:24:46 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:26:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:26:15 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:26:15 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:26:15 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 132
+[12-Jan-2021 01:27:29 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:27:29 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:27:29 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 2
+[12-Jan-2021 01:27:29 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/iniciar_venta_restar_producto.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/iniciar_venta_restar_producto.php on line 30
+[12-Jan-2021 01:31:12 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:31:12 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:31:12 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:31:12 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 132
+[12-Jan-2021 01:39:12 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:39:12 America/Chicago] PHP Warning:  include(../includes/includes.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:39:12 America/Chicago] PHP Warning:  include(): Failed opening '../includes/includes.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 2
+[12-Jan-2021 01:39:12 America/Chicago] PHP Warning:  Use of undefined constant   - assumed ' ' (this will throw an Error in a future version of PHP) in /home2/cabastic/public_html/iniciar_venta_quitar_producto.php on line 132
+[13-Jan-2021 22:54:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php on line 9
+[13-Jan-2021 22:55:12 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php on line 9
+[13-Jan-2021 22:55:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php on line 9
+[13-Jan-2021 22:56:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_resultado_tipo_producto.php on line 8
+[20-Jan-2021 01:41:30 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:30 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:30 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:49 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:49 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:49 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:54 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:54 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:54 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:58 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:58 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 01:41:58 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:20:01 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:20:01 Etc/UTC] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:20:01 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:30:58 Etc/UTC] PHP Warning:  require(../smtp/PHPMailer-master/src/Exception.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:30:58 Etc/UTC] PHP Warning:  require(../smtp/PHPMailer-master/src/Exception.php): failed to open stream: No such file or directory in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 02:30:58 Etc/UTC] PHP Fatal error:  require(): Failed opening required '../smtp/PHPMailer-master/src/Exception.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/cabastic/public_html/email.php on line 15
+[20-Jan-2021 18:46:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_resultado_credito_cliente.php on line 141
+[20-Jan-2021 18:46:32 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_resultado_credito_cliente.php on line 141
+[27-Jan-2021 17:57:13 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[27-Jan-2021 18:53:03 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 4
+[27-Jan-2021 19:01:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:02:01 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:02:04 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:02:22 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:05:12 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:05:42 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:06:01 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:07:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 5
+[27-Jan-2021 19:07:45 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 6
+[27-Jan-2021 19:09:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_results() on null in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/ajax_iniciar_venta_filtrar_marca.php on line 6
+[28-Jan-2021 21:38:22 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:22 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:23 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:23 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:23 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:23 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[28-Jan-2021 21:38:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[29-Jan-2021 20:49:24 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[29-Jan-2021 20:49:27 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[29-Jan-2021 20:49:30 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[29-Jan-2021 20:49:36 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[30-Jan-2021 18:14:25 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 11:25:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:25:20 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:25:32 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:25:48 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:26:07 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:27:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:28:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:28:18 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:28:28 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:29:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:29:32 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/actualizar_costo_compra.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/actualizar_costo_compra.php on line 10
+[31-Jan-2021 11:41:58 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_costo_compra.php on line 63
+[31-Jan-2021 12:46:21 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:01:19 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:01:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:01:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:01:28 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:08:57 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:08:58 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:08:59 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 13:10:52 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:42 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:44 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:47 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:53 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:06:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:07:01 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:07:01 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 15:07:01 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[31-Jan-2021 16:33:52 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home2/cabastic/public_html/asignar_costo_compra.php on line 1144
+[31-Jan-2021 16:34:17 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home2/cabastic/public_html/asignar_costo_compra.php on line 1144
+[31-Jan-2021 17:15:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[31-Jan-2021 17:15:36 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[06-Feb-2021 23:38:14 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:40:59 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:03 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:11 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:41:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:44:20 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:44:21 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:45:48 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:45:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 3
+[06-Feb-2021 23:48:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 4
+[06-Feb-2021 23:48:06 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 4
+[06-Feb-2021 23:48:09 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 4
+[06-Feb-2021 23:49:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 5
+[06-Feb-2021 23:49:24 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function get_row() on null in /home2/cabastic/public_html/mostrar_divisa.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mostrar_divisa.php on line 5
+[07-Feb-2021 18:05:47 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[07-Feb-2021 18:05:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[08-Feb-2021 17:38:08 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[08-Feb-2021 17:38:08 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[08-Feb-2021 17:39:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[08-Feb-2021 17:39:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[08-Feb-2021 21:26:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cabastic/public_html/usuarios.php:1) in /home2/cabastic/public_html/login.php on line 33
+[08-Feb-2021 21:26:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cabastic/public_html/usuarios.php:264
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[09-Feb-2021 00:42:17 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:42:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:42:25 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:42:34 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:42:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:43:37 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:45:15 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:02 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:05 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:05 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:05 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:06 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:06 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:51 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:47:59 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:48:49 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:48:59 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:49:28 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225
+[09-Feb-2021 00:49:31 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/iniciar_venta_agregar_producto.php on line 225

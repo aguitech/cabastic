@@ -1,7 +1,10 @@
 <?php include("includes/includes.php"); ?>
 <?php 
 $nombre_seccion = "Sustancias";
-$tbl_main = "sustancia";
+
+//$tbl_main = "sustancia";
+$tbl_main = "ds_cat_tipo_sustancia";
+
 $nombre_simple = "sustancia";
 $url_name = "sustancias.php";
 $url_crear_name = "crear_sustancia.php";
@@ -11,6 +14,33 @@ include_once("login.php");
 ?>
 <?php
 include_once("db.php");
+?>
+<?php 
+if($_POST["Descripcion"] != ""){
+    
+    $val_descripcion = $_POST["Descripcion"];
+    $val_activo = $_POST["Activo"];
+    $val_abreviatura = $_POST["Abreviatura"];
+    $val_comentario = $_POST["Comentario"];
+    $fecha_hoy = date("Y-m-d H:i:s");
+    
+    
+    if($_POST["editar"] != ""){
+        $id_editar = $_POST["editar"];
+        //$qry_edit = "update ds_cat_tipo_sustancia set Descripcion = '{$val_descripcion}', Abreviatura = '{$val_abreviatura}', Comentario = '{$val_comentario}', Activo = $val_activo, Fecha_Actualiza = '{$fecha_hoy}' where Id_Tipo_Sustancia = $id_editar";
+        //echo $qry_edit;
+        $qry_edit = "update ds_cat_tipo_sustancia set Descripcion = '{$val_descripcion}', Abreviatura = '{$val_abreviatura}', Comentario = '{$val_comentario}', Activo = $val_activo where Id_Tipo_Sustancia = $id_editar";
+        //
+        $obj->query($qry_edit);
+    }else{
+        //$qry_insert = "insert into ds_cat_tipo_sustancia (Descripcion, Abreviatura, Comentario, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$val_abreviatura}', '{$val_comentario}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+        $qry_insert = "insert into ds_cat_tipo_sustancia (Descripcion, Abreviatura, Comentario, Activo, Fecha_Alta) values ('{$val_descripcion}', '{$val_abreviatura}', '{$val_comentario}', 1, '{$fecha_hoy}')";
+        $obj->query($qry_insert);
+    }
+    
+    
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -393,8 +423,9 @@ include_once("db.php");
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
-                            	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                <?php /**
+                            	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="cargar_crear()"><i class="material-icons right">add</i> Agregar <?php echo $nombre_simple; ?></button>
+                            	<?php /**
+                                <a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
                                 <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
                             	
                             	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
@@ -420,10 +451,6 @@ include_once("db.php");
 	                	</div>
 					</div>
 
-					<div class="card-body">
-						La lista de <code><?php echo $nombre_seccion; ?></code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
-					</div>
-
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
@@ -440,96 +467,6 @@ include_once("db.php");
 						<tbody>
 							
 
-                        <?php 
-                        /**
-                         $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                         
-                          $resultt = $mysqli->query($qt);
-                          while ($rowt = $resultt->fetch_row()){
-
-                            $id_usuario=$rowt[0];
-                            $nombre=$rowt[1];
-                            $pass=$rowt[2];
-                            $id_nivel=$rowt[3];
-                            $extension=$rowt[4];
-                            $area=$rowt[5];
-							$completo=$rowt[6];
-							$niveles=$rowt[7];
-
-
-							///////////////////////////////////////NIVELES
-							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-								$niveles=$id_nivel;
-
-								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-								//echo $sq;
-								//$resul = $mysqli->query($sq);
-							}
-							if($niveles!=""){
-								//echo "NIVELES: ".$niveles." - ";
-								$niveles = explode(",", $niveles);
-								$losniveles="";
-								for ($i=0;$i<count($niveles);$i++)    
-								{
-									$losniveles .= $niveles[$i].",";
-								} 
-								$losniveles = substr($losniveles,0,-1);
-								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-								$nivelesarray = explode(",", $losniveles);
-								for ($i=0;$i<count($nivelesarray);$i++)    
-								{
-									$sq .= " OR id_nivel=".$nivelesarray[$i];
-								} 
-								//echo $sq;
-								$resul = $mysqli->query($sq);
-								$niveles_nombres="";
-								while ($row = $resul->fetch_row()){
-
-									$id_nivel=$row[0];
-									$nombre_nivel=$row[1];
-									//echo " ".$nombre_nivel." <br>";
-									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-								}
-								//$niveles_nombres = substr($niveles_nombres,0,-2);
-								$area = $niveles_nombres;
-							}
-							/////////////////////////////////////////////NIVELES
-
-
-
-                            */
-
-                        ?>  
-                        
-                        
-                        	<?php /**?>
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $pass; ?></td>
-								
-								<td><?php echo $extension; ?></td>
-								<td><?php echo $area; ?></td>
-								<td><?php echo $completo; ?></td>
-
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-
-							*/ ?>
 
 							<?php
 							//}
@@ -539,12 +476,6 @@ include_once("db.php");
 							$qry_resultados = "select * from $tbl_main";
 						
 							$resultados = $obj->get_results($qry_resultados);
-						
-							//print_r($resultados);
-						//$qry_resultados = "select * from $tbl_main order by Fecha_Venta desc";
-						
-						//$resultados = $obj->get_results($qry_resultados);
-						
 						
 						?>
 						<?php foreach($resultados as $resultado): ?>
@@ -561,7 +492,7 @@ include_once("db.php");
 							//[Fecha_Alta] => 2020-07-21 22:10:43 
 							//[Id_Categoria_Producto] => 79 
 							
-							$id_resultado=$resultado->id_sustancia;
+							$id_resultado=$resultado->Id_Tipo_Sustancia;
 							$nombre=$resultado->Nombre;
 							$hexadecimal=$resultado->Descripcion;
 							$id_nivel="Hola";
@@ -573,16 +504,15 @@ include_once("db.php");
 								
 							<tr id="element<?php echo $id_resultado; ?>">
 								
-								
 								<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $id_resultado; ?></a></td>
-								<td><?php echo $resultado->sustancia; ?></td>
-								<td><?php echo $resultado->descripcion; ?></td>
+								<td><?php echo $resultado->Descripcion; ?></td>
+								<td><?php echo $resultado->Abreviatura; ?></td>
 								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
 								
 								
 								
 								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
+								<td><?php echo $resultado->Comentario; ?></td>
 								<td>&nbsp;</td>
 								
 
@@ -599,8 +529,8 @@ include_once("db.php");
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

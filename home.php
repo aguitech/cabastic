@@ -20,7 +20,7 @@ $orgDate = "13-12-2020";
 //$newDate = date("w", strtotime($orgDate));
 $newDate = date("w", strtotime($fecha_val));
 
-echo "New date format is: ".$newDate. " (MM-DD-YYYY)";
+//echo "New date format is: ".$newDate. " (MM-DD-YYYY)";
 
 $dia_de_semana = date('w');
 
@@ -116,7 +116,7 @@ $qry_semana = "select *, sum(MontoTotalMXN) as sumatoria from ds_tbl_venta where
 //echo $qry_hours;
 $res_semana = $obj->get_row($qry_semana);
 
-echo $res_semana->sumatoria;
+//echo $res_semana->sumatoria;
 
 $value_percent = 100 / $res_semana->sumatoria;
 
@@ -545,6 +545,7 @@ $value_percent = 100 / $res_semana->sumatoria;
                             <br />
                             <br />
                         </div>
+                        <br /><br /><br />
                 <div class="row clearfix">
                     <div class="col-lg-4 col-md-4">
                         <div class="card text-center">

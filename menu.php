@@ -36,10 +36,15 @@
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="colores.php" class="nav-link active">Colores</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Divisas</a></li>
+								<li class="nav-item"><a href="divisas.php" class="nav-link active">Divisas</a></li>
 								<li class="nav-item"><a href="marcas.php" class="nav-link active">Marcas</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Productos</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Sustancia</a></li>
+								<li class="nav-item"><a onclick="$('#submenu_productos').show();" class="nav-link active">Productos</a></li>
+								<div style="display:none;" id="submenu_productos">
+									<li class="nav-item"><a href="productos.php" class="nav-link active"> &nbsp; &#9658; &nbsp; Listado</a></li>
+									<li class="nav-item"><a href="asignar_precio_venta.php" class="nav-link active"> &nbsp; &#9658; &nbsp; Asignar Precio Venta</a></li>
+									<li class="nav-item"><a href="asignar_costo_compra.php" class="nav-link active"> &nbsp; &#9658; &nbsp; Asignar Costo Compra</a></li>
+								</div>
+								<li class="nav-item"><a href="sustancias.php" class="nav-link active">Sustancia</a></li>
 								<li class="nav-item"><a href="tallas.php" class="nav-link active">Tallas</a></li>
 								<li class="nav-item"><a href="tipos_producto.php" class="nav-link active">Tipo Producto</a></li>
 							</ul>
@@ -51,7 +56,7 @@
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="" class="nav-link active">Alta de cliente</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Baja de cliente</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Lista de clientes</a></li>
+								<li class="nav-item"><a href="clientes.php" class="nav-link active">Lista de clientes</a></li>
 								
 							</ul>
 						</li>
@@ -62,7 +67,7 @@
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="" class="nav-link active">Alta de empleado</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Baja de empleado</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Lista de empleados</a></li>
+								<li class="nav-item"><a href="empleados.php" class="nav-link active">Lista de empleados</a></li>
 							</ul>
 						</li>
 						
@@ -71,7 +76,7 @@
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="" class="nav-link active">Crear Evento</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Mostrar eventos</a></li>
+								<li class="nav-item"><a href="eventos.php" class="nav-link active">Mostrar eventos</a></li>
 							</ul>
 						</li>
 						
@@ -102,7 +107,7 @@
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Pr&eacute;stamos</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="" class="nav-link active">Mostrar Pr&eacute;stamos</a></li>
+								<li class="nav-item"><a href="prestamos.php" class="nav-link active">Mostrar Pr&eacute;stamos</a></li>
 							</ul>
 						</li>
 						
@@ -110,7 +115,7 @@
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Reportes</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="" class="nav-link active">Reporte de Inventario</a></li>
+								<li class="nav-item"><a href="reporte_inventario.php" class="nav-link active">Reporte de Inventario</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Reporte Global</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Productos mas vendidos</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Productos menos vendidos</a></li>
@@ -122,7 +127,15 @@
 								<li class="nav-item"><a href="" class="nav-link active">Reporte de cortes de caja</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Bit&aacute;cora de operaciones</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Asignaci&oacute;n de inventario evento</a></li>
-								
+								<li class="nav-item"><a href="reporte_metodo_pago.php" class="nav-link active">M&eacute;todos de pago</a></li>
+								<li class="nav-item"><a href="reporte_tipo_productos.php" class="nav-link active">Tipo de productos</a></li>
+								<li class="nav-item"><a href="reporte_tipo_productos_totales.php" class="nav-link active">Tipo de productos $ USD</a></li>
+								<li class="nav-item"><a href="reporte_maximos_minimos.php" class="nav-link active">M&aacute;ximos y m&iacute;nimos</a></li>
+								<li class="nav-item"><a href="reporte_ventas_marcas.php" class="nav-link active">Reporte Ventas Marcas</a></li>
+								<li class="nav-item"><a href="reporte_credito_cliente.php" class="nav-link active">Reporte Cr&eacute;dito de Cliente</a></li>
+								<?php /**
+								<li class="nav-item"><a href="reporte_credito.php" class="nav-link active">Reporte Cr&eacute;dito de Cliente</a></li>
+								*/ ?>
 							</ul>
 						</li>
 						
@@ -132,7 +145,7 @@
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="" class="nav-link active">Ubicaci&oacute;n de producto</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Eliminar ubicaci&oacute;n</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Mostrar ubicaciones</a></li>
+								<li class="nav-item"><a href="ubicaciones.php" class="nav-link active">Mostrar ubicaciones</a></li>
 								
 							</ul>
 						</li>
@@ -141,13 +154,12 @@
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Ventas</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="" class="nav-link active">Mostrar ventas</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Entregas pendientes</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Env&iacute;os Entregados</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Historial &oacute;rdenes de compra</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Iniciar Venta</a></li>
-								<li class="nav-item"><a href="" class="nav-link active">Devoluci&oacute;n Ventas</a></li>
+								<li class="nav-item"><a href="ventas.php" class="nav-link active">Mostrar ventas</a></li>
+								<li class="nav-item"><a href="entregas_pendientes.php" class="nav-link active">Entregas pendientes</a></li>
+								<li class="nav-item"><a href="envios_entregados.php" class="nav-link active">Env&iacute;os Entregados</a></li>
+								<li class="nav-item"><a href="ordenes_de_compra_historial.php" class="nav-link active">Historial &oacute;rdenes de compra</a></li>
+								<li class="nav-item"><a href="iniciar_venta.php" class="nav-link active">Iniciar Venta</a></li>
+								<li class="nav-item"><a href="devolucion_ventas.php" class="nav-link active">Devoluci&oacute;n Ventas</a></li>
 							</ul>
 						</li>
-
 						<!-- /main -->

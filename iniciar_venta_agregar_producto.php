@@ -197,11 +197,7 @@ PRUEBA
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								
-
-								<?php /**
-								<td><?php echo $hexadecimal; ?></td>
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
-								*/ ?>
+¡
 								
 								<td class="text-center">
 									<div class="list-icons">
@@ -213,9 +209,7 @@ PRUEBA
 											<div class="dropdown-menu dropdown-menu-right">
 												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
 												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												<?php /**
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												*/ ?>
+										
 											</div>
 										</div>
 									</div>

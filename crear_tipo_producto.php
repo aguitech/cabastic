@@ -4,7 +4,7 @@ if($_POST["id"] != ""){
     $id = $_POST["id"];
     //ds_cat_tipo_sustancia
     //$qry_id = "select * from ds_cat_color where Id_Color = {$id}";
-    $qry_id = "select * from ds_cat_tipo_sustancia where Id_Tipo_Sustancia = {$id}";
+    $qry_id = "select * from ds_cat_tipo_producto where Id_Tipo_Producto = {$id}";
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
 }
@@ -17,45 +17,21 @@ cerrar
 </div>
 <input type="hidden" name="editar" value="<?php echo $resultado->Id_Tipo_Sustancia; ?>" />
 <div>
-<h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> tipo de producto</h3>
-<?php /**
-<input type="text" placeholder="Nota" name="nota" id="nota" value="<?php echo $resultado->nota; ?>" />
-<input type="text" placeholder="Nota" name="nota" id="nota" value="<?php echo $resultado->nota; ?>" />
-
-<textarea name="nota" id="nota"><?php echo $resultado->nota; ?></textarea>
-
-
-Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
-
-	Id_Cliente			Apellido_Materno		
-*/ ?>
+	<h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> tipo de producto</h3>
 
 			<div class="form-row">
                 <div class="form-group col-md-6">
-                 	<div>Sustancia</div>
+                 	<div>Tipo de producto</div>
          		<input type="text" placeholder="Sustancia" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>" class="form-control" />
         
                 </div>
                 <div class="form-group col-md-6">
-                 	<div>Status</div>
-         			<input type="text" placeholder="Status" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>" class="form-control" />
+                 	<input type="hidden" placeholder="Status" name="Activo" id="Activo" value="1" class="form-control" />
                 </div>
             </div>
-            <div class="form-row">
-            	<div class="form-group col-md-6">
-                
-             		<div>Abreviatura</div>
-    				<input type="text" placeholder="Abreviatura" name="Abreviatura" id="Abreviatura" value="<?php echo $resultado->Abreviatura; ?>"  class="form-control" />
-            	</div>
-            	<div class="form-group col-md-6">
-                
-             		<div>Comentario</div>
-    				<input type="text" placeholder="Comentario" name="Comentario" id="Comentario" value="<?php echo $resultado->Comentario; ?>"  class="form-control" />
-            	</div>
-            </div>
             <div>
-            	<input type="submit" />
-            </div>
+    			<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+    		</div>
 
 <?php /**
 

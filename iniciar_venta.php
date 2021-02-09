@@ -364,7 +364,7 @@ $_SESSION["cantidad"];
 			   
 			   $.ajax({
 					type: "POST",
-					url:"/iniciar_venta_agregar_producto.php?ind=0005",
+					url:"/iniciar_venta_agregar_producto.php",
 					//url:"/views_online/punto_venta_agregar_producto.php",
 					//data: { limit:val_limit, offset:val_offset },
 					data: { id:id },
@@ -435,8 +435,34 @@ $_SESSION["cantidad"];
 
 
 
+		   function filtrar_resultados_tabla(){
+
+			   var id_marca = $("#id_marca").val();
+			   var id_producto = $("#id_producto").val();
+			   var id_talla = $("#id_talla").val();
+			   var id_color = $("#id_color").val();
+			   
+
+			   $.ajax({
+					type: "POST",
+					url:"ajax_iniciar_venta_filtrar_tabla.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id_marca:id_marca, id_producto:id_producto, id_talla:id_talla, id_color:id_color },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						$("#resultado_filtrados").html(data);
+						
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+					}
+				});
+			   //filtrar_marca
+		   }
 
 
+		   
 		   function filtrar_marca(id){
 			   $.ajax({
 					type: "POST",
@@ -448,7 +474,8 @@ $_SESSION["cantidad"];
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
 						$("#resultado_filtrado_marca").html(data);
-						
+
+						filtrar_resultados_tabla();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -466,7 +493,9 @@ $_SESSION["cantidad"];
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
 						$("#resultado_filtrado_producto").html(data);
-						
+
+
+						filtrar_resultados_tabla();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -485,7 +514,8 @@ $_SESSION["cantidad"];
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
 						$("#resultado_filtrado_talla").html(data);
-						
+
+						filtrar_resultados_tabla();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -505,8 +535,10 @@ $_SESSION["cantidad"];
 						console.log(data);
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
-						$("#resultado_filtrado_talla").html(data);
+						//$("#resultado_filtrado_talla").html(data);
+
 						
+						filtrar_resultados_tabla();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -637,7 +669,7 @@ $_SESSION["cantidad"];
 				<div class="card" id="container">
 				
 					
-					
+					<?php /**
 					<div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                         </div>
@@ -646,12 +678,7 @@ $_SESSION["cantidad"];
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
                             	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                <?php /**
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                            	
-                            	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                                */ ?>
+                                
                             </div>
                         </div>
                         <br />
@@ -659,7 +686,7 @@ $_SESSION["cantidad"];
                         <br />
                     </div>
                     <br /><br /><br />
-                    
+                    */ ?>
 					
 					<div class="card-header header-elements-inline">
 						<h5 class="card-title"><?php echo $nombre_seccion; ?></h5>
@@ -670,10 +697,6 @@ $_SESSION["cantidad"];
 		                		<a class="list-icons-item" data-action="remove"></a>
 		                	</div>
 	                	</div>
-					</div>
-
-					<div class="card-body">
-						La lista de <code><?php echo $nombre_seccion; ?></code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
 					</div>
 					<div>
 					
@@ -696,9 +719,10 @@ $_SESSION["cantidad"];
         						$qry_evento = "select * from ds_tbl_evento";
         						$eventos = $obj->get_results($qry_evento);
         						?>
-                                <select name="" id="" class="form-control">
+                                <select name="" id="" class="form-control" <?php if($_GET["id_evento"]){ ?>readonly="readonly" disabled="disabled" <?php } ?>>
+        							<option value="">Selecciona evento</option>
         							<?php foreach ($eventos as $evento): ?>
-        							<option value="<?php echo $evento->Id_Evento; ?>"><?php echo $evento->Descripcion; ?></option>
+        							<option value="<?php echo $evento->Id_Evento; ?>" <?php if($_GET["id_evento"] == $evento->Id_Evento){ ?>selected="selected"<?php } ?>><?php echo $evento->Descripcion; ?></option>
         							<?php endforeach; ?>
         						</select>
                             </div>
@@ -710,7 +734,7 @@ $_SESSION["cantidad"];
         						$qry_marca = "select * from ds_cat_marca";
         						$marcas = $obj->get_results($qry_marca);
         						?>
-                                <select name="" id="" class="form-control" onchange="filtrar_marca(this.value);">
+                                <select name="id_marca" id="id_marca" class="form-control" onchange="filtrar_marca(this.value);">
                                 	<option value="">Selecciona una marca</option>
         							<?php foreach ($marcas as $marca): ?>
         							<option value="<?php echo $marca->Id_Marca; ?>"><?php echo $marca->Descripcion; ?></option>
@@ -721,7 +745,7 @@ $_SESSION["cantidad"];
                              	<div>Filtro por producto:</div>
                              	<div id="resultado_filtrado_marca">
                                     <select name="" id="" class="form-control">
-            							<option value=""></option>
+            							<option value="">Seleccionar</option>
             						</select>
         						</div>
                             </div>
@@ -731,7 +755,7 @@ $_SESSION["cantidad"];
                              	<div>Filtro por talla:</div>
                              	<div id="resultado_filtrado_producto">
                                     <select name="" id="" class="form-control">
-            							<option value=""></option>
+            							<option value="">Seleccionar</option>
             						</select>
         						</div>
                             </div>
@@ -739,7 +763,7 @@ $_SESSION["cantidad"];
                              	<div>Filtro por color:</div>
                                 <div id="resultado_filtrado_talla">
                                     <select name="" id="" class="form-control">
-            							<option value=""></option>
+            							<option value="">Seleccionar</option>
             						</select>
         						</div>
                             </div>
