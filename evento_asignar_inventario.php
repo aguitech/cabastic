@@ -9,7 +9,7 @@ include_once("db.php");
 $nombre_seccion = "Asignar inventario a evento";
 $tbl_main = "ds_tbl_producto";
 $nombre_simple = "producto";
-$url_name = "productos.php";
+$url_name = "evento_asignar_inventario.php";
 $url_crear_name = "crear_producto.php";
 
 
@@ -732,6 +732,9 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 			   
 			   var id_evento = $("#id_evento").val();
 
+				//alert("ID EVENTO");
+			   //alert(id_evento);
+			   
 			   $.ajax({
 					type: "POST",
 					url:"actualizar_inventario_evento.php",
@@ -823,7 +826,7 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
 							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?> "<?php echo $evento_detalle->Descripcion; ?>"</a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
@@ -931,6 +934,7 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
                             </div>
                         </div>
                         */ ?>
+                        <input type="hidden" id="id_evento" value="<?php echo $_GET["id_evento"]; ?>" />
                         <div class="form-row">
                             <div class="form-group col-md-6">
                              	<div>Filtro por marca:</div>

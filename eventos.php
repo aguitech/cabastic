@@ -499,8 +499,8 @@ if($_POST["Descripcion"] != ""){
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -589,13 +589,12 @@ if($_POST["Descripcion"] != ""){
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Evento</th>
 								<th>Fecha Inicio</th>
 								<th>Fecha Fin</th>
 								<th>Calle</th>
 								<th>Colonia</th>
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -628,7 +627,6 @@ if($_POST["Descripcion"] != ""){
 							?>
 								
 							<tr id="element<?php echo $id_resultado; ?>">
-								<td><?php echo $id_resultado; ?></td>
 								<td><?php echo $resultado->Descripcion; ?></td>
 								<td><?php echo $resultado->Fecha_Inicio; ?></td>
 								
@@ -643,7 +641,7 @@ if($_POST["Descripcion"] != ""){
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
 												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												
 												

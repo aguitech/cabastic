@@ -336,8 +336,8 @@ include_once("db.php");
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -393,8 +393,9 @@ include_once("db.php");
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
-                            	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                <?php /**
+                            	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="cargar_crear()"><i class="material-icons right">add</i> Agregar <?php echo $nombre_simple; ?></button>
+                            	<?php /**
+                                <a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
                                 <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
                             	
                             	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
@@ -420,21 +421,17 @@ include_once("db.php");
 	                	</div>
 					</div>
 
-					<div class="card-body">
-						La lista de <code><?php echo $nombre_seccion; ?></code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
-					</div>
 
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Evento</th>
 								<th>Fecha pr&oacute;ximo</th>
 								<th>Monto</th>
 								<th>Cliente</th>
 								<th>Estatus</th>
 								
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -579,7 +576,6 @@ include_once("db.php");
 							<tr id="element<?php echo $id_resultado; ?>">
 								
 								
-								<td><?php echo $id_resultado; ?></td>
 								<td><?php echo $resultado->evento; ?></td>
 								
 								<td><?php echo $resultado->Fecha_Prestamo; ?></td>
@@ -605,8 +601,8 @@ include_once("db.php");
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

@@ -9,7 +9,7 @@ include_once("db.php");
 $tbl_main = "ds_tbl_producto";
 
 
-print_r($_POST);
+//print_r($_POST);
 
 // [id_marca] => 1 [id_producto] => 5 [id_talla] => 11 [id_color] => 73 ) 
 // [] => 1 [] => 5 [] => 11 [] => 73 )
@@ -23,7 +23,6 @@ $id_color = $_POST["id_color"];
 <table class="table datatable-basic">
 	<thead>
 		<tr>
-			<th>ID</th>
 			<th>Producto</th>
 			<th>Marca</th>
 			
@@ -36,7 +35,7 @@ $id_color = $_POST["id_color"];
 			<th>Inventario</th>
 			<th>Agregar</th>
 			
-			<th class="text-center">Actions</th>
+			<th class="text-center">Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -75,7 +74,7 @@ $id_color = $_POST["id_color"];
     //$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where $where_append order by $tbl_main.Descripcion asc";
     $qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where $where_append order by $tbl_main.Descripcion asc";
     
-    echo $qry_resultados;
+    //echo $qry_resultados;
 		
 		//echo $qry_resultados;
 	
@@ -113,8 +112,7 @@ $id_color = $_POST["id_color"];
 		?>
 			
 		<tr id="element<?php echo $id_resultado; ?>">
-			<td><?php echo $id_resultado; ?></td>
-			<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $nombre; ?></td>
+			<td><?php echo $nombre; ?></td>
 			<td><?php echo $resultado->marca; ?></td>
 			
 			<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div><br /><?php echo $resultado->color; ?><br /><?php echo $resultado->Codigo_Hexadecimal; ?></td>
@@ -139,7 +137,7 @@ $id_color = $_POST["id_color"];
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
+							<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
 							<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 							<?php /**
 							<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>

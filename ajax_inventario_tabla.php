@@ -23,7 +23,6 @@ $id_color = $_POST["id_color"];
 <table class="table datatable-basic">
 	<thead>
 		<tr>
-			<th>ID</th>
 			<th>C&oacute;digo barras</th>
 			
 			<th>Producto</th>
@@ -39,7 +38,7 @@ $id_color = $_POST["id_color"];
 			<th>Tipo Almac&eacute;n</th>
 			<th>Cantidad</th>
 			
-			<th class="text-center">Actions</th>
+			<th class="text-center">Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -138,7 +137,6 @@ $id_color = $_POST["id_color"];
 		
 		<?php //if($resultado->Id_Producto_Detalle != ""){ ?>
 		<tr id="element<?php echo $id_resultado; ?>">
-			<td><?php echo $id_resultado; ?></td>
 			<td><?php echo $resultado->Codigo_Barras; //print_r($resultado); ?></td>
 			<td><?php echo $nombre; ?></td>
 			<?php /**
@@ -175,7 +173,7 @@ $id_color = $_POST["id_color"];
 							<i class="icon-menu9"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
+							<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
 							<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 							
 							<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Asignar Empleado</a>

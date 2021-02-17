@@ -28,7 +28,7 @@ $dia_de_semana = date('w');
 //switch ($dia_de_semana){
 switch ($newDate){
     case 0:
-        echo "Domingo";
+        //echo "Domingo";
         $val_lun = -6;
         $val_mar = -5;
         $val_mie = -4;
@@ -39,7 +39,7 @@ switch ($newDate){
         
         break;
     case 1:
-        echo "Lunes";
+        //echo "Lunes";
         $val_lun = 0;
         $val_mar = +1;
         $val_mie = +2;
@@ -49,7 +49,7 @@ switch ($newDate){
         $val_dom = +6;
         break;
     case 2:
-        echo "Martes";
+        //echo "Martes";
         $val_lun = -1;
         $val_mar = 0;
         $val_mie = +1;
@@ -59,7 +59,7 @@ switch ($newDate){
         $val_dom = +5;
         break;
     case 3:
-        echo "Miercoles";
+        //echo "Miercoles";
         $val_lun = -2;
         $val_mar = -1;
         $val_mie = 0;
@@ -69,7 +69,7 @@ switch ($newDate){
         $val_dom = +4;
         break;
     case 4:
-        echo "Jueves";
+        //echo "Jueves";
         $val_lun = -3;
         $val_mar = -2;
         $val_mie = -1;
@@ -79,7 +79,7 @@ switch ($newDate){
         $val_dom = +3;
         break;
     case 5:
-        echo "Viernes";
+        //echo "Viernes";
         $val_lun = -4;
         $val_mar = -3;
         $val_mie = -2;
@@ -89,7 +89,7 @@ switch ($newDate){
         $val_dom = +2;
         break;
     case 6:
-        echo "Sabado";
+        //echo "Sabado";
         $val_lun = -5;
         $val_mar = -4;
         $val_mie = -3;
@@ -271,7 +271,7 @@ $value_percent = 100 / $res_semana->sumatoria;
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
 							<!-- 
 							<a href="usuarios.php" class="breadcrumb-item">Usuarios</a>
 							<span class="breadcrumb-item active">Listado</span>
@@ -316,7 +316,7 @@ $value_percent = 100 / $res_semana->sumatoria;
 				<!-- Basic datatable -->
 				<div class="card">
 					<div class="card-header header-elements-inline">
-						<h5 class="card-title"><?php echo $nombre_seccion; ?></h5>
+						<h5 class="card-title">Gr&aacute;ficas de ventas semanales realizadas.</h5>
 						<div class="header-elements">
 							<div class="list-icons">
 		                		<a class="list-icons-item" data-action="collapse"></a>
@@ -326,13 +326,17 @@ $value_percent = 100 / $res_semana->sumatoria;
 	                	</div>
 					</div>
 
+					
+					<?php /**
 					<div class="card-body">
 						Gr&aacute;ficas de ventas semanales realizadas.
 					</div>
-					<?php /**
+					
 					<div class="card-body">
 						La lista de <code>Usuarios</code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
 					</div>
+					
+					
 					*/ ?>
 
 					<div>
@@ -381,7 +385,7 @@ $value_percent = 100 / $res_semana->sumatoria;
                         }
                         </style>
                         <div style="font-family:verdana;">
-                        	<div>
+                        	<div style="display:flex; justify-content:right; padding-right:20px;">
                         		<input type="date" value="<?php echo $fecha_val; ?>" id="fecha_home" onchange="ir_detalle()" />
                         		
                         		

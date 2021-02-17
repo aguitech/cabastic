@@ -2,9 +2,9 @@
 <?php 
 $nombre_seccion = "Divisas";
 $tbl_main = "ds_tbl_evento";
-$nombre_simple = "evento";
-$url_name = "eventos.php";
-$url_crear_name = "crear_evento.php";
+$nombre_simple = "divisa";
+$url_name = "divisas.php";
+$url_crear_name = "crear_divisa.php";
 ?>
 <?php
 include_once("login.php");
@@ -420,8 +420,8 @@ if($_POST["Descripcion"] != ""){
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 

@@ -5,7 +5,7 @@ include("common_files/sesion.php");
 $id = $_POST["id"];
 $id_producto = $id;
 
-
+/*
 print_r($_POST);
 
 echo "<hr />";
@@ -19,32 +19,32 @@ echo $id_producto . "<br />";
 echo "----";
 
 echo "X--" . $id;
-
+*/
 
 
 if($id_producto == 0){
     if(empty($_SESSION["cantidad_productos"])){
         echo 0;
     }else{
-        echo "---- 2";
+        //echo "---- 2";
         echo $_SESSION["cantidad_productos"];
     }
 }else{
     //echo "select * from ds_tbl_producto where Id_Producto = {$id}";
-    echo "<hr />";
-    echo "<hr />";
+    //echo "<hr />";
+    //echo "<hr />";
     
     //$producto = $obj->get_row("select * from ds_tbl_producto where Id_Producto = {$id}");
     //$qry_producto = "select * from ds_tbl_producto where Id_Producto = '{$id}'";
     //$producto = $obj->get_row("select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where Id_Producto = '{$id}'");
     $qry_producto = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = '{$id}'";
     //
-    echo $qry_producto;
+    //echo $qry_producto;
     $producto = $obj->get_row($qry_producto);
     //$producto = $obj->get_results($qry_producto);
     
-    echo "PRODUCTO";
-    print_r($producto);
+    //echo "PRODUCTO";
+    //print_r($producto);
     
     
     if($_SESSION["cantidad_productos"] == ""){
@@ -53,8 +53,8 @@ if($id_producto == 0){
         $_SESSION["cantidad_productos"]++;
     }
     
-    echo "<hr />";
-    print_r($_SESSION);
+    //echo "<hr />";
+    //print_r($_SESSION);
     
     for($i=0; $i<=$_SESSION["cantidad_productos"]; $i++){
         if($_SESSION["producto"][$i] == $id_producto){
@@ -113,7 +113,7 @@ if($id_producto == 0){
 <?php } ?>
 
 
-<?php print_r($_SESSION); ?>
+<?php //print_r($_SESSION); ?>
 
 
 <?php /**?>

@@ -336,8 +336,8 @@ include_once("db.php");
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -425,15 +425,15 @@ include_once("db.php");
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>Color</th>
-								<th>Hexadecimal</th>
+								
+								<th>Nombre</th>
+								<th>Apellido</th>
 								
 								<th>&nbsp;</th>
 								<th>&nbsp;</th>
 								<th>&nbsp;</th>
 								
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -552,7 +552,7 @@ include_once("db.php");
 							<?php //for($i=0; $i<=10; $i++): ?>
 							
 							<?php 
-							$id_usuario=$resultado->Id_Color;
+							$id_resultado=$resultado->Id_Color;
 							$nombre=$resultado->Nombre;
 							$hexadecimal=$resultado->Apellido_Paterno;
 							$id_nivel="Hola";
@@ -562,9 +562,8 @@ include_once("db.php");
 							$niveles="Hola";
 							?>
 								
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
+							<tr id="element<?php echo $id_resultado; ?>">
+								<td><?php echo $nombre; ?></td>
 								<td><?php echo $hexadecimal; ?></td>
 								
 								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
@@ -585,8 +584,8 @@ include_once("db.php");
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

@@ -54,10 +54,9 @@ sin resultados
 		<th>Marca</th>
 		<th>Color</th>
 		<th>Talla</th>
-		<th>Num. Piezas</th>
 		<th>Precio MXN</th>
 		<th>Total</th>
-		<th>Quital</th>
+		<th>Quitar</th>
 		<!-- 
 		<td colspan="3">CANTIDAD</td>
 		<td>PRODUCTO</td>
@@ -77,53 +76,18 @@ sin resultados
 		<?php if($_SESSION["cantidad"][$i] != 0){ ?>
 		<td>
 			<?php 
-			//$producto = new producto();
-			//$producto = $producto->get($_SESSION["producto"][$i]);
-			
-			//$producto = $obj->get_row("select * from inventario where id_inventario = {$_SESSION['producto'][$i]}");
-			//$producto = $obj->get_row("select * from inventario where id_inventario = {$_SESSION['producto'][$i]}");
-			
-			//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
-			//$qry_producto = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by ds_tbl_producto.Descripcion asc";
-			//$producto = $obj->get_row("select * from inventario where id_inventario = {$_SESSION['producto'][$i]}");
 			$qry_producto = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$_SESSION['producto'][$i]}";
-			//
 			$producto = $obj->get_row($qry_producto);
-			
-			
-			//print_r($producto);
-			
+		
 			?>
-			<?php //echo $producto->imagen; ?>
 			
-			<?php /**
-			<?php if($producto->imagen != ""): ?>
-			<img src="images/inventario/<?php echo $producto->imagen; ?>" style="height:50px;" />
-			<?php endif; ?>
-			*/ ?>
 		</td>
 		<td>
-			<?php /**
-			<div style="float:left; width:25px; cursor:pointer;" onclick="restar_producto('<?php echo $producto->Id_Producto; ?>', 'agregar')">
-			*/ ?>
 			<div style="float:left; width:25px; cursor:pointer;" onclick="restar_producto('<?php echo $producto->Id_Producto; ?>')">
 			
 				(-)
 			</div>
 		</td>
-		<?php /**
-		<td>
-			<?php if($_SESSION["cantidad"][$i] == 1){ ?>
-			<div style="float:left; width:25px;" onclick="">
-				&nbsp;
-			</div>
-			<?php }else{ ?>
-			<div style="float:left; width:25px; cursor:pointer;" onclick="restar_producto('<?php echo $producto->id_inventario; ?>', 'restar');">
-				(-)
-			</div>
-			<?php } ?>
-		</td>
-		*/ ?>
 		<td><?php echo $_SESSION["cantidad"][$i]; ?></td>
 		<td>
 			<?php /**
@@ -134,79 +98,18 @@ sin resultados
 			</div>
 		</td>
 		<td><?php echo $producto->Nombre; ?></td>
-		<td><?php echo "$ " . number_format($producto->Costo_Venta, 2); ?></td>
+		<?php /**?>
+		*/ ?>
 		<td><?php echo $producto->marca; ?></td>
 		<td><?php echo $producto->color; ?></td>
 		<td><?php echo $producto->talla; ?></td>
+		<td><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></td>
 		
-		<td><?php echo "$ " . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?></td>
+		<td><?php echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?></td>
 		
 		
 			
-			<?php /**
-			<?php if($producto['descuento'] == "" || $producto['descuento'] == "0"){ ?>
-				<div style="float:left; width:110px; text-align:right;">
-					<?php echo "$ " . number_format(0, 2); ?>
-				</div>
-				<div style="float:left; width:120px; text-align:right;">
-					<?php
-						//$cantidad_precio = $producto["precio"] * $_SESSION["cantidad"][$i];
-						$cantidad_precio = $producto["precio"] * $_SESSION["cantidad"][$i];
-						$importe_total+=$cantidad_precio;
-						echo "$ " . number_format($cantidad_precio, 2);
-					?>
-				</div>
-			<?php }else{ ?>
-				<div style="float:left; width:110px; text-align:right;">
-					<?php 
-					$porcentaje_descuento = (($producto["precio"] / 100) * $producto["descuento"]);
-					$precio_descuento = $producto["precio"] - $porcentaje_descuento;
-					?>
-					<?php echo "$ " . number_format($porcentaje_descuento, 2); ?>
-				</div>
-				<div style="float:left; width:120px; text-align:right;">
-					<?php
-						//$cantidad_precio = $producto["precio"] * $_SESSION["cantidad"][$i];
-						$cantidad_precio = $precio_descuento * $_SESSION["cantidad"][$i];
-						$importe_total+=$cantidad_precio;
-						echo "$ " . number_format($cantidad_precio, 2);
-					?>
-				</div>
-			<?php } ?>
-			*/ ?>
 		
-			<?php /** DESCUENTO
-			
-			<?php if($producto->descuento == "" || $producto->descuento == "0"){ ?>
-				<td style="">
-					<?php echo "$ " . number_format(0, 2); ?>
-				</td>
-				<td style="">
-					<?php
-						//$cantidad_precio = $producto["precio"] * $_SESSION["cantidad"][$i];
-						$cantidad_precio = $producto->precio * $_SESSION["cantidad"][$i];
-						$importe_total+=$cantidad_precio;
-						echo "$ " . number_format($cantidad_precio, 2);
-					?>
-				</td>
-			<?php }else{ ?>
-				<td style="">
-					<?php 
-					$porcentaje_descuento = (($producto->precio / 100) * $producto->descuento);
-					$precio_descuento = $producto->precio - $porcentaje_descuento;
-					?>
-					<?php echo "$ " . number_format($porcentaje_descuento, 2); ?>
-				</td>
-				<td style="">
-					<?php
-						//$cantidad_precio = $producto["precio"] * $_SESSION["cantidad"][$i];
-						$cantidad_precio = $precio_descuento * $_SESSION["cantidad"][$i];
-						$importe_total+=$cantidad_precio;
-						echo "$ " . number_format($cantidad_precio, 2);
-					?>
-				</td>
-			<?php } ?>
-			*/ ?>
 			<?php 
 			$cantidad_precio = $producto->Costo_Venta * $_SESSION["cantidad"][$i];
 			$importe_total+=$cantidad_precio;
@@ -256,15 +159,122 @@ sin resultados
 	</tr>
 	<?php } ?>
 	<tr>
-		<td colspan="7">
+		<td colspan="9">
 			&nbsp;
 		</td>
-		<td><b>$ <?php echo number_format($importe_total, 2); ?></b></td>
+		<td><b>$<?php echo number_format($importe_total, 2); ?></b></td>
 	</tr>
 	</tbody>
 </table>
 
 
-<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_venta()"><?php if(isset($resultado->id_venta) && $resultado->id_venta != ""): ?>ACTUALIZAR<?php else: ?>COBRAR<?php endif; ?> <i class="material-icons right">send</i></button>
+
+
+<div style="padding:20px;">
+	<div class="form-row">
+        <div class="form-group col-md-3">
+         	<div>Descuento</div>
+ 			<input type="text" readonly="readonly" placeholder="Descuento porcentaje" name="descuento_porcentaje" id="descuento_porcentaje" value="" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+         	<div>Descuento en precio</div>
+ 			<input type="text" readonly="readonly"  placeholder="Descuento en precio" name="descuento_precio" id="descuento_precio" value="" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+         	<div>Tipo de cambio</div>
+ 		<input type="text" readonly="readonly"  placeholder="Tipo de cambio" name="tipo_cambio" id="tipo_cambio" value="" class="form-control" />
+
+        </div>
+        
+    </div>
+    <div style="margin-bottom:15px;">
+    	<b>Desglose de precios</b>
+    </div>
+    <!-- 
+
+
+    Sub Total MXN:
+    
+    $0.00
+    
+    Descuento:
+    
+    $0.00
+    
+    IVA:
+    
+    $0.00
+    
+    Total MXN:
+    
+    $0.00
+    
+    Total USD:
+    
+    $0.00
+    ¿Exentar I.V.A.?
+    
+     -->
+     <style>
+       .iniciar_venta_totales_titulos{
+            width:200px;
+       }
+    </style>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+         	<span class="iniciar_venta_totales_titulos">Sub Total MXN</span>
+         </div>
+         <div class="form-group col-md-3">
+ 			<b>$<?php echo number_format($importe_total, 2); ?></b>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+         	<span class="iniciar_venta_totales_titulos">Descuento:</span>
+         </div>
+         <div class="form-group col-md-3">
+ 			<b><?php echo number_format(0, 2); ?>%</b>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+         	<span class="iniciar_venta_totales_titulos">IVA:</span>
+         </div>
+         <div class="form-group col-md-3">
+ 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * .16), 2); ?></b>
+ 			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * .0), 2); ?></b>
+        </div>
+	</div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+         	<span class="iniciar_venta_totales_titulos">Total MXN</span>
+         </div>
+         <div class="form-group col-md-3">
+ 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * 1.16) , 2); ?></b>
+ 			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * 1.00) , 2); ?></b>
+        </div>
+        <div class="form-group col-md-3">
+         	<span class="iniciar_venta_totales_titulos">Total USD:</span>
+         </div>
+         <div class="form-group col-md-3">
+ 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * 1.16) , 2); ?></b>
+ 			<b class="resultado_excentar_iva" style="display:none;"><?php echo number_format(($importe_total * 1.0) , 2); ?></b>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+        	<input type="checkbox" name="excentar_iva" id="excentar_iva" onchange="$('.resultado_excentar_iva').toggle(); $('.resultado_iva_normal').toggle();" />
+        </div>
+        <div class="form-group col-md-3">
+        	<div>¿Exentar I.V.A.?</div>
+        	
+        	
+        </div>
+    </div>
+
+</div>
+
+<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="if(confirm('Tu venta ser&aacute; cerrada\ny no podr&aacute;s agregar mas productos.')){ guardar_venta(); }"><?php if(isset($resultado->id_venta) && $resultado->id_venta != ""): ?>ACTUALIZAR<?php else: ?>COBRAR<?php endif; ?> <i class="material-icons right">send</i></button>
 
 <?php endif; ?>

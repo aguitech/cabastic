@@ -795,8 +795,8 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -874,9 +874,6 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 	                	</div>
 					</div>
 
-					<div class="card-body">
-						La lista de <code><?php echo $nombre_seccion; ?></code> muestra todos los participantes que pueden acceder a la <code>intranet</code>.
-					</div>
 					<div>
 					
 						<?php /**
@@ -1213,4 +1210,3 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 
 </body>
 </html>
-

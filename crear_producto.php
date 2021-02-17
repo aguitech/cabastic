@@ -29,7 +29,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
 ?>
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
-<form id="" method="post" action="?">
+<form id="" method="post" action="?" enctype="multipart/form-data">
 	<div class="card-header header-elements-inline">
     	<h5 class="card-title">&nbsp;</h5>
     	<div class="header-elements">
@@ -94,7 +94,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
             <div class="form-row">
                 <div class="form-group col-md-6">
                 	<div>Tipo de producto</div>
-                	<select name="tipo_producto" id="tipo_producto" class="form-control">
+                	<select name="tipo_producto" id="tipo_producto" class="form-control" onchange="filtrar_tipo_producto(this.value)">
                			<?php foreach($tipos_producto as $tipo_producto): ?>
                			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" ><?php echo $tipo_producto->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -105,11 +105,14 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 </div>
                 <div class="form-group col-md-6">
                		<div>Categoría producto</div>
-               		<select name="categoria" id="categoria" class="form-control">
-               			<?php foreach($categorias_producto as $categoria_producto): ?>
-               			<option value="<?php echo $categoria_producto->Id_Categoria_Producto; ?>"><?php echo $categoria_producto->Descripcion; ?></option>
-               			<?php endforeach; ?>
-               		</select>
+               		<div id="filtrar_tipo_producto">
+               			<select name="categoria" id="categoria" class="form-control">
+                   			<?php foreach($categorias_producto as $categoria_producto): ?>
+                   			<option value="<?php echo $categoria_producto->Id_Categoria_Producto; ?>"><?php echo $categoria_producto->Descripcion; ?></option>
+                   			<?php endforeach; ?>
+                   		</select>
+               		</div>
+               		
 					<?php /**
 					<input type="text" placeholder="Categor&iacute;a" name="categoria" id="categoria" value="" class="form-control" />
 					*/ ?>
@@ -199,7 +202,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
             <div class="form-row">
                 <div class="form-group col-md-6">
                		<div>Imagen</div>
-					<input type="file" name="Imagen_Producto" id="Imagen_Producto" value="<?php echo $resultado->Imagen_Producto; ?>" />
+					<input type="file" name="imagen_producto" id="imagen_producto" value="<?php echo $resultado->Imagen_Producto; ?>" />
 
                 </div>
             </div>

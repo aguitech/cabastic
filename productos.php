@@ -28,7 +28,12 @@ $val_color = $_POST["color"];
 $val_cantidad_minima = $_POST["cantidad_minima"];
 $val_cantidad_maxima = $_POST["cantidad_maxima"];
 $val_precio_venta = $_POST["precio_venta"];
-$val_Imagen_Producto = $_POST["Imagen_Producto"];
+//$val_Imagen_Producto = $_POST["Imagen_Producto"];
+$val_imagen_producto = $_POST["imagen_producto"];
+
+
+
+
 $val_fecha_alta = date("Y-m-d H:i:s");
 $cantidad_inventario = $_POST["cantidad_inventario"];
 
@@ -36,6 +41,23 @@ $cantidad_inventario = $_POST["cantidad_inventario"];
 //$qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}')";
 //$qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_tipo_producto}, {$val_categoria})";
 if($_POST["nombre_producto"] != ""){
+    
+    
+    /**
+    $prefix_fecha = date("YmdHis") . $i . "_";
+    //$destino = '../../../images/blog';
+    $destino = 'images/blog';
+    
+    copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+    
+    //$_POST["proyectologo"] = $_FILES['proyectologo']['name'][$i];
+    $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+    $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+    */
+    
+    
+    
+    
     $qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_tipo_producto}, {$val_categoria}, 1)";
     echo $qry_insert;
     
@@ -52,6 +74,39 @@ if($_POST["nombre_producto"] != ""){
     $qry_insert_detalle = "insert into ds_tbl_producto_detalle (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero, Activo) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero}, 1)";
     
     $obj->query($qry_insert_detalle);
+    
+    echo "FILES";
+    print_r($_FILES);
+    
+    if($_FILES["imagen_producto"]['name'] != ""){
+        
+        
+        $prefix_fecha = date("YmdHis") . "_";
+        //$destino = '../../../images/blog';
+        $destino = 'images/productos';
+        
+        $name_imagen_url = $prefix_fecha . $_FILES['imagen_producto']['name'];
+        
+        //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+        copy($_FILES['imagen_producto']['tmp_name'], $destino . '/' . $name_imagen_url);
+        
+        
+        $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+        $obj->query($qry_insert_imagen);
+        
+        
+    }
+    
+    $prefix_fecha = date("YmdHis") . $i . "_";
+    //$destino = '../../../images/blog';
+    $destino = 'images/blog';
+    
+    copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+    
+    //$_POST["proyectologo"] = $_FILES['proyectologo']['name'][$i];
+    $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+    $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+    
     
     
     
@@ -91,6 +146,12 @@ if($_POST["nombre_producto"] != ""){
     //$qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto})";
     $qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
     $obj->query($qry_insert_detalle_cantidad_producto);
+    
+    
+    
+    
+    
+    //ds_tbl_producto_imagen
 }
 
 
@@ -350,6 +411,26 @@ include_once("db.php");
 				document.title = "Ghostbuster | " + character;
             }
 		});
+
+
+
+
+		function filtrar_tipo_producto(id_tipo_producto){
+			$.ajax({
+				type: "POST",
+                url:"ajax_productos_filtrar_tipo_producto.php",
+                //data: { limit:val_limit, offset:val_offset },
+                data: { id:id_tipo_producto },
+                success:function(data){
+                	console.log(data);
+                	//$("#resultado_votos_detalle").html(data);
+                	//$("#publicaciones_adicionales").html(data);
+                	//$("#publicaciones_adicionales").append(data);
+                	//$("#container").html(data);
+                	$("#filtrar_tipo_producto").html(data);
+                }
+			});
+		}
 		</script>
 
 	<!-- Main navbar -->
@@ -425,8 +506,8 @@ include_once("db.php");
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -513,7 +594,7 @@ include_once("db.php");
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>C&oacute;digo de Barras</th>
 								<th>Imagen</th>
 								<th>Nombre</th>
 								<th>Tipo de producto</th>
@@ -521,7 +602,7 @@ include_once("db.php");
 								<th>Color</th>
 								<th>Talla</th>
 								
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -657,7 +738,7 @@ include_once("db.php");
 							//[Fecha_Alta] => 2020-07-21 22:10:43 
 							//[Id_Categoria_Producto] => 79 
 							
-							$id_usuario=$resultado->Id_Producto;
+							$id_resultado=$resultado->Id_Producto;
 							$nombre=$resultado->Nombre;
 							$hexadecimal=$resultado->Descripcion;
 							$id_nivel="Hola";
@@ -667,11 +748,11 @@ include_once("db.php");
 							$niveles="Hola";
 							?>
 								
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
+							<tr id="element<?php echo $id_resultado; ?>">
+								<td><?php echo $resultado->Codigo_Barras; ?></td>
 								<td><?php if($resultado->Imagen_Producto != ""): ?><img src="images/productos/<?php echo $resultado->Imagen_Producto; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
 								
-								<td><a href="productos.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
+								<td><a href="productos.php?id=<?php echo $id_resultado; ?>"><?php echo $nombre; ?></td>
 								<td><?php echo $resultado->tipo_producto; ?></td>
 								
 								<?php /**
@@ -696,8 +777,8 @@ include_once("db.php");
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

@@ -1,6 +1,6 @@
 <?php include("includes/includes.php");
 include_once("login.php");
-include("common_files/sesion.php");
+//include("common_files/sesion.php");
 ?>
 <?php
 include_once("db.php");
@@ -101,6 +101,30 @@ $_SESSION["cantidad"];
 
 <body>
 
+	
+	
+	<div id="fondo_especial" style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:101; background:black; opacity:.7; display:none;" onclick="$('#fondo_especial').hide('slow'); $('#banner_especial').hide('slow');">
+		
+	</div>
+	<div id="banner_especial"  style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:102; display:none;">
+		<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+			<div style="width:80%; height:80%; background:white; overflow-y:scroll;">
+				<div id="resultado_metodo_pago"></div>
+				<div id="resultado_activar_metodo_pago">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 
+	<div id="banner_especial"  style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:102;">
+		<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+			<div style="width:80%; height:80%; background:white;">
+				<div id="resultado_metodo_pago"></div>
+			</div>
+		</div>
+	</div>
+	-->
 	<script>
 		function cargar_crear_history(){
 			$("#container_create").show("");
@@ -418,17 +442,46 @@ $_SESSION["cantidad"];
 		   function guardar_venta(){
 			   var id = 0;
 			   var id_ship = $("#ship_direction").val();
+
+			   var id_cliente = $("#id_cliente").val();
+			   var id_evento = $("#id_evento").val();
+				  
+			   
 			   $.ajax({
 					type: "POST",
-					url:"/views_online/guardar_venta.php",
+					//url:"/views_online/guardar_venta.php",
+					url:"/guardar_venta.php?rand=10",
 					//data: { limit:val_limit, offset:val_offset },
-					data: { id:id, id_ship:id_ship },
+					//data: { id:id, id_ship:id_ship },
+					data: { id:id, id_ship:id_ship, id_cliente:id_cliente, id_evento:id_evento },
 					success:function(data){
 						console.log(data);
 						$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+
+						$("#resultado_metodo_pago").html(data);
+
+
+						//var $link = $(this);
+					    //var anchor  = $link.attr('href');
+					    $('html, body').stop().animate({
+					        //scrollTop: $(anchor).offset().top
+					        //ancla_metodo_pago
+					    	scrollTop: $("#ancla_metodo_pago").offset().top
+					        //
+					    }, 1000);
+						/**
+
+						ancla_metodo_pago
+
 						
 						$("#form_venta").html(data);
 						$(".select_refresh").formSelect();
+						*/
+
+						//iniciar_venta.php
+
+						
 					}
 				});
 		   }
@@ -545,8 +598,230 @@ $_SESSION["cantidad"];
 				});
 			   //filtrar_marca
 		   }
-		</script>
 
+
+
+
+
+
+
+		   function activar_metodo_pago(tipo_metodo_pago, id_venta_val){
+				//alert(tipo_metodo_pago);
+			   //var id_venta_val = $("#id_venta").val();
+				//alert(id_venta_val);
+			   $.ajax({
+					type: "POST",
+					//url:"/views_online/guardar_venta.php",
+					url:"/activar_metodo_pago.php",
+					//data: { limit:val_limit, offset:val_offset },
+					//data: { id:id, id_ship:id_ship },
+					data: { tipo_metodo_pago:tipo_metodo_pago, id_venta_val:id_venta_val },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						//alert(data);
+
+						//$("#resultado_metodo_pago").html(data);
+						//$("#resultado_activar_metodo_pago").html(data);
+						//$("#resultado_activar_metodo_pago").append(data);
+						//alert(data);
+						$("#resultado_activar_metodo_pago").html(data);
+
+						/**
+						$("#form_venta").html(data);
+						$(".select_refresh").formSelect();
+						*/
+
+						//iniciar_venta.php
+
+						
+					}
+				});
+		   }
+
+
+
+		function guardar_pago_tarjeta(){
+			var monto_val = $("#monto").val();
+			var terminacion_tarjeta_val = $("#terminacion_tarjeta").val();
+			var referencia_val = $("#referencia").val();
+			var id_venta_val = $("#id_venta").val();
+			var id_moneda_val = $("#id_moneda").val();
+			var id_metodo_pago = $("#id_metodo_pago").val();
+			$.ajax({
+				type: "POST",
+				url:"/guardar_pago_tarjeta.php",
+				data: { monto_val:monto_val, terminacion_tarjeta_val:terminacion_tarjeta_val, referencia_val:referencia_val, id_venta_val:id_venta_val, id_moneda_val:id_moneda_val, id_metodo_pago:id_metodo_pago },
+				success:function(data){
+					console.log(data);
+					//$("#resultado_activar_metodo_pago").append(data);
+					$("#resultado_pago").html(data);
+				}
+			});
+		}
+		function guardar_pago_efectivo(){
+			var monto_val = $("#monto").val();
+			var terminacion_tarjeta_val = $("#terminacion_tarjeta").val();
+			var referencia_val = $("#referencia").val();
+			var id_venta_val = $("#id_venta").val();
+			var id_moneda_val = $("#id_moneda").val();
+			var id_metodo_pago = $("#id_metodo_pago").val();
+			$.ajax({
+				type: "POST",
+				url:"/guardar_pago_efectivo.php",
+				data: { monto_val:monto_val, terminacion_tarjeta_val:terminacion_tarjeta_val, referencia_val:referencia_val, id_venta_val:id_venta_val, id_moneda_val:id_moneda_val, id_metodo_pago:id_metodo_pago },
+				success:function(data){
+					console.log(data);
+					$("#resultado_pago").html(data);
+				}
+			});
+		}
+		function guardar_pago_cortesia(){
+			var monto_val = $("#monto").val();
+			var terminacion_tarjeta_val = $("#terminacion_tarjeta").val();
+			var referencia_val = $("#referencia").val();
+			var id_venta_val = $("#id_venta").val();
+			var id_moneda_val = $("#id_moneda").val();
+			var id_metodo_pago = $("#id_metodo_pago").val();
+			$.ajax({
+				type: "POST",
+				url:"/guardar_pago_cortesia.php",
+				data: { monto_val:monto_val, terminacion_tarjeta_val:terminacion_tarjeta_val, referencia_val:referencia_val, id_venta_val:id_venta_val, id_moneda_val:id_moneda_val, id_metodo_pago:id_metodo_pago },
+				success:function(data){
+					console.log(data);
+					$("#resultado_pago").html(data);
+				}
+			});
+		}
+		function guardar_pago_credito(){
+			var monto_val = $("#monto").val();
+			var terminacion_tarjeta_val = $("#terminacion_tarjeta").val();
+			var referencia_val = $("#referencia").val();
+			var id_venta_val = $("#id_venta").val();
+			var id_moneda_val = $("#id_moneda").val();
+			var id_metodo_pago = $("#id_metodo_pago").val();
+			
+			$.ajax({
+				type: "POST",
+				url:"/guardar_pago_credito.php",
+				data: { monto_val:monto_val, terminacion_tarjeta_val:terminacion_tarjeta_val, referencia_val:referencia_val, id_venta_val:id_venta_val, id_moneda_val:id_moneda_val, id_metodo_pago:id_metodo_pago },
+				success:function(data){
+					console.log(data);
+					$("#resultado_pago").html(data);
+				}
+			});
+		}
+
+
+
+
+
+
+		
+	    function calcular_billetes_mil(cantidad){
+	    	$('#resultado_billete_1000').val(cantidad * 1000);
+
+		    actualizar_total_billetes();
+	        
+	    }
+	    function calcular_billetes_quinientos(cantidad){
+	    	$('#resultado_billete_500').val(cantidad * 500);
+
+	    	actualizar_total_billetes();
+	        
+	    }
+	    function calcular_billetes_doscientos(cantidad){
+		    $('#resultado_billete_200').val(cantidad * 200);
+
+	    	actualizar_total_billetes();
+	        
+	    }
+	    function calcular_billetes_cien(cantidad){
+	    	$('#resultado_billete_100').val(cantidad * 100);
+
+	    	actualizar_total_billetes();
+	        
+	    }
+	    function calcular_billetes_cincuenta(cantidad){
+	    	$('#resultado_billete_50').val(cantidad * 50);
+
+	    	actualizar_total_billetes();
+	        
+	    }
+	    function calcular_billetes_veinte(cantidad){
+	    	$('#resultado_billete_20').val(cantidad * 20);
+
+	    	actualizar_total_billetes();
+	        
+	    }
+	    function actualizar_total_billetes(){
+	    	var val_mil = parseInt($('#resultado_billete_1000').val());
+	    	var val_quinientos = parseInt($('#resultado_billete_500').val());
+	    	var val_doscientos = parseInt($('#resultado_billete_200').val());
+
+	    	var val_cien = parseInt($('#resultado_billete_100').val());
+	    	var val_cincuenta = parseInt($('#resultado_billete_50').val());
+	    	var val_veinte = parseInt($('#resultado_billete_20').val());
+
+	    	var val_total = val_mil + val_quinientos + val_doscientos + val_cien + val_cincuenta + val_veinte;
+
+	    	//alert(val_total);
+
+	    	$('#resultado_billetes').val(val_total);
+
+	    	var monto_restante_mxn = parseFloat($('#monto_restante_mxn').val());
+	    	var monto_restante_mxn = parseFloat($('#monto_restante_mxn').val());
+
+
+
+	    	var cambio = monto_restante_mxn - val_total;
+
+	    	if(cambio > 0){
+	    		$('#resultado_cambio').val(0);
+
+	    		
+	    		$('#resultado_restante').val(cambio);
+
+
+	    		$('#monto').val(val_total);
+	    		
+
+	    		
+	    	}else{
+	    		$('#resultado_cambio').val(cambio);
+
+	    		$('#resultado_restante').val(0);
+
+
+	    		$('#monto').val(monto_restante_mxn);
+
+	    		
+	    	}
+
+
+	    	//$('#monto').val(val_total);
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    }
+	    //resultado_cambio
+
+
+	    function excentar_iva(){
+	    	var excentar_iva = $("#excentar_iva").val();
+
+	    
+ 			$(".resultado_excentar_iva").show();
+ 			$(".resultado_iva_normal").hide();
+
+	    	alert("Excentar");
+	    	alert(excentar_iva);
+	    }
+		</script>
 	<!-- Main navbar -->
 	<?php include "core_mainnav.php"; ?>
 	<!-- /main navbar -->
@@ -580,7 +855,6 @@ $_SESSION["cantidad"];
 						include_once("menu.php");
 						 ?>
 
-
 					</ul>
 				</div>
 				<!-- /main navigation -->
@@ -588,16 +862,13 @@ $_SESSION["cantidad"];
 			</div>
 			<!-- /sidebar content -->
 			
+			
 		</div>
 		<!-- /main sidebar -->
 
 
 		<!-- Main content -->
 		<div class="content-wrapper">
-
-
-
-
 
 
 			<!-- Page header -->
@@ -620,8 +891,8 @@ $_SESSION["cantidad"];
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -667,26 +938,6 @@ $_SESSION["cantidad"];
 				
 				<!-- Basic datatable -->
 				<div class="card" id="container">
-				
-					
-					<?php /**
-					<div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div style="text-align:right;">
-                            	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-                        <br />
-                    </div>
-                    <br /><br /><br />
-                    */ ?>
 					
 					<div class="card-header header-elements-inline">
 						<h5 class="card-title"><?php echo $nombre_seccion; ?></h5>
@@ -707,7 +958,7 @@ $_SESSION["cantidad"];
         						$qry_cliente = "select * from ds_tbl_cliente";
         						$clientes = $obj->get_results($qry_cliente);
         						?>
-        						<select name="" id="" class="form-control">
+        						<select name="id_cliente" id="id_cliente" class="form-control">
         							<?php foreach ($clientes as $cliente): ?>
         							<option value="<?php echo $cliente->Id_Cliente; ?>"><?php echo $cliente->Nombre . " " . $cliente->Apellido_Paterno . " " . $cliente->Apellido_Materno; ?></option>
         							<?php endforeach; ?>
@@ -719,8 +970,10 @@ $_SESSION["cantidad"];
         						$qry_evento = "select * from ds_tbl_evento";
         						$eventos = $obj->get_results($qry_evento);
         						?>
-                                <select name="" id="" class="form-control" <?php if($_GET["id_evento"]){ ?>readonly="readonly" disabled="disabled" <?php } ?>>
+                                <select name="id_evento" id="id_evento" class="form-control" <?php if($_GET["id_evento"]){ ?>readonly="readonly" disabled="disabled" <?php } ?>>
+        							<?php /**
         							<option value="">Selecciona evento</option>
+        							*/ ?>
         							<?php foreach ($eventos as $evento): ?>
         							<option value="<?php echo $evento->Id_Evento; ?>" <?php if($_GET["id_evento"] == $evento->Id_Evento){ ?>selected="selected"<?php } ?>><?php echo $evento->Descripcion; ?></option>
         							<?php endforeach; ?>
@@ -776,7 +1029,6 @@ $_SESSION["cantidad"];
     					<table class="table datatable-basic">
     						<thead>
     							<tr>
-    								<th>ID</th>
     								<th>Producto</th>
     								<th>Marca</th>
     								
@@ -789,102 +1041,10 @@ $_SESSION["cantidad"];
     								<th>Inventario</th>
     								<th>Agregar</th>
     								
-    								<th class="text-center">Actions</th>
+    								<th class="text-center">Acciones</th>
     							</tr>
     						</thead>
     						<tbody>
-    							
-    
-                            <?php 
-                            /**
-                             $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                             
-                              $resultt = $mysqli->query($qt);
-                              while ($rowt = $resultt->fetch_row()){
-    
-                                $id_usuario=$rowt[0];
-                                $nombre=$rowt[1];
-                                $pass=$rowt[2];
-                                $id_nivel=$rowt[3];
-                                $extension=$rowt[4];
-                                $area=$rowt[5];
-    							$completo=$rowt[6];
-    							$niveles=$rowt[7];
-    
-    
-    							///////////////////////////////////////NIVELES
-    							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-    								$niveles=$id_nivel;
-    
-    								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-    								//echo $sq;
-    								//$resul = $mysqli->query($sq);
-    							}
-    							if($niveles!=""){
-    								//echo "NIVELES: ".$niveles." - ";
-    								$niveles = explode(",", $niveles);
-    								$losniveles="";
-    								for ($i=0;$i<count($niveles);$i++)    
-    								{
-    									$losniveles .= $niveles[$i].",";
-    								} 
-    								$losniveles = substr($losniveles,0,-1);
-    								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-    								$nivelesarray = explode(",", $losniveles);
-    								for ($i=0;$i<count($nivelesarray);$i++)    
-    								{
-    									$sq .= " OR id_nivel=".$nivelesarray[$i];
-    								} 
-    								//echo $sq;
-    								$resul = $mysqli->query($sq);
-    								$niveles_nombres="";
-    								while ($row = $resul->fetch_row()){
-    
-    									$id_nivel=$row[0];
-    									$nombre_nivel=$row[1];
-    									//echo " ".$nombre_nivel." <br>";
-    									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-    								}
-    								//$niveles_nombres = substr($niveles_nombres,0,-2);
-    								$area = $niveles_nombres;
-    							}
-    							/////////////////////////////////////////////NIVELES
-    
-    
-    
-                                */
-    
-                            ?>  
-                            
-                            
-                            	<?php /**?>
-    							<tr id="element<?php echo $id_usuario; ?>">
-    								<td><?php echo $id_usuario; ?></td>
-    								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-    								<td><?php echo $pass; ?></td>
-    								
-    								<td><?php echo $extension; ?></td>
-    								<td><?php echo $area; ?></td>
-    								<td><?php echo $completo; ?></td>
-    
-    								<td class="text-center">
-    									<div class="list-icons">
-    										<div class="dropdown">
-    											<a href="#" class="list-icons-item" data-toggle="dropdown">
-    												<i class="icon-menu9"></i>
-    											</a>
-    
-    											<div class="dropdown-menu dropdown-menu-right">
-    												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-    												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-    												
-    											</div>
-    										</div>
-    									</div>
-    								</td>
-    							</tr>
-    
-    							*/ ?>
     
     							<?php
     							//}
@@ -951,8 +1111,7 @@ $_SESSION["cantidad"];
     							?>
     								
     							<tr id="element<?php echo $id_resultado; ?>">
-    								<td><?php echo $id_resultado; ?></td>
-    								<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $nombre; ?></td>
+    								<td><?php echo $nombre; ?></td>
     								<td><?php echo $resultado->marca; ?></td>
     								
     								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div><br /><?php echo $resultado->color; ?><br /><?php echo $resultado->Codigo_Hexadecimal; ?></td>
@@ -977,7 +1136,7 @@ $_SESSION["cantidad"];
     											</a>
     
     											<div class="dropdown-menu dropdown-menu-right">
-    												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
+    												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
     												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
     												<?php /**
     												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
@@ -998,35 +1157,7 @@ $_SESSION["cantidad"];
 					<div id="resultado_venta">
 						&nbsp;
 					</div>
-					<div>
 					
-						 XXXDescuento 0 a 100  
-Descuento en precio
-Tipo de cambio
-Desglose de precios
-
-Sub Total MXN:
-
-$0.00
-
-Descuento:
-
-$0.00
-
-IVA:
-
-$0.00
-
-Total MXN:
-
-$0.00
-
-Total USD:
-
-$0.00
-¿Exentar I.V.A.?
-						
-					</div>
 				</div>
 				<!-- /basic datatable -->
 
@@ -1052,4 +1183,3 @@ $0.00
 
 </body>
 </html>
-

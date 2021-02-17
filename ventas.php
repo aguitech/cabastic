@@ -336,8 +336,8 @@ include_once("db.php");
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -426,7 +426,6 @@ include_once("db.php");
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Evento</th>
 								<th>Fecha</th>
 								<th>Monto</th>
@@ -434,7 +433,7 @@ include_once("db.php");
 								<th>Total</th>
 								<th>Cliente</th>
 								
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -577,7 +576,6 @@ include_once("db.php");
 							<tr id="element<?php echo $id_resultado; ?>">
 								
 								
-								<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $id_resultado; ?></a></td>
 								<td><?php echo $resultado->evento; ?></td>
 								<td><?php echo $resultado->Fecha_Venta; ?></td>
 								<td><?php echo $resultado->MontoTotalMXN; ?></td>
@@ -603,8 +601,8 @@ include_once("db.php");
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

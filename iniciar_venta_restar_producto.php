@@ -108,6 +108,7 @@ if($id_producto == 0){
 
 
 <?php if(empty($_SESSION) || $_SESSION["cantidad_productos"] == 0 || $_SESSION["cantidad_productos"] == ""){ ?>
+	<?php /**?>
 	<div style="text-align:center; font-size:30px; color:#FBC7BC;">
 		<img src="images/carrito_compra.png" style="height:25px;" /> El carrito de compras est&aacute; vac&iacute;o
 	</div>
@@ -115,7 +116,7 @@ if($id_producto == 0){
 		<div onclick="window.location='./#productos'" style="display:block; margin:20px 325px; width:350px; border:2px solid #FBC7BC; color:#FBC7BC; cursor:pointer;">
 			Haz click aqu&iacute; para comprar productos
 		</div>
-	</div>
+	</div>*/ ?>
 <?php }else{ ?>
 	<form id = "paypal_checkout" action = "https://www.paypal.com/cgi-bin/webscr" method = "post">
 		

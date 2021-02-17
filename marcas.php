@@ -359,8 +359,8 @@ if($_POST["Descripcion"] != ""){
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="usuarios.php" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
+							<a href="home.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							<a href="<?php echo $url_name; ?>" class="breadcrumb-item"><?php echo $nombre_seccion; ?></a>
 							<span class="breadcrumb-item active">Listado</span>
 						</div>
 
@@ -450,109 +450,18 @@ if($_POST["Descripcion"] != ""){
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>ID</th>
+								
 								<th>Logo</th>
 								<th>Marca</th>
 								<th>Estatus</th>
 								<th>&nbsp;</th>
 								<th>&nbsp;</th>
 								
-								<th class="text-center">Actions</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							
-
-                        <?php 
-                        /**
-                         $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                         
-                          $resultt = $mysqli->query($qt);
-                          while ($rowt = $resultt->fetch_row()){
-
-                            $id_usuario=$rowt[0];
-                            $nombre=$rowt[1];
-                            $pass=$rowt[2];
-                            $id_nivel=$rowt[3];
-                            $extension=$rowt[4];
-                            $area=$rowt[5];
-							$completo=$rowt[6];
-							$niveles=$rowt[7];
-
-
-							///////////////////////////////////////NIVELES
-							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-								$niveles=$id_nivel;
-
-								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-								//echo $sq;
-								//$resul = $mysqli->query($sq);
-							}
-							if($niveles!=""){
-								//echo "NIVELES: ".$niveles." - ";
-								$niveles = explode(",", $niveles);
-								$losniveles="";
-								for ($i=0;$i<count($niveles);$i++)    
-								{
-									$losniveles .= $niveles[$i].",";
-								} 
-								$losniveles = substr($losniveles,0,-1);
-								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-								$nivelesarray = explode(",", $losniveles);
-								for ($i=0;$i<count($nivelesarray);$i++)    
-								{
-									$sq .= " OR id_nivel=".$nivelesarray[$i];
-								} 
-								//echo $sq;
-								$resul = $mysqli->query($sq);
-								$niveles_nombres="";
-								while ($row = $resul->fetch_row()){
-
-									$id_nivel=$row[0];
-									$nombre_nivel=$row[1];
-									//echo " ".$nombre_nivel." <br>";
-									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-								}
-								//$niveles_nombres = substr($niveles_nombres,0,-2);
-								$area = $niveles_nombres;
-							}
-							/////////////////////////////////////////////NIVELES
-
-
-
-                            */
-
-                        ?>  
-                        
-                        
-                        	<?php /**?>
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $pass; ?></td>
-								
-								<td><?php echo $extension; ?></td>
-								<td><?php echo $area; ?></td>
-								<td><?php echo $completo; ?></td>
-
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-
-							*/ ?>
 
 							<?php
 							//}
@@ -597,7 +506,6 @@ if($_POST["Descripcion"] != ""){
 							<tr id="element<?php echo $id_resultado; ?>">
 								
 								
-								<td><?php echo $id_resultado; ?></td>
 								
 								<td><?php if($resultado->Logo != ""): ?><img src="images/marcas/<?php echo $resultado->Logo; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
 								<td><?php echo $resultado->Descripcion; ?></td>
@@ -610,8 +518,8 @@ if($_POST["Descripcion"] != ""){
 								
 
 								<?php /**
-								<td><?php echo $hexadecimal; ?></td>
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
+								<td><?php echo $id_resultado; ?></td>
+								
 								*/ ?>
 								
 								<td class="text-center">
@@ -622,8 +530,8 @@ if($_POST["Descripcion"] != ""){
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

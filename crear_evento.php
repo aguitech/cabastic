@@ -35,13 +35,13 @@ if($_POST["id"] != ""){
                 </div>
                 <div class="form-group col-md-6">
                  	<div>Fecha de Inicio del evento</div>
-                 	<input type="date" placeholder="Fecha de Inicio del evento" name="Fecha_Inicio" id="Fecha_Inicio" value="<?php echo $resultado->Fecha_Inicio; ?>" class="form-control" />
+                 	<input type="date" min="<?php echo date("Y-m-d"); ?>" placeholder="Fecha de Inicio del evento" name="Fecha_Inicio" id="Fecha_Inicio" value="<?php echo $resultado->Fecha_Inicio; ?>" class="form-control" />
                 </div>
             </div>
             <div class="form-row">
             	<div class="form-group col-md-6">
                  	<div>Fecha de Cierre del evento</div>
-                 	<input type="date" placeholder="Fecha de Cierre del evento" name="Fecha_Cierre" id="Fecha_Cierre" value="<?php echo $resultado->Fecha_Cierre; ?>" class="form-control" />
+                 	<input type="date" min="<?php echo date("Y-m-d"); ?>" placeholder="Fecha de Cierre del evento" name="Fecha_Cierre" id="Fecha_Cierre" value="<?php echo $resultado->Fecha_Cierre; ?>" class="form-control" />
                 </div>
             	<div class="form-group col-md-6">
                 
