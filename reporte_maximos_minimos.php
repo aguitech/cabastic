@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "M&aacute;ximos y m&iacute;nimos";
 $tbl_main = "ds_tbl_cantidad_minima_producto";
 $nombre_simple = "color";
 $url_name = "reporte_maximos_minimos.php";
 $url_crear_name = "";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,5 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php
 if($_GET["fecha"] != ""){
     $fecha_val = $_GET["fecha"];
@@ -58,13 +59,6 @@ $resultados = $obj->get_results($qry_resultados);
 //print_r($resultados);
 //exit();
 ?>
- <?php
-//session_start();
- include_once("login.php");
- ?>
- <?php
- include_once("db.php");
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

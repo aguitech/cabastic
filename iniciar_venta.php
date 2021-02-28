@@ -1,10 +1,5 @@
-<?php include("includes/includes.php");
-include_once("login.php");
-//include("common_files/sesion.php");
-?>
-<?php
-include_once("db.php");
-?>
+<?php include("includes/includes.php");?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Iniciar venta";
 $tbl_main = "ds_tbl_producto";
@@ -506,7 +501,8 @@ $_SESSION["cantidad"];
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
 						$("#resultado_filtrados").html(data);
-						
+
+						DatatableBasic.init();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -984,7 +980,7 @@ $_SESSION["cantidad"];
                             <div class="form-group col-md-6">
                              	<div>Filtro por marca:</div>
                                 <?php 
-        						$qry_marca = "select * from ds_cat_marca";
+        						$qry_marca = "select * from ds_cat_marca order by Descripcion asc";
         						$marcas = $obj->get_results($qry_marca);
         						?>
                                 <select name="id_marca" id="id_marca" class="form-control" onchange="filtrar_marca(this.value);">

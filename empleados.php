@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Empleados";
 $tbl_main = "ds_tbl_empleado";
 $nombre_simple = "empleado";
 $url_name = "empleados.php";
 $url_crear_name = "crear_empleado.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

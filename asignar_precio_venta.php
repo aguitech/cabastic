@@ -1,9 +1,5 @@
 <?php include("includes/includes.php");
-include_once("login.php");
 include("common_files/sesion.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <?php 
 $nombre_seccion = "Asignar precio venta";

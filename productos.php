@@ -1,5 +1,9 @@
 <?php include("includes/includes.php"); ?>
 <?php 
+include("common_files/sesion.php");
+$id_rol = $_SESSION["rol"];
+?>
+<?php 
 $nombre_seccion = "Productos";
 $tbl_main = "ds_tbl_producto";
 $nombre_simple = "producto";
@@ -7,13 +11,7 @@ $url_name = "productos.php";
 $url_crear_name = "crear_producto.php";
 ?>
 <?php 
-
-//	Id_Producto	Nombre	Descripcion	Imagen_Producto	Id_Marca	Id_Tipo_Producto	Id_Tipo_Sustancia	Activo	Fecha_Alta
-//	Id_Producto	Nombre		Imagen_Producto	Id_Marca	Id_Tipo_Producto	Id_Tipo_Sustancia	Activo	
-//print_r($_POST);
-
 $val_nombre = $_POST["nombre_producto"];
-
 
 $val_codigo_barras = $_POST["codigo_barras"];
 $val_descripcion = $_POST["Descripcion"];
@@ -31,17 +29,17 @@ $val_precio_venta = $_POST["precio_venta"];
 //$val_Imagen_Producto = $_POST["Imagen_Producto"];
 $val_imagen_producto = $_POST["imagen_producto"];
 
-
-
-
 $val_fecha_alta = date("Y-m-d H:i:s");
 $cantidad_inventario = $_POST["cantidad_inventario"];
 
-//$qry_insert = "insert into ds_tbl_producto set Nombre = '{$val_nombre}'";
-//$qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}')";
-//$qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_tipo_producto}, {$val_categoria})";
+$divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
+$tipos_producto = $obj->get_results("select * from ds_cat_tipo_producto order by Descripcion asc");
+$categorias_producto = $obj->get_results("select * from ds_cat_categoria_producto order by Descripcion asc");
+$almacenes = $obj->get_results("select * from ds_cat_tipo_almacen order by Descripcion asc");
+//$productos = $obj->get_results("select * from ds_tbl_producto order by Nombre asc");
+$productos = $obj->get_results("select * from ds_tbl_producto group by Nombre order by Nombre asc");
+
 if($_POST["nombre_producto"] != ""){
-    
     
     /**
     $prefix_fecha = date("YmdHis") . $i . "_";
@@ -56,17 +54,15 @@ if($_POST["nombre_producto"] != ""){
     */
     
     
-    
-    
-    $qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_tipo_producto}, {$val_categoria}, 1)";
-    echo $qry_insert;
+    $qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_sustancia_producto}, {$val_categoria}, 1)";
+    //echo $qry_insert;
     
     $obj->query($qry_insert);
     
     $qry_resultado = "select * from ds_tbl_producto where Nombre = '{$val_nombre}' and Descripcion = '{$val_descripcion}' and Fecha_Alta = '{$val_fecha_alta}' and Id_Categoria_Producto = {$val_categoria} limit 1";
     $resultado = $obj->get_row($qry_resultado);
     
-    echo $qry_resultado;
+    //echo $qry_resultado;
     
     $id_producto = $resultado->Id_Producto;
     
@@ -75,8 +71,8 @@ if($_POST["nombre_producto"] != ""){
     
     $obj->query($qry_insert_detalle);
     
-    echo "FILES";
-    print_r($_FILES);
+    //echo "FILES";
+    //print_r($_FILES);
     
     if($_FILES["imagen_producto"]['name'] != ""){
         
@@ -91,7 +87,18 @@ if($_POST["nombre_producto"] != ""){
         copy($_FILES['imagen_producto']['tmp_name'], $destino . '/' . $name_imagen_url);
         
         
-        $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+        $qry_last_id_producto_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
+        $last_id_producto_imagen = $obj->get_row($qry_last_id_producto_imagen);
+        
+        $last_id_producto_imagen_val = $last_id_producto_imagen->Id_Producto_Imagen + 1;
+        
+        
+        //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+        //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+        $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
+        
+        //echo $qry_insert_imagen;
+        
         $obj->query($qry_insert_imagen);
         
         
@@ -103,64 +110,30 @@ if($_POST["nombre_producto"] != ""){
     
     copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
     
-    //$_POST["proyectologo"] = $_FILES['proyectologo']['name'][$i];
     $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
     $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
     
-    
-    
-    
-    //$qry_resultado_detalle = "select * from ds_tbl_producto where Nombre = '{$val_nombre}' and Descripcion = '{$val_descripcion}' and Fecha_Alta = '{$val_fecha_alta}' and Id_Categoria_Producto = {$val_categoria} limit 1";
     $qry_resultado_detalle = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
     $resultado_detalle = $obj->get_row($qry_resultado_detalle);
     
     $id_producto_detalle = $resultado_detalle->Id_Producto_Detalle;
     
-    //ds_tbl_precio_venta_producto
-    //Costo_Venta, Costo_Venta_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Euro, Libra, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior
     $qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Producto_Detalle, Costo_Venta) values ({$id_producto_detalle}, '{$val_precio_venta}')";
     $obj->query($qry_insert_detalle_precio_venta);
     
-    /**
-    $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_precio_venta_producto (Id_Producto_Detalle, Costo_Venta) values ({$id_producto_detalle}, '{$val_precio_venta}')";
-    $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario) values ({$id_producto_detalle}, '{$val_precio_venta}')";
-    $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    */
     //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima})";
     $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
     $obj->query($qry_insert_detalle_cantidad_producto);
     
     
-    //$qry_resultado_detalle_cantidad_producto = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
     $qry_resultado_detalle_cantidad_producto = "select * from ds_tbl_cantidad_minima_producto where Id_Producto_Detalle = {$id_producto_detalle} and Fecha_alta = '{$val_fecha_alta}' limit 1";
     $resultado_detalle_cantidad_producto = $obj->get_row($qry_resultado_detalle_cantidad_producto);
     
     $id_cantidad_producto = $resultado_detalle_cantidad_producto->Id_Cantidad_Producto;
     
-    
-    
-    //$qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario) values ({$id_producto_detalle}, {$cantidad_inventario})";
-    //$qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto})";
     $qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
     $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    
-    
-    
-    
-    //ds_tbl_producto_imagen
 }
-
-
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -200,15 +173,26 @@ include_once("db.php");
 	<!-- /theme JS files -->
 
 	<script type="text/javascript">
+		
 		$( document ).ready(function() {
     		console.log( "ready!" );
-    		
+    		$('#select_all').change(function() {
+    			var checkboxes = $(this).closest('form').find(':checkbox');
+    			checkboxes.prop('checked', $(this).is(':checked'));
+    		});
 		});
+		
+		function select_deselect_checkboxes(){
+			var checkboxes = $(this).closest('form').find(':checkbox');
+			checkboxes.prop('checked', $(this).is(':checked'));
+		}
+
+		
 
 		function Eliminar(t_id,t_completo){
 			//alert("Eliminar; "+t_id);
 
-			var r = confirm("Estás seguro que deseas eliminar al usuario: "+t_completo);
+			var r = confirm("Estás seguro que deseas eliminar el producto: "+t_completo);
 			if (r == true) {
 			  txt = "You pressed OK!";
 
@@ -229,7 +213,19 @@ include_once("db.php");
 </head>
 
 <body>
-
+	<div id="container_popup_fondo" onclick="$('#container_popup_fondo').hide(); $('#container_popup').hide();">
+		
+	</div>
+	<div id="container_popup">
+		<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+			<div>
+				<div id="popup_resultado">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<script>
 		function cargar_crear_history(){
 			$("#container_create").show("");
@@ -271,14 +267,9 @@ include_once("db.php");
 			$.ajax({
 				type: "POST",
 				url:"<?php echo $url_crear_name; ?>",
-				//data: { limit:val_limit, offset:val_offset },
 				data: { page:val_page, categoria:val_categoria },
 				success:function(data){
 					console.log(data);
-					//$("#resultado_votos_detalle").html(data);
-					//$("#publicaciones_adicionales").html(data);
-					//$("#publicaciones_adicionales").append(data);
-					//$("#container").html(data);
 					$("#container_create").html(data);
 					
 				}
@@ -303,10 +294,6 @@ include_once("db.php");
                 data: { id:id },
                 success:function(data){
                 	console.log(data);
-                	//$("#resultado_votos_detalle").html(data);
-                	//$("#publicaciones_adicionales").html(data);
-                	//$("#publicaciones_adicionales").append(data);
-                	//$("#container").html(data);
                 	$("#container_create").html(data);
                 }
 			});
@@ -413,8 +400,225 @@ include_once("db.php");
 		});
 
 
+		function limpiar_filtros(){
+			var id_marca = $("#id_marca").val("");
+			   var id_producto = $("#id_producto").val("");
+			   var id_talla = $("#id_talla").val("");
+			   var id_color = $("#id_color").val("");
+			   var id_genero = $("#id_genero").val("");
+			   var id_almacen =  $("#id_almacen").val("");
+			   var id_tipo_producto =  $("#id_tipo_producto").val("");
+			   var id_categoria =  $("#id_categoria").val("");
+			   
+			filtrar_resultados_tabla();
+		}
+		function filtrar_resultados_productos_tabla(){
+			
+		}
+		function filtrar_resultados_tabla(){
+
+			   var id_marca = $("#id_marca").val();
+			   var id_producto = $("#id_producto").val();
+			   var id_talla = $("#id_talla").val();
+			   var id_color = $("#id_color").val();
+			   var id_genero = $("#id_genero").val();
+			   var id_almacen =  $("#id_almacen").val();
+			   var id_tipo_producto =  $("#id_tipo_producto").val();
+			   var id_categoria =  $("#id_categoria").val();
+			   
+			   
+			   $.ajax({
+					type: "POST",
+					url:"ajax_productos_filtrar_tabla.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id_marca:id_marca, id_producto:id_producto, id_talla:id_talla, id_color:id_color, id_genero:id_genero, id_almacen:id_almacen, id_tipo_producto:id_tipo_producto, id_categoria:id_categoria },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						$("#resultado_filtrados").html(data);
+
+						
+
+						/**
+						setTimeout(function (){
+
+						}, 5000)
+						*/
+						DatatableBasic.init();
+
+						$('#select_all').change(function() {
+			    			var checkboxes = $(this).closest('form').find(':checkbox');
+			    			checkboxes.prop('checked', $(this).is(':checked'));
+			    		});
+			    		
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+					}
+				});
+				
+			   //filtrar_marca
+		   }
 
 
+		function actualizar_producto(){
+			var id_producto = $("#id_producto").val();
+			
+			actualizar_marca(id_producto);
+		}
+		function actualizar_marca(id_producto){
+			$.ajax({
+				type: "POST",
+				url:"ajax_obtener_marca_por_producto.php",
+				//data: { limit:val_limit, offset:val_offset },
+				data: { id_producto:id_producto },
+				success:function(data){
+
+					//$("#id_marca")
+					$("#id_marca").html(data);
+				}
+			});
+		}
+		
+		
+		function obtener_generos_marcas(){
+			var id_marca = $("#id_marca").val();
+			$.ajax({
+				type: "POST",
+				url:"ajax_obtener_generos_marca.php",
+				//data: { limit:val_limit, offset:val_offset },
+				data: { id_marca:id_marca },
+				success:function(data){
+					console.log(data);
+					//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+					$("#resultado_filtrado_marca_genero").html(data);
+
+					//$("#form_venta").html(data);
+					//$(".select_refresh").formSelect();
+
+					
+				}
+			});
+		}
+		   function filtrar_marca(id){
+			   $.ajax({
+					type: "POST",
+					url:"ajax_iniciar_venta_filtrar_marca.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id:id },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						$("#resultado_filtrado_marca").html(data);
+
+						obtener_generos_marcas();
+						
+						filtrar_resultados_tabla();
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+
+						
+					}
+				});
+			   //filtrar_marca
+		   }
+
+		   
+		   
+		   function filtrar_marca_genero(id_genero){
+			   //var id_genero = $("#id_genero").va();
+			   var id = $("#id_marca").val();
+			   //alert(id);
+			   //alert(id_genero);
+			   if(id_genero == ""){
+
+			   }else{
+
+			
+    			   $.ajax({
+    					type: "POST",
+    					url:"ajax_iniciar_venta_filtrar_marca_genero.php",
+    					//data: { limit:val_limit, offset:val_offset },
+    					data: { id:id, id_genero:id_genero },
+    					success:function(data){
+    						console.log(data);
+    						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+    
+    						$("#resultado_filtrado_marca").html(data);
+    
+    						filtrar_resultados_tabla();
+    						//$("#form_venta").html(data);
+    						//$(".select_refresh").formSelect();
+    					}
+    				});
+
+			   }
+			   //filtrar_marca
+		   }
+		   function filtrar_producto(id){
+			   $.ajax({
+					type: "POST",
+					url:"ajax_iniciar_venta_filtrar_producto.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id:id },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+						$("#resultado_filtrado_producto").html(data);
+						filtrar_resultados_tabla();
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+					}
+				});
+			   //filtrar_marca
+		   }
+		   function filtrar_talla(id){
+			   var id_producto = $("#id_producto").val();
+			   $.ajax({
+					type: "POST",
+					url:"ajax_iniciar_venta_filtrar_talla.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id:id, id_producto:id_producto },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						$("#resultado_filtrado_talla").html(data);
+
+						filtrar_resultados_tabla();
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+					}
+				});
+			   //filtrar_marca
+		   }
+		   function filtrar_color(id){
+			   var id_producto = $("#id_producto").val();
+			   var id_talla = $("#id_talla").val();
+			   var id_color = $("#id_color").val();
+			   $.ajax({
+					type: "POST",
+					url:"ajax_iniciar_venta_filtrar_color.php",
+					//data: { limit:val_limit, offset:val_offset },
+					data: { id_color:id_color, id_producto:id_producto, id_talla:id_talla },
+					success:function(data){
+						console.log(data);
+						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+						//$("#resultado_filtrado_talla").html(data);
+
+						
+						filtrar_resultados_tabla();
+						//$("#form_venta").html(data);
+						//$(".select_refresh").formSelect();
+					}
+				});
+			   //filtrar_marca
+		   }
+
+		/**FORM CREAR*/
 		function filtrar_tipo_producto(id_tipo_producto){
 			$.ajax({
 				type: "POST",
@@ -431,7 +635,428 @@ include_once("db.php");
                 }
 			});
 		}
+		/* PARA LOS FILTRADOS */
+		function filtrar_tipo_productos(id_tipo_producto){
+			$.ajax({
+				type: "POST",
+                url:"ajax_productos_filtrar_tipo_productos.php",
+                //data: { limit:val_limit, offset:val_offset },
+                data: { id:id_tipo_producto },
+                success:function(data){
+                	console.log(data);
+                	//$("#resultado_votos_detalle").html(data);
+                	//$("#publicaciones_adicionales").html(data);
+                	//$("#publicaciones_adicionales").append(data);
+                	//$("#container").html(data);
+                	$("#filtrar_tipo_productos").html(data);
+                }
+			});
+		}
+		function guardar_sustancia(){
+			var descripcion_val = $("#descripcion_sustancia").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_sustancia.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#sustancia_producto").html(data);
+                	$("#descripcion_sustancia").val("");
+                	$("#contenedor_agregar_sustancia").slideUp("slow");
+                }
+			});
+		}
+		function guardar_marca(){
+			var descripcion_val = $("#descripcion_marca").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_marca.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#marca").html(data);
+                	$("#descripcion_marca").val("");
+                	$("#contenedor_agregar_marca").slideUp("slow");
+                }
+			});
+		}
+		function guardar_tipo_producto(){
+			var descripcion_val = $("#descripcion_tipo_producto").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_tipo_producto.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#tipo_producto").html(data);
+
+                	$("#descripcion_tipo_producto").val("");
+
+                	$("#contenedor_agregar_tipo_producto").slideUp("slow");
+                }
+			});
+		}
+		function guardar_categoria_producto(){
+			var descripcion_val = $("#descripcion_categoria_producto").val();
+			var tipo_producto_select_val = $("#tipo_producto_select").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_categoria.php",
+                data: { descripcion:descripcion_val, tipo_producto:tipo_producto_select_val },
+                success:function(data){
+                	console.log(data);
+                	$("#categoria").html(data);
+
+                	$("#descripcion_categoria_producto").val("");
+
+                	$("#contenedor_agregar_categoria_producto").slideUp("slow");
+                }
+			});
+		}
+		function guardar_talla(){
+			var descripcion_val = $("#descripcion_talla").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_talla.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#talla").html(data);
+                	$("#descripcion_talla").val("");
+                	$("#contenedor_agregar_talla").slideUp("slow");
+                }
+			});
+		}
+		function guardar_genero(){
+			var descripcion_val = $("#descripcion_genero").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_genero.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#genero").html(data);
+
+                	$("#descripcion_genero").val("");
+
+                	$("#contenedor_agregar_genero").slideUp("slow");
+                }
+			});
+		}
+		function guardar_tipo_mercado(){
+			var descripcion_val = $("#descripcion_tipo_mercado").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_tipo_mercado.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#tipo_mercado").html(data);
+
+                	$("#descripcion_tipo_mercado").val("");
+
+                	$("#contenedor_agregar_tipo_mercado").slideUp("slow");
+                }
+			});
+		}
+		function guardar_color(){
+			var descripcion_val = $("#descripcion_color").val();
+			$.ajax({
+				type: "POST",
+                url:"ajax_guardar_color.php",
+                data: { descripcion:descripcion_val },
+                success:function(data){
+                	console.log(data);
+                	$("#color").html(data);
+
+                	$("#descripcion_color").val("");
+
+                	$("#contenedor_agregar_color").slideUp("slow");
+                }
+			});
+		}
+
+		
+		function actualizar_costo(costo, id){
+			var contenedor_input = "#contenedor_resultado_input" + id;
+			   var id_input = "#resultado_input" + id;
+
+
+			   var select_divisa_val = "#select_divisa_costo" + id;
+			   
+			   var select_divisa = $(select_divisa_val).val();
+			   
+			   
+			   var id_input_alternativo = "#input_alternativo" + id;
+			   
+
+			   //var contenedor_dolar = "#contenedor_dolar" + id;
+			   
+			   
+			   $.ajax({
+					type: "POST",
+					url:"actualizar_costo_compra.php?rand=255",
+					data: { costo:costo, id:id, divisa:select_divisa },
+					success:function(data){
+						console.log(data);
+						$(id_input_alternativo).hide();
+						
+						$(id_input).show();
+						$(contenedor_input).html(data);
+						//mostrar_valor_dolar(id);
+
+						//$(contenedor_dolar).html(data);
+
+						
+						//$("#popup_resultado").html(data);
+						
+					}
+				});
+		   }
+
+		function actualizar_precio(precio, id){
+			var contenedor_input = "#contenedor_resultado_input_precio" + id;
+			   var id_input = "#resultado_input_precio" + id;
+			   var select_divisa_val = "#select_divisa_precio" + id;
+			   var select_divisa = $(select_divisa_val).val();
+			   var id_input_alternativo = "#input_alternativo_precio" + id;
+			   //var contenedor_dolar = "#contenedor_dolar" + id;
+			   $.ajax({
+					type: "POST",
+					url:"actualizar_precio_venta.php?rand=255",
+					data: { precio:precio, id:id, divisa:select_divisa },
+					success:function(data){
+						console.log(data);
+						$(id_input_alternativo).hide();
+						$(id_input).show();
+						//$(id_input).html(data);
+						$(contenedor_input).html(data);
+						//mostrar_valor_dolar(id);
+						//$(contenedor_dolar).html(data);
+						//$("#popup_resultado").html(data);
+					}
+				});
+		   }
+
+
+		function actualizar_existencia(existencia, id){
+			   var id_input = "#resultado_input_existencia" + id;
+			   var id_input_alternativo = "#input_alternativo_existencia" + id;
+			   //var contenedor_dolar = "#contenedor_dolar" + id;
+			   $.ajax({
+					type: "POST",
+					url:"actualizar_existencia.php",
+					data: { existencia:existencia, id:id },
+					success:function(data){
+						console.log(data);
+						$(id_input_alternativo).hide();
+						$(id_input).show();
+						$(id_input).html(data);
+						//mostrar_valor_dolar(id);
+						//$(contenedor_dolar).html(data);
+						//$("#popup_resultado").html(data);
+					}
+				});
+		   }
+
+		function actualizar_cantidad_minima(existencia, id){
+			   var id_input = "#resultado_input_cantidad_minima" + id;
+			   var id_input_alternativo = "#input_alternativo_cantidad_minima" + id;
+			   //var contenedor_dolar = "#contenedor_dolar" + id;
+			   $.ajax({
+					type: "POST",
+					url:"actualizar_cantidad_minima.php",
+					data: { existencia:existencia, id:id },
+					success:function(data){
+						console.log(data);
+						$(id_input_alternativo).hide();
+						$(id_input).show();
+						$(id_input).html(data);
+						//mostrar_valor_dolar(id);
+						//$(contenedor_dolar).html(data);
+						//$("#popup_resultado").html(data);
+					}
+				});
+		   }
+		function actualizar_cantidad_maxima(existencia, id){
+			   var id_input = "#resultado_input_cantidad_maxima" + id;
+			   var id_input_alternativo = "#input_alternativo_cantidad_maxima" + id;
+			   //var contenedor_dolar = "#contenedor_dolar" + id;
+			   $.ajax({
+					type: "POST",
+					url:"actualizar_cantidad_maxima.php",
+					data: { existencia:existencia, id:id },
+					success:function(data){
+						console.log(data);
+						$(id_input_alternativo).hide();
+						$(id_input).show();
+						$(id_input).html(data);
+						//mostrar_valor_dolar(id);
+						//$(contenedor_dolar).html(data);
+						//$("#popup_resultado").html(data);
+					}
+				});
+		   }
+		function mostrar_valor_dolar(id){
+			   
+			   var contenedor_dolar = "#contenedor_dolar" + id;
+			   
+			   
+			   $.ajax({
+					type: "POST",
+					url:"mostrar_valor_dolar.php",
+					data: { id:id },
+					success:function(data){
+						$(contenedor_dolar).html(data);
+
+						//$(contenedor_dolar).html(data);
+
+						
+						//$("#popup_resultado").html(data);
+						
+					}
+				});
+		   }
+
+
+
+
+
+
+		function detalle_precio(id){
+			$("#container_popup_fondo").show();
+			$("#container_popup").show();
+
+			   $.ajax({
+					type: "POST",
+					url:"popup_asignar_precio_venta.php",
+					data: { id:id },
+					success:function(data){
+						console.log(data);
+						$("#popup_resultado").html(data);
+
+					}
+				});
+	   }
+	   function detalle_costo(id){
+			$("#container_popup_fondo").show();
+			$("#container_popup").show();
+
+			   $.ajax({
+					type: "POST",
+					url:"popup_asignar_costo_compra.php",
+					data: { id:id },
+					success:function(data){
+						console.log(data);
+						$("#popup_resultado").html(data);
+
+					}
+				});
+	   }
+
+
+
+	   function detalle_precio_masivo(id){
+			$("#container_popup_fondo").show();
+			$("#container_popup").show();
+
+			   $.ajax({
+					type: "POST",
+					url:"popup_asignar_precio_venta.php",
+					data: { id:id },
+					success:function(data){
+						console.log(data);
+						$("#popup_resultado").html(data);
+
+					}
+				});
+	   }
+	   function detalle_costo_masivo(){
+			$("#container_popup_fondo").show();
+			$("#container_popup").show();
+
+			//.prop('checked', true);
+			//var form = $('.checkboxes').serialize()
+			//var form = $('.checkboxes').prop('checked', true).serialize();
+			var form = $('.checkboxes').serialize();
+			
+			//var form = $('.checkboxes').is(':checked').serialize();
+
+			var array_values = "";
+
+
+			alert("HAN10");
+			/**
+			
+			$('input[type=checkbox]').each( function() {
+
+				console.log($(this));
+
+				
+				console.log($(this)[0]);
+				console.log($(this)[0].checked);
+
+				
+				
+				//alert($(this)[0]);
+				
+
+				//alert($(this).is(':checked'));
+				
+			    if( $(this).is(':checked') ) {
+			        array_values +=  $(this).val();
+			    }
+			});
+			*/
+
+			var id = 8;
+			//var form = 10;
+
+			alert(form);
+			
+		   $.ajax({
+				type: "POST",
+				url:"popup_asignar_costo_compra_masivo.php",
+				data: { id:id, form:form, array_values:array_values },
+				success:function(data){
+					console.log(data);
+					$("#popup_resultado").html(data);
+
+				}
+			});
+	   }
+	   function funciones_masivas(id_funcion){
+			if(id_funcion == 1){
+				detalle_costo_masivo();
+			}
+	   }
 		</script>
+<style>
+	#container_popup_fondo{
+		position:fixed;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		background:black;
+		opacity:.7;
+		z-index:100;
+		display:none;
+		
+	}
+    #container_popup{
+    	position:fixed;
+		background:white;
+    	width:400px;
+    	height:400px;
+    	z-index:101;
+    	left:50%;
+    	top:50%;
+    	margin-left:-200px;
+    	margin-top:-200px;
+    	display:none;
+	}
+	</style>
 
 	<!-- Main navbar -->
 	<?php include "core_mainnav.php"; ?>
@@ -480,12 +1105,6 @@ include_once("db.php");
 
 		<!-- Main content -->
 		<div class="content-wrapper">
-
-
-
-
-
-
 			<!-- Page header -->
 			<div class="page-header page-header-light">
 				<div class="page-header-content header-elements-md-inline">
@@ -540,9 +1159,6 @@ include_once("db.php");
 				</div>
 			</div>
 			<!-- /page header -->
-
-
-
 			<!-- Content area -->
 			<div class="content">
 
@@ -553,9 +1169,6 @@ include_once("db.php");
 				
 				<!-- Basic datatable -->
 				<div class="card" id="container">
-				
-					
-					
 					<div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                         </div>
@@ -564,14 +1177,6 @@ include_once("db.php");
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="cargar_crear()"><i class="material-icons right">add</i> Agregar <?php echo $nombre_simple; ?></button>
-                            	<?php /**
-                                <a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
-                                
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                            	
-                            	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
-                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
-                                */ ?>
                             </div>
                         </div>
                         <br />
@@ -579,8 +1184,6 @@ include_once("db.php");
                         <br />
                     </div>
                     <br /><br /><br />
-                    
-					
 					<div class="card-header header-elements-inline">
 						<h5 class="card-title"><?php echo $nombre_seccion; ?></h5>
 						<div class="header-elements">
@@ -591,229 +1194,338 @@ include_once("db.php");
 		                	</div>
 	                	</div>
 					</div>
-					<table class="table datatable-basic">
-						<thead>
-							<tr>
-								<th>C&oacute;digo de Barras</th>
-								<th>Imagen</th>
-								<th>Nombre</th>
-								<th>Tipo de producto</th>
-								
-								<th>Color</th>
-								<th>Talla</th>
-								
-								<th class="text-center">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-
-                        <?php 
-                        /**
-                         $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                         
-                          $resultt = $mysqli->query($qt);
-                          while ($rowt = $resultt->fetch_row()){
-
-                            $id_usuario=$rowt[0];
-                            $nombre=$rowt[1];
-                            $pass=$rowt[2];
-                            $id_nivel=$rowt[3];
-                            $extension=$rowt[4];
-                            $area=$rowt[5];
-							$completo=$rowt[6];
-							$niveles=$rowt[7];
-
-
-							///////////////////////////////////////NIVELES
-							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-								$niveles=$id_nivel;
-
-								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-								//echo $sq;
-								//$resul = $mysqli->query($sq);
-							}
-							if($niveles!=""){
-								//echo "NIVELES: ".$niveles." - ";
-								$niveles = explode(",", $niveles);
-								$losniveles="";
-								for ($i=0;$i<count($niveles);$i++)    
-								{
-									$losniveles .= $niveles[$i].",";
-								} 
-								$losniveles = substr($losniveles,0,-1);
-								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-								$nivelesarray = explode(",", $losniveles);
-								for ($i=0;$i<count($nivelesarray);$i++)    
-								{
-									$sq .= " OR id_nivel=".$nivelesarray[$i];
-								} 
-								//echo $sq;
-								$resul = $mysqli->query($sq);
-								$niveles_nombres="";
-								while ($row = $resul->fetch_row()){
-
-									$id_nivel=$row[0];
-									$nombre_nivel=$row[1];
-									//echo " ".$nombre_nivel." <br>";
-									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-								}
-								//$niveles_nombres = substr($niveles_nombres,0,-2);
-								$area = $niveles_nombres;
-							}
-							/////////////////////////////////////////////NIVELES
-
-
-
-                            */
-
-                        ?>  
+					<div>
+						
+            
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                            	<div style="" class="contenedor_agregar_titulo">
+                            		Tipo de producto
+                            	</div>
+                            	<select name="id_tipo_producto" id="id_tipo_producto" class="form-control" onchange="filtrar_tipo_productos(this.value); filtrar_resultados_tabla();">
+                           			<option value="" >Selecciona</option>
+                           			<?php foreach($tipos_producto as $tipo_producto): ?>
+                           			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" <?php if($resultado->Id_Tipo_Producto == $tipo_producto->Id_Tipo_Producto){ ?>selected="selected"<?php } ?>><?php echo $tipo_producto->Descripcion; ?></option>
+                           			<?php endforeach; ?>
+                           		</select>
+                            	<?php /**
+            					<input type="text" placeholder="Tipo de producto" name="tipo_producto" id="tipo_producto" value="" class="form-control" />
+            					*/ ?>
+                            </div>
+                            <div class="form-group col-md-6">
+                           		<div style="" class="contenedor_agregar_titulo">
+                            		Categoría producto
+                            	
+                            	</div>
+                           		<div id="filtrar_tipo_productos">
+                           			<select name="id_categoria" id="id_categoria" class="form-control">
+                           				<option value="" >Selecciona</option>
+                               			
+                           				<?php /*
+                               			<?php foreach($categorias_producto as $categoria_producto): ?>
+                               			<option value="<?php echo $categoria_producto->Id_Categoria_Producto; ?>" <?php if($resultado->Id_Categoria_Producto == $categoria_producto->Id_Categoria_Producto){ ?>selected="selected"<?php } ?>><?php echo $categoria_producto->Descripcion; ?></option>
+                               			<?php endforeach; ?>
+                               			*/ ?>
+                               		</select>
+                           		</div>
+                           		
+            					<?php /**
+            					<input type="text" placeholder="Categor&iacute;a" name="categoria" id="categoria" value="" class="form-control" />
+            					*/ ?>
+            					
+            					
+            					
+                            </div>
+                            
+                        </div>
+						<div class="form-row">
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por marca:</div>
+                                <?php 
+        						$qry_marca = "select * from ds_cat_marca order by Descripcion asc";
+        						$marcas = $obj->get_results($qry_marca);
+        						?>
+                                <select name="id_marca" id="id_marca" class="form-control" onchange="filtrar_marca(this.value);">
+                                	<option value="">Selecciona una marca</option>
+        							<?php foreach ($marcas as $marca): ?>
+        							<option value="<?php echo $marca->Id_Marca; ?>"><?php echo $marca->Descripcion; ?></option>
+        							<?php endforeach; ?>
+        						</select>
+                            </div>
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por g&eacute;nero:</div>
+                             	<div id="resultado_filtrado_marca_genero">
+                                
+                                    <?php 
+            						$qry_genero = "select * from ds_cat_genero order by Descripcion asc";
+            						$generos = $obj->get_results($qry_genero);
+            						?>
+            						<?php /**?>
+                                    <select name="id_genero" id="id_genero" class="form-control" onchange="filtrar_marca_genero(this.value);">
+                                    */ ?>
+                                    <select name="id_genero" id="id_genero" class="form-control" onchange="filtrar_resultados_tabla();">
+                                    	<option value="">Selecciona un g&eacute;nero</option>
+            							<?php foreach ($generos as $genero): ?>
+            							<option value="<?php echo $genero->Id_Genero; ?>"><?php echo $genero->Descripcion; ?></option>
+            							<?php endforeach; ?>
+            						</select>
+            					</div>
+                            </div>
+						</div>
+						<div class="form-row">
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por producto:</div>
+                             	<div id="resultado_filtrado_marca">
+                                    <select name="id_producto" id="id_producto" class="form-control" onchange="filtrar_resultados_tabla()">
+            							<option value="">Seleccionar</option>
+            							<?php foreach($productos as $producto): ?>
+            							<option value="<?php echo $producto->Nombre; ?>"><?php echo $producto->Nombre; ?></option>
+            							<?php endforeach; ?>
+            							
+            						</select>
+        						</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por almacen:</div>
+                             	<div id="resultado_filtrado_marca">
+                                    <select name="id_almacen" id="id_almacen" class="form-control" onchange="filtrar_resultados_tabla()">
+            							<option value="">Seleccionar</option>
+            							<?php foreach($almacenes as $almacen): ?>
+            							<option value="<?php echo $almacen->Id_Tipo_Almacen; ?>"><?php echo $almacen->Descripcion; ?></option>
+            							<?php endforeach; ?>
+            						</select>
+        						</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por talla:</div>
+                             	<div id="resultado_filtrado_producto">
+                             		<?php 
+            						$qry_tallas = "select * from ds_cat_talla order by Descripcion asc";
+            						$tallas = $obj->get_results($qry_tallas);
+            						?>
+                                    <select name="id_talla" id="id_talla" class="form-control" onchange="filtrar_resultados_tabla()">
+            							<option value="">Seleccionar</option>
+            							<?php foreach($tallas as $talla): ?>
+            							<option value="<?php echo $talla->Id_Talla; ?>"><?php echo $talla->Descripcion; ?></option>
+            							<?php endforeach; ?>
+            							
+            						</select>
+        						</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                             	<div>Filtro por color:</div>
+                                <div id="resultado_filtrado_talla">
+                                    <select name="id_color" id="id_color" class="form-control" onchange="filtrar_resultados_tabla()">
+            							<option value="">Seleccionar</option>
+            							<?php 
+                						$qry_colores = "select * from ds_cat_color order by Descripcion asc";
+                						$colores = $obj->get_results($qry_colores);
+                						?>
+                                    	<option value="">Seleccionar</option>
+            							<?php foreach($colores as $color): ?>
+            							<option value="<?php echo $color->Id_Color; ?>"><?php echo $color->Descripcion; ?></option>
+            							<?php endforeach; ?>
+            						</select>
+        						</div>
+                            </div>
+                        </div>
                         
                         
-                        	<?php /**?>
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $pass; ?></td>
-								
-								<td><?php echo $extension; ?></td>
-								<td><?php echo $area; ?></td>
-								<td><?php echo $completo; ?></td>
-
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-
-							*/ ?>
-
-							<?php
-							//}
-							?>
-
-							<?php 
-							//$qry_resultados = "select * from $tbl_main order by Descripcion asc";
-							//ds_tbl_producto_detalle
-							//$qry_resultados = "select * from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto order by $tbl_main.Descripcion asc";
-							//ds_cat_color
-							//$qry_resultados = "select * from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color order by $tbl_main.Descripcion asc";
-							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla order by $tbl_main.Descripcion asc";
-							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla order by $tbl_main.Descripcion asc";
-							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla order by $tbl_main.Descripcion asc";
-							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla order by $tbl_main.Descripcion asc";
-							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla order by $tbl_main.Descripcion asc";
-							$qry_resultados = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto order by $tbl_main.Descripcion asc";
-							$resultados = $obj->get_results($qry_resultados);
+                        
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                             	&nbsp;
+                            </div>
+                            <div class="form-group col-md-6">
+                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                             	Funciones masivas
+                            </div>
+                            <div class="form-group col-md-4">
+                             	<select onchange="funciones_masivas(this.value);" id="funcion_masiva" class="form-control">
+                             		<option value="">Selecciona</option>
+                             		<option value="1">Asignar costo masivo</option>
+                             	</select>
+                            </div>
+                            <div class="form-group col-md-2">
+                            	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="funciones_masivas($('#funcion_masiva').val());">Seleccionar</button>
+                            </div>
+                        </div>
+                        
+                        
+					</div>
+					<div id="resultado_filtrados" style="width:100%; overflow-x:scroll;">
+						<form id="form_table">
+    					<table class="table datatable-basic">
+    						<thead>
+    							<tr>
+    								<td><input type="checkbox" id="select_all" onchange="select_deselect_checkboxes()" /></td>
+			
+    								<th>C&oacute;digo de Barras</th>
+    								<th>Imagen</th>
+    								<th>Nombre</th>
+    								<th>Tipo de producto</th>
+    								<th>Categor&iacute;a de producto</th>
+    								<th>Marca</th>
+    								<th>Color</th>
+    								<th>Talla</th>
+    								<th>Cantidad M&iacute;nima</th>
+    								<th>Cantidad M&aacute;xima</th>
+    								
+    								<th>Existencias</th>
+    								<th>Almac&eacute;n</th>
+    								<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
+    								<th>Costo</th>
+    								<?php endif; ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
+    								<th>Precio</th>
+    								<?php endif; ?>
+    								<th class="text-center">Acciones</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<?php 
+    							//left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle
+    							//$qry_resultados = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto order by $tbl_main.Descripcion asc";
+    							//left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle
+    							//ds_tbl_cantidad_minima_producto
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//ds_tbl_cantidad_minima_producto
+    							//
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen order by $tbl_main.Descripcion asc";
+    							//left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto
+    							$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto order by $tbl_main.Descripcion asc";
+    							//
+    							$resultados = $obj->get_results($qry_resultados);
+    						?>
+    						<?php foreach($resultados as $resultado): ?>
+    							<?php 
+    							$id_resultado=$resultado->Id_Producto;
+    							$nombre=$resultado->Nombre;
+    							?>
+    							<tr id="element<?php echo $id_resultado; ?>">
+    							
+    								<td><input type="checkbox" name="checkbox<?php echo $id_resultado; ?>" id="checkbox<?php echo $id_resultado; ?>" class="checkboxes" /></td>
+			
+    								<?php /**
+    								/*
+    								<td><input type="checkbox" name="checkbox" value="<?php echo $id_resultado; ?>" id="checkbox<?php echo $id_resultado; ?>" class="checkboxes" /></td>
+			
+    								<td><input type="checkbox" name="checkbox<?php echo $id_resultado; ?>" id="checkbox<?php echo $id_resultado; ?>" /></td>
+			
+									*/ ?>
+    								<td><?php echo $resultado->Codigo_Barras; ?></td>
+                                    <?php 
+                                    $qry_producto_imagen = "select * from ds_tbl_producto_imagen where Id_Producto = $id_resultado order by Id_Producto_Imagen desc limit 1";
+                                    $resultado_imagen_val = $obj->get_row($qry_producto_imagen);
+                                    ?>
+    								<?php /**
+    								<td><?php if($resultado->Imagen_Producto != ""): ?><img src="images/productos/<?php echo $resultado->Imagen_Producto; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
+    								*/ ?>
+    								<td><?php if($resultado_imagen_val->Url_Imagen != ""): ?><img src="images/productos/<?php echo $resultado_imagen_val->Url_Imagen; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
+    								<td><?php echo $nombre; ?></td>
+    								<td><?php echo $resultado->tipo_producto; ?></td>
+    								<td><?php echo $resultado->categoria; ?></td>
+    								<td><?php echo $resultado->marca; ?></td>
+    								<?php /**
+    								<td><?php echo $resultado->color; ?> <?php echo $resultado->Codigo_Hexadecimal; ?><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $resultado->Codigo_Hexadecimal; ?>"></div></td>
+    								*/ ?>
+    								<td><?php echo $resultado->color; ?></td>
+    								<td><?php echo $resultado->talla; ?></td>
+    								
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+									<td style="text-align:center;" id="contenedor_resultado_input_cantidad_minima<?php echo $id_resultado; ?>"><div id="resultado_input_cantidad_minima<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_cantidad_minima<?php echo $id_resultado; ?>').show(); $('#input_cantidad_minima<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Minima != ""){ $res_pintar = $resultado->Cantidad_Minima; }else{ $res_pintar = "Introduce su cantidad m&iacute;nima"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_cantidad_minima<?php echo $id_resultado; ?>" ><input type="text" id="input_cantidad_minima<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Minima; ?>" onblur="actualizar_cantidad_minima(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
+    								<?php /**
+									<td><div id="resultado_input_existencia<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_existencia<?php echo $id_resultado; ?>').show(); $('#input_existencia<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" /></div></td>
+    								<td><?php echo $resultado->Cantidad_Minima; ?></td>
+    								*/ ?>
+    								<?php endif; ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+									<td style="text-align:center;" id="contenedor_resultado_input_cantidad_maxima<?php echo $id_resultado; ?>"><div id="resultado_input_cantidad_maxima<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_cantidad_maxima<?php echo $id_resultado; ?>').show(); $('#input_cantidad_maxima<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Maxima != ""){ $res_pintar = $resultado->Cantidad_Maxima; }else{ $res_pintar = "Introduce su cantidad m&aacute;xima"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_cantidad_maxima<?php echo $id_resultado; ?>" ><input type="text" id="input_cantidad_maxima<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Maxima; ?>" onblur="actualizar_cantidad_maxima(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
+    								<?php /**
+    								<td><?php echo $resultado->Cantidad_Maxima; ?></td>
+    								*/ ?>
+    								<?php endif; ?>
+    								
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+									<td style="text-align:center;" id="contenedor_resultado_input_existencia<?php echo $id_resultado; ?>"><div id="resultado_input_existencia<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_existencia<?php echo $id_resultado; ?>').show(); $('#input_existencia<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input_existencia<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
+    								<td><?php echo $resultado->almacen; ?></td>
+    								<?php endif; ?>
+    								
+    								
+    								<?php /**
+    								<td><?php echo $resultado->Cantidad_Inventario; ?><?php //print_r($resultado); ?></td>
+    								<td><?php echo $resultado->Costo_Compra; ?></td>
+    								
+    								<td style="text-align:right;"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" onblur="actualizar_costo(this.value, <?php echo $id_resultado; ?>);" style=" width:55px;" /></div></td>
+    								<td style="text-align:right;"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" onblur="actualizar_precio(this.value, <?php echo $id_resultado; ?>);" style=" width:55px;" /></div></td>
+    								
+    								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style="width:55px;" /><input type="button" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);" value="Guardar" /></div></td>
+    								
+    								*/?>
+    								<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
+    								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style="width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div></td>
+    								
+    								<?php endif; ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
 						
-							//print_r($resultados);
-						//$qry_resultados = "select * from $tbl_main order by Fecha_Venta desc";
-						
-						//$resultados = $obj->get_results($qry_resultados);
-						
-						
-						?>
-						<?php foreach($resultados as $resultado): ?>
-						
-						
-						
-							<?php //for($i=0; $i<=10; $i++): ?>
-							
-							<?php 
-							//[0] => stdClass Object ( [Id_Producto] => 256 
-							//[Nombre] => 01 VW3024 MOSCA JACKET [Descripcion] 
-							//=> [Id_Marca] => 1 [Id_Tipo_Producto] => 14
-							//[Id_Tipo_Sustancia] => 1 [Activo] => 1 
-							//[Fecha_Alta] => 2020-07-21 22:10:43 
-							//[Id_Categoria_Producto] => 79 
-							
-							$id_resultado=$resultado->Id_Producto;
-							$nombre=$resultado->Nombre;
-							$hexadecimal=$resultado->Descripcion;
-							$id_nivel="Hola";
-							$extension="Hola";
-							$area="Hola";
-							$completo="Hola";
-							$niveles="Hola";
-							?>
-								
-							<tr id="element<?php echo $id_resultado; ?>">
-								<td><?php echo $resultado->Codigo_Barras; ?></td>
-								<td><?php if($resultado->Imagen_Producto != ""): ?><img src="images/productos/<?php echo $resultado->Imagen_Producto; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
-								
-								<td><a href="productos.php?id=<?php echo $id_resultado; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $resultado->tipo_producto; ?></td>
-								
-								<?php /**
-								<td><?php echo $resultado->descripcion_producto; ?></td>
-								*/ ?>
-								
-								
-								<td><?php echo $resultado->color; ?> <?php echo $resultado->Codigo_Hexadecimal; ?><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $resultado->Codigo_Hexadecimal; ?>"></div></td>
-								<td><?php echo $resultado->talla; ?></td>
-								
-
-								<?php /**
-								<td><?php echo $hexadecimal; ?></td>
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
-								*/ ?>
-								
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
-												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												<?php /**
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												*/ ?>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<?php //endfor; ?>
-							<?php endforeach; ?>
-
-						</tbody>
-					</table>
+									<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
+    								
+    								
+									<?php /**
+    								<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><input type="button" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);" value="Guardar" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
+    								<td><?php echo $resultado->Costo_Venta; ?></td>
+    								*/ ?>
+    								<?php endif; ?>
+    								<td class="text-center">
+    									<div class="list-icons">
+    										<div class="dropdown">
+    											<a href="#" class="list-icons-item" data-toggle="dropdown">
+    												<i class="icon-menu9"></i>
+    											</a>
+    											<div class="dropdown-menu dropdown-menu-right">
+    												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $nombre; ?>');"><i class="icon-bin"></i> Eliminar</a>
+    												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+    												<?php /**
+    												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+    												*/ ?>
+    											</div>
+    										</div>
+    									</div>
+    								</td>
+    							</tr>
+    							<?php endforeach; ?>
+    						</tbody>
+    					</table>
+    					</form>
+    				</div>
 				</div>
 				<!-- /basic datatable -->
-
-
-
 			</div>
 			<!-- /content area -->
-
-
-
-
-
 
 			<!-- Footer -->
 			<?php include "core_footer.php"; ?>
 			<!-- /footer -->
-
 		</div>
 		<!-- /main content -->
-
 	</div>
 	<!-- /page content -->
-
 </body>
 </html>

@@ -12,7 +12,7 @@ if($_POST["id"] != ""){
 <?php //echo $qry_id; ?>
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
-<form id="" method="post" action="?">
+<form id="form_crear" method="post" action="?">
 <div onclick="cerrar_cargar()">
 cerrar
 </div>
@@ -54,13 +54,13 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
     				<input type="text" placeholder="Comentario" name="Comentario" id="Comentario" value="<?php echo $resultado->Comentario; ?>"  class="form-control" />
             	</div>
             </div>
-            <div>
-            	<input type="submit" />
-            </div>
+            
 
 <?php /**
 
-
+<div>
+            	<input type="submit" />
+            </div>
 
 
 
@@ -79,7 +79,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
 
 </div>
 <div>
-	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+	<button class="btn waves-effect waves-light bg_aguitech" type="button" onclick="validar_crear()" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
 </div>
 </form>
 </div> 

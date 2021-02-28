@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Pr&eacute;stamos";
 $tbl_main = "ds_tbl_prestamo";
 $nombre_simple = "prestamo";
 $url_name = "prestamos.php";
 $url_crear_name = "crear_prestamo.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

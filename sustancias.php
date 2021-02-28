@@ -1,4 +1,5 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Sustancias";
 
@@ -8,12 +9,6 @@ $tbl_main = "ds_cat_tipo_sustancia";
 $nombre_simple = "sustancia";
 $url_name = "sustancias.php";
 $url_crear_name = "crear_sustancia.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){
@@ -104,6 +99,17 @@ if($_POST["Descripcion"] != ""){
 
 		}
 
+		function validar_crear(){
+
+			if($("#Descripcion").val() != ""){
+				$("#form_crear").submit();
+			}else{
+				$("#Descripcion").focus();
+			}
+			
+			
+			
+		}
 	</script>
 
 </head>

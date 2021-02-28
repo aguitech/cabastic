@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Marcas";
 $tbl_main = "ds_cat_marca";
 $nombre_simple = "marca";
 $url_name = "marcas.php";
 $url_crear_name = "crear_marca.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){
@@ -96,7 +91,17 @@ if($_POST["Descripcion"] != ""){
 			}
 
 		}
+		function validar_crear(){
 
+			if($("#Descripcion").val() != ""){
+				$("#form_crear").submit();
+			}else{
+				$("#Descripcion").focus();
+			}
+			
+			
+			
+		}
 	</script>
 
 </head>

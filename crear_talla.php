@@ -12,7 +12,7 @@ if($_POST["id"] != ""){
 <?php //echo $qry_id; ?>
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
-<form id="" method="post" action="?">
+<form id="form_crear" method="post" action="?">
 	<div class="card-header header-elements-inline">
     	<h5 class="card-title">&nbsp;</h5>
     	<div class="header-elements">
@@ -61,7 +61,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
                          &nbsp;
                     </div>
                     <div class="form-group col-md-6">
-                     	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                     	<button class="btn waves-effect waves-light bg_aguitech" type="button" onclick="validar_crear()" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
                     </div>
                 </div>
     			

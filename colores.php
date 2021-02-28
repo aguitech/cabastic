@@ -1,4 +1,5 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Colores";
 $tbl_main = "ds_cat_color";
@@ -26,12 +27,6 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
     
 }
 
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,6 +90,17 @@ include_once("db.php");
 
 		}
 
+		function validar_crear(){
+
+			if($("#Descripcion").val() != ""){
+				$("#form_crear").submit();
+			}else{
+				$("#Descripcion").focus();
+			}
+			
+			
+			
+		}
 	</script>
 
 </head>

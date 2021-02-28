@@ -1,22 +1,15 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
-
-@session_start();
-
-
-if(isset($_SESSION['login'])){
-	//header("location index.php");
-}else{
-	//header("location: index.php");
+session_start();
+function logout(){
+    session_destroy();
+    session_unset();
+    //$location = "location: " . $domain_url . $project_url . "php/login.php";
+    //$url_next = $_GET["next"];
+    $url_next = "index.php";
+    //header("location: ../../login.php");
+    header("location: $url_next");
+    
+    //header("location: http://10me.net/php/login.php");
 }
-
-unset($_SESSION['login']);
-//$_SESSION['login'] = "out";
-header("location: index.php");
-
-
-
-
+logout();
 ?>
-

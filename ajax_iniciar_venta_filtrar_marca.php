@@ -11,7 +11,10 @@ $productos = $obj->get_results($qry_producto);
 
 //print_r($productos);
 ?>
+<select name="id_producto" id="id_producto" class="form-control"  onchange="filtrar_resultados_tabla()">
+<?php /**
 <select name="id_producto" id="id_producto" class="form-control" onchange="filtrar_producto(this.value);">
+*/ ?>
 	<option value="">Selecciona un producto</option>
 	<?php foreach ($productos as $producto): ?>
 	

@@ -1,4 +1,8 @@
 <?php include("includes/includes.php"); ?>
+<?php 
+include("common_files/sesion.php");
+
+?>
 <?php
 if($_GET["fecha"] != ""){
     $fecha_val = $_GET["fecha"];
@@ -122,11 +126,13 @@ $value_percent = 100 / $res_semana->sumatoria;
 
 ?>
  <?php
+ /**
 //session_start();
  include_once("login.php");
  ?>
  <?php
  include_once("db.php");
+ */
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -307,7 +313,6 @@ $value_percent = 100 / $res_semana->sumatoria;
 				</div>
 			</div>
 			<!-- /page header -->
-
 
 
 			<!-- Content area -->

@@ -1370,3 +1370,8 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home2/cabastic/public_html/usuarios.php on line 264
+[18-Feb-2021 23:24:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
+[18-Feb-2021 23:24:48 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
+[18-Feb-2021 23:25:11 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
+[18-Feb-2021 23:25:27 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
+[18-Feb-2021 23:26:34 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216

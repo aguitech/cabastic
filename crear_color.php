@@ -9,7 +9,7 @@ if($_POST["id"] != ""){
 ?>
 
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
-	<form id="" method="post" action="?">
+	<form id="form_crear" method="post" action="?">
 		<div class="card-header header-elements-inline">
         	<h5 class="card-title">&nbsp;</h5>
         	<div class="header-elements">
@@ -52,7 +52,7 @@ if($_POST["id"] != ""){
                      &nbsp;
                 </div>
                 <div class="form-group col-md-6">
-                 	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                 	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="validar_crear();"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
                 </div>
             </div>
 			

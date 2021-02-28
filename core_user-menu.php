@@ -7,7 +7,7 @@
 							</div>
 
 							<div class="media-body">
-								<div class="media-title font-weight-semibold">Usuario</div>
+								<div class="media-title font-weight-semibold"><i class="icon-user"></i> <?php echo $_SESSION["username"]; ?></div>
 								<div class="font-size-xs opacity-50">
 									<i class="icon-pin font-size-sm"></i> &nbsp;Ciudad de M&eacute;xico
 								</div>

@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Ventas";
 $tbl_main = "ds_tbl_venta";
 $nombre_simple = "venta";
 $url_name = "ventas.php";
 $url_crear_name = "crear_venta.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

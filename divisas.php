@@ -1,16 +1,11 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Divisas";
 $tbl_main = "ds_tbl_evento";
 $nombre_simple = "divisa";
 $url_name = "divisas.php";
 $url_crear_name = "crear_divisa.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){

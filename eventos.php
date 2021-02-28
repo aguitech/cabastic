@@ -1,4 +1,5 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Eventos";
 $tbl_main = "ds_tbl_evento";
@@ -8,12 +9,6 @@ $tbl_main = "ds_tbl_evento";
 $nombre_simple = "evento";
 $url_name = "eventos.php";
 $url_crear_name = "crear_evento.php";
-?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){

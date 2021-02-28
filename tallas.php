@@ -1,4 +1,5 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
 <?php 
 $nombre_seccion = "Tallas";
 $tbl_main = "ds_cat_talla";
@@ -6,12 +7,7 @@ $nombre_simple = "talla";
 $url_name = "tallas.php";
 $url_crear_name = "crear_talla.php";
 ?>
-<?php
-include_once("login.php");
-?>
-<?php
-include_once("db.php");
-?>
+
 <?php 
 if($_POST["Descripcion"] != ""){
     
@@ -100,6 +96,17 @@ if($_POST["Descripcion"] != ""){
 
 		}
 
+		function validar_crear(){
+
+			if($("#Descripcion").val() != ""){
+				$("#form_crear").submit();
+			}else{
+				$("#Descripcion").focus();
+			}
+			
+			
+			
+		}
 	</script>
 
 </head>
@@ -587,11 +594,6 @@ if($_POST["Descripcion"] != ""){
 							$id_resultado=$resultado->Id_Talla;
 							$nombre=$resultado->Nombre;
 							$hexadecimal=$resultado->Descripcion;
-							$id_nivel="Hola";
-							$extension="Hola";
-							$area="Hola";
-							$completo="Hola";
-							$niveles="Hola";
 							?>
 								
 							<tr id="element<?php echo $id_resultado; ?>">

@@ -13,6 +13,8 @@ $id_producto = $_POST["id"];
 //$producto = $obj->get_row("select *, ds_tbl_producto_detalle.Id_Producto_Detalle as Id_Producto_Detalle from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = $id_producto");
 $producto = $obj->get_row("select *, ds_tbl_producto_detalle.Id_Producto_Detalle as Id_Producto_Detalle from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = $id_producto");
 
+$divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
+
 //Id_Producto_Detalle
 //print_r($producto);
 

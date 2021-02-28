@@ -415,7 +415,9 @@ if($usuario==$nombre && $password==$pass && $usuario!="" && $password!=""){
 			<div class="content d-flex justify-content-center align-items-center">
 
 				<!-- Login form -->
-				<form class="login-form" action="index.php" method="post">
+				<form class="login-form" action="sesion.php" method="post">
+					<input type="hidden" id="CKdo" name="CKdo" value="CKini" />
+    							
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
