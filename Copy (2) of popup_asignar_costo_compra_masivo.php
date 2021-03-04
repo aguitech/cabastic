@@ -33,27 +33,21 @@ if($producto->Id_Producto_Detalle != ""){
 <form method="post" action="">
 	<input type="hidden" name="id_producto" value="<?php echo $id_producto; ?>" />
 	<input type="hidden" name="id_producto_detalle" value="<?php echo $producto->Id_Producto_Detalle; ?>" />
-    
-    <div class="form-row" style="text-align:center;">
-    	<b>Asignaci&oacute;n general de costo</b>
-    </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-        	<?php /**
          	<div>Producto:</div>
     		<?php echo $producto->Nombre; ?>
     		<br />
-    		*/ ?>
     		
-    		<div style="">
-    			<input type="hidden" name="checkboxes" id="checkboxes" value="<?php echo $_POST["form"]; ?>" />
+    		<div style="height:100px; overflow:scroll;">
+    			<input type="text" name="checkboxes" id="checkboxes" value="<?php echo $_POST["form"]; ?>" />
     			<?php 
     			
     			
     			$checkboxes_str = str_replace("&", "", $_POST["form"]);
     			
     			$checkboxes_explode = explode("checkbox=", $checkboxes_str);
-    			//print_r($checkboxes_explode);
+    			print_r($checkboxes_explode);
     			
     			if($checkboxes_explode[0] == ""){
     			    unset($checkboxes_explode[0]);
@@ -70,7 +64,7 @@ if($producto->Id_Producto_Detalle != ""){
     			</script>
     			*/
     			?>
-    			<?php /**
+    			
     			<hr />
     			<?php print_r($checkboxes_explode); ?>
     			
@@ -79,7 +73,7 @@ if($producto->Id_Producto_Detalle != ""){
         		<hr />
         		<hr />
         		<?php print_r($_POST); ?>
-    			*/ ?>
+    		
     		</div>
     		
         </div>
@@ -88,7 +82,7 @@ if($producto->Id_Producto_Detalle != ""){
     <div class="form-row">
     	<div class="form-group col-md-6">
          	<div>Divisa</div>
-         	<select name="divisa_masivo" id="divisa_masivo" class="form-control">
+         	<select name="divisa_masivo" id="divisa_masivo">
          		<?php foreach($divisas as $divisa): ?>
          		<option value="<?php echo $divisa->Id_Tipo_Cambio; ?>"><?php echo $divisa->Descripcion; ?></option>
          		<?php endforeach; ?>
@@ -96,7 +90,7 @@ if($producto->Id_Producto_Detalle != ""){
         </div>
         <div class="form-group col-md-6">
          	<div>Costo de compra</div>
-    		<input type="text" name="costo_compra_masivo" id="costo_compra_masivo" value="" class="form-control" />
+    		<input type="text" name="costo_compra_masivo" id="costo_compra_masivo" value="" />
         </div>
         
     </div>

@@ -27,7 +27,8 @@ if($_POST["Descripcion"] != ""){
         $qry_insert = "insert into ds_cat_tipo_sustancia (Descripcion, Activo, Fecha_Alta) values ('{$val_descripcion}', 1, '{$fecha_hoy}')";
         $obj->query($qry_insert);
     }
-    
+    header('Location: ./tipos_producto.php', true, 303);
+    exit;
     
 }
 ?>
@@ -302,7 +303,7 @@ if($_POST["Descripcion"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -455,9 +456,6 @@ if($_POST["Descripcion"] != ""){
 							<tr>
 								<th>Talla</th>
 								<th>Estatus</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 								
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -603,11 +601,6 @@ if($_POST["Descripcion"] != ""){
 								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
 								
 								
-								
-								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
 								
 
 								<?php /**

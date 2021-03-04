@@ -268,7 +268,7 @@ $url_crear_name = "crear_cliente.php";
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -425,9 +425,6 @@ $url_crear_name = "crear_cliente.php";
 								<th>Nombre</th>
 								<th>Apellido</th>
 								
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 								
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -562,9 +559,6 @@ $url_crear_name = "crear_cliente.php";
 								<td><?php echo $nombre; ?></td>
 								<td><?php echo $hexadecimal; ?></td>
 								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
 								
 
 								<?php /**

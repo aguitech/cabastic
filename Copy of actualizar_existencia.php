@@ -1,6 +1,5 @@
 <?php include("includes/includes.php");
 ?>
-<?php include("common_files/sesion.php"); ?>
 <?php 
 /**
  * $qry_resultado_detalle_cantidad_producto = "select * from ds_tbl_cantidad_minima_producto where Id_Producto_Detalle = {$id_producto_detalle} and Fecha_alta = '{$val_fecha_alta}' limit 1";
@@ -13,7 +12,6 @@
 */
 ?>
 <?php 
-$id_rol = $_SESSION["rol"];
 $existencia = $_POST["existencia"];
 
 $id = $_POST["id"];
@@ -73,32 +71,9 @@ if($_POST["id"] != "" && $_POST["existencia"] != ""){
         //$qry_insert_inventario_actual = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar)";
         //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
 
-        //Id_Tipo_Almacen
-        $id_tipo_almacen = 0;
-        if($id_rol == 6){
-            //REMOLQUE
-            $id_tipo_almacen = 2;
-        }else if($id_rol == 1 || $id_rol == 3  || $id_rol == 7){
-            //ALMACEN
-            $id_tipo_almacen = 1;
-        }
-        
-        
-        $qry_last_id_inventario_actual = "select * from ds_tbl_inventario_almacen order by Id_Inventario desc";
-        $last_id_inventario_actual = $obj->get_row($qry_last_id_inventario_actual);
-        
-        $next_id_inventario_actual = $last_id_inventario_actual->Id_Inventario + 1;
-        
-        
-        
-        //$qry_insert_inventario_actual = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario) values ($id_producto_detalle, $existencia)";
-        //
-        //$qry_insert_inventario_actual = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Tipo_Almacen) values ($id_producto_detalle, $existencia, $id_tipo_almacen)";
-        $qry_insert_inventario_actual = "insert into ds_tbl_inventario_almacen (Id_Inventario, Id_Producto_Detalle, Cantidad_Inventario, Id_Tipo_Almacen) values ($next_id_inventario_actual, $id_producto_detalle, $existencia, $id_tipo_almacen)";
-        
+        $qry_insert_inventario_actual = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario) values ($id_producto_detalle, $wxistencia)";
         //
         //echo $qry_insert_costo_producto_actual . "<br />";
-        //echo $qry_insert_inventario_actual . "<br />";
         //echo $qry_insert_costo_producto_actual;
         $obj->query($qry_insert_inventario_actual);
     }

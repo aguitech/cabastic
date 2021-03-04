@@ -31,7 +31,8 @@ if($_POST["Descripcion"] != ""){
         $obj->query($qry_insert);
     }
     
-    
+    header('Location: ./tallas.php', true, 303);
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -305,7 +306,7 @@ if($_POST["Descripcion"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -460,9 +461,6 @@ if($_POST["Descripcion"] != ""){
 							<tr>
 								<th>Talla</th>
 								<th>Estatus</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 								
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -605,9 +603,6 @@ if($_POST["Descripcion"] != ""){
 								
 								
 								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
 								
 
 								<?php /**

@@ -33,10 +33,6 @@ if($producto->Id_Producto_Detalle != ""){
 <form method="post" action="">
 	<input type="hidden" name="id_producto" value="<?php echo $id_producto; ?>" />
 	<input type="hidden" name="id_producto_detalle" value="<?php echo $producto->Id_Producto_Detalle; ?>" />
-    
-    <div class="form-row" style="text-align:center;">
-    	<b>Asignaci&oacute;n general de costo</b>
-    </div>
     <div class="form-row">
         <div class="form-group col-md-6">
         	<?php /**

@@ -1375,3 +1375,19 @@ Stack trace:
 [18-Feb-2021 23:25:11 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
 [18-Feb-2021 23:25:27 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
 [18-Feb-2021 23:26:34 America/Chicago] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting end of file in /home2/cabastic/public_html/ajax_productos_filtrar_tabla.php on line 216
+[28-Feb-2021 22:12:35 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:12:59 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:13:10 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:13:50 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:13:52 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:14:01 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:14:04 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:15:58 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[28-Feb-2021 22:20:47 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home2/cabastic/public_html/sustancias.php on line 34
+[01-Mar-2021 10:48:18 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 124
+[01-Mar-2021 10:48:33 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 124
+[01-Mar-2021 10:49:22 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 125
+[01-Mar-2021 10:49:31 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 125
+[01-Mar-2021 10:49:45 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 125
+[01-Mar-2021 10:50:58 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 126
+[01-Mar-2021 10:51:41 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 126

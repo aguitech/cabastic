@@ -33,7 +33,8 @@ if($_POST["Descripcion"] != ""){
         $obj->query($qry_insert);
     }
     
-    
+    header('Location: ./sustancias.php', true, 303);
+    exit;
 }
 
 ?>
@@ -308,7 +309,7 @@ if($_POST["Descripcion"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -464,7 +465,6 @@ if($_POST["Descripcion"] != ""){
 								<th>Descripci&oacute;n</th>
 								<th>Estatus</th>
 								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 								
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -517,7 +517,6 @@ if($_POST["Descripcion"] != ""){
 								
 								
 								<td><?php echo $resultado->Comentario; ?></td>
-								<td>&nbsp;</td>
 								
 
 								<?php /**

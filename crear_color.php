@@ -7,7 +7,30 @@ if($_POST["id"] != ""){
     //print_r($resultado);
 }
 ?>
+<link href="js/color-picker-master/color-picker.min.css" rel="stylesheet">
 
+<script src="js/color-picker-master/color-picker.min.js"></script>
+	<style>
+
+    .color-picker.no-alpha .color-picker\:a {
+      display: none;
+    }
+
+    </style>
+	<script>
+
+    function disableAlphaChannel(picker) {
+        picker.self.classList.add('no-alpha');
+        picker.on('change', function(r, g, b) {
+            this.source.value = this.color(r, g, b, 1);
+        });
+    }
+
+    const picker = new CP(document.querySelector('input'));
+
+    disableAlphaChannel(picker);
+
+    </script>
 <div style="width:100%; padding:0 10%;" class="content_form_crear">
 	<form id="form_crear" method="post" action="?">
 		<div class="card-header header-elements-inline">
@@ -36,11 +59,25 @@ if($_POST["id"] != ""){
                  	<div>Color</div>
              		<input type="text" placeholder="Color" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>" />
 			
+					<div class="form-group form-group-feedback form-group-feedback-left">
+        				<input type="text" class="form-control" placeholder="Left icon, input default">
+        				<div class="form-control-feedback">
+        					<i class="icon-droplets"></i>
+        				</div>
+        			</div>
                 </div>
                 <div class="form-group col-md-6">
                  	<div>C&oacute;digo Hexadecimal</div>
+         			<?php /**
          			<input type="text" placeholder="Codigo_Hexadecimal" name="Codigo_Hexadecimal" id="Codigo_Hexadecimal" value="<?php echo $resultado->Codigo_Hexadecimal; ?>" />
 			
+					*/ ?>
+					<div class="form-group form-group-feedback form-group-feedback-left">
+        				<input type="text" class="form-control" placeholder="C&oacute;digo Hexadecimal" placeholder="Codigo_Hexadecimal" name="Codigo_Hexadecimal" id="Codigo_Hexadecimal" value="<?php echo $resultado->Codigo_Hexadecimal; ?>">
+        				<div class="form-control-feedback">
+        					<i class="icon-droplets"></i>
+        				</div>
+        			</div>
                 </div>
             </div>
 			<br />

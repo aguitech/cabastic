@@ -267,7 +267,7 @@ $url_crear_name = "crear_empleado.php";
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -418,7 +418,6 @@ $url_crear_name = "crear_empleado.php";
 								
 								<th>Correo electr&oacute;nico</th>
 								<th>Rol</th>
-								<th>&nbsp;</th>
 								
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -468,12 +467,11 @@ $url_crear_name = "crear_empleado.php";
 							?>
 								
 							<tr id="element<?php echo $id_usuario; ?>">
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
+								<td><?php echo $nombre; ?></td>
 								<td><?php echo $username; ?></td>
 								
 								<td><?php echo $email; ?></td>
 								<td><?php echo $rol_empleado; ?></td>
-								<td>&nbsp;</td>
 								
 
 								<?php /**

@@ -95,7 +95,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								<li class="nav-item <?php if($url_actual == "/alta_cliente.php"): ?>menu_seleccionado<?php endif; ?>"><a href="" class="nav-link active">Alta de cliente</a></li>
 								<li class="nav-item <?php if($url_actual == "/baja_cliente.php"): ?>menu_seleccionado<?php endif; ?>"><a href="" class="nav-link active">Baja de cliente</a></li>
 								*/ ?>
-								<li class="nav-item"><a href="clientes.php" class="nav-link <?php if($url_actual == "/clientes.php"): ?>active<?php endif; ?>">Lista de clientes</a></li>
+								<li class="nav-item <?php if($url_actual == "/clientes.php"): ?>menu_seleccionado<?php endif; ?>"><a href="clientes.php" class="nav-link active">Lista de clientes</a></li>
 								
 							</ul>
 						</li>
@@ -110,7 +110,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								<li class="nav-item"><a href="" class="nav-link active">Alta de empleado</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Baja de empleado</a></li>
 								*/ ?>
-								<li class="nav-item"><a href="empleados.php" class="nav-link <?php if($url_actual == "/empleados.php"): ?>active<?php endif; ?>">Lista de empleados</a></li>
+								<li class="nav-item <?php if($url_actual == "/empleados.php"): ?>menu_seleccionado<?php endif; ?>"><a href="empleados.php" class="nav-link active">Lista de empleados</a></li>
 							</ul>
 						</li>
 						<?php endif; ?>
@@ -120,10 +120,8 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							<a href="#" class="nav-link <?php if($url_actual == "/eventos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-copy"></i> <span>Eventos</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<?php /**
 								<li class="nav-item"><a href="" class="nav-link active">Crear Evento</a></li>
-								*/ ?>
-								<li class="nav-item"><a href="eventos.php" class="nav-link <?php if($url_actual == "/eventos.php"): ?>active<?php endif; ?>">Mostrar eventos</a></li>
+								<li class="nav-item <?php if($url_actual == "/eventos.php"): ?>menu_seleccionado<?php endif; ?>"><a href="eventos.php" class="nav-link active">Mostrar eventos</a></li>
 							</ul>
 						</li>
 						<?php endif; ?>
@@ -176,7 +174,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							<a href="#" class="nav-link <?php if($url_actual == "/prestamos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-truck"></i> <span>Pr&eacute;stamos</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="prestamos.php" class="nav-link <?php if($url_actual == "/prestamos.php"): ?>active<?php endif; ?>">Mostrar Pr&eacute;stamos</a></li>
+								<li class="nav-item <?php if($url_actual == "/prestamos.php"): ?>menu_seleccionado<?php endif; ?>"><a href="prestamos.php" class="nav-link active">Mostrar Pr&eacute;stamos</a></li>
 							</ul>
 						</li>
 						<?php endif; ?>
@@ -199,7 +197,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								<li class="nav-item"><a href="" class="nav-link active">Bit&aacute;cora de operaciones</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Asignaci&oacute;n de inventario evento</a></li>
 								-->
-								<li class="nav-item"><a href="reporte_metodo_pago.php" class="nav-link <?php if($url_actual == "/reporte_metodo_pago.php"): ?>active<?php endif; ?>">M&eacute;todos de pago</a></li>
+								<li class="nav-item <?php if($url_actual == "/reporte_metodo_pago.php"): ?>menu_seleccionado<?php endif; ?>"><a href="reporte_metodo_pago.php" class="nav-link active">M&eacute;todos de pago</a></li>
 								<li class="nav-item <?php if($url_actual == "/reporte_tipo_productos.php"): ?>menu_seleccionado<?php endif; ?>"><a href="reporte_tipo_productos.php" class="nav-link active">Tipo de productos</a></li>
 								<li class="nav-item <?php if($url_actual == "/reporte_tipo_productos_totales.php"): ?>menu_seleccionado<?php endif; ?>"><a href="reporte_tipo_productos_totales.php" class="nav-link active">Tipo de productos $ USD</a></li>
 								<li class="nav-item <?php if($url_actual == "/reporte_maximos_minimos.php"): ?>menu_seleccionado<?php endif; ?>"><a href="reporte_maximos_minimos.php" class="nav-link active">M&aacute;ximos y m&iacute;nimos</a></li>
@@ -246,6 +244,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 						
 						
 						
+						
 <div style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:10; background:#324148;" id="capa_carga">
 	<div style="width:100%; height:100%; display:flex; justify-content:center; align-items:center;">
 		<img src="images/logo_cabastic.png" style="width:25%;" />
@@ -285,14 +284,3 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 
 <?php endif; ?>
 */ ?>
-
-
-
-<style>
-input[type=text]{
-	border-radius:20px;
-}
-select{
-	border-radius:20px;
-}
-</style>

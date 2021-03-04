@@ -17,15 +17,84 @@ if($_POST["Descripcion"] != ""){
     
     if($_POST["editar"] != ""){
         $id_editar = $_POST["editar"];
-        $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$imagen_file}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
-        //echo $qry_edit;
         
-        $obj->query($qry_edit);
+        
+        
+        
+        
+        
+        
+        
+        if($_FILES["imagen_marca"]['name'] != ""){
+            
+            
+            $prefix_fecha = date("YmdHis") . "_";
+            //$destino = '../../../images/blog';
+            $destino = 'images/marcas';
+            
+            $name_imagen_url = $prefix_fecha . $_FILES['imagen_marca']['name'];
+            
+            //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+            copy($_FILES['imagen_marca']['tmp_name'], $destino . '/' . $name_imagen_url);
+            
+            
+            //$qry_last_id_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
+            //$last_id_imagen = $obj->get_row($qry_last_id_imagen);
+            
+            //$last_id_producto_imagen_val = $last_id_imagen->Id_Producto_Imagen + 1;
+            
+            
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
+            
+            //echo $qry_insert_imagen;
+            
+            //$obj->query($qry_insert_imagen);
+            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$name_imagen_url}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            //echo $qry_edit;
+            
+            $obj->query($qry_edit);
+            
+        }else{
+            
+            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$imagen_file}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            //echo $qry_edit;
+            
+            $obj->query($qry_edit);
+        }
+        
+        
+        
+        
+        
     }else{
-        $qry_insert = "insert into ds_cat_marca (Descripcion, Logo, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$imagen_file}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
-        $obj->query($qry_insert);
+        
+        if($_FILES["imagen_marca"]['name'] != ""){
+            
+            
+            $prefix_fecha = date("YmdHis") . "_";
+            //$destino = '../../../images/blog';
+            $destino = 'images/marcas';
+            
+            $name_imagen_url = $prefix_fecha . $_FILES['imagen_marca']['name'];
+            
+            //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+            copy($_FILES['imagen_marca']['tmp_name'], $destino . '/' . $name_imagen_url);
+            
+            $qry_insert = "insert into ds_cat_marca (Descripcion, Logo, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$name_imagen_url}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+            $obj->query($qry_insert);
+        }else{
+            $qry_insert = "insert into ds_cat_marca (Descripcion, Logo, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$imagen_file}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+            $obj->query($qry_insert);
+        }
+        
+        
     }
     
+    
+    header('Location: ./marcas.php', true, 303);
+    exit;
     
 }
 
@@ -300,7 +369,7 @@ if($_POST["Descripcion"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -459,9 +528,6 @@ if($_POST["Descripcion"] != ""){
 								<th>Logo</th>
 								<th>Marca</th>
 								<th>Estatus</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -516,12 +582,6 @@ if($_POST["Descripcion"] != ""){
 								<td><?php echo $resultado->Descripcion; ?></td>
 								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
 								
-								
-								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
-								<td>&nbsp;</td>
-								
-
 								<?php /**
 								<td><?php echo $id_resultado; ?></td>
 								

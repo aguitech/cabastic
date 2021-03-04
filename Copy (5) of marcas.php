@@ -1,31 +1,99 @@
 <?php include("includes/includes.php"); ?>
 <?php include("common_files/sesion.php"); ?>
 <?php 
-$nombre_seccion = "Colores";
-$tbl_main = "ds_cat_color";
-$nombre_simple = "color";
-$url_name = "colores.php";
-$url_crear_name = "crear_color.php";
-
-if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
+$nombre_seccion = "Marcas";
+$tbl_main = "ds_cat_marca";
+$nombre_simple = "marca";
+$url_name = "marcas.php";
+$url_crear_name = "crear_marca.php";
+?>
+<?php 
+if($_POST["Descripcion"] != ""){
     
     $val_descripcion = $_POST["Descripcion"];
-    $val_hexadeimal = $_POST["Codigo_Hexadecimal"];
     $fecha_hoy = date("Y-m-d H:i:s");
+    
+    $imagen_file = $_POST["Logo"];
     
     if($_POST["editar"] != ""){
         $id_editar = $_POST["editar"];
-        $qry_edit = "update ds_cat_color set Descripcion = '{$val_descripcion}', Codigo_Hexadecimal = '{$val_hexadeimal}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Color = $id_editar";
-        //echo $qry_edit;
         
-        $obj->query($qry_edit);
+        
+        
+        
+        
+        
+        
+        
+        if($_FILES["imagen_marca"]['name'] != ""){
+            
+            
+            $prefix_fecha = date("YmdHis") . "_";
+            //$destino = '../../../images/blog';
+            $destino = 'images/marcas';
+            
+            $name_imagen_url = $prefix_fecha . $_FILES['imagen_marca']['name'];
+            
+            //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+            copy($_FILES['imagen_marca']['tmp_name'], $destino . '/' . $name_imagen_url);
+            
+            
+            //$qry_last_id_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
+            //$last_id_imagen = $obj->get_row($qry_last_id_imagen);
+            
+            //$last_id_producto_imagen_val = $last_id_imagen->Id_Producto_Imagen + 1;
+            
+            
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
+            
+            //echo $qry_insert_imagen;
+            
+            //$obj->query($qry_insert_imagen);
+            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$name_imagen_url}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            //echo $qry_edit;
+            
+            $obj->query($qry_edit);
+            
+        }else{
+            
+            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$imagen_file}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            //echo $qry_edit;
+            
+            $obj->query($qry_edit);
+        }
+        
+        
+        
+        
+        
     }else{
-        $qry_insert = "insert into ds_cat_color (Descripcion, Codigo_Hexadecimal, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$val_hexadeimal}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
-        $obj->query($qry_insert);
+        
+        if($_FILES["imagen_marca"]['name'] != ""){
+            
+            
+            $prefix_fecha = date("YmdHis") . "_";
+            //$destino = '../../../images/blog';
+            $destino = 'images/marcas';
+            
+            $name_imagen_url = $prefix_fecha . $_FILES['imagen_marca']['name'];
+            
+            //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+            copy($_FILES['imagen_marca']['tmp_name'], $destino . '/' . $name_imagen_url);
+            
+            $qry_insert = "insert into ds_cat_marca (Descripcion, Logo, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$name_imagen_url}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+            $obj->query($qry_insert);
+        }else{
+            $qry_insert = "insert into ds_cat_marca (Descripcion, Logo, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$imagen_file}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+            $obj->query($qry_insert);
+        }
+        
+        
     }
     
-    header('Location: ./colores.php', true, 303);
-    exit;
+    
+    
     
 }
 
@@ -42,7 +110,30 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 	include "core_title.php";
 
 	 ?>
-	<link href="js/color-picker-master/color-picker.min.css" rel="stylesheet">
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="global_assets/js/main/jquery.min.js"></script>
+	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
+	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+	<script src="full/assets/js/app.js"></script>
+	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
+	<!-- /theme JS files -->
 
 	<script type="text/javascript">
 		$( document ).ready(function() {
@@ -68,7 +159,6 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 			}
 
 		}
-
 		function validar_crear(){
 
 			if($("#Descripcion").val() != ""){
@@ -85,41 +175,7 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 </head>
 
 <body>
-	<script src="js/color-picker-master/color-picker.min.js"></script>
-	<style>
 
-    .color-picker.no-alpha .color-picker\:a {
-      display: none;
-    }
-
-    </style>
-	<script>
-    //let picker = new CP(document.querySelector('input'));
-    
-    //let picker = new CP(document.querySelector('#Codigo_Hexadecimal'));
-
-	function disableAlphaChannel(picker) {
-        picker.self.classList.add('no-alpha');
-        picker.on('change', function(r, g, b) {
-            this.source.value = this.color(r, g, b, 1);
-        });
-    }
-
-    const picker = new CP(document.querySelector('input'));
-
-    disableAlphaChannel(picker);
-    
-	/**
-	let picker = new CP(document.querySelector('input'));
-    picker.on('change', function(r, g, b, a) {
-        if (1 === a) {
-            this.source.value = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-        } else {
-            this.source.value = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
-        }
-    });
-    */
-    </script>
 	<script>
 		function cargar_crear_history(){
 			$("#container_create").show("");
@@ -312,7 +368,7 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -434,6 +490,16 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div style="text-align:right;">
                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="cargar_crear()"><i class="material-icons right">add</i> Agregar <?php echo $nombre_simple; ?></button>
+                            	<?php /**
+                                <button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                            	<a class="btn btn-primary" onclick="cargar_crear()" role="button">Agregar <?php echo $nombre_simple; ?></a>
+                                
+                                
+                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
+                            	
+                            	<a class="btn btn-primary" href="/Producto/ResgitrarProductoCompleto" role="button">Agregar producto</a>
+                                <a class="btn btn-primary" href="/Venta/VentaEvento?IdEvento=1&amp;Descripcion=OFICINA&amp;FechaInicio=01%2F01%2F0001%2000%3A00%3A00&amp;CP=0&amp;FechaAlta=01%2F01%2F0001%2000%3A00%3A00&amp;Activo=False&amp;FechaCierre=01%2F01%2F0001%2000%3A00%3A00&amp;IdEmpleadoAlta=0&amp;InventarioRevisado=False&amp;FechaRevisionInventario=01%2F01%2F0001%2000%3A00%3A00&amp;InventarioRevisadoDiaPost=False&amp;FechaRevisionInventarioDiaPost=01%2F01%2F0001%2000%3A00%3A00&amp;IdCierre=0&amp;CantidadProductosInventario=0&amp;FechaEntrega=01%2F01%2F0001%2000%3A00%3A00" role="button">Venta directa</a>
+                                */ ?>
                             </div>
                         </div>
                         <br />
@@ -457,108 +523,15 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>Color</th>
-								<th>Hexadecimal</th>
 								
-								<th>&nbsp;</th>
-								
-								
+								<th>Logo</th>
+								<th>Marca</th>
+								<th>Estatus</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							
-
-                        <?php 
-                        /**
-                         $qt = "SELECT * FROM intranet_usuario ORDER BY id_usuario DESC LIMIT 300";
-                         
-                          $resultt = $mysqli->query($qt);
-                          while ($rowt = $resultt->fetch_row()){
-
-                            $id_usuario=$rowt[0];
-                            $nombre=$rowt[1];
-                            $pass=$rowt[2];
-                            $id_nivel=$rowt[3];
-                            $extension=$rowt[4];
-                            $area=$rowt[5];
-							$completo=$rowt[6];
-							$niveles=$rowt[7];
-
-
-							///////////////////////////////////////NIVELES
-							if($niveles=="" && $niveles!="0" && $id_nivel!=""){
-								$niveles=$id_nivel;
-
-								$sq="UPDATE `intranet_usuario` SET `niveles` = '$niveles' WHERE `intranet_usuario`.`id_usuario` = $id_usuario;";
-								//echo $sq;
-								//$resul = $mysqli->query($sq);
-							}
-							if($niveles!=""){
-								//echo "NIVELES: ".$niveles." - ";
-								$niveles = explode(",", $niveles);
-								$losniveles="";
-								for ($i=0;$i<count($niveles);$i++)    
-								{
-									$losniveles .= $niveles[$i].",";
-								} 
-								$losniveles = substr($losniveles,0,-1);
-								$sq="SELECT * FROM `intranet_nivel` WHERE id_nivel =100 ";
-								$nivelesarray = explode(",", $losniveles);
-								for ($i=0;$i<count($nivelesarray);$i++)    
-								{
-									$sq .= " OR id_nivel=".$nivelesarray[$i];
-								} 
-								//echo $sq;
-								$resul = $mysqli->query($sq);
-								$niveles_nombres="";
-								while ($row = $resul->fetch_row()){
-
-									$id_nivel=$row[0];
-									$nombre_nivel=$row[1];
-									//echo " ".$nombre_nivel." <br>";
-									$niveles_nombres .= "- ".$nombre_nivel."<br> ";
-								}
-								//$niveles_nombres = substr($niveles_nombres,0,-2);
-								$area = $niveles_nombres;
-							}
-							/////////////////////////////////////////////NIVELES
-
-
-
-                            */
-
-                        ?>  
-                        
-                        
-                        	<?php /**?>
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><?php echo $id_usuario; ?></td>
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $pass; ?></td>
-								
-								<td><?php echo $extension; ?></td>
-								<td><?php echo $area; ?></td>
-								<td><?php echo $completo; ?></td>
-
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Remove</a>
-												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-
-							*/ ?>
 
 							<?php
 							//}
@@ -569,6 +542,7 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 						
 							$resultados = $obj->get_results($qry_resultados);
 						
+							//print_r($resultados);
 						//$qry_resultados = "select * from $tbl_main order by Fecha_Venta desc";
 						
 						//$resultados = $obj->get_results($qry_resultados);
@@ -582,9 +556,16 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 							<?php //for($i=0; $i<=10; $i++): ?>
 							
 							<?php 
-							$id_usuario=$resultado->Id_Color;
-							$nombre=$resultado->Descripcion;
-							$hexadecimal=$resultado->Codigo_Hexadecimal;
+							//[0] => stdClass Object ( [Id_Producto] => 256 
+							//[Nombre] => 01 VW3024 MOSCA JACKET [Descripcion] 
+							//=> [Id_Marca] => 1 [Id_Tipo_Producto] => 14
+							//[Id_Tipo_Sustancia] => 1 [Activo] => 1 
+							//[Fecha_Alta] => 2020-07-21 22:10:43 
+							//[Id_Categoria_Producto] => 79 
+							
+							$id_resultado=$resultado->Id_Marca;
+							$nombre=$resultado->Nombre;
+							$hexadecimal=$resultado->Descripcion;
 							$id_nivel="Hola";
 							$extension="Hola";
 							$area="Hola";
@@ -592,17 +573,17 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 							$niveles="Hola";
 							?>
 								
-							<tr id="element<?php echo $id_usuario; ?>">
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
-								<td><?php echo $hexadecimal; ?></td>
-								
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
+							<tr id="element<?php echo $id_resultado; ?>">
 								
 								
-
+								
+								<td><?php if($resultado->Logo != ""): ?><img src="images/marcas/<?php echo $resultado->Logo; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
+								<td><?php echo $resultado->Descripcion; ?></td>
+								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
+								
 								<?php /**
-								<td><?php echo $hexadecimal; ?></td>
-								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
+								<td><?php echo $id_resultado; ?></td>
+								
 								*/ ?>
 								
 								<td class="text-center">
@@ -613,8 +594,8 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
-												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>

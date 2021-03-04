@@ -1,12 +1,17 @@
 <!-- Main navbar -->
 	<div class="navbar navbar-expand-md navbar-dark">
+	<?php /**
+	<div class="navbar navbar-expand-md navbar-dark">
+	*/ ?>
+	
 		<div class="navbar-brand">
 			<a href="index.html" class="d-inline-block">
-				<img src="images/logo_cabastic.png" alt="">
+				<img src="images/logo_cabastic_header_mini.png" alt="">
 				
-				<!--
+				<?php /**
+				<img src="images/logo_cabastic.png" alt="">
 				<img src="global_assets/images/logo_light.png" alt="">
-				-->
+				*/ ?>
 			</a>
 			<span style="color:white;">Cabastic</span>
 		</div>
@@ -111,10 +116,16 @@
 				</li>
 			</ul>
 
+			<?php /**
 			<span class="navbar-text ml-md-3 mr-md-auto">
 				<span class="badge bg-success">Online</span>
 			</span>
+			*/ ?>
 
+			<span class="navbar-text ml-md-3 mr-md-auto">
+				&nbsp;
+				<?php /**<a href="javascript:void(0);" class="fullscreen" data-provide="fullscreen"><i class="zmdi zmdi-fullscreen"></i>Full Screen</a>*/ ?>
+			</span>
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown" style="display: none;">
@@ -301,7 +312,10 @@
 
 				<li class="nav-item dropdown dropdown-user">
 					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+						<?php /**
 						<img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
+						*/ ?>
+						<i class="icon-user"></i>
 						<span><?php echo $_SESSION["username"]; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">

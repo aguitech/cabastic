@@ -103,7 +103,7 @@ if($_POST["nombre_producto"] != ""){
         
         
     }
-    /**
+    
     $prefix_fecha = date("YmdHis") . $i . "_";
     //$destino = '../../../images/blog';
     $destino = 'images/blog';
@@ -112,7 +112,6 @@ if($_POST["nombre_producto"] != ""){
     
     $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
     $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-    */
     
     $qry_resultado_detalle = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
     $resultado_detalle = $obj->get_row($qry_resultado_detalle);
@@ -134,10 +133,6 @@ if($_POST["nombre_producto"] != ""){
     
     $qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
     $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    
-    header('Location: ./productos.php', true, 303);
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -224,15 +219,6 @@ if($_POST["nombre_producto"] != ""){
 	<div id="container_popup">
 		<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
 			<div>
-				<div class="card-header header-elements-inline">
-                	<h5 class="card-title">&nbsp;</h5>
-                	<div class="header-elements">
-                		<div class="list-icons">
-                    		
-                    		<a class="list-icons-item" data-action="remove" onclick="$('#container_popup_fondo').hide(); $('#container_popup').hide();"></a>
-                    	</div>
-                	</div>
-                </div>
 				<div id="popup_resultado">
 					
 				</div>
@@ -483,7 +469,7 @@ if($_POST["nombre_producto"] != ""){
 		function actualizar_marca(id_producto){
 			$.ajax({
 				type: "POST",
-				url:"ajax_obtener_marca_por_producto.php?rand=256",
+				url:"ajax_obtener_marca_por_producto.php",
 				//data: { limit:val_limit, offset:val_offset },
 				data: { id_producto:id_producto },
 				success:function(data){
@@ -499,7 +485,7 @@ if($_POST["nombre_producto"] != ""){
 			var id_marca = $("#id_marca").val();
 			$.ajax({
 				type: "POST",
-				url:"ajax_obtener_generos_marca.php?rand=256",
+				url:"ajax_obtener_generos_marca.php",
 				//data: { limit:val_limit, offset:val_offset },
 				data: { id_marca:id_marca },
 				success:function(data){
@@ -518,7 +504,7 @@ if($_POST["nombre_producto"] != ""){
 		   function filtrar_marca(id){
 			   $.ajax({
 					type: "POST",
-					url:"ajax_iniciar_venta_filtrar_marca.php?rand=256",
+					url:"ajax_iniciar_venta_filtrar_marca.php",
 					//data: { limit:val_limit, offset:val_offset },
 					data: { id:id },
 					success:function(data){
@@ -553,7 +539,7 @@ if($_POST["nombre_producto"] != ""){
 			
     			   $.ajax({
     					type: "POST",
-    					url:"ajax_iniciar_venta_filtrar_marca_genero.php?rand=256",
+    					url:"ajax_iniciar_venta_filtrar_marca_genero.php",
     					//data: { limit:val_limit, offset:val_offset },
     					data: { id:id, id_genero:id_genero },
     					success:function(data){
@@ -574,7 +560,7 @@ if($_POST["nombre_producto"] != ""){
 		   function filtrar_producto(id){
 			   $.ajax({
 					type: "POST",
-					url:"ajax_iniciar_venta_filtrar_producto.php?rand=256",
+					url:"ajax_iniciar_venta_filtrar_producto.php",
 					//data: { limit:val_limit, offset:val_offset },
 					data: { id:id },
 					success:function(data){
@@ -592,7 +578,7 @@ if($_POST["nombre_producto"] != ""){
 			   var id_producto = $("#id_producto").val();
 			   $.ajax({
 					type: "POST",
-					url:"ajax_iniciar_venta_filtrar_talla.php?rand=256",
+					url:"ajax_iniciar_venta_filtrar_talla.php",
 					//data: { limit:val_limit, offset:val_offset },
 					data: { id:id, id_producto:id_producto },
 					success:function(data){
@@ -614,7 +600,7 @@ if($_POST["nombre_producto"] != ""){
 			   var id_color = $("#id_color").val();
 			   $.ajax({
 					type: "POST",
-					url:"ajax_iniciar_venta_filtrar_color.php?rand=256",
+					url:"ajax_iniciar_venta_filtrar_color.php",
 					//data: { limit:val_limit, offset:val_offset },
 					data: { id_color:id_color, id_producto:id_producto, id_talla:id_talla },
 					success:function(data){
@@ -636,7 +622,7 @@ if($_POST["nombre_producto"] != ""){
 		function filtrar_tipo_producto(id_tipo_producto){
 			$.ajax({
 				type: "POST",
-                url:"ajax_productos_filtrar_tipo_producto.php?rand=256",
+                url:"ajax_productos_filtrar_tipo_producto.php",
                 //data: { limit:val_limit, offset:val_offset },
                 data: { id:id_tipo_producto },
                 success:function(data){
@@ -653,7 +639,7 @@ if($_POST["nombre_producto"] != ""){
 		function filtrar_tipo_productos(id_tipo_producto){
 			$.ajax({
 				type: "POST",
-                url:"ajax_productos_filtrar_tipo_productos.php?rand=256",
+                url:"ajax_productos_filtrar_tipo_productos.php",
                 //data: { limit:val_limit, offset:val_offset },
                 data: { id:id_tipo_producto },
                 success:function(data){
@@ -698,7 +684,7 @@ if($_POST["nombre_producto"] != ""){
 			var descripcion_val = $("#descripcion_tipo_producto").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_tipo_producto.php?rand=256",
+                url:"ajax_guardar_tipo_producto.php",
                 data: { descripcion:descripcion_val },
                 success:function(data){
                 	console.log(data);
@@ -715,7 +701,7 @@ if($_POST["nombre_producto"] != ""){
 			var tipo_producto_select_val = $("#tipo_producto_select").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_categoria.php?rand=256",
+                url:"ajax_guardar_categoria.php",
                 data: { descripcion:descripcion_val, tipo_producto:tipo_producto_select_val },
                 success:function(data){
                 	console.log(data);
@@ -731,7 +717,7 @@ if($_POST["nombre_producto"] != ""){
 			var descripcion_val = $("#descripcion_talla").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_talla.php?rand=256",
+                url:"ajax_guardar_talla.php",
                 data: { descripcion:descripcion_val },
                 success:function(data){
                 	console.log(data);
@@ -745,7 +731,7 @@ if($_POST["nombre_producto"] != ""){
 			var descripcion_val = $("#descripcion_genero").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_genero.php?rand=256",
+                url:"ajax_guardar_genero.php",
                 data: { descripcion:descripcion_val },
                 success:function(data){
                 	console.log(data);
@@ -761,7 +747,7 @@ if($_POST["nombre_producto"] != ""){
 			var descripcion_val = $("#descripcion_tipo_mercado").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_tipo_mercado.php?rand=256",
+                url:"ajax_guardar_tipo_mercado.php",
                 data: { descripcion:descripcion_val },
                 success:function(data){
                 	console.log(data);
@@ -777,7 +763,7 @@ if($_POST["nombre_producto"] != ""){
 			var descripcion_val = $("#descripcion_color").val();
 			$.ajax({
 				type: "POST",
-                url:"ajax_guardar_color.php?rand=256",
+                url:"ajax_guardar_color.php",
                 data: { descripcion:descripcion_val },
                 success:function(data){
                 	console.log(data);
@@ -836,25 +822,11 @@ if($_POST["nombre_producto"] != ""){
 				
 			});
 			*/
-			//var str = "Visit Microsoft!";
-			var res_checkboxes = checkboxes.replaceAll("&", "and");
-			res_checkboxes = res_checkboxes.replaceAll("=", "igual");
-			//res_checkboxes = res_checkboxes.replace("&", "and");
-			//res_checkboxes = res_checkboxes.replace("=", "igual");
-
-			//alert(res_checkboxes);
-			
-			//var url = "https://cabastic.info/guardar_costo_compra_masivo.php?costo=" + costo + "&divisa=" + divisa + "&checkboxes=" + checkboxes;
-			//var url = "https://cabastic.info/guardar_costo_compra_masivo.php?costo=" + costo + "&divisa=" + divisa + "&checkboxes=" + checkboxes;
-			//var url = "https://cabastic.info/guardar_costo_compra_masivo.php?costo=" + costo + "&divisa=" + divisa + "&checkboxes=" + res_checkboxes;
-			var url = "guardar_costo_compra_masivo.php?costo=" + costo + "&divisa=" + divisa + "&checkboxes=" + res_checkboxes;
-
-
-			//alert(url);
+			var url = "https://cabastic.info/guardar_costo_compra_masivo.php?costo=" + costo + "&divisa=" + divisa + "&checkboxes=" + checkboxes;
 			$.getScript( url, function() {
-				$('#container_popup_fondo').hide(); $('#container_popup').hide();
+				
 			});
-			/**
+			
 			$.ajax({
 				type: "POST",
 				url:"guardar_costo_compra_masivo.php?rand=255",
@@ -876,7 +848,6 @@ if($_POST["nombre_producto"] != ""){
 					
 				}
 			});
-			*/
 		}
 		function actualizar_costo_masivo(costo, id, divisa){
 			var contenedor_input = "#contenedor_resultado_input" + id;
@@ -1111,7 +1082,7 @@ if($_POST["nombre_producto"] != ""){
 			var id = 8;
 			//var form = 10;
 
-			//alert(form);
+			alert(form);
 			
 		   $.ajax({
 				type: "POST",
@@ -1166,7 +1137,7 @@ if($_POST["nombre_producto"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -1443,26 +1414,22 @@ if($_POST["nombre_producto"] != ""){
                             </div>
                         </div>
                         
-                        <?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 4 || $id_rol == 5): ?>
+                        
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                             	
+                             	Funciones masivas
                             </div>
                             <div class="form-group col-md-4">
-                            	Opciones<br />
                              	<select onchange="funciones_masivas(this.value);" id="funcion_masiva" class="form-control">
                              		<option value="">Selecciona</option>
-                             		<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
                              		<option value="1">Asignar costo masivo</option>
-                             		<?php endif; ?>
                              	</select>
                             </div>
                             <div class="form-group col-md-2">
-                            	&nbsp;<br />
                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="funciones_masivas($('#funcion_masiva').val());">Seleccionar</button>
                             </div>
                         </div>
-                        <?php endif; ?>
+                        
                         
 					</div>
 					<div id="resultado_filtrados" style="width:100%; overflow-x:scroll;">
@@ -1480,12 +1447,8 @@ if($_POST["nombre_producto"] != ""){
     								<th>Marca</th>
     								<th>Color</th>
     								<th>Talla</th>
-    								<?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5  || $id_rol == 6 || $id_rol == 7): ?>
-									<th>Cantidad M&iacute;nima</th>
-    								<?php endif; ?>
-    								<?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5  || $id_rol == 6 || $id_rol == 7): ?>
-									<th>Cantidad M&aacute;xima</th>
-    								<?php endif; ?>
+    								<th>Cantidad M&iacute;nima</th>
+    								<th>Cantidad M&aacute;xima</th>
     								
     								<th>Existencias</th>
     								<th>Almac&eacute;n</th>
@@ -1517,9 +1480,7 @@ if($_POST["nombre_producto"] != ""){
     							//left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen
     							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen order by $tbl_main.Descripcion asc";
     							//left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto
-    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto order by $tbl_main.Descripcion asc";
-    							//
-    							$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto order by $tbl_main.Descripcion asc";
     							//
     							$resultados = $obj->get_results($qry_resultados);
     						?>
@@ -1560,32 +1521,25 @@ if($_POST["nombre_producto"] != ""){
     								<td><?php echo $resultado->color; ?></td>
     								<td><?php echo $resultado->talla; ?></td>
     								
-    								<?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5  || $id_rol == 6 || $id_rol == 7): ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
 									<td style="text-align:center;" id="contenedor_resultado_input_cantidad_minima<?php echo $id_resultado; ?>"><div id="resultado_input_cantidad_minima<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_cantidad_minima<?php echo $id_resultado; ?>').show(); $('#input_cantidad_minima<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Minima != ""){ $res_pintar = $resultado->Cantidad_Minima; }else{ $res_pintar = "Introduce su cantidad m&iacute;nima"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_cantidad_minima<?php echo $id_resultado; ?>" ><input type="text" id="input_cantidad_minima<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Minima; ?>" onblur="actualizar_cantidad_minima(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
     								<?php /**
 									<td><div id="resultado_input_existencia<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_existencia<?php echo $id_resultado; ?>').show(); $('#input_existencia<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" /></div></td>
     								<td><?php echo $resultado->Cantidad_Minima; ?></td>
     								*/ ?>
     								<?php endif; ?>
-    								<?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5  || $id_rol == 6 || $id_rol == 7): ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
 									<td style="text-align:center;" id="contenedor_resultado_input_cantidad_maxima<?php echo $id_resultado; ?>"><div id="resultado_input_cantidad_maxima<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_cantidad_maxima<?php echo $id_resultado; ?>').show(); $('#input_cantidad_maxima<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Maxima != ""){ $res_pintar = $resultado->Cantidad_Maxima; }else{ $res_pintar = "Introduce su cantidad m&aacute;xima"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_cantidad_maxima<?php echo $id_resultado; ?>" ><input type="text" id="input_cantidad_maxima<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Maxima; ?>" onblur="actualizar_cantidad_maxima(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
     								<?php /**
     								<td><?php echo $resultado->Cantidad_Maxima; ?></td>
     								*/ ?>
     								<?php endif; ?>
     								
-    								<?php if((($id_rol == 1 || $id_rol == 3 || $id_rol == 7) && $resultado->Id_Tipo_Almacen == 1) || (($id_rol == 1 || $id_rol == 6) && $resultado->Id_Tipo_Almacen == 2) || (($resultado->Cantidad_Inventario == "" && ($id_rol == 1 || $id_rol == 6 || $id_rol == 3 || $id_rol == 7)))): ?>
+    								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+									<td style="text-align:center;" id="contenedor_resultado_input_existencia<?php echo $id_resultado; ?>"><div id="resultado_input_existencia<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_existencia<?php echo $id_resultado; ?>').show(); $('#input_existencia<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input_existencia<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
+    								<td><?php echo $resultado->almacen; ?></td>
+    								<?php endif; ?>
     								
-        								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
-    									<td style="text-align:center;" id="contenedor_resultado_input_existencia<?php echo $id_resultado; ?>"><div id="resultado_input_existencia<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_existencia<?php echo $id_resultado; ?>').show(); $('#input_existencia<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input_existencia<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
-        								<td><?php echo $resultado->almacen; ?></td>
-        								<?php endif; ?>
-        							<?php else: ?>
-        								<td style="text-align:center;" id="contenedor_resultado_input_existencia<?php echo $id_resultado; ?>"><div id="resultado_input_existencia<?php echo $id_resultado; ?>" ><?php if($resultado->Cantidad_Inventario != ""){ $res_pintar = $resultado->Cantidad_Inventario; }else{ $res_pintar = "Introduce su existencia"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo_existencia<?php echo $id_resultado; ?>" ><input type="text" id="input_existencia<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Cantidad_Inventario; ?>" onblur="actualizar_existencia(this.value, <?php echo $id_resultado; ?>);" style="width:55px;" /></div></td>
-        								<td><?php echo $resultado->almacen; ?></td>
-        								
-        							
-									<?php endif; ?>
     								
     								<?php /**
     								<td><?php echo $resultado->Cantidad_Inventario; ?><?php //print_r($resultado); ?></td>
