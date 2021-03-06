@@ -11,7 +11,7 @@ if($_POST["id"] != ""){
 ?>
 <?php //echo $qry_id; ?>
 
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 <form id="form_crear" method="post" action="?">
 	<div class="card-header header-elements-inline">
     	<h5 class="card-title">&nbsp;</h5>
@@ -52,7 +52,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div>Abreviatura</div>
-    				<input type="text" placeholder="Abreviatura" name="Abreviatura" id="Abreviatura" value="<?php echo $resultado->Abreviatura; ?>"  class="form-control" />
+             		<input type="text" placeholder="Abreviatura" name="Abreviatura" id="Abreviatura" value="<?php echo $resultado->Abreviacion; ?>"  class="form-control" />
             	</div>
             </div>
             <div>

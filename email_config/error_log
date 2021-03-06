@@ -1,0 +1,50 @@
+[04-Mar-2021 17:31:26 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 17:45:08 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:29:51 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:29:54 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:31:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:31:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:37:24 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:37:26 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:37:26 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38
+[04-Mar-2021 18:49:44 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function split() in /home2/cabastic/public_html/email_config/includes/includes.php:38
+Stack trace:
+#0 /home2/cabastic/public_html/email_config/email.php(2): include()
+#1 {main}
+  thrown in /home2/cabastic/public_html/email_config/includes/includes.php on line 38

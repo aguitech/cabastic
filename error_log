@@ -1391,3 +1391,17 @@ Stack trace:
 [01-Mar-2021 10:49:45 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 125
 [01-Mar-2021 10:50:58 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 126
 [01-Mar-2021 10:51:41 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/actualizar_existencia.php on line 126
+[05-Mar-2021 11:20:23 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home2/cabastic/public_html/tallas.php on line 574
+[05-Mar-2021 22:51:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'protected' (T_PROTECTED), expecting ']' in /home2/cabastic/public_html/mail.php on line 10
+[05-Mar-2021 23:02:39 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PHPMailer' not found in /home2/cabastic/public_html/mail.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mail.php on line 5
+[05-Mar-2021 23:02:50 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PHPMailer' not found in /home2/cabastic/public_html/mail2.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mail2.php on line 5
+[05-Mar-2021 23:08:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PHPMailer' not found in /home2/cabastic/public_html/mail2.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cabastic/public_html/mail2.php on line 5

@@ -7,7 +7,19 @@ $nombre_simple = "color";
 $url_name = "colores.php";
 $url_crear_name = "crear_color.php";
 
-if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
+//if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
+
+if($_GET["del"] != ""){
+    $id_eliminar = $_GET["del"];
+    
+    $qry_delete = "delete from ds_cat_color where Id_Color = $id_eliminar";
+    $obj->query($qry_delete);
+    
+    header('Location: ./colores.php', true, 303);
+    exit;
+}
+
+if($_POST["Descripcion"] != ""){
     
     $val_descripcion = $_POST["Descripcion"];
     $val_hexadeimal = $_POST["Codigo_Hexadecimal"];
@@ -53,6 +65,25 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 		function Eliminar(t_id,t_completo){
 			//alert("Eliminar; "+t_id);
 
+			var r = confirm("Estás seguro que deseas eliminar el color: "+t_completo);
+			if (r == true) {
+				var url_delete = "./colores.php?del=" + t_id;
+				window.location = url_delete;
+
+				  txt = "You pressed OK!";
+
+				  /**
+			  	$.ajax({url: "usuarios_eliminar.php?id="+t_id, success: function(result){
+    				//$("#div1").html(result);
+    				//alert(result);
+    				$("#element"+t_id).hide(500);
+  				}});
+  				*/
+
+			} else {
+			  txt = "You pressed Cancel!";
+			}
+			/**
 			var r = confirm("Estás seguro que deseas eliminar al usuario: "+t_completo);
 			if (r == true) {
 			  txt = "You pressed OK!";
@@ -66,6 +97,7 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 			} else {
 			  txt = "You pressed Cancel!";
 			}
+			*/
 
 		}
 
@@ -457,8 +489,8 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>Color</th>
-								<th>Hexadecimal</th>
+								<th>Tono</th>
+								<th>C&oacute;digo Hexadecimal</th>
 								
 								<th>&nbsp;</th>
 								
@@ -585,15 +617,10 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 							$id_usuario=$resultado->Id_Color;
 							$nombre=$resultado->Descripcion;
 							$hexadecimal=$resultado->Codigo_Hexadecimal;
-							$id_nivel="Hola";
-							$extension="Hola";
-							$area="Hola";
-							$completo="Hola";
-							$niveles="Hola";
 							?>
 								
 							<tr id="element<?php echo $id_usuario; ?>">
-								<td><a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>"><?php echo $nombre; ?></td>
+								<td><?php echo $nombre; ?></td>
 								<td><?php echo $hexadecimal; ?></td>
 								
 								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
@@ -613,7 +640,7 @@ if($_POST["Descripcion"] != "" && $_POST["Codigo_Hexadecimal"] != ""){
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_usuario; ?>,'<?php echo $nombre; ?>');"><i class="icon-bin"></i> Eliminar</a>
 												<a onclick="cargar_editar('<?php echo $id_usuario; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>

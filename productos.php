@@ -23,9 +23,192 @@ $val_talla = $_POST["talla"];
 $val_genero = $_POST["genero"];
 $val_tipo_mercado = $_POST["tipo_mercado"];
 $val_color = $_POST["color"];
-$val_cantidad_minima = $_POST["cantidad_minima"];
-$val_cantidad_maxima = $_POST["cantidad_maxima"];
-$val_precio_venta = $_POST["precio_venta"];
+if($_POST["cantidad_minima"] != ""){
+    $val_cantidad_minima = $_POST["cantidad_minima"];
+}else{
+    $val_cantidad_minima = 0;
+}
+if($_POST["cantidad_maxima"] != ""){
+    $val_cantidad_maxima = $_POST["cantidad_maxima"];
+}else{
+    $val_cantidad_maxima = 0;
+}
+if($_POST["precio_venta"] != ""){
+    $val_precio_venta = $_POST["precio_venta"];
+}else{
+    $val_precio_venta = 0;
+}
+if($_POST["costo_compra"] != ""){
+    $costo = $_POST["costo_compra"];
+}else{
+    $costo = 0;
+}
+
+if($_POST["costo_compra"] != ""){
+    $divisa = $_POST["select_divisa_costo"];
+}else{
+    $divisa = 3;
+}
+
+
+
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
+
+$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
+
+
+/**
+$costo = $_POST["costo_compra"];
+$divisa = $_POST["select_divisa_costo"];
+
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
+
+$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
+
+
+if($_POST["id"] != "" && $_POST["costo_compra"] != "" &&  $_POST["select_divisa_costo"] != ""){
+    
+    $qry_producto_detalle = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_producto.Id_Producto = $id";
+    
+    $producto_detalle = $obj->get_row($qry_producto_detalle);
+    $id_producto_detalle = $producto_detalle->Id_Producto_Detalle;
+    
+    
+    
+    
+    $id_producto = $_POST["id"];
+    //$costo_compra = $_POST["costo"];
+    
+    if($divisa == 1){
+        //DOLAR
+        $costo_compra = $_POST["costo"] * $tipo_cambio_dolar;
+        $costo_dolares = $_POST["costo"];
+        
+        $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
+        
+    }
+    if($divisa == 2){
+        //EURO
+        $costo_compra = $_POST["costo"] * $tipo_cambio_euro;
+        $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+        
+        $costo_euros = $_POST["costo"];
+        
+    }
+    if($divisa == 3){
+        //PESO
+        $costo_compra = $_POST["costo"];
+        $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+        $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
+        
+        
+    }
+    
+    
+    
+    $impuesto_adicional = 0;
+    //$costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+    $iva = 16;
+    $fecha_actualizacion = date("Y-m-d H:i:s");
+    
+    $qry_costo_producto_actual = "select * from ds_tbl_costo_compra_producto where ds_tbl_costo_compra_producto.Id_Producto_Detalle = $id_producto_detalle";
+    
+    //echo $qry_costo_producto_actual . "<br />";
+    $precio_producto_actual = $obj->get_row($qry_costo_producto_actual);
+    
+    //print_r($precio_producto_actual);
+    //echo $precio_producto_actual->Costo_Compra;
+    if($precio_producto_actual->Costo_Compra != ""){
+        //UPDATE
+        //echo "update";
+        
+        $id_costo_compra_producto = $precio_producto_actual->Id_Costo_Producto;
+        $costo_compra_anterior = $precio_producto_actual->Costo_Compra;
+        $valor_dolar_anterior = $precio_producto_actual->Valor_Tipo_Cambio_Dolar;
+        $valor_dolares_anterior = $precio_producto_actual->Dolar;
+        
+        $valor_euro_anterior = $precio_producto_actual->Valor_Tipo_Cambio_Euro;
+        $valor_euros_anterior = $precio_producto_actual->Euro;
+        
+        
+        
+        //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $costo_dolares, $costo_dolares)";
+        //$qry_insert_costo_producto_actual = "insert into  (Id_Producto_Detalle, , , , , , , , ) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $costo_dolares, $costo_dolares)";
+        //echo "HEY";
+        //$qry_update_costo_producto = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra_anterior, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $costo_dolares, Valor_Tipo_Cambio_Anterior = $costo_dolares)";
+        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
+        $qry_update_costo_producto = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra_anterior, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Euro = $costo_euros, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $valor_dolar_anterior, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $valor_euro_anterior where Id_Producto_Detalle = $id_producto_detalle and Id_Costo_Producto = $id_costo_compra_producto";
+        //echo $qry_update_costo_producto;
+        //echo $qry_update_costo_producto;
+        $obj->query($qry_update_costo_producto);
+        
+    }else{
+        //echo "insert";
+        //INSERT
+        //
+        //Id_Costo_Producto 	 	Costo_Mxn 	Costo_Dolar 	 	 	 	 	 	 	Euro 	Libra
+        
+        //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar)";
+        $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+        //echo $qry_insert_costo_producto_actual;
+        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
+        
+        //echo $qry_insert_costo_producto_actual . "<br />";
+        //echo $qry_insert_costo_producto_actual;
+        $obj->query($qry_insert_costo_producto_actual);
+    }
+    
+    
+    
+    
+    ///Id_Historial_Costo_Compra 	Id_Producto_Detalle 	Costo_Compra 	Dolar 	Euro 	Valor_Tipo_Cambio_Dolar 	Valor_Tipo_Cambio_Euro 	Fecha_Update
+    
+    $fecha_update = date("Y-m-d H:i:s");
+    //$fecha_update
+    $qry_insert_historial = "insert into ds_tbl_historial_costo_compra (Id_Producto_Detalle, Costo_Compra, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Euro, Fecha_Update) values ($id_producto_detalle, $costo_compra, $costo_dolares, $costo_euros, $tipo_cambio_dolar, $tipo_cambio_euro, '$fecha_update') ";
+    $obj->query($qry_insert_historial);
+    
+    
+    
+    
+    $qry_costo_resultado = "select * from ds_tbl_costo_compra_producto where ds_tbl_costo_compra_producto.Id_Producto_Detalle = $id_producto_detalle";
+    //echo $qry_costo_resultado;
+    $costo_producto_actual = $obj->get_row($qry_costo_resultado);
+    
+    //print_r($costo_producto_actual);
+    
+    //echo $costo_producto_actual->Costo_Compra;
+    
+    //echo "HA";
+    
+    $id_resultado = $producto_detalle->Id_Producto;
+
+    
+    																
+    								
+    
+    
+    
+    
+}
+*/
+
+/**
+ * <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" style=" width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
+ 
+ 
+ */
+
+
+
 //$val_Imagen_Producto = $_POST["Imagen_Producto"];
 $val_imagen_producto = $_POST["imagen_producto"];
 
@@ -39,40 +222,100 @@ $almacenes = $obj->get_results("select * from ds_cat_tipo_almacen order by Descr
 //$productos = $obj->get_results("select * from ds_tbl_producto order by Nombre asc");
 $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre order by Nombre asc");
 
-if($_POST["nombre_producto"] != ""){
+
+if($_POST["editar"] != ""){
+    
+    $id_producto = $_POST["editar"];
+    
+    $id_producto_detalle = $_POST["editar_detalle"];
     
     /**
-    $prefix_fecha = date("YmdHis") . $i . "_";
-    //$destino = '../../../images/blog';
-    $destino = 'images/blog';
+    echo $id_producto;
     
-    copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+    echo "<br />";
+
     
-    //$_POST["proyectologo"] = $_FILES['proyectologo']['name'][$i];
-    $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-    $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+    echo $id_producto_detalle;
+    
+    print_r($_POST);
     */
     
     
-    $qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_sustancia_producto}, {$val_categoria}, 1)";
+    //$qry_update = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_sustancia_producto}, {$val_categoria}, 1)";
     //echo $qry_insert;
+    //$qry_update = "update ds_tbl_producto set Nombre = '{$val_nombre}', Descripcion = '{$val_descripcion}', Fecha_Alta = '{$val_fecha_alta}', Id_Marca =  {$val_marca}, Id_Tipo_Producto = {$val_tipo_producto}, Id_Tipo_Sustancia = {$val_sustancia_producto}, Id_Categoria_Producto = {$val_categoria}, Activo = 1 where Id_Producto = $id_producto";
+    $qry_update = "update ds_tbl_producto set Nombre = '{$val_nombre}', Descripcion = '{$val_descripcion}', Id_Marca =  {$val_marca}, Id_Tipo_Producto = {$val_tipo_producto}, Id_Tipo_Sustancia = {$val_sustancia_producto}, Id_Categoria_Producto = {$val_categoria}, Activo = 1 where Id_Producto = $id_producto";
     
-    $obj->query($qry_insert);
+    $obj->query($qry_update);
     
-    $qry_resultado = "select * from ds_tbl_producto where Nombre = '{$val_nombre}' and Descripcion = '{$val_descripcion}' and Fecha_Alta = '{$val_fecha_alta}' and Id_Categoria_Producto = {$val_categoria} limit 1";
-    $resultado = $obj->get_row($qry_resultado);
     
-    //echo $qry_resultado;
     
-    $id_producto = $resultado->Id_Producto;
+    //$qry_update_detalle = "insert into ds_tbl_producto_detalle (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero, Activo) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero}, 1)";
+    //$qry_update_detalle = "update ds_tbl_producto_detalle set Codigo_Barras = '{$val_codigo_barras}', Id_Talla = {$val_talla}, Id_Color = {$val_color}, Id_Producto = {$id_producto}, Id_Tipo_Mercado = {$val_tipo_mercado}, Id_Genero = {$val_genero}, Activo = 1 where Id_Producto_Detalle = $id_producto_detalle";
+    $qry_update_detalle = "update ds_tbl_producto_detalle set Codigo_Barras = '{$val_codigo_barras}', Id_Talla = {$val_talla}, Id_Color = {$val_color}, Id_Tipo_Mercado = {$val_tipo_mercado}, Id_Genero = {$val_genero}, Activo = 1 where Id_Producto_Detalle = $id_producto_detalle and Id_Producto = {$id_producto}";
+    //echo $qry_update_detalle;
+    //exit();
+    $obj->query($qry_update_detalle);
     
-    //$qry_insert_detalle = "insert into (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero})";
-    $qry_insert_detalle = "insert into ds_tbl_producto_detalle (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero, Activo) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero}, 1)";
     
-    $obj->query($qry_insert_detalle);
+    //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
+    //$qry_update_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
+    //$qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Id_Producto_Detalle = {$id_producto_detalle}, Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_alta = '{$val_fecha_alta}', Fecha_Actualiza = '{$val_fecha_alta}')";
+    //$qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_alta = '{$val_fecha_alta}', Fecha_Actualiza = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
+    $qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_Actualiza = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
+    $obj->query($qry_update_detalle_cantidad_producto);
     
-    //echo "FILES";
-    //print_r($_FILES);
+    
+    //$qry_update_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
+    //$qry_update_detalle_inventario_almacen = "update ds_tbl_inventario_almacen set Id_Producto_Detalle = {$id_producto_detalle}, Cantidad_Inventario = {$cantidad_inventario}, Id_Cantidad_Producto = {$id_cantidad_producto}, Fecha_Actualizacion = '{$val_fecha_alta}'";
+    $qry_update_detalle_inventario_almacen = "update ds_tbl_inventario_almacen set Cantidad_Inventario = {$cantidad_inventario}, Id_Cantidad_Producto = {$id_cantidad_producto}, Fecha_Actualizacion = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
+    $obj->query($qry_update_detalle_inventario_almacen);
+    
+    
+    
+    
+    
+    if($divisa == 1){
+        //DOLAR
+        $costo_compra = $_POST["costo_compra"] * $tipo_cambio_dolar;
+        $costo_dolares = $_POST["costo_compra"];
+        
+        $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+        
+    }
+    if($divisa == 2){
+        //EURO
+        $costo_compra = $_POST["costo_compra"] * $tipo_cambio_euro;
+        $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
+        
+        $costo_euros = $_POST["costo_compra"];
+        
+    }
+    if($divisa == 3){
+        //PESO
+        $costo_compra = $_POST["costo_compra"];
+        $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
+        $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+        
+        
+    }
+    
+    $impuesto_adicional = 0;
+    //$costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+    $iva = 16;
+    $fecha_actualizacion = date("Y-m-d H:i:s");
+    
+    //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+    //$qry_update_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+    $qry_update_costo_producto_actual = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $tipo_cambio_dolar, Euro = $costo_euros, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $tipo_cambio_euro where Id_Producto_Detalle = $id_producto_detalle";
+    $obj->query($qry_update_costo_producto_actual);
+    
+    
+    $fecha_update = date("Y-m-d H:i:s");
+    //$fecha_update
+    $qry_insert_historial = "insert into ds_tbl_historial_costo_compra (Id_Producto_Detalle, Costo_Compra, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Euro, Fecha_Update) values ($id_producto_detalle, $costo_compra, $costo_dolares, $costo_euros, $tipo_cambio_dolar, $tipo_cambio_euro, '$fecha_update') ";
+    $obj->query($qry_insert_historial);
+    
     
     if($_FILES["imagen_producto"]['name'] != ""){
         
@@ -87,57 +330,206 @@ if($_POST["nombre_producto"] != ""){
         copy($_FILES['imagen_producto']['tmp_name'], $destino . '/' . $name_imagen_url);
         
         
-        $qry_last_id_producto_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
-        $last_id_producto_imagen = $obj->get_row($qry_last_id_producto_imagen);
         
-        $last_id_producto_imagen_val = $last_id_producto_imagen->Id_Producto_Imagen + 1;
+        $qry_verificar_imagen = "select * from ds_tbl_producto_imagen where Id_Producto = $id_producto";
+        $verificar_imagen = $obj->get_row($qry_verificar_imagen);
         
-        
-        //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
-        //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
-        $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
-        
-        //echo $qry_insert_imagen;
-        
-        $obj->query($qry_insert_imagen);
+        if($verificar_imagen->Id_Producto != ""){
+            //$qry_update_imagen = "update ds_tbl_producto_imagen set Id_Producto_Imagen = $last_id_producto_imagen_val, Id_Producto = $id_producto, Url_Imagen = '$name_imagen_url' where ";
+            $qry_update_imagen = "update ds_tbl_producto_imagen set Url_Imagen = '$name_imagen_url' where Id_Producto = $id_producto";
+            
+            $obj->query($qry_update_imagen);
+            
+        }else{
+            
+            $qry_last_id_producto_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
+            $last_id_producto_imagen = $obj->get_row($qry_last_id_producto_imagen);
+            
+            $last_id_producto_imagen_val = $last_id_producto_imagen->Id_Producto_Imagen + 1;
+            
+            
+            $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
+            
+            //echo $qry_insert_imagen;
+            
+            $obj->query($qry_insert_imagen);
+            
+        }
         
         
     }
-    /**
-    $prefix_fecha = date("YmdHis") . $i . "_";
-    //$destino = '../../../images/blog';
-    $destino = 'images/blog';
     
-    copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+}else{
+
+    if($_POST["nombre_producto"] != ""){
+        
+        /**
+        $prefix_fecha = date("YmdHis") . $i . "_";
+        //$destino = '../../../images/blog';
+        $destino = 'images/blog';
+        
+        copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+        
+        //$_POST["proyectologo"] = $_FILES['proyectologo']['name'][$i];
+        $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+        $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+        */
+        
+        
+        $qry_insert = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_sustancia_producto}, {$val_categoria}, 1)";
+        //echo $qry_insert;
+        
+        $obj->query($qry_insert);
+        
+        $qry_resultado = "select * from ds_tbl_producto where Nombre = '{$val_nombre}' and Descripcion = '{$val_descripcion}' and Fecha_Alta = '{$val_fecha_alta}' and Id_Categoria_Producto = {$val_categoria} limit 1";
+        $resultado = $obj->get_row($qry_resultado);
+        
+        //echo $qry_resultado;
+        
+        $id_producto = $resultado->Id_Producto;
+        
+        //$qry_insert_detalle = "insert into (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero})";
+        $qry_insert_detalle = "insert into ds_tbl_producto_detalle (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero, Activo) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero}, 1)";
+        
+        $obj->query($qry_insert_detalle);
+        
+        //echo "FILES";
+        //print_r($_FILES);
+        
+        if($_FILES["imagen_producto"]['name'] != ""){
+            
+            
+            $prefix_fecha = date("YmdHis") . "_";
+            //$destino = '../../../images/blog';
+            $destino = 'images/productos';
+            
+            $name_imagen_url = $prefix_fecha . $_FILES['imagen_producto']['name'];
+            
+            //copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+            copy($_FILES['imagen_producto']['tmp_name'], $destino . '/' . $name_imagen_url);
+            
+            
+            $qry_last_id_producto_imagen = "select * from ds_tbl_producto_imagen order by Id_Producto_Imagen desc";
+            $last_id_producto_imagen = $obj->get_row($qry_last_id_producto_imagen);
+            
+            $last_id_producto_imagen_val = $last_id_producto_imagen->Id_Producto_Imagen + 1;
+            
+            
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            //$qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto, Url_Imagen) values ($id_producto, '$name_imagen_url')";
+            $qry_insert_imagen = "insert into ds_tbl_producto_imagen (Id_Producto_Imagen, Id_Producto, Url_Imagen) values ($last_id_producto_imagen_val, $id_producto, '$name_imagen_url')";
+            
+            //echo $qry_insert_imagen;
+            
+            $obj->query($qry_insert_imagen);
+            
+            
+        }
+        /**
+        $prefix_fecha = date("YmdHis") . $i . "_";
+        //$destino = '../../../images/blog';
+        $destino = 'images/blog';
+        
+        copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
+        
+        $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+        $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
+        */
+        
+        $qry_resultado_detalle = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
+        $resultado_detalle = $obj->get_row($qry_resultado_detalle);
+        
+        $id_producto_detalle = $resultado_detalle->Id_Producto_Detalle;
+        
+        
+        $qry_last_id_precio_venta = "select * from ds_tbl_precio_venta_producto order by Id_Precio_Venta desc";
+        $last_id_precio_venta = $obj->get_row($qry_last_id_precio_venta);
+        $next_id_precio_venta = $last_id_precio_venta->Id_Precio_Venta + 1;
+        
+        
+        //$qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Producto_Detalle, Costo_Venta) values ({$id_producto_detalle}, '{$val_precio_venta}')";
+        $qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Precio_Venta, Id_Producto_Detalle, Costo_Venta) values ({$next_id_precio_venta}, {$id_producto_detalle}, '{$val_precio_venta}')";
+        //echo $qry_insert_detalle_precio_venta ."<br />";
+        $obj->query($qry_insert_detalle_precio_venta);
+        
+        //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima})";
+        $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
+        $obj->query($qry_insert_detalle_cantidad_producto);
+        
+        
+        $qry_resultado_detalle_cantidad_producto = "select * from ds_tbl_cantidad_minima_producto where Id_Producto_Detalle = {$id_producto_detalle} and Fecha_alta = '{$val_fecha_alta}' limit 1";
+        $resultado_detalle_cantidad_producto = $obj->get_row($qry_resultado_detalle_cantidad_producto);
+        
+        $id_cantidad_producto = $resultado_detalle_cantidad_producto->Id_Cantidad_Producto;
+        
+        
+        $qry_last_id_inventario = "select * from ds_tbl_inventario_almacen order by Id_Inventario desc";
+        $last_id_inventario = $obj->get_row($qry_last_id_inventario);
+        $next_id_inventario = $last_id_inventario->Id_Inventario + 1;
+        
+        //$qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
+        //$qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Inventario, Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$next_id_inventario}, {$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
+        $qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Inventario, Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion, Id_Tipo_Almacen, Comentario) values ({$next_id_inventario}, {$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}', 1, '')";
+        
+        //echo $qry_insert_detalle_inventario_almacen ."<br />";
+        
+        $obj->query($qry_insert_detalle_inventario_almacen);
+        
+        
+        if($divisa == 1){
+            //DOLAR
+            $costo_compra = $_POST["costo_compra"] * $tipo_cambio_dolar;
+            $costo_dolares = $_POST["costo_compra"];
+            
+            $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+            
+        }
+        if($divisa == 2){
+            //EURO
+            $costo_compra = $_POST["costo_compra"] * $tipo_cambio_euro;
+            $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
+            
+            $costo_euros = $_POST["costo_compra"];
+            
+        }
+        if($divisa == 3){
+            //PESO
+            $costo_compra = $_POST["costo_compra"];
+            $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
+            $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+            
+            
+        }
+        
+        $impuesto_adicional = 0;
+        //$costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+        $iva = 16;
+        $fecha_actualizacion = date("Y-m-d H:i:s");
+        
+        //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar)";
+        $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+        //echo $qry_insert_costo_producto_actual;
+        //echo $qry_insert_costo_producto_actual;
+        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
+        
+        //echo $qry_insert_costo_producto_actual . "<br />";
+        //echo $qry_insert_costo_producto_actual;
+        $obj->query($qry_insert_costo_producto_actual);
+        
+        
+        
+        $fecha_update = date("Y-m-d H:i:s");
+        //$fecha_update
+        $qry_insert_historial = "insert into ds_tbl_historial_costo_compra (Id_Producto_Detalle, Costo_Compra, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Euro, Fecha_Update) values ($id_producto_detalle, $costo_compra, $costo_dolares, $costo_euros, $tipo_cambio_dolar, $tipo_cambio_euro, '$fecha_update') ";
+        $obj->query($qry_insert_historial);
+        
+        
+        
+        
+        header('Location: ./productos.php', true, 303);
+        exit;
+    }
     
-    $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-    $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-    */
-    
-    $qry_resultado_detalle = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
-    $resultado_detalle = $obj->get_row($qry_resultado_detalle);
-    
-    $id_producto_detalle = $resultado_detalle->Id_Producto_Detalle;
-    
-    $qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Producto_Detalle, Costo_Venta) values ({$id_producto_detalle}, '{$val_precio_venta}')";
-    $obj->query($qry_insert_detalle_precio_venta);
-    
-    //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima})";
-    $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
-    $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    
-    $qry_resultado_detalle_cantidad_producto = "select * from ds_tbl_cantidad_minima_producto where Id_Producto_Detalle = {$id_producto_detalle} and Fecha_alta = '{$val_fecha_alta}' limit 1";
-    $resultado_detalle_cantidad_producto = $obj->get_row($qry_resultado_detalle_cantidad_producto);
-    
-    $id_cantidad_producto = $resultado_detalle_cantidad_producto->Id_Cantidad_Producto;
-    
-    $qry_insert_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
-    $obj->query($qry_insert_detalle_cantidad_producto);
-    
-    
-    header('Location: ./productos.php', true, 303);
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -151,32 +543,7 @@ if($_POST["nombre_producto"] != ""){
 
 	include "core_title.php";
 
-	 ?>
-
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="global_assets/js/main/jquery.min.js"></script>
-	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script src="full/assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
-	<!-- /theme JS files -->
-
+	 ?>	
 	<script type="text/javascript">
 		
 		$( document ).ready(function() {

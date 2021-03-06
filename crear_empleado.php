@@ -8,7 +8,7 @@ if($_POST["id"] != ""){
 }
 ?>
 
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 <form id="" method="post" action="?">
 
 <div class="card-header header-elements-inline">
@@ -82,12 +82,12 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div>Telefono</div>
-    				<input type="text" placeholder="Telefono" name="Telefono" id="Telefono" value="<?php echo $resultado->Telefono; ?>"  class="form-control" />
+    				<input type="number" placeholder="Telefono" name="Telefono" id="Telefono" value="<?php echo $resultado->Telefono; ?>"  class="form-control" />
             	</div>
             	<div class="form-group col-md-6">
                 
              		<div>Celular</div>
-    				<input type="text" placeholder="Celular" name="Celular" id="Celular" value="<?php echo $resultado->Celular; ?>"  class="form-control" />
+    				<input type="number" placeholder="Celular" name="Celular" id="Celular" value="<?php echo $resultado->Celular; ?>"  class="form-control" />
             	</div>
             </div>
             <div class="form-row">
@@ -106,7 +106,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div>C&oacute;digo Postal</div>
-    				<input type="text" placeholder="C&oacute;digo Postal" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $resultado->Codigo_Postal; ?>"  class="form-control" />
+    				<input type="number" placeholder="C&oacute;digo Postal" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $resultado->Codigo_Postal; ?>"  class="form-control" />
             	</div>
             	<div class="form-group col-md-6">
                 
@@ -118,12 +118,12 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div>Contrase&ntilde;a a utilizar</div>
-    				<input type="text" placeholder="Contrase&ntilde;a a utilizar" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $resultado->Codigo_Postal; ?>"  class="form-control" />
+    				<input type="password" placeholder="Contrase&ntilde;a a utilizar" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $resultado->Codigo_Postal; ?>"  class="form-control" />
             	</div>
             	<div class="form-group col-md-6">
                 
              		<div>Rol de empleado</div>
-    				<input type="text" placeholder="Rol de empleado" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>"  class="form-control" />
+             		<input type="text" placeholder="Rol de empleado" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>"  class="form-control" />
             	</div>
             </div>
             

@@ -1,5 +1,8 @@
 <?php
 include("includes/includes.php");
+include("common_files/sesion.php");
+$id_rol = $_SESSION["rol"];
+
 if($_POST["id"] != ""){
     $id = $_POST["id"];
     //$qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto where ds_tbl_producto.Id_Producto = {$id}";
@@ -10,7 +13,12 @@ if($_POST["id"] != ""){
     //left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle
     //
     //$qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto where ds_tbl_producto.Id_Producto = {$id}";
-    $qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
+    //$qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
+    $qry_id_detalle = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto where ds_tbl_producto.Id_Producto = {$id}";
+    $resultado_detalle = $obj->get_row($qry_id_detalle);
+    
+    
+    $qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
 }
@@ -32,7 +40,26 @@ $generos = $obj->get_results("select * from ds_cat_genero order by Descripcion a
 //ds_cat_tipo_mercado
 $tipos_mercado = $obj->get_results("select * from ds_cat_tipo_mercado order by Descripcion asc");
 
-$categorias_producto = $obj->get_results("select * from ds_cat_categoria_producto order by Descripcion asc");
+//$categorias_producto = $obj->get_results("select * from ds_cat_categoria_producto order by Descripcion asc");
+//$categorias_producto = $obj->get_results("select * from ds_cat_categoria_producto group by Descripcion order by Descripcion asc");
+
+if($resultado_detalle->Id_Producto_Detalle != ""){
+    //print_r($resultado_detalle);
+    
+    $id_tipo_producto = $resultado_detalle->Id_Tipo_Producto;
+    $qry_categorias_tipo_producto = "select * from ds_cat_categoria_producto where Id_Tipo_Producto = $id_tipo_producto order by Descripcion asc";
+    
+    $categorias_producto = $obj->get_results($qry_categorias_tipo_producto);
+    
+}else{
+    
+    
+    $categorias_producto = $obj->get_results("select * from ds_cat_categoria_producto order by Descripcion asc");
+    
+}
+//
+
+$divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
 
 ?>
 <style>
@@ -43,7 +70,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
 	border-radius:5px;
 }
 </style>
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 <form id="" method="post" action="?" enctype="multipart/form-data">
 	<div class="card-header header-elements-inline">
     	<h5 class="card-title">&nbsp;</h5>
@@ -54,7 +81,8 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
         	</div>
     	</div>
     </div>
-    <input type="hidden" name="editar" value="<?php echo $resultado->Id_Color; ?>" />
+    <input type="hidden" name="editar" value="<?php echo $resultado->Id_Producto; ?>" />
+    <input type="hidden" name="editar_detalle" value="<?php echo $resultado_detalle->Id_Producto_Detalle; ?>" />
     <div>
     <h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> producto</h3>
     <?php /**
@@ -84,12 +112,12 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
 			<div class="form-row">
                 <div class="form-group col-md-6">
                  	<div>C&oacute;digo de barras del producto</div>
-         		<input type="text" placeholder="C&oacute;digo de barras" name="codigo_barras" id="codigo_barras" value="<?php echo $resultado->Nombre; ?>" class="form-control" />
+         		<input type="text" placeholder="C&oacute;digo de barras" name="codigo_barras" id="codigo_barras" value="<?php echo $resultado->Codigo_Barras; ?>" class="form-control" />
         
                 </div>
                 <div class="form-group col-md-6">
                  	<div>Nombre del producto</div>
-         			<input type="text" placeholder="Nombre del producto" name="nombre_producto" id="nombre_producto" value="<?php echo $resultado->Codigo_Barras; ?>" class="form-control" />
+         			<input type="text" placeholder="Nombre del producto" name="nombre_producto" id="nombre_producto" value="<?php echo $resultado->Nombre; ?>" class="form-control" />
                 </div>
             </div>
             <div class="form-row">
@@ -119,6 +147,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 		*/ ?>
                 	</div>
                 	<select name="sustancia_producto" id="sustancia_producto" class="form-control">
+                		<option value="0">Selecciona</option>
                			<?php foreach($sustancias as $sustancia): ?>
                			<option value="<?php echo $sustancia->Id_Tipo_Sustancia; ?>" <?php if($resultado->Id_Tipo_Sustancia == $sustancia->Id_Tipo_Sustancia){ ?>selected="selected"<?php } ?>><?php echo $sustancia->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -149,6 +178,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 	</div>
                 	
                		<select name="marca" id="marca" class="form-control">
+               			<option value="0">Selecciona</option>
                			<?php foreach($marcas as $marca): ?>
                			<option value="<?php echo $marca->Id_Marca; ?>" <?php if($resultado->Id_Marca == $marca->Id_Marca){ ?>selected="selected"<?php } ?>><?php echo $marca->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -184,6 +214,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 		*/ ?>
                 	</div>
                 	<select name="tipo_producto" id="tipo_producto" class="form-control" onchange="filtrar_tipo_producto(this.value)">
+               			<option value="0">Selecciona</option>
                			<?php foreach($tipos_producto as $tipo_producto): ?>
                			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" <?php if($resultado->Id_Tipo_Producto == $tipo_producto->Id_Tipo_Producto){ ?>selected="selected"<?php } ?>><?php echo $tipo_producto->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -201,7 +232,8 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                		<div style="display:none;" id="contenedor_agregar_categoria_producto" class="contenedor_dinamico_producto">
                 		<div>Tipo de producto</div>
                 		<select name="tipo_producto_select" id="tipo_producto_select" class="form-control">
-                   			<?php foreach($tipos_producto as $tipo_producto): ?>
+                   			<option value="0">Selecciona</option>
+               				<?php foreach($tipos_producto as $tipo_producto): ?>
                    			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" ><?php echo $tipo_producto->Descripcion; ?></option>
                    			<?php endforeach; ?>
                    		</select>
@@ -221,7 +253,8 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 	</div>
                		<div id="filtrar_tipo_producto">
                			<select name="categoria" id="categoria" class="form-control">
-                   			<?php foreach($categorias_producto as $categoria_producto): ?>
+               				<option value="0">Selecciona</option>
+               				<?php foreach($categorias_producto as $categoria_producto): ?>
                    			<option value="<?php echo $categoria_producto->Id_Categoria_Producto; ?>" <?php if($resultado->Id_Categoria_Producto == $categoria_producto->Id_Categoria_Producto){ ?>selected="selected"<?php } ?>><?php echo $categoria_producto->Descripcion; ?></option>
                    			<?php endforeach; ?>
                    		</select>
@@ -260,6 +293,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 	</div>
                 	
                		<select name="talla" id="talla" class="form-control">
+               			<option value="0">Selecciona</option>
                			<?php foreach($tallas as $talla): ?>
                			<option value="<?php echo $talla->Id_Talla; ?>" <?php if($resultado->Id_Talla == $talla->Id_Talla){ ?>selected="selected"<?php } ?>><?php echo $talla->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -291,6 +325,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 	</div>
                		
                		<select name="genero" id="genero" class="form-control">
+               			<option value="0">Selecciona</option>
                			<?php foreach($generos as $genero): ?>
                			<option value="<?php echo $genero->Id_Genero; ?>" <?php if($resultado->Id_Genero == $genero->Id_Genero){ ?>selected="selected"<?php } ?>><?php echo $genero->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -326,6 +361,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 		*/ ?>
                 	</div>
                 	<select name="tipo_mercado" id="tipo_mercado" class="form-control">
+                		<option value="0">Selecciona</option>
                			<?php foreach($tipos_mercado as $tipo_mercado): ?>
                			<option value="<?php echo $tipo_mercado->Id_Tipo_Mercado; ?>" <?php if($resultado->Id_Tipo_Mercado == $tipo_mercado->Id_Tipo_Mercado){ ?>selected="selected"<?php } ?>><?php echo $tipo_mercado->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -338,8 +374,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                		<div style="" class="contenedor_agregar_titulo">
                 		Color
                 		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_color').toggle();">add</i>
-               		
-                	</div>
+               		</div>
                 	
                 	<div style="display:none;" id="contenedor_agregar_color" class="contenedor_dinamico_producto">
                 		<input type="text" placeholder="Color" id="descripcion_color" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
@@ -355,6 +390,7 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
                 		*/ ?>
                 	</div>
                		<select name="color" id="color" class="form-control">
+               			<option value="0">Selecciona</option>
                			<?php foreach($colores as $color): ?>
                			<option value="<?php echo $color->Id_Color; ?>" <?php if($resultado->Id_Color == $color->Id_Color){ ?>selected="selected"<?php } ?>><?php echo $color->Descripcion; ?></option>
                			<?php endforeach; ?>
@@ -364,27 +400,49 @@ $categorias_producto = $obj->get_results("select * from ds_cat_categoria_product
 					*/ ?>
                 </div>
             </div>
+            <?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
             <div class="form-row">
                 <div class="form-group col-md-6">
                 	<div>Cantidad m&iacute;nima en almacen</div>
-					<input type="text" placeholder="Cantidad m&iacute;nima en almacen" name="cantidad_minima" id="cantidad_minima" value="<?php echo $resultado->Cantidad_Minima; ?>"  class="form-control" />
+					<input type="text" placeholder="Cantidad m&iacute;nima en almacen" name="cantidad_minima" id="cantidad_minima" value="<?php echo $resultado->Cantidad_Minima; ?>" class="form-control" />
                 </div>
                 <div class="form-group col-md-6">
                		<div>Cantidad m&aacute;xima en almacen</div>
-					<input type="text" placeholder="Cantidad m&aacute;xima" name="cantidad_maxima" id="cantidad_maxima" value="<?php echo $resultado->Cantidad_Maxima; ?>"  class="form-control" />
+					<input type="text" placeholder="Cantidad m&aacute;xima" name="cantidad_maxima" id="cantidad_maxima" value="<?php echo $resultado->Cantidad_Maxima; ?>" class="form-control" />
 
                 </div>
             </div>
+            <?php endif; ?>
+            <?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
             <div class="form-row">
+                <div class="form-group col-md-6">
+                	<div>Divisa Costo</div>
+                	<select name="select_divisa_costo" id="select_divisa_costo" class="form-control">
+                		<?php foreach($divisas as $divisa): ?>
+                		<option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option>
+                		<?php endforeach; ?>
+                	</select>
+					
+                </div>
+                <div class="form-group col-md-6">
+               		<div>Costo</div>
+					<input type="text" id="costo_compra" name="costo_compra" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style=""  class="form-control" />
+                </div>
+            </div>
+            <?php endif; ?>
+            <div class="form-row">
+            	<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
                 <div class="form-group col-md-6">
                 	<div>Precio de venta mxn</div>
 					<input type="text" placeholder="Precio de venta MXN" name="precio_venta" id="precio_venta" value=""  class="form-control" />
                 </div>
+                <?php endif; ?>
+                <?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
                 <div class="form-group col-md-6">
                 	<div>Existencia actual</div>
 					<input type="text" placeholder="Existencia acutal" name="cantidad_inventario" id="cantidad_inventario" value="<?php echo $resultado->Cantidad_Inventario; ?>"  class="form-control" />
                 </div>
-                
+                <?php endif; ?>
             </div>
             
             
@@ -595,22 +653,7 @@ function previewFile(id) {
 
 <?php /**
 
-
-
-
-
-
-
-
-
-
 */ ?>
-
-
-
-
-
-
 </div>
 </form>
 </div> 

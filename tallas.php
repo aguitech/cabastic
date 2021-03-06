@@ -7,7 +7,6 @@ $nombre_simple = "talla";
 $url_name = "tallas.php";
 $url_crear_name = "crear_talla.php";
 ?>
-
 <?php 
 if($_POST["Descripcion"] != ""){
     
@@ -22,17 +21,23 @@ if($_POST["Descripcion"] != ""){
         $id_editar = $_POST["editar"];
         //$qry_edit = "update ds_cat_tipo_sustancia set Descripcion = '{$val_descripcion}', Abreviatura = '{$val_abreviatura}', Comentario = '{$val_comentario}', Activo = $val_activo, Fecha_Actualiza = '{$fecha_hoy}' where Id_Tipo_Sustancia = $id_editar";
         //echo $qry_edit;
-        $qry_edit = "update ds_cat_talla set Descripcion = '{$val_descripcion}', Abreviatura = '{$val_abreviatura}', Activo = $val_activo, Fecha_Actualiza = '{$fecha_hoy}' where Id_Talla = $id_editar";
+        $qry_edit = "update ds_cat_talla set Descripcion = '{$val_descripcion}', Abreviacion = '{$val_abreviatura}', Activo = $val_activo, Fecha_Actualiza = '{$fecha_hoy}' where Id_Talla = $id_editar";
         //
         $obj->query($qry_edit);
+        
+        
+        header('Location: ./tallas.php', true, 303);
+        exit;
     }else{
         //$qry_insert = "insert into ds_cat_tipo_sustancia (Descripcion, Abreviatura, Comentario, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$val_abreviatura}', '{$val_comentario}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
-        $qry_insert = "insert into ds_cat_tipo_sustancia (Descripcion, Abreviatura, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$val_abreviatura}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
+        $qry_insert = "insert into ds_cat_talla (Descripcion, Abreviacion, Activo, Fecha_Alta, Fecha_Actualiza) values ('{$val_descripcion}', '{$val_abreviatura}', 1, '{$fecha_hoy}', '{$fecha_hoy}')";
         $obj->query($qry_insert);
+        
+        
+        header('Location: ./tallas.php', true, 303);
+        exit;
     }
     
-    header('Location: ./tallas.php', true, 303);
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -47,30 +52,6 @@ if($_POST["Descripcion"] != ""){
 	include "core_title.php";
 
 	 ?>
-
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="global_assets/js/main/jquery.min.js"></script>
-	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script src="full/assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
-	<!-- /theme JS files -->
 
 	<script type="text/javascript">
 		$( document ).ready(function() {

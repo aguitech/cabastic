@@ -10,7 +10,7 @@ if($_POST["id"] != ""){
 }
 ?>
 
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 <form id="form_crear" method="post" action="?">
 	<div class="card-header header-elements-inline">
     	<h5 class="card-title">&nbsp;</h5>

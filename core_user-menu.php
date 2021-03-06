@@ -20,7 +20,13 @@
 									Buena noche
 									<?php endif; ?>
 								</div>
-								<div class="media-title font-weight-semibold" style="color:#333;"><i class="icon-user"></i> <?php echo $_SESSION["username"]; ?></div>
+								<div class="media-title font-weight-semibold" style="color:#333;"><i class="icon-user"></i> <?php echo $_SESSION["username"]; ?>
+									<div class="font-size-xs opacity-50" style="color:#333;">
+									<?php 
+									echo $_SESSION["rol_name"];
+									?>
+									</div>
+								</div>
 								<?php /**
 								<div class="font-size-xs opacity-50" style="color:#333;">
 									<i class="icon-pin font-size-sm"></i> &nbsp;Ciudad de M&eacute;xico

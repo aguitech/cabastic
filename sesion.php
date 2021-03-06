@@ -61,7 +61,8 @@ $contrasenia = md5($_POST["password"]);
 //$usuario = $usuario->get_results($qry);
 //$usuario = $usuario->get_row($qry);
 //$usuario = $obj->get_row("select * from usuario where usuario = '{$username}' and contrasenia = '{$contrasenia}'");
-$qry_usaurio = "select * from ds_tbl_empleado where Nombre = '{$username}' and Contrasena_Usuario = '{$contrasenia}'";
+//$qry_usaurio = "select * from ds_tbl_empleado where Nombre = '{$username}' and Contrasena_Usuario = '{$contrasenia}'";
+$qry_usaurio = "select * from ds_tbl_empleado left join ds_cat_empleado_rol on ds_cat_empleado_rol.Id_Empleado_Rol = ds_tbl_empleado.Id_Empleado_Rol where ds_tbl_empleado.Nombre = '{$username}' and ds_tbl_empleado.Contrasena_Usuario = '{$contrasenia}'";
 
 //echo $qry_usaurio;
 $usuario = $obj->get_row($qry_usaurio);
@@ -124,7 +125,11 @@ if($_POST["CKdo"] == "CKini" && $val_seguro_identidad == "1"){
 		*/
 		$_SESSION["rol"] = $usuario->Id_Empleado_Rol;
 		
+		
 		$_SESSION["username"] = $usuario->Nombre;
+		
+		$_SESSION["rol_name"] = $usuario->Descripcion;
+		
 		//$_SESSION["logued"] = true;
 		//$_SESSION["logued"] = $username;
 		//header("Location: admin.php");

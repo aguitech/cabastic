@@ -8,6 +8,28 @@ $url_name = "marcas.php";
 $url_crear_name = "crear_marca.php";
 ?>
 <?php 
+if($_GET["del"] != ""){
+    $id_eliminar = $_GET["del"];
+    
+    $qry_delete = "delete from $tbl_main where Id_Marca = $id_eliminar";
+    $obj->query($qry_delete);
+    
+    $header_url_location = 'Location: ./' . $url_name;
+    
+    header($header_url_location, true, 303);
+    exit;
+}
+/*
+if($_GET["del"] != ""){
+    $id_eliminar = $_GET["del"];
+    
+    $qry_delete = "delete from ds_cat_marca where Id_Marca = $id_eliminar";
+    $obj->query($qry_delete);
+    
+    header('Location: ./marcas.php', true, 303);
+    exit;
+}
+*/
 if($_POST["Descripcion"] != ""){
     
     $val_descripcion = $_POST["Descripcion"];
@@ -112,30 +134,7 @@ if($_POST["Descripcion"] != ""){
 
 	 ?>
 
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="global_assets/js/main/jquery.min.js"></script>
-	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script src="full/assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
-	<!-- /theme JS files -->
-
+	
 	<script type="text/javascript">
 		$( document ).ready(function() {
     		console.log( "ready!" );
@@ -145,6 +144,25 @@ if($_POST["Descripcion"] != ""){
 		function Eliminar(t_id,t_completo){
 			//alert("Eliminar; "+t_id);
 
+			var r = confirm("Estás seguro que deseas eliminar la marca: "+t_completo);
+			if (r == true) {
+				var url_delete = "./marcas.php?del=" + t_id;
+				window.location = url_delete;
+
+				  txt = "You pressed OK!";
+
+				  /**
+			  	$.ajax({url: "usuarios_eliminar.php?id="+t_id, success: function(result){
+    				//$("#div1").html(result);
+    				//alert(result);
+    				$("#element"+t_id).hide(500);
+  				}});
+  				*/
+
+			} else {
+			  txt = "You pressed Cancel!";
+			}
+			/**
 			var r = confirm("Estás seguro que deseas eliminar al usuario: "+t_completo);
 			if (r == true) {
 			  txt = "You pressed OK!";
@@ -158,6 +176,7 @@ if($_POST["Descripcion"] != ""){
 			} else {
 			  txt = "You pressed Cancel!";
 			}
+			*/
 
 		}
 		function validar_crear(){
@@ -527,7 +546,6 @@ if($_POST["Descripcion"] != ""){
 								
 								<th>Logo</th>
 								<th>Marca</th>
-								<th>Estatus</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -565,13 +583,8 @@ if($_POST["Descripcion"] != ""){
 							//[Id_Categoria_Producto] => 79 
 							
 							$id_resultado=$resultado->Id_Marca;
-							$nombre=$resultado->Nombre;
+							$nombre=$resultado->Descripcion;
 							$hexadecimal=$resultado->Descripcion;
-							$id_nivel="Hola";
-							$extension="Hola";
-							$area="Hola";
-							$completo="Hola";
-							$niveles="Hola";
 							?>
 								
 							<tr id="element<?php echo $id_resultado; ?>">
@@ -580,9 +593,9 @@ if($_POST["Descripcion"] != ""){
 								
 								<td><?php if($resultado->Logo != ""): ?><img src="images/marcas/<?php echo $resultado->Logo; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
 								<td><?php echo $resultado->Descripcion; ?></td>
-								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
 								
 								<?php /**
+								<td><?php if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
 								<td><?php echo $id_resultado; ?></td>
 								
 								*/ ?>
@@ -595,7 +608,7 @@ if($_POST["Descripcion"] != ""){
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $nombre; ?>');"><i class="icon-bin"></i> Eliminar</a>
 												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>

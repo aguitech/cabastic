@@ -5,7 +5,7 @@
 	*/ ?>
 	
 		<div class="navbar-brand">
-			<a href="index.html" class="d-inline-block">
+			<a href="home.php" class="d-inline-block">
 				<img src="images/logo_cabastic_header_mini.png" alt="">
 				
 				<?php /**

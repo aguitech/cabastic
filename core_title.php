@@ -32,3 +32,16 @@ i.material-icons{
 <script src="full/assets/js/app.js"></script>
 <script src="global_assets/js/demo_pages/datatables_basic.js"></script>
 <!-- /theme JS files -->
+
+
+
+<style>
+tr.even{
+	/*background:blue;*/
+}
+
+tr.odd{
+    background:#F5F5F5;	
+}
+
+</style>

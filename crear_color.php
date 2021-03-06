@@ -31,7 +31,7 @@ if($_POST["id"] != ""){
     disableAlphaChannel(picker);
 
     </script>
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 	<form id="form_crear" method="post" action="?">
 		<div class="card-header header-elements-inline">
         	<h5 class="card-title">&nbsp;</h5>
@@ -56,11 +56,12 @@ if($_POST["id"] != ""){
 			*/ ?>
 			<div class="form-row">
                 <div class="form-group col-md-6">
-                 	<div>Color</div>
+                 	<div>Tono</div>
+             		<?php /**
              		<input type="text" placeholder="Color" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>" />
-			
+				*/ ?>
 					<div class="form-group form-group-feedback form-group-feedback-left">
-        				<input type="text" class="form-control" placeholder="Left icon, input default">
+        				<input type="text" class="form-control" placeholder="Tono" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>">
         				<div class="form-control-feedback">
         					<i class="icon-droplets"></i>
         				</div>

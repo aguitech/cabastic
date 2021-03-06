@@ -148,8 +148,11 @@ function previewFile(id) {
 .valign-wrapper{
 	display:flex;
 }
+.displaynone{
+	display:none;
+}
 </style>
-<div style="width:100%; padding:0 10%;" class="content_form_crear">
+<div style="width:100%;" class="content_form_crear">
 	<form id="form_crear" method="post" action="?" enctype="multipart/form-data">
 		<div class="card-header header-elements-inline">
         	<h5 class="card-title">&nbsp;</h5>
@@ -181,16 +184,20 @@ function previewFile(id) {
                 </div>
                 */ ?>
             </div>
-            
+            <?php //print_r($resultado); ?>
             <div class="form-row">
                 <div class="form-group col-md-6">
                		<div>Imagen</div>
-               		<div class="div_identificacion rel circle_foto valign-wrapper imgpreview1">
+               		<div class="div_identificacion rel circle_foto valign-wrapper imgpreview1 <?php if(isset($resultado->Logo) && $resultado->Logo != ""): echo "div_identificacion_clear"; else: echo ""; endif; ?>">
+        				<div class="thumbnail" style="<?php if(isset($resultado->Logo) && $resultado->Logo != ""): echo ""; else: echo "display:none;"; endif; ?>">
+                			<img src="<?php if(isset($resultado->Logo) && $resultado->Logo != ""): echo "images/marcas/" . $resultado->Logo; endif; ?>" alt="" srcset="" class="img1 portrait">
+                		</div>
+                    	<?php /**
                     	<div class="thumbnail" style="display:none;">
                     		<img src="images/upload_photos.svg" alt="" srcset="" class="img1 portrait" style="">
-                    		
                     	</div>
-                    	<div class="ocultar_thumb">
+                    	*/ ?>
+                    	<div class="ocultar_thumb <?php if(isset($resultado->Logo) && $resultado->Logo != ""): echo "displaynone"; else: echo ""; endif; ?>" >
                             <?php /**
                             <img src="images/upload_photos.svg" alt="" srcset="" class="" style="width:40px;">
                             */ ?>
@@ -199,9 +206,28 @@ function previewFile(id) {
                         <input type="file" name="imagen_marca" id="imagen_marca" class="file1" onchange="previewFile(1)" />
                         <?php /**
                         <i class="material-icons ico-edit-f pointer">create</i>
+                        <i class="material-icons ico-edit-f pointer">create</i>
                         */ ?>
                     </div>
+               		
+               		<?php /**?>
+               		<div class="div_identificacion rel circle_foto valign-wrapper imgpreview1">
+                    	<div class="thumbnail" style="display:none;">
+                    		<img src="images/upload_photos.svg" alt="" srcset="" class="img1 portrait" style="">
+                    		
+                    	</div>
+                    	<div class="ocultar_thumb">
+                            <p>Arrastre la foto aqui o <span>navegar</span></p>
+                        </div>
+                        <input type="file" name="imagen_marca" id="imagen_marca" class="file1" onchange="previewFile(1)" />
+                        
+                    </div>
+                    */ ?>
      <?php /**          
+         <img src="images/upload_photos.svg" alt="" srcset="" class="" style="width:40px;">
+                        
+     <i class="material-icons ico-edit-f pointer">create</i>
+                        
 					<input type="file" name="imagen_producto" id="imagen_producto" value="<?php echo $resultado->Imagen_Producto; ?>" onchange="previewFile(1)" />
 */ ?>
                 </div>
