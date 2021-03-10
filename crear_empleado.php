@@ -2,7 +2,7 @@
 include("includes/includes.php");
 if($_POST["id"] != ""){
     $id = $_POST["id"];
-    $qry_id = "select * from ds_cat_color where Id_Color = {$id}";
+    $qry_id = "select * from ds_tbl_empleado where Id_Empleado = {$id}";
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
 }
@@ -28,8 +28,8 @@ if($_POST["id"] != ""){
 cerrar
 </div>
 */ ?>
-<input type="hidden" name="editar" value="<?php echo $resultado->Id_Color; ?>" />
-<div>
+<input type="hidden" name="editar" value="<?php echo $resultado->Id_Empleado; ?>" />
+
 <h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> empleado</h3>
 <?php /**
 <input type="text" placeholder="Nota" name="nota" id="nota" value="<?php echo $resultado->nota; ?>" />

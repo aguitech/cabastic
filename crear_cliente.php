@@ -2,7 +2,7 @@
 include("includes/includes.php");
 if($_POST["id"] != ""){
     $id = $_POST["id"];
-    $qry_id = "select * from ds_cat_color where Id_Color = {$id}";
+    $qry_id = "select * from ds_tbl_cliente where Id_Cliente = {$id}";
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
 }
@@ -28,7 +28,7 @@ if($_POST["id"] != ""){
 cerrar
 </div>
 */ ?>
-<input type="hidden" name="editar" value="<?php echo $resultado->Id_Color; ?>" />
+<input type="hidden" name="editar" value="<?php echo $resultado->Id_Cliente; ?>" />
 <div>
 <h3><?php if($_POST["id"] != ""): echo "Actualizar"; else: echo "Crear"; endif; ?> cliente</h3>
 <?php /**
@@ -74,8 +74,8 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	</div>
             	<div class="form-group col-md-6">
                 
-             		<div>CURP</div>
-    				<input type="text" placeholder="CURP" name="CURP" id="CURP" value="<?php echo $resultado->CURP; ?>"  class="form-control" />
+             		<div>Codigo_Cliente</div>
+    				<input type="text" placeholder="Codigo_Cliente" name="Codigo_Cliente" id="Apellido_Materno" value="<?php echo $resultado->Codigo_Cliente; ?>"  class="form-control" />
             	</div>
             </div>
             <div class="form-row">
@@ -93,25 +93,26 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             <div class="form-row">
             	<div class="form-group col-md-6">
                 
-             		<div>Codigo_Cliente</div>
-    				<input type="text" placeholder="Codigo_Cliente" name="Codigo_Cliente" id="Apellido_Materno" value="<?php echo $resultado->Codigo_Cliente; ?>"  class="form-control" />
-            	</div>
-            	<div class="form-group col-md-6">
-                
              		<div>Contrasena</div>
-    				<input type="text" placeholder="Contrasena" name="Contrasena" id="Contrasena" value="<?php echo $resultado->Contrasena; ?>"  class="form-control" />
+    				<input type="password" placeholder="Contrasena" name="Contrasena" id="Contrasena" value="<?php echo $resultado->Contrasena; ?>"  class="form-control" />
             	</div>
             </div>
             <div class="form-row">
             	<div class="form-group col-md-6">
                 
-             		<div>Es_Comisionista</div>
-    				<input type="text" placeholder="Es_Comisionista" name="Es_Comisionista" id="Es_Comisionista" value="<?php echo $resultado->Es_Comisionista; ?>"  class="form-control" />
+             		<div>Es Comisionista</div>
+    				<select name="Es_Comisionista" id="Es_Comisionista" class="form-control">
+    					<option value="1" <?php if($resultado->Es_Comisionista == 1): ?>selected="selected"<?php endif; ?>>Si</option>
+    					<option value="0" <?php if($resultado->Es_Comisionista == 0): ?>selected="selected"<?php endif; ?>>No</option>
+    				</select>
             	</div>
             	<div class="form-group col-md-6">
                 
              		<div>Status</div>
-    				<input type="text" placeholder="Activo" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>"  class="form-control" />
+    				<select  name="Activo" id="Activo" class="form-control">
+    					<option value="1" <?php if($resultado->Activo == 1): ?>selected="selected"<?php endif; ?>>Activo</option>
+    					<option value="0" <?php if($resultado->Activo == 0): ?>selected="selected"<?php endif; ?>>Inactivo</option>
+    				</select>
             	</div>
             </div>
             

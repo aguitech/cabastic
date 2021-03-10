@@ -80,7 +80,8 @@ if($_POST["Descripcion"] != ""){
             
         }else{
             
-            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$imagen_file}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            //$qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Logo = '{$imagen_file}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
+            $qry_edit = "update ds_cat_marca set Descripcion = '{$val_descripcion}', Activo = 1, Fecha_Actualiza = '{$fecha_hoy}' where Id_Marca = $id_editar";
             //echo $qry_edit;
             
             $obj->query($qry_edit);

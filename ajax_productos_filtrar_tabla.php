@@ -282,7 +282,7 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
 			<?php /**
 			<td><?php if($resultado->Imagen_Producto != ""): ?><img src="images/productos/<?php echo $resultado->Imagen_Producto; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
 			*/ ?>
-			<td><?php if($resultado_imagen_val->Url_Imagen != ""): ?><img src="images/productos/<?php echo $resultado_imagen_val->Url_Imagen; ?>" style="max-height:50px; max-width:100px;" /><?php endif; ?></td>
+			<td><?php if($resultado_imagen_val->Url_Imagen != ""): $url_img = $resultado_imagen_val->Url_Imagen; ?><img src="images/productos/<?php echo $resultado_imagen_val->Url_Imagen; ?>" style="max-height:50px; max-width:100px;" onclick="vista_previa_mostrar('<?php echo $url_img; ?>');" /><?php endif; ?></td>
 			<td><?php echo $nombre; ?></td>
 			<td><?php echo $resultado->tipo_producto; ?></td>
 			<td><?php echo $resultado->categoria; ?></td>

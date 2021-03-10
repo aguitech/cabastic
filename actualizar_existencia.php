@@ -51,6 +51,10 @@ if($_POST["id"] != "" && $_POST["existencia"] != ""){
         //UPDATE
         //echo "update";
         
+        
+        
+        
+        
         $id_existencia_producto = $existencia_actual->Id_Inventario;
         
         //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $costo_dolares, $costo_dolares)";
@@ -63,6 +67,22 @@ if($_POST["id"] != "" && $_POST["existencia"] != ""){
         //$qry_inventario_producto = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra_anterior, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $valor_dolar_anterior where Id_Producto_Detalle = $id_producto_detalle and Id_Costo_Producto = $id_costo_compra_producto";
         $qry_inventario_producto = "update ds_tbl_inventario_almacen set Cantidad_Inventario = $existencia, Fecha_Actualizacion = '{$fecha_actualizacion}' where Id_Producto_Detalle = $id_producto_detalle and Id_Inventario = $id_existencia_producto";
         $obj->query($qry_inventario_producto);
+        
+        
+        
+        if($_POST["existencia"] < $existencia_actual->Cantidad_Inventario){
+            $ch = curl_init();
+            // Establecer URL y otras opciones apropiadas
+            $url_correo = "http://cabastic.info/correo_existencias.php?existencias_actual=" . $existencia_actual->Cantidad_Inventario . "&existencias_nuevas=" . $_POST["existencia"] . "&id_producto=" . $id_producto . "&usuario=" . $_SESSION["username"];
+            curl_setopt($ch, CURLOPT_URL, $url_correo);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            
+            // Capturar la URL y pasarla al navegador
+            curl_exec($ch);
+            
+            // Cerrar el recurso cURL y liberar recursos del sistema
+            curl_close($ch);
+        }
         
     }else{
         //echo "insert";
@@ -130,6 +150,3 @@ if($_POST["id"] != "" && $_POST["existencia"] != ""){
     
 }
 ?>
-
-
-

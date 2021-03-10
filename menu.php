@@ -66,25 +66,31 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								</span>
 							</a>
 						</li>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/colores.php" || $url_actual == "/divisas.php" || $url_actual == "/marcas.php" || $url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php" || $url_actual == "/sustancias.php" || $url_actual == "/tallas.php" || $url_actual == "/tipos_producto.php"): ?>menu_seleccionado<?php endif; ?>" ><i class="icon-copy"></i> <span>Cat&aacute;logos</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
 								<li class="nav-item"><a href="colores.php" class="nav-link <?php if($url_actual == "/colores.php"): ?>active<?php endif; ?>">Colores</a></li>
+								<?php endif; ?>
 								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 4  || $id_rol == 5): ?>
 								<li class="nav-item"><a href="divisas.php" class="nav-link  <?php if($url_actual == "/divisas.php"): ?>active<?php endif; ?>">Divisas</a></li>
 								<?php endif; ?>
+								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
 								<li class="nav-item"><a href="marcas.php" class="nav-link <?php if($url_actual == "/marcas.php"): ?>active<?php endif; ?>">Marcas</a></li>
 								<li class="nav-item"><a onclick="$('#submenu_productos').show();" class="nav-link <?php if($url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php"): ?>active<?php endif; ?>">Productos</a></li>
 								<div style="display:none;" id="submenu_productos">
 									<li class="nav-item"><a href="productos.php" class="nav-link <?php if($url_actual == "/productos.php"): ?>active<?php endif; ?>"> &nbsp; &#9658; &nbsp; Listado</a></li>
+									<?php /**
 									<li class="nav-item"><a href="asignar_precio_venta.php" class="nav-link <?php if($url_actual == "/asignar_precio_venta.php"): ?>active<?php endif; ?>"> &nbsp; &#9658; &nbsp; Asignar Precio Venta</a></li>
 									<li class="nav-item"><a href="asignar_costo_compra.php" class="nav-link <?php if($url_actual == "/asignar_costo_compra.php"): ?>active<?php endif; ?>"> &nbsp; &#9658; &nbsp; Asignar Costo Compra</a></li>
+									*/ ?>
 								</div>
 								<li class="nav-item"><a href="sustancias.php" class="nav-link <?php if($url_actual == "/sustancias.php"): ?>active<?php endif; ?>">Sustancia</a></li>
 								<li class="nav-item"><a href="tallas.php" class="nav-link <?php if($url_actual == "/tallas.php"): ?>active<?php endif; ?>">Tallas</a></li>
 								<li class="nav-item"><a href="tipos_producto.php" class="nav-link <?php if($url_actual == "/tipos_producto.php"): ?>active<?php endif; ?>">Tipo Producto</a></li>
+								<?php endif; ?>
 							</ul>
 						</li>
 						<?php endif; ?>
@@ -116,7 +122,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
-						<?php if($$id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+						<?php if($$id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 8): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/eventos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-copy"></i> <span>Eventos</span></a>
@@ -227,7 +233,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						*/ ?>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 8): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/ventas.php" || $url_actual == "/entregas_pendientes.php" || $url_actual == "/envios_entregados.php" || $url_actual == "/ordenes_de_compra_historial.php" || $url_actual == "/iniciar_venta.php" || $url_actual == "/devolucion_ventas.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-cart2"></i> <span>Ventas</span></a>

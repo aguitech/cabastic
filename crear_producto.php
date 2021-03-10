@@ -593,6 +593,9 @@ function previewFile(id) {
 .valign-wrapper{
 	display:flex;
 }
+.displaynone{
+	display:none;
+}
 </style>
 <?php /**
 <div class="div_identificacion rel circle_foto valign-wrapper imgpreview1">
@@ -610,8 +613,35 @@ function previewFile(id) {
 
 
             
-            
-
+            <?php if ($_POST["id"] != ""): ?>
+			<?php 
+			$id_search = $_POST["id"];
+			
+			$qry_imagen_thumb = "select * from ds_tbl_producto_imagen where Id_Producto = $id_search";
+			
+			$resultado_preview_img = $obj->get_row($qry_imagen_thumb);
+			
+			?>
+			
+			
+			
+			<div class="form-row">
+                <div class="form-group col-md-6">
+               		<div>Imagen</div>
+               		<div class="div_identificacion rel circle_foto valign-wrapper imgpreview1 <?php if(isset($resultado_preview_img->Url_Imagen) && $resultado_preview_img->Url_Imagen != ""): echo "div_identificacion_clear"; else: echo ""; endif; ?>">
+        				<div class="thumbnail" style="<?php if(isset($resultado_preview_img->Url_Imagen) && $resultado_preview_img->Url_Imagen != ""): echo ""; else: echo "display:none;"; endif; ?>">
+                			<img src="<?php if(isset($resultado_preview_img->Url_Imagen) && $resultado_preview_img->Url_Imagen != ""): echo "images/productos/" . $resultado_preview_img->Url_Imagen; endif; ?>" alt="" srcset="" class="img1 portrait">
+                		</div>
+                    	<div class="ocultar_thumb <?php if(isset($resultado_preview_img->Url_Imagen) && $resultado_preview_img->Url_Imagen != ""): echo "displaynone"; else: echo ""; endif; ?>" >
+                            <p>Arrastre la foto aqui o <span>navegar</span></p>
+                        </div>
+                        <input type="file" name="imagen_producto" id="imagen_producto" class="file1" onchange="previewFile(1)" />
+                    </div>
+               		
+               		
+                </div>
+            </div>
+            <?php else: ?>
             
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -637,6 +667,7 @@ function previewFile(id) {
 */ ?>
                 </div>
             </div>
+            <?php endif; ?>
             <br />
             <div>
     			<div class="form-row">
@@ -650,10 +681,9 @@ function previewFile(id) {
     			
     		</div>
     		<br />
-
 <?php /**
 
 */ ?>
 </div>
 </form>
-</div> 
+</div>

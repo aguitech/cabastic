@@ -47,10 +47,11 @@ foreach($sistemas as $sistema){
 }
 
 */
+/*
 if($_SESSION["logued"] != ""){
 	header("Location: admin.php");
 }
-
+*/
 $username = $_POST["usuario"];
 $contrasenia = md5($_POST["password"]);
 
@@ -62,7 +63,7 @@ $contrasenia = md5($_POST["password"]);
 //$usuario = $usuario->get_row($qry);
 //$usuario = $obj->get_row("select * from usuario where usuario = '{$username}' and contrasenia = '{$contrasenia}'");
 //$qry_usaurio = "select * from ds_tbl_empleado where Nombre = '{$username}' and Contrasena_Usuario = '{$contrasenia}'";
-$qry_usaurio = "select * from ds_tbl_empleado left join ds_cat_empleado_rol on ds_cat_empleado_rol.Id_Empleado_Rol = ds_tbl_empleado.Id_Empleado_Rol where ds_tbl_empleado.Nombre = '{$username}' and ds_tbl_empleado.Contrasena_Usuario = '{$contrasenia}'";
+$qry_usaurio = "select * from ds_tbl_empleado left join ds_cat_empleado_rol on ds_cat_empleado_rol.Id_Empleado_Rol = ds_tbl_empleado.Id_Empleado_Rol where ds_tbl_empleado.Usuario = '{$username}' and ds_tbl_empleado.Contrasena_Usuario = '{$contrasenia}'";
 
 //echo $qry_usaurio;
 $usuario = $obj->get_row($qry_usaurio);
@@ -114,7 +115,7 @@ if($usuario->seguro_identidad == "1"){
 $val_seguro_identidad = "1";
 if($_POST["CKdo"] == "CKini" && $val_seguro_identidad == "1"){
 	//if($username == $usuario['usuario'] && $contrasenia == $usuario['contrasenia']) {
-    if($username == $usuario->Nombre && $contrasenia == $usuario->Contrasena_Usuario) {
+    if($username == $usuario->Usuario && $contrasenia == $usuario->Contrasena_Usuario) {
 		session_start();
 		
 		$_SESSION["idusuario"] = $usuario->Id_Empleado;
@@ -126,7 +127,7 @@ if($_POST["CKdo"] == "CKini" && $val_seguro_identidad == "1"){
 		$_SESSION["rol"] = $usuario->Id_Empleado_Rol;
 		
 		
-		$_SESSION["username"] = $usuario->Nombre;
+		$_SESSION["username"] = $usuario->Usuario;
 		
 		$_SESSION["rol_name"] = $usuario->Descripcion;
 		

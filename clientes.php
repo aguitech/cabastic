@@ -7,7 +7,53 @@ $nombre_simple = "cliente";
 $url_name = "clientes.php";
 $url_crear_name = "crear_cliente.php";
 ?>
+<?php 
+//print_r($_POST);
+if($_GET["del"] != ""){
+    $id_eliminar = $_GET["del"];
+    
+    $qry_delete = "delete from $tbl_main where Id_Cliente = $id_eliminar";
+    $obj->query($qry_delete);
+    
+    $header_url_location = 'Location: ./' . $url_name;
+    
+    header($header_url_location, true, 303);
+    exit;
+}
 
+$fecha_hoy = date("Y-m-d H:i:s");
+$nombre = $_POST["Nombre"];
+$apellido_paterno = $_POST["Apellido_Paterno"];
+$apellido_materno = $_POST["Apellido_Materno"];
+$curp = $_POST["CURP"];
+$correo_electronico = $_POST["Correo_Electronico"];
+$telefono = $_POST["Telefono"];
+$contrasena = md5($_POST["Contrasena"]);
+$celular = $_POST["Celular"];
+$codigo_cliente = $_POST["Codigo_Cliente"];
+$es_comisionista = $_POST["Es_Comisionista"];
+$activo = $_POST["Activo"];
+if($_POST["Nombre"] != ""){
+    if($_POST["editar"] != ""){
+        $id_editar = $_POST["editar"];
+        //$qry_update = "update $tbl_main set Id_Cliente = '{}', Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Es_Comisionista = '{$es_comisionista}', Activo = '{$activo}' where Id_Cliente = $id_editar";
+        $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Es_Comisionista = '{$es_comisionista}', Activo = '{$activo}' where Id_Cliente = $id_editar";
+        $obj->query($qry_update);
+    }else{
+        //Textos completos	Id_Cliente	Nombre	Apellido_Paterno	Apellido_Materno	CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
+        $last_cliente = $obj->get_row("select * from ds_tbl_cliente order by Id_Cliente desc limit 1");
+        $next_id_cliente = $last_cliente->Id_Cliente + 1;
+        
+        $qry_insert = "insert into $tbl_main (Id_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Contrasena, Fecha_Alta, Fecha_Actualiza, Es_Comisionista, Activo) values ($next_id_cliente, '{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$es_comisionista}', '{$activo}')";
+        //echo $qry_insert;
+        $obj->query($qry_insert);
+    }
+    header('Location: ./clientes.php', true, 303);
+    exit;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +75,20 @@ $url_crear_name = "crear_cliente.php";
 		function Eliminar(t_id,t_completo){
 			//alert("Eliminar; "+t_id);
 
-			var r = confirm("Estás seguro que deseas eliminar al usuario: "+t_completo);
+			var r = confirm("Estás seguro que deseas eliminar el cliente: "+t_completo);
 			if (r == true) {
-			  txt = "You pressed OK!";
 
+				var url_delete = "./marcas.php?del=" + t_id;
+				window.location = url_delete;
+				
+			  txt = "You pressed OK!";
+/**
 			  	$.ajax({url: "usuarios_eliminar.php?id="+t_id, success: function(result){
     				//$("#div1").html(result);
     				//alert(result);
     				$("#element"+t_id).hide(500);
   				}});
+  				*/
 
 			} else {
 			  txt = "You pressed Cancel!";
@@ -520,7 +571,7 @@ $url_crear_name = "crear_cliente.php";
 							<?php //for($i=0; $i<=10; $i++): ?>
 							
 							<?php 
-							$id_resultado=$resultado->Id_Color;
+							$id_resultado=$resultado->Id_Cliente;
 							$nombre=$resultado->Nombre;
 							$hexadecimal=$resultado->Apellido_Paterno;
 							$id_nivel="Hola";
@@ -549,7 +600,7 @@ $url_crear_name = "crear_cliente.php";
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $nombre; ?>');"><i class="icon-bin"></i> Eliminar</a>
 												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												<?php /**
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>

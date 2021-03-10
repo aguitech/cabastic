@@ -7,6 +7,54 @@ $nombre_simple = "empleado";
 $url_name = "empleados.php";
 $url_crear_name = "crear_empleado.php";
 ?>
+<?php 
+print_r($_POST);
+
+$fecha_hoy = date("Y-m-d H:i:s");
+$nombre = $_POST["Nombre"];
+$apellido_paterno = $_POST["Apellido_Paterno"];
+$apellido_materno = $_POST["Apellido_Materno"];
+$curp = $_POST["CURP"];
+$correo_electronico = $_POST["Correo_Electronico"];
+$telefono = $_POST["Telefono"];
+$contrasena = md5($_POST["Contrasena"]);
+$celular = $_POST["Celular"];
+$codigo_cliente = $_POST["Codigo_Cliente"];
+
+
+$calle = $_POST["Calle"];
+$colonia = $_POST["Colonia"];
+$id_codigo_postal = $_POST["Id_Codigo_Postal"];
+$usuario = $_POST["Usuario"];
+$contrasena_usuario = $_POST["Contrasena_Usuario"];
+$id_empleado_alta = $_POST["Id_Empleado_Alta"];
+$id_empleado_rol = $_POST["Id_Empleado_Rol"];
+$id_pago_empleado = $_POST["Id_Pago_Empleado"];
+
+
+$activo = $_POST["Activo"];
+
+
+if($_POST["editar"] != ""){
+    $id_editar = $_POST["editar"];
+    //$qry_update = "update $tbl_main set Id_Cliente = '{}', Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Es_Comisionista = '{$es_comisionista}', Activo = '{$activo}' where Id_Cliente = $id_editar";
+    /**
+    $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
+    */
+    $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
+    $obj->query($qry_update);
+}else{
+    //Textos completos	Id_Cliente	Nombre	Apellido_Paterno	Apellido_Materno	CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
+    $last_cliente = $obj->get_row("select * from ds_tbl_cliente order by Id_Cliente desc limit 1");
+    $next_id_cliente = $last_cliente->Id_Cliente + 1;
+    
+    $qry_insert = "insert into $tbl_main (Id_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Contrasena, Fecha_Alta, Fecha_Actualiza, Activo) values ($next_id_cliente, '{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
+    echo $qry_insert;
+    $obj->query($qry_insert);
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
