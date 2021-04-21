@@ -18,10 +18,21 @@ if($_POST["id"] != ""){
     $resultado_detalle = $obj->get_row($qry_id_detalle);
     
     
-    $qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
+    //$qry_id = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
+    $qry_id = "select *, ds_tbl_precio_venta_producto.Dolar as precio_dolares, ds_tbl_costo_compra_producto.Dolar as costo_dolares from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_producto.Id_Producto = {$id}";
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
+    
 }
+
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+
+
+
+
 
 $marcas = $obj->get_results("select * from ds_cat_marca order by Descripcion asc");
 
@@ -126,69 +137,7 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
     				<input type="text" placeholder="Descripcion" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
             	</div>
             </div>
-			<div class="form-row">
-                <div class="form-group col-md-6">
-                	<div style="" class="contenedor_agregar_titulo">
-                		Sustancia del producto
-                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_sustancia').toggle();">add</i>
-               		
-                	</div>
-                	<div style="display:none;" id="contenedor_agregar_sustancia" class="contenedor_dinamico_producto">
-                		<input type="text" placeholder="Sustancia" id="descripcion_sustancia" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
-                		
-                		<br />
-                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_sustancia();">GUARDAR <i class="material-icons right">send</i></button>
-                		
-                		
-                		<?php /**
-                		<div class="form-group col-md-6">
-                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
-                        </div>
-                		*/ ?>
-                	</div>
-                	<select name="sustancia_producto" id="sustancia_producto" class="form-control">
-                		<option value="0">Selecciona</option>
-               			<?php foreach($sustancias as $sustancia): ?>
-               			<option value="<?php echo $sustancia->Id_Tipo_Sustancia; ?>" <?php if($resultado->Id_Tipo_Sustancia == $sustancia->Id_Tipo_Sustancia){ ?>selected="selected"<?php } ?>><?php echo $sustancia->Descripcion; ?></option>
-               			<?php endforeach; ?>
-               		</select>
-               		<?php /**
-					<input type="text" placeholder="Sustancia" name="" id="sustancia_producto" value=""  class="form-control" />
-					*/ ?>
-                </div>
-                <div class="form-group col-md-6">
-                	<div style="" class="contenedor_agregar_titulo">
-                		Marca del producto
-                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_marca').toggle();">add</i>
-               		
-                	</div>
-                	
-                	<div style="display:none;" id="contenedor_agregar_marca" class="contenedor_dinamico_producto">
-                		<input type="text" placeholder="Marca" id="descripcion_marca" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
-                		
-                		<br />
-                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_marca();">GUARDAR <i class="material-icons right">send</i></button>
-                		
-                		
-                		<?php /**
-                		<div class="form-group col-md-6">
-                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
-                        </div>
-                		*/ ?>
-                	</div>
-                	
-               		<select name="marca" id="marca" class="form-control">
-               			<option value="0">Selecciona</option>
-               			<?php foreach($marcas as $marca): ?>
-               			<option value="<?php echo $marca->Id_Marca; ?>" <?php if($resultado->Id_Marca == $marca->Id_Marca){ ?>selected="selected"<?php } ?>><?php echo $marca->Descripcion; ?></option>
-               			<?php endforeach; ?>
-               		</select>
-               		<?php /**
-               		<br />
-					<input type="text" placeholder="Marca" name="marca" id="marca" value=""  class="form-control" />
-					*/ ?>
-                </div>
-            </div>
+			
             
             
             
@@ -273,16 +222,16 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
             <div class="form-row">
                 <div class="form-group col-md-6">
                 	<div style="" class="contenedor_agregar_titulo">
-                		Talla
-                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_talla').toggle();">add</i>
+                		Marca del producto
+                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_marca').toggle();">add</i>
                		
                 	</div>
                 	
-                	<div style="display:none;" id="contenedor_agregar_talla" class="contenedor_dinamico_producto">
-                		<input type="text" placeholder="Talla" id="descripcion_talla" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
+                	<div style="display:none;" id="contenedor_agregar_marca" class="contenedor_dinamico_producto">
+                		<input type="text" placeholder="Marca" id="descripcion_marca" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
                 		
                 		<br />
-                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_talla();">GUARDAR <i class="material-icons right">send</i></button>
+                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_marca();">GUARDAR <i class="material-icons right">send</i></button>
                 		
                 		
                 		<?php /**
@@ -292,14 +241,15 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
                 		*/ ?>
                 	</div>
                 	
-               		<select name="talla" id="talla" class="form-control">
+               		<select name="marca" id="marca" class="form-control">
                			<option value="0">Selecciona</option>
-               			<?php foreach($tallas as $talla): ?>
-               			<option value="<?php echo $talla->Id_Talla; ?>" <?php if($resultado->Id_Talla == $talla->Id_Talla){ ?>selected="selected"<?php } ?>><?php echo $talla->Descripcion; ?></option>
+               			<?php foreach($marcas as $marca): ?>
+               			<option value="<?php echo $marca->Id_Marca; ?>" <?php if($resultado->Id_Marca == $marca->Id_Marca){ ?>selected="selected"<?php } ?>><?php echo $marca->Descripcion; ?></option>
                			<?php endforeach; ?>
                		</select>
                		<?php /**
-					<input type="text" placeholder="Talla" name="talla" id="talla" value=""  class="form-control" />
+               		<br />
+					<input type="text" placeholder="Marca" name="marca" id="marca" value=""  class="form-control" />
 					*/ ?>
                 </div>
                 <div class="form-group col-md-6">
@@ -340,6 +290,98 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
             
             <div class="form-row">
                 <div class="form-group col-md-6">
+                	<div style="" class="contenedor_agregar_titulo">
+                		Talla
+                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_talla').toggle();">add</i>
+               		
+                	</div>
+                	
+                	<div style="display:none;" id="contenedor_agregar_talla" class="contenedor_dinamico_producto">
+                		<input type="text" placeholder="Talla" id="descripcion_talla" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
+                		
+                		<br />
+                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_talla();">GUARDAR <i class="material-icons right">send</i></button>
+                		
+                		
+                		<?php /**
+                		<div class="form-group col-md-6">
+                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                        </div>
+                		*/ ?>
+                	</div>
+                	
+               		<select name="talla" id="talla" class="form-control">
+               			<option value="0">Selecciona</option>
+               			<?php foreach($tallas as $talla): ?>
+               			<option value="<?php echo $talla->Id_Talla; ?>" <?php if($resultado->Id_Talla == $talla->Id_Talla){ ?>selected="selected"<?php } ?>><?php echo $talla->Descripcion; ?></option>
+               			<?php endforeach; ?>
+               		</select>
+               		<?php /**
+					<input type="text" placeholder="Talla" name="talla" id="talla" value=""  class="form-control" />
+					*/ ?>
+                </div>
+                <div class="form-group col-md-6">
+                	
+               		<div style="" class="contenedor_agregar_titulo">
+                		Color
+                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_color').toggle();">add</i>
+               		</div>
+                	
+                	<div style="display:none;" id="contenedor_agregar_color" class="contenedor_dinamico_producto">
+                		<input type="text" placeholder="Color" id="descripcion_color" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
+                		
+                		<br />
+                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_color();">GUARDAR <i class="material-icons right">send</i></button>
+                		
+                		
+                		<?php /**
+                		<div class="form-group col-md-6">
+                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                        </div>
+                		*/ ?>
+                	</div>
+               		<select name="color" id="color" class="form-control">
+               			<option value="0">Selecciona</option>
+               			<?php foreach($colores as $color): ?>
+               			<option value="<?php echo $color->Id_Color; ?>" <?php if($resultado->Id_Color == $color->Id_Color){ ?>selected="selected"<?php } ?>><?php echo $color->Descripcion; ?></option>
+               			<?php endforeach; ?>
+               		</select>
+					<?php /**
+					<input type="text" placeholder="Color" name="color" id="color" value=""  class="form-control" />
+					*/ ?>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                	<div style="" class="contenedor_agregar_titulo">
+                		Sustancia del producto
+                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_sustancia').toggle();">add</i>
+               		
+                	</div>
+                	<div style="display:none;" id="contenedor_agregar_sustancia" class="contenedor_dinamico_producto">
+                		<input type="text" placeholder="Sustancia" id="descripcion_sustancia" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
+                		
+                		<br />
+                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_sustancia();">GUARDAR <i class="material-icons right">send</i></button>
+                		
+                		
+                		<?php /**
+                		<div class="form-group col-md-6">
+                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
+                        </div>
+                		*/ ?>
+                	</div>
+                	<select name="sustancia_producto" id="sustancia_producto" class="form-control">
+                		<option value="0">Selecciona</option>
+               			<?php foreach($sustancias as $sustancia): ?>
+               			<option value="<?php echo $sustancia->Id_Tipo_Sustancia; ?>" <?php if($resultado->Id_Tipo_Sustancia == $sustancia->Id_Tipo_Sustancia){ ?>selected="selected"<?php } ?>><?php echo $sustancia->Descripcion; ?></option>
+               			<?php endforeach; ?>
+               		</select>
+               		<?php /**
+					<input type="text" placeholder="Sustancia" name="" id="sustancia_producto" value=""  class="form-control" />
+					*/ ?>
+                </div>
+                <div class="form-group col-md-6">
                 	
                 	<div style="" class="contenedor_agregar_titulo">
                 		Tipo de mercado
@@ -370,35 +412,6 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
 					<input type="text" placeholder="Tipo de mercado" name="tipo_mercado" id="tipo_mercado" value=""  class="form-control" />
 					*/ ?>
                 </div>
-                <div class="form-group col-md-6">
-               		<div style="" class="contenedor_agregar_titulo">
-                		Color
-                		<i class="material-icons right btn_agregar_en_titulo" onclick="$('#contenedor_agregar_color').toggle();">add</i>
-               		</div>
-                	
-                	<div style="display:none;" id="contenedor_agregar_color" class="contenedor_dinamico_producto">
-                		<input type="text" placeholder="Color" id="descripcion_color" value="<?php echo $resultado->Descripcion; ?>"  class="form-control" />
-                		
-                		<br />
-                		<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="guardar_color();">GUARDAR <i class="material-icons right">send</i></button>
-                		
-                		
-                		<?php /**
-                		<div class="form-group col-md-6">
-                         	<button class="btn waves-effect waves-light bg_aguitech" type="submit" name="action"><?php if($_POST["id"] != ""): ?>ACTUALIZAR<?php else: ?>AGREGAR<?php endif; ?> <i class="material-icons right">send</i></button>
-                        </div>
-                		*/ ?>
-                	</div>
-               		<select name="color" id="color" class="form-control">
-               			<option value="0">Selecciona</option>
-               			<?php foreach($colores as $color): ?>
-               			<option value="<?php echo $color->Id_Color; ?>" <?php if($resultado->Id_Color == $color->Id_Color){ ?>selected="selected"<?php } ?>><?php echo $color->Descripcion; ?></option>
-               			<?php endforeach; ?>
-               		</select>
-					<?php /**
-					<input type="text" placeholder="Color" name="color" id="color" value=""  class="form-control" />
-					*/ ?>
-                </div>
             </div>
             <?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
             <div class="form-row">
@@ -417,7 +430,7 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
             <div class="form-row">
                 <div class="form-group col-md-6">
                 	<div>Divisa Costo</div>
-                	<select name="select_divisa_costo" id="select_divisa_costo" class="form-control">
+                	<select name="select_divisa_costo" id="select_divisa_costo" class="form-control" onchange="costo_automatico();">
                 		<?php foreach($divisas as $divisa): ?>
                 		<option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option>
                 		<?php endforeach; ?>
@@ -426,17 +439,48 @@ $divisas = $obj->get_results("select * from ds_cat_tipo_cambio");
                 </div>
                 <div class="form-group col-md-6">
                		<div>Costo</div>
-					<input type="text" id="costo_compra" name="costo_compra" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style=""  class="form-control" />
+					<input type="text" id="costo_compra" name="costo_compra" placeholder="" value="<?php echo $dolar_precio = $resultado->costo_dolares * $tipo_cambio_dolar; ?>" style=""  class="form-control" onkeyup="costo_automatico();" />
                 </div>
             </div>
             <?php endif; ?>
+        	<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
+        
             <div class="form-row">
-            	<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
-                <div class="form-group col-md-6">
-                	<div>Precio de venta mxn</div>
-					<input type="text" placeholder="Precio de venta MXN" name="precio_venta" id="precio_venta" value=""  class="form-control" />
+            	<div class="form-group col-md-6">
+                	<?php /**
+                	Precio actual MXN: <?php echo $dolar_precio = $resultado->precio_dolares * $tipo_cambio_dolar; ?>
+                	*/ ?>
                 </div>
+                <div class="form-group col-md-6">
+                	<div id="precio_sugerido">
+                	</div>
+                </div>
+            </div>
+            <div class="form-row">
+                
+                <div class="form-group col-md-6">
+                	<div>Divisa Precio</div>
+                	<select name="select_divisa_precio" id="select_divisa_precio" class="form-control" onchange="costo_automatico();">
+                		<?php foreach($divisas as $divisa): ?>
+                		<option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option>
+                		<?php endforeach; ?>
+                	</select>
+					
+                </div>
+                <div class="form-group col-md-6">
+                	<div>Precio de venta</div>
+                	<?php 
+                	//$tipo_cambio_dolar
+                	//$tipo_cambio_dolar
+                	
+                	?>
+                	
+					<input type="text" placeholder="Precio de venta MXN" name="precio_venta" id="precio_venta" value="<?php echo $dolar_precio = $resultado->precio_dolares * $tipo_cambio_dolar; ?>"  class="form-control" />
+                </div>
+            </div>
                 <?php endif; ?>
+            
+			<div class="form-row">
                 <?php if($id_rol == 1 || $id_rol == 3 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
                 <div class="form-group col-md-6">
                 	<div>Existencia actual</div>

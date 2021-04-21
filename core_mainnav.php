@@ -1,5 +1,13 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet"> 
+<style>
+*{
+	font-family: 'Raleway', sans-serif;
+}
+</style>
+
 <!-- Main navbar -->
-	<div class="navbar navbar-expand-md navbar-dark">
+	<div class="navbar navbar-expand-md navbar-dark" style="background:radial-gradient(#99af28, #859822);">
 	<?php /**
 	<div class="navbar navbar-expand-md navbar-dark">
 	*/ ?>
@@ -315,6 +323,23 @@
 						<?php /**
 						<img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
 						*/ ?>
+						<?php 
+						$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+						
+						$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+						
+						$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
+						
+						$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
+						
+						/**
+						 * <i class="icon-coin-dollar" title="$ <?php echo $tipo_cambio_dolar; ?> USD"></i>
+						<i class="icon-coin-euro" title="&euro; <?php echo $tipo_cambio_euro; ?> EURO"></i>
+						
+						*/
+						?>
+						<span>$ <?php echo $tipo_cambio_dolar; ?> USD</span>
+						<span style="margin-right:10px;">&euro; <?php echo $tipo_cambio_euro; ?> EURO</span>
 						<i class="icon-user"></i>
 						<span><?php echo $_SESSION["username"]; ?></span>
 					</a>

@@ -43,7 +43,7 @@ $mail->addReplyTo('notificaciones@cabastic.info', 'Notificaciones');
 $mail->addAddress('hector@aguitech.com');
 $mail->addAddress('israel.aguilar@divagsystems.com');
 $mail->addAddress('tanya.martinezbaca.rivera@gmail.com');
-$mail->addAddress('jjimenez@cabastic.com');
+//$mail->addAddress('jjimenez@cabastic.com');
 
 // Add cc or bcc
 //$mail->addCC([email protected]');

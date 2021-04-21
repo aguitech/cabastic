@@ -311,6 +311,7 @@ if($_POST["Descripcion"] != ""){
                 	//$("#publicaciones_adicionales").html(data);
                 	//$("#publicaciones_adicionales").append(data);
                 	//$("#container").html(data);
+                	alert("Se ha actualizado la divisa");
                 	$("#valor_divisa").html(data);
                 }
 			});

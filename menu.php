@@ -39,7 +39,22 @@
 	
 }
 .bg_aguitech{
+	/**
 	background:#324148;
+	background:yellowgreen;
+	
+	background:#859822;
+
+    #2c6ca9
+
+radial-gradient(
+background: linear-gradient(90deg, white, #24b8e6);
+	
+	* */
+	
+	
+	background: radial-gradient(#2c6ca9, #24b8e6);
+	
 	color:white;
 }
 .nav-item-open{
@@ -164,6 +179,20 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
+						<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
+						
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-coin-dollar"></i> <span>Cuentas por cobrar</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+								<!-- 
+								<li class="nav-item"><a href="" class="nav-link active">Revisi&oacute;n detallada</a></li>
+								<li class="nav-item"><a href="" class="nav-link active">Revisi&oacute;n aleatoria</a></li>
+								-->
+								<li class="nav-item"><a href="cuentas_por_cobrar.php" class="nav-link active">Listado</a></li>
+							</ul>
+						</li>
+						<?php endif; ?>
 						
 						<!-- 
 						<li class="nav-item nav-item-submenu">
@@ -252,9 +281,9 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 						<!-- /main -->
 						
 						
+		
 						
-						
-<div style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:10; background:#324148;" id="capa_carga">
+<div style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:10; background:#324148; background: linear-gradient(90deg, white, #859822); " id="capa_carga">
 	<div style="width:100%; height:100%; display:flex; justify-content:center; align-items:center;">
 		<img src="images/logo_cabastic.png" style="width:25%;" />
 	</div>

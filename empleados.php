@@ -8,7 +8,7 @@ $url_name = "empleados.php";
 $url_crear_name = "crear_empleado.php";
 ?>
 <?php 
-print_r($_POST);
+//print_r($_POST);
 
 $fecha_hoy = date("Y-m-d H:i:s");
 $nombre = $_POST["Nombre"];
@@ -34,23 +34,29 @@ $id_pago_empleado = $_POST["Id_Pago_Empleado"];
 
 $activo = $_POST["Activo"];
 
+if($nombre != ""){
+    if($_POST["editar"] != ""){
+        $id_editar = $_POST["editar"];
+        //$qry_update = "update $tbl_main set Id_Cliente = '{}', Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Es_Comisionista = '{$es_comisionista}', Activo = '{$activo}' where Id_Cliente = $id_editar";
+        /**
+        $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
+        */
+        $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
+        $obj->query($qry_update);
+    }else{
+        //Textos completos	Id_Cliente	Nombre	Apellido_Paterno	Apellido_Materno	CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
+        
+        
+        //$qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Contrasena, Fecha_Alta, Fecha_Actualiza, Activo) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
 
-if($_POST["editar"] != ""){
-    $id_editar = $_POST["editar"];
-    //$qry_update = "update $tbl_main set Id_Cliente = '{}', Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Es_Comisionista = '{$es_comisionista}', Activo = '{$activo}' where Id_Cliente = $id_editar";
-    /**
-    $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
-    */
-    $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
-    $obj->query($qry_update);
-}else{
-    //Textos completos	Id_Cliente	Nombre	Apellido_Paterno	Apellido_Materno	CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
-    $last_cliente = $obj->get_row("select * from ds_tbl_cliente order by Id_Cliente desc limit 1");
-    $next_id_cliente = $last_cliente->Id_Cliente + 1;
+        $qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Usuario, Contrasena_Usuario, Fecha_Alta, Fecha_Actualiza, Activo) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$usuario}','{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
+        
+        //echo $qry_insert;
+        $obj->query($qry_insert);
+    }
+    header('Location: ./empleados.php', true, 303);
+    exit;
     
-    $qry_insert = "insert into $tbl_main (Id_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Contrasena, Fecha_Alta, Fecha_Actualiza, Activo) values ($next_id_cliente, '{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
-    echo $qry_insert;
-    $obj->query($qry_insert);
 }
 
 
@@ -73,6 +79,29 @@ if($_POST["editar"] != ""){
     		console.log( "ready!" );
     		
 		});
+
+		function costo_automatico(){
+			var costo_compra = $("#costo_compra").val();
+
+			var precio_venta = $("#precio_venta").val();
+
+			var nuevo_valor_precio = precio_venta + 10;
+			
+			var select_divisa_costo = $("#select_divisa_costo").val();
+			var select_divisa_precio = $("#select_divisa_precio").val(select_divisa_costo);
+			//
+
+			$("#precio_venta").val() = nuevo_valor_precio;
+
+			alert(nuevo_valor_precio);
+
+			//precio_venta
+
+			//var precio_venta = $("#precio_venta").val();
+			
+			//
+			
+		}
 
 		function Eliminar(t_id,t_completo){
 			//alert("Eliminar; "+t_id);

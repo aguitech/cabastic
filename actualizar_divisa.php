@@ -28,6 +28,14 @@ $divisa = $obj->get_row($qry_mostrar);
 <br /><br />
 <!-- 
 <input type="button" value="Guardar" onclick="actualizar_divisa();" />
--->
+
+Bton guardar
 <button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="actualizar_divisa()">Guardar <i class="material-icons right">send</i></button>
-                            	
+
+-->
+<?php /**
+<input type="text" name="nuevo_divisa" id="nuevo_divisa" value="<?php echo $divisa->Valor; ?>" class="form-control" />
+<br /><br />
+<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="actualizar_divisa()">Guardar <i class="material-icons right">send</i></button>
+
+*/ ?>

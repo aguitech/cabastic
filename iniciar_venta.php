@@ -926,7 +926,7 @@ $_SESSION["cantidad"];
                             <div class="form-group col-md-6">
                              	<div>Cliente a vender:</div>
         						<?php 
-        						$qry_cliente = "select * from ds_tbl_cliente";
+        						$qry_cliente = "select * from ds_tbl_cliente where Activo = 1 order by Nombre, Apellido_Paterno asc";
         						$clientes = $obj->get_results($qry_cliente);
         						?>
         						<select name="id_cliente" id="id_cliente" class="form-control">

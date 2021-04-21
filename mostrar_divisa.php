@@ -14,5 +14,5 @@ $divisa = $obj->get_row($qry_mostrar);
 <!-- 
 <input type="button" value="Guardar" onclick="actualizar_divisa();" />
 -->
-<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="actualizar_divisa()">Guardar <i class="material-icons right">send</i></button>
+<button class="btn waves-effect waves-light bg_aguitech" id="btn_guardar_divisa" type="button" name="action" onclick="actualizar_divisa(); $(this).hide('slow');">Guardar <i class="material-icons right">send</i></button>
                             	

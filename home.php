@@ -7,7 +7,7 @@ include("common_files/sesion.php");
 if($_GET["fecha"] != ""){
     $fecha_val = $_GET["fecha"];
 }else{
-    $fecha_val = date("Y-m-d");
+    $fecha_val = date("m/d/Y");
 }
 $nombre_seccion = "Home";
 
@@ -146,7 +146,21 @@ $value_percent = 100 / $res_semana->sumatoria;
 	include "core_title.php";
 
 	 ?>
+	 <!-- Theme JS files -->
+	<script src="global_assets/js/plugins/ui/moment/moment.min.js"></script>
+	<script src="global_assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script src="global_assets/js/plugins/pickers/anytime.min.js"></script>
+	<script src="global_assets/js/plugins/pickers/pickadate/picker.js"></script>
+	<script src="global_assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+	<script src="global_assets/js/plugins/pickers/pickadate/picker.time.js"></script>
+	<script src="global_assets/js/plugins/pickers/pickadate/legacy.js"></script>
+	<script src="global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+
+	<script src="global_assets/js/demo_pages/picker_date.js"></script>
+	<!-- /theme JS files -->
+	 
 	<?php /**
+	<script src="assets/js/app.js"></script>
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	*/ ?>
 	<script type="text/javascript">
@@ -367,9 +381,56 @@ $value_percent = 100 / $res_semana->sumatoria;
                         </style>
                         <div style="font-family:verdana;">
                         	<div style="display:flex; justify-content:right; padding-right:20px;">
+                        		<?php /**?>
                         		<input type="date" value="<?php echo $fecha_val; ?>" id="fecha_home" onchange="ir_detalle()" />
                         		
+                        		<div class="form-group">
+									<label>Basic single date picker:</label>
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<span class="input-group-text"><i class="icon-calendar22"></i></span>
+										</span>
+										<input type="text" class="form-control daterange-single" value="03/18/2013" id="fecha_home" onchange="ir_detalle()">
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<label>Basic single date picker: <?php echo $fecha_val; ?></label>
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<span class="input-group-text"><i class="icon-calendar22"></i></span>
+										</span>
+										<input type="text" class="form-control daterange-single" value="03/18/2013" id="fecha_home" onchange="ir_detalle()">
+									</div>
+								</div>
+								
+								
+								
+                        		<div class="form-group">
+									<label>Basic single date picker: <?php echo $fecha_val; ?></label>
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<span class="input-group-text"><i class="icon-calendar22"></i></span>
+										</span>
+										<input type="text" class="form-control daterange-single" value="03/18/2013" id="fecha_home" onchange="ir_detalle()">
+									</div>
+								</div>
+                        		*/ ?>
                         		
+                        		<div class="form-group">
+									<?php /**
+									<label>Basic single date picker: </label>
+									*/ ?>
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<span class="input-group-text"><i class="icon-calendar22"></i></span>
+										</span>
+										<input type="text" class="form-control daterange-single" value="<?php echo $fecha_val; ?>" id="fecha_home">
+									</div>
+									
+								</div>
+								<span onclick="ir_detalle()" style="margin-left:10px; padding:6px 6px; cursor:pointer;"><i class="icon-check"></i></span>
                         	</div>
                         	<div id="graph_home_days">
                             	<div style="height:300px;  width:100%; display:flex; align-items:baseline; justify-content:center;">

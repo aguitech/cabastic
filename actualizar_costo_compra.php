@@ -23,7 +23,7 @@ $tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
 
 
 //if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST["costo_compra"] != "" ){
-if($_POST["id"] != "" && $_POST["costo"] != "" &&  $_POST["divisa"] != ""){
+if($_POST["id"] != "" && $_POST["costo"] != "" && $_POST["divisa"] != ""){
     
     $qry_producto_detalle = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_producto.Id_Producto = $id";
     
@@ -41,15 +41,16 @@ if($_POST["id"] != "" && $_POST["costo"] != "" &&  $_POST["divisa"] != ""){
         $costo_compra = $_POST["costo"] * $tipo_cambio_dolar;
         $costo_dolares = $_POST["costo"];
         
-        $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
-        
+        $costo_euros = $costo_compra / $tipo_cambio_euro;
+        $divisa_costo = "USD";
     }
     if($divisa == 2){
         //EURO
         $costo_compra = $_POST["costo"] * $tipo_cambio_euro;
-        $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
+        $costo_dolares = $costo_compra / $tipo_cambio_dolar;
         
         $costo_euros = $_POST["costo"];
+        $divisa_costo = "EURO";
         
     }
     if($divisa == 3){
@@ -58,6 +59,7 @@ if($_POST["id"] != "" && $_POST["costo"] != "" &&  $_POST["divisa"] != ""){
         $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
         $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
         
+        $divisa_costo = "MXN";
         
     }
     
@@ -98,6 +100,21 @@ if($_POST["id"] != "" && $_POST["costo"] != "" &&  $_POST["divisa"] != ""){
         //echo $qry_update_costo_producto;
         //echo $qry_update_costo_producto;
         $obj->query($qry_update_costo_producto);
+        
+        if($precio_producto_actual->Dolar != $costo_dolares && ($costo_dolares != 0 || $costo_dolares != "")){
+            $ch = curl_init();
+            // Establecer URL y otras opciones apropiadas
+            $url_correo = "http://cabastic.info/correo_cambio_costo.php?costo_actual=" . $precio_producto_actual->Dolar . "&costo_nuevo=" . $costo_dolares . "&id_producto=" . $id_producto . "&usuario=" . $_SESSION["username"] . "&divisa=" . $divisa_costo;
+            //echo $url_correo;
+            
+            curl_setopt($ch, CURLOPT_URL, $url_correo);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            
+            // Capturar la URL y pasarla al navegador
+            curl_exec($ch);
+            // Cerrar el recurso cURL y liberar recursos del sistema
+            curl_close($ch);
+        }
         
     }else{
         //echo "insert";
@@ -140,13 +157,27 @@ if($_POST["id"] != "" && $_POST["costo"] != "" &&  $_POST["divisa"] != ""){
     
     $id_resultado = $producto_detalle->Id_Producto;
     ?>
+    <?php 
+    /*
+<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->dolar_costo != ""){ $dolar_costo = $resultado->dolar_costo * $tipo_cambio_dolar; $res_pintar = "$" . number_format($dolar_costo, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_costo = $resultado->dolar_costo * $tipo_cambio_dolar; echo $dolar_costo; ?>" style="width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div></td>
+    
     <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" style=" width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
+    
+    */
+    ?>
+    <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Dolar != ""){ $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; $res_pintar = "$" . number_format($dolar_costo, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; echo $dolar_costo; ?>" style=" width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
     																
     								
     
     
     
     <?php /**
+    $tipo_cambio_dolar
+    
+    <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Dolar != ""){ $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; $res_pintar = "$" . number_format($dolar_costo, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; echo $dolar_costo; ?>" style=" width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
+    
+    
+    
     <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" onblur="actualizar_costo(this.value, <?php echo $id_resultado; ?>);" style=" width:55px;" /></div></td>
     
     
@@ -184,8 +215,14 @@ if($_POST["id"] != "" && $_POST["costo"] == ""){
     
     $id_resultado = $producto_detalle->Id_Producto;
     
+    /**
+    <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" style=" width:55px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
+    
+    */
 ?>
-	<div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" style=" width:55px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
+	
+	
+	<div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Dolar != ""){ $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; $res_pintar = "$" . number_format($dolar_costo, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_costo = $costo_producto_actual->Dolar * $tipo_cambio_dolar; echo $dolar_costo; ?>" style=" width:55px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
     
 <?php 
 }

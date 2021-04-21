@@ -2,15 +2,13 @@
 <?php 
 include("common_files/sesion.php");
 $id_rol = $_SESSION["rol"];
-?>
-<?php 
+
 $nombre_seccion = "Productos";
 $tbl_main = "ds_tbl_producto";
 $nombre_simple = "producto";
 $url_name = "productos.php";
 $url_crear_name = "crear_producto.php";
-?>
-<?php 
+
 $val_nombre = $_POST["nombre_producto"];
 
 $val_codigo_barras = $_POST["codigo_barras"];
@@ -44,172 +42,27 @@ if($_POST["costo_compra"] != ""){
     $costo = 0;
 }
 
-if($_POST["costo_compra"] != ""){
+if($_POST["select_divisa_costo"] != ""){
     $divisa = $_POST["select_divisa_costo"];
 }else{
     $divisa = 3;
 }
 
-
-
-$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
-
-$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
-
-$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
-
-$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
-
-
-/**
-$costo = $_POST["costo_compra"];
-$divisa = $_POST["select_divisa_costo"];
-
-$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
-
-$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
-
-$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
-
-$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
-
-
-if($_POST["id"] != "" && $_POST["costo_compra"] != "" &&  $_POST["select_divisa_costo"] != ""){
-    
-    $qry_producto_detalle = "select * from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_producto.Id_Producto = $id";
-    
-    $producto_detalle = $obj->get_row($qry_producto_detalle);
-    $id_producto_detalle = $producto_detalle->Id_Producto_Detalle;
-    
-    
-    
-    
-    $id_producto = $_POST["id"];
-    //$costo_compra = $_POST["costo"];
-    
-    if($divisa == 1){
-        //DOLAR
-        $costo_compra = $_POST["costo"] * $tipo_cambio_dolar;
-        $costo_dolares = $_POST["costo"];
-        
-        $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
-        
-    }
-    if($divisa == 2){
-        //EURO
-        $costo_compra = $_POST["costo"] * $tipo_cambio_euro;
-        $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
-        
-        $costo_euros = $_POST["costo"];
-        
-    }
-    if($divisa == 3){
-        //PESO
-        $costo_compra = $_POST["costo"];
-        $costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
-        $costo_euros = $_POST["costo"] / $tipo_cambio_euro;
-        
-        
-    }
-    
-    
-    
-    $impuesto_adicional = 0;
-    //$costo_dolares = $_POST["costo"] / $tipo_cambio_dolar;
-    $iva = 16;
-    $fecha_actualizacion = date("Y-m-d H:i:s");
-    
-    $qry_costo_producto_actual = "select * from ds_tbl_costo_compra_producto where ds_tbl_costo_compra_producto.Id_Producto_Detalle = $id_producto_detalle";
-    
-    //echo $qry_costo_producto_actual . "<br />";
-    $precio_producto_actual = $obj->get_row($qry_costo_producto_actual);
-    
-    //print_r($precio_producto_actual);
-    //echo $precio_producto_actual->Costo_Compra;
-    if($precio_producto_actual->Costo_Compra != ""){
-        //UPDATE
-        //echo "update";
-        
-        $id_costo_compra_producto = $precio_producto_actual->Id_Costo_Producto;
-        $costo_compra_anterior = $precio_producto_actual->Costo_Compra;
-        $valor_dolar_anterior = $precio_producto_actual->Valor_Tipo_Cambio_Dolar;
-        $valor_dolares_anterior = $precio_producto_actual->Dolar;
-        
-        $valor_euro_anterior = $precio_producto_actual->Valor_Tipo_Cambio_Euro;
-        $valor_euros_anterior = $precio_producto_actual->Euro;
-        
-        
-        
-        //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $costo_dolares, $costo_dolares)";
-        //$qry_insert_costo_producto_actual = "insert into  (Id_Producto_Detalle, , , , , , , , ) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $costo_dolares, $costo_dolares)";
-        //echo "HEY";
-        //$qry_update_costo_producto = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra_anterior, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $costo_dolares, Valor_Tipo_Cambio_Anterior = $costo_dolares)";
-        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
-        $qry_update_costo_producto = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra_anterior, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Euro = $costo_euros, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $valor_dolar_anterior, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $valor_euro_anterior where Id_Producto_Detalle = $id_producto_detalle and Id_Costo_Producto = $id_costo_compra_producto";
-        //echo $qry_update_costo_producto;
-        //echo $qry_update_costo_producto;
-        $obj->query($qry_update_costo_producto);
-        
-    }else{
-        //echo "insert";
-        //INSERT
-        //
-        //Id_Costo_Producto 	 	Costo_Mxn 	Costo_Dolar 	 	 	 	 	 	 	Euro 	Libra
-        
-        //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar)";
-        $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
-        //echo $qry_insert_costo_producto_actual;
-        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
-        
-        //echo $qry_insert_costo_producto_actual . "<br />";
-        //echo $qry_insert_costo_producto_actual;
-        $obj->query($qry_insert_costo_producto_actual);
-    }
-    
-    
-    
-    
-    ///Id_Historial_Costo_Compra 	Id_Producto_Detalle 	Costo_Compra 	Dolar 	Euro 	Valor_Tipo_Cambio_Dolar 	Valor_Tipo_Cambio_Euro 	Fecha_Update
-    
-    $fecha_update = date("Y-m-d H:i:s");
-    //$fecha_update
-    $qry_insert_historial = "insert into ds_tbl_historial_costo_compra (Id_Producto_Detalle, Costo_Compra, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Euro, Fecha_Update) values ($id_producto_detalle, $costo_compra, $costo_dolares, $costo_euros, $tipo_cambio_dolar, $tipo_cambio_euro, '$fecha_update') ";
-    $obj->query($qry_insert_historial);
-    
-    
-    
-    
-    $qry_costo_resultado = "select * from ds_tbl_costo_compra_producto where ds_tbl_costo_compra_producto.Id_Producto_Detalle = $id_producto_detalle";
-    //echo $qry_costo_resultado;
-    $costo_producto_actual = $obj->get_row($qry_costo_resultado);
-    
-    //print_r($costo_producto_actual);
-    
-    //echo $costo_producto_actual->Costo_Compra;
-    
-    //echo "HA";
-    
-    $id_resultado = $producto_detalle->Id_Producto;
-
-    
-    																
-    								
-    
-    
-    
-    
+if($_POST["select_divisa_precio"] != ""){
+    $divisa_precio = $_POST["select_divisa_precio"];
+}else{
+    $divisa_precio = 3;
 }
-*/
 
-/**
- * <div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($costo_producto_actual->Costo_Compra != ""){ $res_pintar = "$" . number_format($costo_producto_actual->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $costo_producto_actual->Costo_Compra; ?>" style=" width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div>
- 
- 
- */
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
+
+$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
 
 
-
-//$val_Imagen_Producto = $_POST["Imagen_Producto"];
 $val_imagen_producto = $_POST["imagen_producto"];
 
 $val_fecha_alta = date("Y-m-d H:i:s");
@@ -229,18 +82,6 @@ if($_POST["editar"] != ""){
     
     $id_producto_detalle = $_POST["editar_detalle"];
     
-    /**
-    echo $id_producto;
-    
-    echo "<br />";
-
-    
-    echo $id_producto_detalle;
-    
-    print_r($_POST);
-    */
-    
-    
     //$qry_update = "insert into ds_tbl_producto (Nombre, Descripcion, Fecha_Alta, Id_Marca, Id_Tipo_Producto, Id_Tipo_Sustancia, Id_Categoria_Producto, Activo) values ('{$val_nombre}', '{$val_descripcion}', '{$val_fecha_alta}', {$val_marca}, {$val_tipo_producto}, {$val_sustancia_producto}, {$val_categoria}, 1)";
     //echo $qry_insert;
     //$qry_update = "update ds_tbl_producto set Nombre = '{$val_nombre}', Descripcion = '{$val_descripcion}', Fecha_Alta = '{$val_fecha_alta}', Id_Marca =  {$val_marca}, Id_Tipo_Producto = {$val_tipo_producto}, Id_Tipo_Sustancia = {$val_sustancia_producto}, Id_Categoria_Producto = {$val_categoria}, Activo = 1 where Id_Producto = $id_producto";
@@ -257,11 +98,6 @@ if($_POST["editar"] != ""){
     //exit();
     $obj->query($qry_update_detalle);
     
-    
-    //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
-    //$qry_update_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
-    //$qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Id_Producto_Detalle = {$id_producto_detalle}, Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_alta = '{$val_fecha_alta}', Fecha_Actualiza = '{$val_fecha_alta}')";
-    //$qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_alta = '{$val_fecha_alta}', Fecha_Actualiza = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
     $qry_update_detalle_cantidad_producto = "update ds_tbl_cantidad_minima_producto set Cantidad_Minima = {$val_cantidad_minima}, Cantidad_Maxima = {$val_cantidad_maxima}, Activo = 1, Fecha_Actualiza = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
     $obj->query($qry_update_detalle_cantidad_producto);
     
@@ -271,11 +107,6 @@ if($_POST["editar"] != ""){
     
     $id_cantidad_producto = $resultado_detalle_cantidad_producto->Id_Cantidad_Producto;
     
-    
-    //$qry_update_detalle_inventario_almacen = "insert into ds_tbl_inventario_almacen (Id_Producto_Detalle, Cantidad_Inventario, Id_Cantidad_Producto, Fecha_Actualizacion) values ({$id_producto_detalle}, {$cantidad_inventario}, {$id_cantidad_producto}, '{$val_fecha_alta}')";
-    //$qry_update_detalle_inventario_almacen = "update ds_tbl_inventario_almacen set Id_Producto_Detalle = {$id_producto_detalle}, Cantidad_Inventario = {$cantidad_inventario}, Id_Cantidad_Producto = {$id_cantidad_producto}, Fecha_Actualizacion = '{$val_fecha_alta}'";
-    //$qry_update_detalle_inventario_almacen = "update ds_tbl_inventario_almacen set Cantidad_Inventario = {$cantidad_inventario}, Id_Cantidad_Producto = {$id_cantidad_producto}, Fecha_Actualizacion = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
-    
     $qry_existencia_actual = "select * from ds_tbl_inventario_almacen where Id_Producto_Detalle = $id_producto_detalle";
     $existencia_actual = $obj->get_row($qry_existencia_actual);
     
@@ -284,10 +115,7 @@ if($_POST["editar"] != ""){
     $qry_update_detalle_inventario_almacen = "update ds_tbl_inventario_almacen set Cantidad_Inventario = {$cantidad_inventario}, Fecha_Actualizacion = '{$val_fecha_alta}' where Id_Producto_Detalle = {$id_producto_detalle}";
     $obj->query($qry_update_detalle_inventario_almacen);
     
-    if($existencia_actual->Cantidad_Inventario == $cantidad_inventario){
-    
-        
-    }else{
+    if($existencia_actual->Cantidad_Inventario != $cantidad_inventario && $cantidad_inventario != ""){
         if($existencia_actual->Cantidad_Inventario > $cantidad_inventario){
             $ch = curl_init();
             // Establecer URL y otras opciones apropiadas
@@ -304,28 +132,58 @@ if($_POST["editar"] != ""){
     
     
     
-    if($divisa == 1){
+    if($_POST["select_divisa_costo"] == 1){
         //DOLAR
         $costo_compra = $_POST["costo_compra"] * $tipo_cambio_dolar;
         $costo_dolares = $_POST["costo_compra"];
         
-        $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+        //$costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+        $costo_euros = $costo_compra / $tipo_cambio_euro;
+        $divisa_costo = "USD";
         
     }
-    if($divisa == 2){
+    if($_POST["select_divisa_costo"] == 2){
         //EURO
-        $costo_compra = $_POST["costo_compra"] * $tipo_cambio_euro;
-        $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
-        
         $costo_euros = $_POST["costo_compra"];
+        $costo_compra = $_POST["costo_compra"] * $tipo_cambio_euro;
+        $costo_dolares = ($_POST["costo_compra"] * $tipo_cambio_euro) / $tipo_cambio_dolar;
+        
+        $divisa_costo = "EURO";
         
     }
-    if($divisa == 3){
+    if($_POST["select_divisa_costo"] == 3){
         //PESO
         $costo_compra = $_POST["costo_compra"];
         $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
         $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+        $divisa_costo = "MXN";
         
+    }
+    
+    //echo $divisa_costo;
+    
+    if($divisa_precio == 1){
+        //DOLAR
+        $precio_venta = $_POST["precio_venta"] * $tipo_cambio_dolar;
+        $precio_dolares = $_POST["precio_venta"];
+        
+        $precio_euros = $precio_venta / $tipo_cambio_euro;
+        $divisa_precio = "USD";
+    }
+    if($divisa_precio == 2){
+        //EURO
+        $precio_venta = $_POST["precio_venta"] * $tipo_cambio_euro;
+        $precio_dolares = ($_POST["precio_venta"] * $tipo_cambio_euro) / $tipo_cambio_dolar;
+        
+        $precio_euros = $_POST["precio_venta"];
+        $divisa_precio = "EURO";
+    }
+    if($divisa_precio == 3){
+        //PESO
+        $precio_venta = $_POST["precio_venta"];
+        $precio_dolares = $_POST["precio_venta"] / $tipo_cambio_dolar;
+        $precio_euros = $_POST["precio_venta"] / $tipo_cambio_euro;
+        $divisa_precio = "MXN";
         
     }
     
@@ -334,16 +192,87 @@ if($_POST["editar"] != ""){
     $iva = 16;
     $fecha_actualizacion = date("Y-m-d H:i:s");
     
-    //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
-    //$qry_update_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
-    $qry_update_costo_producto_actual = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $tipo_cambio_dolar, Euro = $costo_euros, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $tipo_cambio_euro where Id_Producto_Detalle = $id_producto_detalle";
-    $obj->query($qry_update_costo_producto_actual);
+    
+    $qry_precio_actual_val = "select * from ds_tbl_precio_venta_producto where Id_Producto_Detalle = $id_producto_detalle";
+    
+    $precio_actual_val = $obj->get_row($qry_precio_actual_val);
+    
+    
+    
+    $qry_costo_actual_val = "select * from ds_tbl_costo_compra_producto where Id_Producto_Detalle = $id_producto_detalle";
+    
+    $costo_actual_val = $obj->get_row($qry_costo_actual_val);
+    
+    
+    if($costo_actual_val->Dolar != $costo_dolares && ($costo_dolares != 0 || $costo_dolares != "")){
+        $ch = curl_init();
+        // Establecer URL y otras opciones apropiadas
+        $url_correo = "http://cabastic.info/correo_cambio_costo.php?costo_actual=" . $costo_actual_val->Dolar . "&costo_nuevo=" . $costo_dolares . "&id_producto=" . $id_producto . "&usuario=" . $_SESSION["username"] . "&divisa=" . $divisa_costo;
+        //echo $url_correo;
+        
+        curl_setopt($ch, CURLOPT_URL, $url_correo);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        
+        // Capturar la URL y pasarla al navegador
+        curl_exec($ch);
+        // Cerrar el recurso cURL y liberar recursos del sistema
+        curl_close($ch);
+    }
+    
+    
+    
+    if($precio_actual_val->Dolar != $precio_dolares && ($precio_dolares != 0 || $precio_dolares != "")){
+        $ch = curl_init();
+        // Establecer URL y otras opciones apropiadas
+        $url_correo = "http://cabastic.info/correo_cambio_precio.php?precio_actual=" . $precio_actual_val->Dolar . "&precio_nuevo=" . $precio_dolares . "&id_producto=" . $id_producto . "&usuario=" . $_SESSION["username"] . "&divisa=" . $divisa_precio;
+        //echo $url_correo;
+        
+        curl_setopt($ch, CURLOPT_URL, $url_correo);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        
+        // Capturar la URL y pasarla al navegador
+        curl_exec($ch);
+        // Cerrar el recurso cURL y liberar recursos del sistema
+        curl_close($ch);
+    }
+    
+    
+    if($costo_actual_val->Costo_Compra != ""){
+        $qry_update_costo_producto_actual = "update ds_tbl_costo_compra_producto set Costo_Compra = $costo_compra, Costo_Compra_Anterior = $costo_compra, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $costo_dolares, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $tipo_cambio_dolar, Euro = $costo_euros, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $tipo_cambio_euro where Id_Producto_Detalle = $id_producto_detalle";
+        //echo $qry_update_costo_producto_actual;
+        $obj->query($qry_update_costo_producto_actual);
+        
+        
+        
+    }else{
+        $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+        //echo $qry_insert_costo_producto_actual;
+        $obj->query($qry_insert_costo_producto_actual);
+    }
     
     
     $fecha_update = date("Y-m-d H:i:s");
     //$fecha_update
     $qry_insert_historial = "insert into ds_tbl_historial_costo_compra (Id_Producto_Detalle, Costo_Compra, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Euro, Fecha_Update) values ($id_producto_detalle, $costo_compra, $costo_dolares, $costo_euros, $tipo_cambio_dolar, $tipo_cambio_euro, '$fecha_update') ";
     $obj->query($qry_insert_historial);
+    
+    //if()
+    //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+    //$obj->query($qry_insert_costo_producto_actual);
+    if($precio_venta != ""){
+        
+        
+        $qry_update_precio_producto_actual = "update ds_tbl_precio_venta_producto set Costo_Venta = $precio_venta, Costo_Venta_Anterior = $precio_venta, Impuesto_Adicional = $impuesto_adicional, IVA = $iva, Fecha_Actualiza = '{$fecha_actualizacion}', Dolar = $precio_dolares, Valor_Tipo_Cambio_Dolar = $tipo_cambio_dolar, Valor_Tipo_Cambio_Anterior = $tipo_cambio_dolar, Euro = $precio_euros, Valor_Tipo_Cambio_Euro = $tipo_cambio_euro, Valor_Tipo_Cambio_Euro_Anterior = $tipo_cambio_euro where Id_Producto_Detalle = $id_producto_detalle";
+        //echo $qry_update_preciof_producto_actual;
+        $obj->query($qry_update_precio_producto_actual);
+    }else{
+        $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
+        //echo $qry_insert_costo_producto_actual;
+        $obj->query($qry_insert_costo_producto_actual);
+        
+    }
+    
+    
     
     
     if($_FILES["imagen_producto"]['name'] != ""){
@@ -388,6 +317,9 @@ if($_POST["editar"] != ""){
         
     }
     
+    header('Location: ./productos.php', true, 303);
+    exit;
+    
 }else{
 
     if($_POST["nombre_producto"] != ""){
@@ -421,7 +353,6 @@ if($_POST["editar"] != ""){
         $qry_insert_detalle = "insert into ds_tbl_producto_detalle (Codigo_Barras, Id_Talla, Id_Color, Id_Producto, Id_Tipo_Mercado, Id_Genero, Activo) values ('{$val_codigo_barras}', {$val_talla}, {$val_color}, {$id_producto}, {$val_tipo_mercado}, {$val_genero}, 1)";
         
         $obj->query($qry_insert_detalle);
-        
         //echo "FILES";
         //print_r($_FILES);
         
@@ -454,16 +385,7 @@ if($_POST["editar"] != ""){
             
             
         }
-        /**
-        $prefix_fecha = date("YmdHis") . $i . "_";
-        //$destino = '../../../images/blog';
-        $destino = 'images/blog';
         
-        copy($_FILES['blogfoto']['tmp_name'][$i], $destino . '/' . $prefix_fecha . $_FILES['blogfoto']['name'][$i]);
-        
-        $_POST["blogfoto"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-        $_POST["imagen"] = $prefix_fecha . $_FILES['blogfoto']['name'][$i];
-        */
         
         $qry_resultado_detalle = "select * from ds_tbl_producto_detalle where Codigo_Barras = '{$val_codigo_barras}' and Id_Producto = {$id_producto} and Id_Genero = {$val_genero} and Id_Tipo_Mercado = {$val_tipo_mercado} limit 1";
         $resultado_detalle = $obj->get_row($qry_resultado_detalle);
@@ -477,9 +399,40 @@ if($_POST["editar"] != ""){
         
         
         //$qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Producto_Detalle, Costo_Venta) values ({$id_producto_detalle}, '{$val_precio_venta}')";
-        $qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Precio_Venta, Id_Producto_Detalle, Costo_Venta) values ({$next_id_precio_venta}, {$id_producto_detalle}, '{$val_precio_venta}')";
-        //echo $qry_insert_detalle_precio_venta ."<br />";
-        $obj->query($qry_insert_detalle_precio_venta);
+        
+        
+        
+        
+        if($divisa_precio == 1){
+            //DOLAR
+            $precio_venta = $_POST["precio_venta"] * $tipo_cambio_dolar;
+            $precio_dolares = $_POST["precio_venta"];
+            
+            $precio_euros = $precio_venta / $tipo_cambio_euro;
+            $divisa_precio = "USD";
+        }
+        if($divisa_precio == 2){
+            //EURO
+            $precio_venta = $_POST["precio_venta"] * $tipo_cambio_euro;
+            $precio_dolares = $precio_venta / $tipo_cambio_dolar;
+            
+            $precio_euros = $_POST["precio_venta"];
+            $divisa_precio = "EURO";
+        }
+        if($divisa_precio == 3){
+            //PESO
+            $precio_venta = $_POST["precio_venta"];
+            $precio_dolares = $_POST["precio_venta"] / $tipo_cambio_dolar;
+            $precio_euros = $_POST["precio_venta"] / $tipo_cambio_euro;
+            $divisa_precio = "MXN";
+            
+        }
+        
+        
+        $fecha_hoy = date("Y-m-d H:i:s");
+        
+        //$qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Precio_Venta, Id_Producto_Detalle, Costo_Venta) values ({$next_id_precio_venta}, {$id_producto_detalle}, '{$val_precio_venta}')";
+        //$val_precio_venta
         
         //$qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima})";
         $qry_insert_detalle_cantidad_producto = "insert into ds_tbl_cantidad_minima_producto (Id_Producto_Detalle, Cantidad_Minima, Cantidad_Maxima, Activo, Fecha_alta, Fecha_Actualiza) values ({$id_producto_detalle}, {$val_cantidad_minima}, {$val_cantidad_maxima}, 1, '{$val_fecha_alta}', '{$val_fecha_alta}')";
@@ -510,13 +463,13 @@ if($_POST["editar"] != ""){
             $costo_compra = $_POST["costo_compra"] * $tipo_cambio_dolar;
             $costo_dolares = $_POST["costo_compra"];
             
-            $costo_euros = $_POST["costo_compra"] / $tipo_cambio_euro;
+            $costo_euros = $costo_compra / $tipo_cambio_euro;
             
         }
         if($divisa == 2){
             //EURO
             $costo_compra = $_POST["costo_compra"] * $tipo_cambio_euro;
-            $costo_dolares = $_POST["costo_compra"] / $tipo_cambio_dolar;
+            $costo_dolares = $costo_compra / $tipo_cambio_dolar;
             
             $costo_euros = $_POST["costo_compra"];
             
@@ -537,12 +490,7 @@ if($_POST["editar"] != ""){
         
         //$qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar)";
         $qry_insert_costo_producto_actual = "insert into ds_tbl_costo_compra_producto (Id_Producto_Detalle, Costo_Compra, Costo_Compra_Anterior, Impuesto_Adicional, IVA, Fecha_Actualiza, Dolar, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Euro, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior) values ($id_producto_detalle, $costo_compra, $costo_compra, $impuesto_adicional, $iva, '{$fecha_actualizacion}', $costo_dolares, $tipo_cambio_dolar, $tipo_cambio_dolar, $costo_euros, $tipo_cambio_euro, $tipo_cambio_euro)";
-        //echo $qry_insert_costo_producto_actual;
-        //echo $qry_insert_costo_producto_actual;
-        //$precio_producto_actual = $obj->get_results($qry_precio_producto_actual);
-        
-        //echo $qry_insert_costo_producto_actual . "<br />";
-        //echo $qry_insert_costo_producto_actual;
+
         $obj->query($qry_insert_costo_producto_actual);
         
         
@@ -555,11 +503,25 @@ if($_POST["editar"] != ""){
         
         
         
-        header('Location: ./productos.php', true, 303);
-        exit;
+        
+        
+        $qry_insert_detalle_precio_venta = "insert into ds_tbl_precio_venta_producto (Id_Precio_Venta, Id_Producto_Detalle, Costo_Venta, Costo_Venta_Anterior, Dolar, Euro, Valor_Tipo_Cambio_Dolar, Valor_Tipo_Cambio_Anterior, Valor_Tipo_Cambio_Euro, Valor_Tipo_Cambio_Euro_Anterior, IVA, Impuesto_Adicional, Fecha_Actualiza) values ({$next_id_precio_venta}, {$id_producto_detalle}, '{$val_precio_venta}', '{$val_precio_venta}', '{$precio_dolares}', '{$precio_euros}', $tipo_cambio_dolar, $tipo_cambio_dolar, $tipo_cambio_euro, $tipo_cambio_euro, 16.00, 0, '{$fecha_hoy}')";
+        //echo $qry_insert_detalle_precio_venta ."<br />";
+        $obj->query($qry_insert_detalle_precio_venta);
+        
+        //header('Location: ./productos.php', true, 303);
+        //exit;
     }
     
 }
+
+$adicionales = $obj->get_results("select * from ds_cat_adicional");
+$impuesto_adicional = $adicionales[0];
+$gasto_importacion = $adicionales[1];
+
+/**
+*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -567,7 +529,6 @@ if($_POST["editar"] != ""){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<?php
 
 	include "core_title.php";
@@ -582,6 +543,49 @@ if($_POST["editar"] != ""){
     			checkboxes.prop('checked', $(this).is(':checked'));
     		});
 		});
+
+		function costo_automatico(){
+			var costo_compra = $("#costo_compra").val();
+
+			//var precio_venta = $("#precio_venta").val();
+			var select_divisa_costo = $("#select_divisa_costo").val();
+			
+			if(select_divisa_costo == 1){
+				var nuevo_valor_precio = ((parseFloat(costo_compra)) * 1.2) * 2;
+				nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+			}
+			if(select_divisa_costo == 2){
+				
+				var nuevo_valor_precio = (((parseFloat(costo_compra)) * 1.2) * 1.2) * 2;
+				nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+			}
+            if(select_divisa_costo == 3){
+            	var nuevo_valor_precio = (parseFloat(costo_compra)) * 2;
+            	nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+            }
+
+            if($("#precio_venta").val() == ""){
+            	$("#select_divisa_precio").val(select_divisa_costo);
+
+    			
+    			//$("#precio_venta").val(nuevo_valor_precio);
+            }
+			//var select_divisa_precio = 
+			
+			//
+
+			$("#precio_sugerido").html("Precio sugerido: " + nuevo_valor_precio)
+			
+
+			//alert(nuevo_valor_precio);
+
+			//precio_venta
+
+			//var precio_venta = $("#precio_venta").val();
+			
+			//
+			
+		}
 		
 		function select_deselect_checkboxes(){
 			var checkboxes = $(this).closest('form').find(':checkbox');
@@ -609,6 +613,32 @@ if($_POST["editar"] != ""){
 
 		}
 
+		function actualizar_valor_divisa(id_resultado, valor_divisa, tipo_accion){
+			console.log(id_resultado);
+			console.log(valor_divisa);
+			console.log(tipo_accion);
+
+
+			$.ajax({
+				type: "POST",
+				url:"visualizar_valor_divisa.php?rand=256",
+				//data: { limit:val_limit, offset:val_offset },
+				data: { id_resultado:id_resultado, valor_divisa:valor_divisa, tipo_accion:tipo_accion },
+				success:function(data){
+					console.log(data);
+					//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
+
+					//$("#resultado_filtrado_marca_genero").html(data);
+
+					console.log(data);
+					//$("#form_venta").html(data);
+					//$(".select_refresh").formSelect();
+
+					
+				}
+			});
+			
+		}
 	</script>
 
 </head>
@@ -1520,9 +1550,25 @@ if($_POST["editar"] != ""){
 				}
 			});
 	   }
+	   function generar_orden_compra(){
+		   var id = 10;
+		   $.ajax({
+				type: "POST",
+				url:"generar_orden_compra.php?cron=job",
+				data: { id:id },
+				success:function(data){
+					console.log(data);
+					//$("#popup_resultado").html(data);
+
+				}
+			});
+	   }
 	   function funciones_masivas(id_funcion){
 			if(id_funcion == 1){
 				detalle_costo_masivo();
+			}
+			if(id_funcion == 2){
+				generar_orden_compra();
 			}
 	   }
 	   function vista_previa_mostrar(url_imagen){
@@ -1731,10 +1777,12 @@ if($_POST["editar"] != ""){
                             	<select name="id_tipo_producto" id="id_tipo_producto" class="form-control" onchange="filtrar_tipo_productos(this.value); filtrar_resultados_tabla();">
                            			<option value="" >Selecciona</option>
                            			<?php foreach($tipos_producto as $tipo_producto): ?>
-                           			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" <?php if($resultado->Id_Tipo_Producto == $tipo_producto->Id_Tipo_Producto){ ?>selected="selected"<?php } ?>><?php echo $tipo_producto->Descripcion; ?></option>
+                           			<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>"><?php echo $tipo_producto->Descripcion; ?></option>
                            			<?php endforeach; ?>
                            		</select>
                             	<?php /**
+            					<option value="<?php echo $tipo_producto->Id_Tipo_Producto; ?>" <?php if($resultado->Id_Tipo_Producto == $tipo_producto->Id_Tipo_Producto){ ?>selected="selected"<?php } ?>><?php echo $tipo_producto->Descripcion; ?></option>
+                           			
             					<input type="text" placeholder="Tipo de producto" name="tipo_producto" id="tipo_producto" value="" class="form-control" />
             					*/ ?>
                             </div>
@@ -1882,6 +1930,9 @@ if($_POST["editar"] != ""){
                              		<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
                              		<option value="1">Asignar costo masivo</option>
                              		<?php endif; ?>
+                             		<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
+                             		<option value="2">Generar orden de compra</option>
+                             		<?php endif; ?>
                              	</select>
                             </div>
                             <div class="form-group col-md-2">
@@ -1946,7 +1997,8 @@ if($_POST["editar"] != ""){
     							//left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto
     							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto order by $tbl_main.Descripcion asc";
     							//
-    							$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							//$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
+    							$qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, $tbl_main.Descripcion as descripcion_producto, ds_cat_tipo_producto.Descripcion as tipo_producto, ds_cat_tipo_almacen.Descripcion as almacen, ds_cat_categoria_producto.Descripcion as categoria, ds_tbl_costo_compra_producto.Dolar as dolar_costo, ds_tbl_precio_venta_producto.Dolar as dolar_precio from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = $tbl_main.Id_Producto left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_cat_talla on ds_cat_talla.Id_Talla = ds_tbl_producto_detalle.Id_Talla left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_cat_tipo_producto on ds_cat_tipo_producto.Id_Tipo_Producto = ds_tbl_producto.Id_Tipo_Producto left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_costo_compra_producto on ds_tbl_costo_compra_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_cantidad_minima_producto on ds_tbl_cantidad_minima_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_tipo_almacen on ds_cat_tipo_almacen.Id_Tipo_Almacen = ds_tbl_inventario_almacen.Id_Tipo_Almacen left join ds_cat_categoria_producto on ds_cat_categoria_producto.Id_Categoria_Producto = ds_tbl_producto.Id_Categoria_Producto group by ds_tbl_producto_detalle.Id_Producto_Detalle order by $tbl_main.Descripcion asc";
     							//
     							$resultados = $obj->get_results($qry_resultados);
     						?>
@@ -2027,17 +2079,23 @@ if($_POST["editar"] != ""){
     								
     								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style="width:55px;" /><input type="button" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);" value="Guardar" /></div></td>
     								
+    								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style="width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div></td>
+    								
     								*/?>
     								<?php if($id_rol == 1 || $id_rol == 4 || $id_rol == 5): ?>
-    								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Compra != ""){ $res_pintar = "$" . number_format($resultado->Costo_Compra, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Compra; ?>" style="width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div></td>
+    								<td style="text-align:right;" id="contenedor_resultado_input<?php echo $id_resultado; ?>"><div id="resultado_input<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo<?php echo $id_resultado; ?>').show(); $('#input<?php echo $id_resultado; ?>').focus();"><?php if($resultado->dolar_costo != ""){ $dolar_costo = $resultado->dolar_costo * $tipo_cambio_dolar; $res_pintar = "$" . number_format($dolar_costo, 2); }else{ $res_pintar = "Introduce su costo"; } echo $res_pintar; ?></div><div style="display:none; width:170px;" id="input_alternativo<?php echo $id_resultado; ?>" ><select onchange="actualizar_valor_divisa(<?php echo $id_resultado; ?>, this.value, 'costo');" name="select_divisa_costo<?php echo $id_resultado; ?>" id="select_divisa_costo<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_costo = $resultado->dolar_costo * $tipo_cambio_dolar; echo $dolar_costo; ?>" style="width:55px; margin:0 5px;" /><span><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_costo($('#input<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></span></div></td>
     								
     								<?php endif; ?>
     								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5): ?>
 						
-									<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
+									<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->dolar_precio != ""){ $dolar_precio = $resultado->dolar_precio * $tipo_cambio_dolar; $res_pintar_precio = "$" . number_format($dolar_precio, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select onchange="actualizar_valor_divisa(<?php echo $id_resultado; ?>, this.value, 'precio');" name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php $dolar_precio = $resultado->dolar_precio * $tipo_cambio_dolar; echo $dolar_precio; ?>" style="width:55px; margin:0 5px;" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
     								
     								
 									<?php /**
+									<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->dolar_precio != ""){ $dolar_precio = $resultado->dolar_precio * $tipo_cambio_dolar; $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
+    								<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
+    								
+									
     								<td style="text-align:right;" id="contenedor_resultado_input_precio<?php echo $id_resultado; ?>"><div id="resultado_input_precio<?php echo $id_resultado; ?>" onclick="$(this).hide(); $('#input_alternativo_precio<?php echo $id_resultado; ?>').show(); $('#input_precio<?php echo $id_resultado; ?>').focus();"><?php if($resultado->Costo_Venta != ""){ $res_pintar_precio = "$" . number_format($resultado->Costo_Venta, 2); }else{ $res_pintar_precio = "Introduce su precio"; } echo $res_pintar_precio; ?></div><div style="display:none; width:170px;" id="input_alternativo_precio<?php echo $id_resultado; ?>" ><select name="select_divisa_precio<?php echo $id_resultado; ?>" id="select_divisa_precio<?php echo $id_resultado; ?>"><?php foreach($divisas as $divisa): ?><option value="<?php echo $divisa->Id_Tipo_Cambio; ?>" <?php if($divisa->Id_Tipo_Cambio == 3): ?>selected="selected"<?php endif; ?>><?php echo $divisa->Descripcion; ?></option><?php endforeach; ?></select><input type="text" id="input_precio<?php echo $id_resultado; ?>" placeholder="" value="<?php echo $resultado->Costo_Venta; ?>" style="width:55px; margin:0 5px;" /><input type="button" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);" value="Guardar" /><i class="icon-checkmark4 mr-3 icon-1x" onclick="actualizar_precio($('#input_precio<?php echo $id_resultado; ?>').val(), <?php echo $id_resultado; ?>);"></i></div></td>
     								<td><?php echo $resultado->Costo_Venta; ?></td>
     								*/ ?>
