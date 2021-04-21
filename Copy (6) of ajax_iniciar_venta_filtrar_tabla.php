@@ -32,20 +32,20 @@ $id_categoria = $_POST["id_categoria"];
 <table class="table datatable-basic">
 	<thead>
 		<tr>
-			<th>C&oacute;digo barras</th>
-    		
-    		<th>Producto</th>
-    		<th>Marca</th>
-    		<th>Color</th>
-    		<th>&nbsp;</th>
-    		<th>Talla</th>
-    		<th>Inventario</th>
-    		
-    		<th>Precio MXN</th>
-    		<th>USD</th>
-    		<th>Agregar</th>
-    		
+			<th>Producto</th>
+			<th>Marca</th>
 			
+			<th>Hexadecimal</th>
+			<th>Color</th>
+			<th>Talla</th>
+			<th>C&oacute;digo barras</th>
+			
+			<th>Precio MXN</th>
+			<th>USD</th>
+			<th>Inventario</th>
+			<th>Agregar</th>
+			
+			<th class="text-center">Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -234,11 +234,9 @@ $id_categoria = $_POST["id_categoria"];
 	
 	
 	?>
-	<?php /**
 	<tr>
 		<td><?php echo $qry_resultados; ?></td>
 	</tr>
-	*/ ?>
 	<?php foreach($resultados as $resultado): ?>
 	
 	
@@ -264,23 +262,22 @@ $id_categoria = $_POST["id_categoria"];
 		?>
 			
 		<tr id="element<?php echo $id_resultado; ?>">
-			<td><?php echo $resultado->Codigo_Barras; ?></td>
 			<td><?php echo $nombre; ?></td>
 			<td><?php echo $resultado->marca; ?></td>
-			<td><?php echo $resultado->color; ?></td>
+			<td><?php echo $resultado->Codigo_Hexadecimal; ?></td>
 			<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
-			
 			<td><?php echo $resultado->talla; ?></td>
-			<td><?php echo $resultado->Cantidad_Inventario; ?><?php //print_r($resultado); ?></td>
+			<td><?php echo $resultado->Codigo_Barras; ?></td>
 			<td><?php echo $resultado->Costo_Venta; ?></td>
 			
 			<td><?php echo $resultado->Dolar; ?></td>
+			<td><?php echo $resultado->Cantidad_Inventario; ?><?php //print_r($resultado); ?></td>
 			<td><a onclick="agregar_producto('<?php echo $id_resultado; ?>')"><i class="icon-checkmark2"></i></a></td>
 
 			<?php /**
 			<td><?php echo $hexadecimal; ?></td>
 			<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
-			
+			*/ ?>
 			
 			<td class="text-center">
 				<div class="list-icons">
@@ -292,12 +289,13 @@ $id_categoria = $_POST["id_categoria"];
 						<div class="dropdown-menu dropdown-menu-right">
 							<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
 							<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+							<?php /**
+							<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+							*/ ?>
 						</div>
 					</div>
 				</div>
 			</td>
-			*/ ?>
-			
 		</tr>
 		<?php //endfor; ?>
 		<?php endforeach; ?>

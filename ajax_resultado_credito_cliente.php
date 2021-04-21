@@ -13,19 +13,31 @@ $qry_cliente = "select * from ds_tbl_cliente where Id_Cliente = $id_cliente";
 $cliente = $obj->get_row($qry_cliente);
 
 ?>
+
 <div id="resultados_ventas">
+	<div class="card-header header-elements-inline">
+    	<h5 class="card-title">&nbsp;</h5>
+    	<div class="header-elements">
+    		<div class="list-icons">
+        		<!-- 
+        		<a class="list-icons-item" data-action="collapse"></a>
+        		<a class="list-icons-item" data-action="reload"></a>
+        		-->
+        		<a class="list-icons-item" data-action="remove" onclick="$('#banner_fondo').hide(); $('#banner_contenido').hide(); "></a>
+        	</div>
+    	</div>
+    </div>
 	<b style="font-size:18px; padding-left:40px;"><?php echo $cliente->Nombre . " " . $cliente->Apellido_Paterno . " " . $cliente->Apellido_Materno; ?></b>
 	<table class="table datatable-basic">
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Fecha de Venta</th>
-				<th>Monto USD</th>
+				<th>Monto</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 				
-				<th class="text-center">Actions</th>
+				<th class="text-center">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,28 +56,29 @@ $cliente = $obj->get_row($qry_cliente);
 							$completo="Hola";
 							$niveles="Hola";
 							$id_usuario = $id_resultado;
+							
+							
+							
+							$resultado->MontoTotalMXN;
+							$qry_abonos = "select sum(Monto_Abono) as sumatoria from ds_tbl_venta_abono where Id_Venta = $id_resultado";
+							$res_abono = $obj->get_row($qry_abonos);
+							
+							$deuda_restante = $resultado->MontoTotalMXN - $res_abono->sumatoria;
+							
 							?>
 						
-                        
+                        	<?php if($deuda_restante > 0): ?>
 							<tr id="element<?php echo $id_resultado; ?>">
-								
-								
-								<td><?php echo $id_resultado; ?></td>
-                    			<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $resultado->Fecha_Venta; ?></td>
-                    			<td>$ <?php echo $resultado->MontoTotal; ?> USD</td>
+                    			<td><?php echo $resultado->Fecha_Venta; ?></td>
+                    			<td>$ <?php echo number_format($deuda_restante, 2); ?> MXN</td>
 								<td>&nbsp;<?php //if($resultado->Activo == 1): echo "Activo"; else: echo "Inactivo"; endif; ?></td>
-								<?php $sumatoria_total += $resultado->MontoTotal?>
-								
-								
+								<?php $sumatoria_total += $deuda_restante; ?>
 								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $hexadecimal; ?>"></div></td>
 								<td>&nbsp;</td>
-								
-
 								<?php /**
 								<td><?php echo $hexadecimal; ?></td>
 								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
 								*/ ?>
-								
 								<td class="text-center">
 									<div class="list-icons">
 										<div class="dropdown">
@@ -75,8 +88,8 @@ $cliente = $obj->get_row($qry_cliente);
 
 											<div class="dropdown-menu dropdown-menu-right">
 												<a onclick="detalle_venta('<?php echo $id_resultado; ?>')" class="dropdown-item"><!-- <i class="icon-pencil4"></i>--> Ver detalle</a>
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><!-- <i class="icon-bin"></i>--> Pagar</a>
 												<?php /**
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><!-- <i class="icon-bin"></i>--> Pagar</a>
 												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
 												*/ ?>
 											</div>
@@ -84,14 +97,14 @@ $cliente = $obj->get_row($qry_cliente);
 									</div>
 								</td>
 							</tr>
+							<?php endif; ?>
 							<?php //endfor; ?>
 							<?php endforeach; ?>
 							
 						</tbody>
 						<tr>
-            				<th>Total</th>
-            				<th>&nbsp;</th>
-            				<th>$ <?php echo $sumatoria_total; ?> USD</th>
+            				<th><b>Total</b></th>
+            				<th><b>$ <?php echo number_format($sumatoria_total, 2); ?> MXN</b></th>
             				<th>&nbsp;</th>
             				<th>&nbsp;</th>
             				<th>&nbsp;</th>

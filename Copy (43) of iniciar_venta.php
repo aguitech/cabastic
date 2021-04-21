@@ -1270,16 +1270,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
         						</div>
                             </div>
                         </div>
-                        <?php if($_GET["hector"] == "true"): ?>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                             	&nbsp;
-                            </div>
-                            <div class="form-group col-md-6">
-                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
-                            </div>
-                        </div>
-                        <?php endif; ?>
                         <?php /**
 						<div class="form-row">
                             <div class="form-group col-md-6">

@@ -43,7 +43,7 @@ sin resultados
 <!--					            <input name = "shipping_1" value = "0" type = "hidden">-->
 <!--					        </div>-->
 
-<h3>Productos agregados</h3>
+
 <table class="table datatable-basic">
 	<thead>
 	<tr>
@@ -69,7 +69,6 @@ sin resultados
 	<tbody>
 	<?php 
 	//exit;
-	$inc = 0;
 	?>
 	<?php foreach($_SESSION["producto"] as $clave => $valor){ ?>
 	<tr>
@@ -104,36 +103,25 @@ sin resultados
 		<td><?php echo $producto->marca; ?></td>
 		<td><?php echo $producto->color; ?></td>
 		<td><?php echo $producto->talla; ?></td>
-		<td><div id="resultado_precio_normal" onclick="$(this).hide(); $('#resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>').show();"><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></div><div id="resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>" style="display:none;"><input type="text" name="" value="<?php echo $producto->Costo_Venta; ?>" onkeyup="actualizar_precio_admin(this.value, <?php echo $_SESSION["cantidad"][$i]; ?>, <?php echo $producto->Id_Producto; ?>)" /></div></td>
-		<?php /**
 		<td><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></td>
-		*/ ?>
-		<td>
-			<span id="resultado_precio_administrador<?php echo $producto->Id_Producto; ?>">
-			<?php //echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?>
-			<?php echo "$" . number_format($_SESSION["precio"][$i] * $_SESSION["cantidad"][$i], 2); ?>
-			<?php print_r($_SESSION); ?>
-			<br />
-			<?php echo $_SESSION["precio"][$i]; ?>
-			</span>
-		</td>
+		
+		<td><?php echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?></td>
 		
 		
-		<td>
+			
 		
 			<?php 
-			$cantidad_precio = $_SESSION["precio"][$i] * $_SESSION["cantidad"][$i];
+			$cantidad_precio = $producto->Costo_Venta * $_SESSION["cantidad"][$i];
 			$importe_total+=$cantidad_precio;
 			
 			?>
-			
-
+		<td>
 			<div style="float:left; margin-left:20px; width:100px; cursor:pointer;" onclick="quitar_producto('<?php echo $producto->Id_Producto; ?>', 'quitar');">
 				<i class="icon-cross3"></i>
 			</div>
 			<?php //exit();
 			?>
-			<?php $inc = $i+1; ?>
+			<?php //$inc = $i+1; ?>
 			<div id = "item_<?php echo $inc; ?>" class = "itemwrap">
 	            <input name = "item_name_<?php echo $inc; ?>" value = "<?php echo $producto->Nombre; ?>" type = "hidden">
 	            <input name = "quantity_<?php echo $inc; ?>" value = "<?php echo $_SESSION["cantidad"][$i]; ?>" type = "hidden">
@@ -142,7 +130,7 @@ sin resultados
 	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $producto["precio"] - ((100 / $producto["precio"]) * ($producto["descuento"])); ?>" type = "hidden">
 	            */ ?>
 	            
-	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $_SESSION["precio"][$i]; ?>" type = "hidden">
+	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $producto->Costo_Venta; ?>" type = "hidden">
 	            
 	            <?php /**
 	            <?php if($producto->descuento == "" || $producto->descuento == "0"){ ?>

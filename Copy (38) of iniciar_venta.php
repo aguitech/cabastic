@@ -47,9 +47,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 	include "core_title.php";
 
 	 ?>
-	 <script src='select2/dist/js/select2.min.js' type='text/javascript'></script>
-
-        <link href='select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
 	<script type="text/javascript">
 	function filtrar_tipo_producto(id_tipo_producto){
 		$.ajax({
@@ -524,18 +521,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 		   }
 
 
-		   function limpiar_filtros(){
-				var id_marca = $("#id_marca").val("");
-				   var id_producto = $("#id_producto").val("");
-				   var id_talla = $("#id_talla").val("");
-				   var id_color = $("#id_color").val("");
-				   var id_genero = $("#id_genero").val("");
-				   var id_almacen =  $("#id_almacen").val("");
-				   var id_tipo_producto =  $("#id_tipo_producto").val("");
-				   var id_categoria =  $("#id_categoria").val("");
-				   
-				filtrar_resultados_tabla();
-			}
+
 		   function filtrar_resultados_tabla(){
 
 
@@ -1041,17 +1027,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 	                	</div>
 					</div>
 					<div>
-					<style>
-		             .select2-selection--single{
-		             	height:34px !important;
-		             }
-		             .select2{
-		             	height:34px !important;
-		             }
-		             .select2-search__field{
-		             	padding-left:50px !important;
-		             }
-		           </style>
+					
 						<div class="form-row">
                             <div class="form-group col-md-6">
                              	<div>Cliente a vender:</div>
@@ -1059,51 +1035,11 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
         						$qry_cliente = "select * from ds_tbl_cliente where Activo = 1 order by Nombre, Apellido_Paterno asc";
         						$clientes = $obj->get_results($qry_cliente);
         						?>
-        						
         						<select name="id_cliente" id="id_cliente" class="form-control">
         							<?php foreach ($clientes as $cliente): ?>
         							<option value="<?php echo $cliente->Id_Cliente; ?>"><?php echo $cliente->Nombre . " " . $cliente->Apellido_Paterno . " " . $cliente->Apellido_Materno; ?></option>
         							<?php endforeach; ?>
         						</select>
-        						
-        						<?php /**
-        						<br /><br /><br />
-        						<!-- Dropdown -->       
-                                <select id='selUser' style='width: 200px;'>
-                                    <option value='0'>-- Select User --</option>          
-                                    <option value='1'>Yogesh singh</option>  
-                                    <option value='2'>Sonarika Bhadoria</option>   
-                                    <option value='3'>Anil Singh</option>        
-                                    <option value='4'>Vishal Sahu</option>        
-                                    <option value='5'>Mayank Patidar</option>        
-                                    <option value='6'>Vijay Mourya</option>        
-                                    <option value='7'>Rakesh sahu</option> 
-                                </select>   
-                        
-                                <input type='button' value='Seleted option' id='but_read'>
-                        
-                                <br/>
-                                <div id='result'></div>
-                        */ ?>
-                                <!-- Script -->
-                                <script>
-                                $(document).ready(function(){
-                                    
-                                    // Initialize select2
-                                    //$("#selUser").select2();
-                                	$("#id_cliente").select2();
-                                    
-                        /**
-                                    // Read selected option
-                                    $('#but_read').click(function(){
-                                        var username = $('#selUser option:selected').text();
-                                        var userid = $('#selUser').val();
-                                   
-                                        $('#result').html("id : " + userid + ", name : " + username);
-                                    });
-                                    */
-                                });
-                                </script>
                             </div>
                             <div class="form-group col-md-6">
                              	<div>Evento:</div>
@@ -1220,7 +1156,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                            <?php /**
                             <div class="form-group col-md-6">
                              	<div>Filtro por almacen:</div>
                              	<div id="resultado_filtrado_marca">
@@ -1232,8 +1167,8 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                            */ ?>
-                            <input type="hidden" name="id_almacen" id="id_almacen" value="" />
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-6">
                              	<div>Filtro por talla:</div>
                              	<div id="resultado_filtrado_producto">
@@ -1250,9 +1185,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            
                             <div class="form-group col-md-6">
                              	<div>Filtro por color:</div>
                                 <div id="resultado_filtrado_talla">
@@ -1270,28 +1202,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
         						</div>
                             </div>
                         </div>
-                        <?php if($_GET["hector"] == "true"): ?>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                             	&nbsp;
-                            </div>
-                            <div class="form-group col-md-6">
-                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        <?php /**
-						<div class="form-row">
-                            <div class="form-group col-md-6">
-                             	&nbsp;
-                            </div>
-                            <div class="form-group col-md-6">
-                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
-                            </div>
-                        </div>
-                        */ ?>
-                        
-                        
                         <?php /**
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -1462,6 +1372,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
     								</td>
     								*/ ?>
     								
+    								
     							</tr>
     							<?php //endfor; ?>
     							<?php endforeach; ?>
@@ -1470,15 +1381,23 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
     					</table>
     				</div>
 					
+					
 					<div id="resultado_venta">
 						&nbsp;
 					</div>
 					
 				</div>
 				<!-- /basic datatable -->
-				
+
+
+
 			</div>
 			<!-- /content area -->
+
+
+
+
+
 
 			<!-- Footer -->
 			<?php include "core_footer.php"; ?>
@@ -1489,5 +1408,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 
 	</div>
 	<!-- /page content -->
+
 </body>
 </html>

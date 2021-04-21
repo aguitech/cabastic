@@ -82,9 +82,9 @@ $cliente = $obj->get_row($qry_cliente);
 						<thead>
     						<tr>
                 				<th>Cantidad</th>
-                				<th>C&oacute;digo de Barras</th>
                 				<th>Producto</th>
                 				<th>Descripci&oacute;n</th>
+                				<th>C&oacute;digo de Barras</th>
                 				
                 				<th class="text-center">&nbsp;</th>
                 			</tr>
@@ -97,7 +97,6 @@ $cliente = $obj->get_row($qry_cliente);
     								
     								
                     			<td><?php echo $producto->Cantidad; ?></td>
-    							<td><?php echo $producto->Codigo_Barras; ?></td>
     							<td><?php echo $producto->Nombre; ?></td>
                     			<td><?php echo $producto->Descripcion; //print_r($producto); ?></td>
                     			
@@ -113,6 +112,7 @@ $cliente = $obj->get_row($qry_cliente);
     							<td><?php echo $producto->MontoVenta; //echo $producto->MontoVenta; ?></td>
     							<td><?php echo ($producto->Dolar * ($producto->IVA / 100)) + $producto->Dolar; //echo $producto->MontoVenta; ?></td>
     							*/ ?>
+    							<td><?php echo $producto->Codigo_Barras; ?></td>
     							<td class="text-center">
     								<div class="list-icons">
     									<div class="dropdown">
@@ -160,7 +160,7 @@ $cliente = $obj->get_row($qry_cliente);
                 			 $deuda_restante = $resultado->MontoTotalMXN - $res_abono->sumatoria;
                 			 ?>
                 			 <td style="text-align:right;">Deuda total<br /><b style="font-size:18px; padding-left:40px;">$ <?php echo number_format($resultado->MontoTotalMXN, 2); ?> MXN</b></td>
-                			 <td style="text-align:right;">Deuda restante<br /><b style="font-size:18px; padding-left:40px;">$ <?php echo number_format($deuda_restante, 2); ?> MXN</b></td>
+                			<<td style="text-align:right;">Deuda restante<br /><b style="font-size:18px; padding-left:40px;">$ <?php echo number_format($deuda_restante, 2); ?> MXN</b></td>
                 			<?php  /**
                 			<td><?php echo $qry_abonos; print_r($res_abono); ?></td>
                 			*/ ?>
@@ -183,12 +183,10 @@ $cliente = $obj->get_row($qry_cliente);
 					<table class="table datatable-basic">
 						<thead>
     						<tr>
-                				<th>Fecha</th>
                 				<th>Monto</th>
+                				<th>Fecha</th>
                 				
-                				<?php /**
                 				<th class="text-center">&nbsp;</th>
-                				*/ ?>
                 			</tr>
             			</thead>
             			<tbody>
@@ -196,9 +194,8 @@ $cliente = $obj->get_row($qry_cliente);
             				<?php $id_abono = $abono->Id_Venta_Abono; ?>
             				
                 			<tr id="element<?php echo $id_abono; ?>">
-    							<td><?php echo $abono->Fecha_Abono; ?></td>
-    							
-                    			<td>$<?php echo number_format($abono->Monto_Abono, 2); ?>MXN</td>
+    								
+                    			<td><?php echo $abono->Monto_Abono; ?></td>
                     			<?php /**
                     			<td><?php echo (($producto->Dolar * ($producto->IVA / 100)) + $producto->Dolar); //echo $producto->MontoVenta; ?></td>
     							<td><?php echo ($producto->Dolar * ($producto->IVA / 100)) + $producto->Dolar; //echo $producto->MontoVenta; ?></td>
@@ -208,10 +205,8 @@ $cliente = $obj->get_row($qry_cliente);
     							
     							<td><?php echo $producto->MontoVenta; //echo $producto->MontoVenta; ?></td>
     							<td><?php echo ($producto->Dolar * ($producto->IVA / 100)) + $producto->Dolar; //echo $producto->MontoVenta; ?></td>
-    							
-    							*
     							*/ ?>
-    							<?php /**
+    							<td><?php echo $abono->Fecha_Abono; ?></td>
     							<td class="text-center">
     								<div class="list-icons">
     									<div class="dropdown">
@@ -221,12 +216,14 @@ $cliente = $obj->get_row($qry_cliente);
     
     										<div class="dropdown-menu dropdown-menu-right">
     											<a href="#" class="dropdown-item" onclick="realizar_pago(<?php echo $id_venta; ?>);"><!-- <i class="icon-bin"></i>--> Pagar</a>
-    											
+    											<?php /**
+    											<a onclick="detalle_venta('<?php echo $id_producto; ?>')" class="dropdown-item"><!-- <i class="icon-pencil4"></i>--> Ver detalle</a>
+    											<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+    											*/ ?>
     										</div>
     									</div>
     								</div>
     							</td>
-    							*/ ?>
     						</tr>
 							<?php endforeach; ?>
 						</tbody>

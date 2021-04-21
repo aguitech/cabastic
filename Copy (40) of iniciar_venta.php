@@ -524,18 +524,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 		   }
 
 
-		   function limpiar_filtros(){
-				var id_marca = $("#id_marca").val("");
-				   var id_producto = $("#id_producto").val("");
-				   var id_talla = $("#id_talla").val("");
-				   var id_color = $("#id_color").val("");
-				   var id_genero = $("#id_genero").val("");
-				   var id_almacen =  $("#id_almacen").val("");
-				   var id_tipo_producto =  $("#id_tipo_producto").val("");
-				   var id_categoria =  $("#id_categoria").val("");
-				   
-				filtrar_resultados_tabla();
-			}
+
 		   function filtrar_resultados_tabla(){
 
 
@@ -1048,9 +1037,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 		             .select2{
 		             	height:34px !important;
 		             }
-		             .select2-search__field{
-		             	padding-left:50px !important;
-		             }
 		           </style>
 						<div class="form-row">
                             <div class="form-group col-md-6">
@@ -1066,7 +1052,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
         							<?php endforeach; ?>
         						</select>
         						
-        						<?php /**
+        						<?php if($_GET["hector"] == true): ?>
         						<br /><br /><br />
         						<!-- Dropdown -->       
                                 <select id='selUser' style='width: 200px;'>
@@ -1084,7 +1070,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
                         
                                 <br/>
                                 <div id='result'></div>
-                        */ ?>
+                        
                                 <!-- Script -->
                                 <script>
                                 $(document).ready(function(){
@@ -1104,6 +1090,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
                                     */
                                 });
                                 </script>
+        						<?php endif; ?>
                             </div>
                             <div class="form-group col-md-6">
                              	<div>Evento:</div>
@@ -1220,7 +1207,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                            <?php /**
                             <div class="form-group col-md-6">
                              	<div>Filtro por almacen:</div>
                              	<div id="resultado_filtrado_marca">
@@ -1232,8 +1218,8 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                            */ ?>
-                            <input type="hidden" name="id_almacen" id="id_almacen" value="" />
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-6">
                              	<div>Filtro por talla:</div>
                              	<div id="resultado_filtrado_producto">
@@ -1250,9 +1236,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            
                             <div class="form-group col-md-6">
                              	<div>Filtro por color:</div>
                                 <div id="resultado_filtrado_talla">
@@ -1270,28 +1253,6 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
         						</div>
                             </div>
                         </div>
-                        <?php if($_GET["hector"] == "true"): ?>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                             	&nbsp;
-                            </div>
-                            <div class="form-group col-md-6">
-                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        <?php /**
-						<div class="form-row">
-                            <div class="form-group col-md-6">
-                             	&nbsp;
-                            </div>
-                            <div class="form-group col-md-6">
-                             	<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="limpiar_filtros();">Limpiar Filtros</button>
-                            </div>
-                        </div>
-                        */ ?>
-                        
-                        
                         <?php /**
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -1462,6 +1423,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
     								</td>
     								*/ ?>
     								
+    								
     							</tr>
     							<?php //endfor; ?>
     							<?php endforeach; ?>
@@ -1469,6 +1431,7 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
     						</tbody>
     					</table>
     				</div>
+					
 					
 					<div id="resultado_venta">
 						&nbsp;

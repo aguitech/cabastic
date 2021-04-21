@@ -110,8 +110,7 @@ sin resultados
 		*/ ?>
 		<td>
 			<span id="resultado_precio_administrador<?php echo $producto->Id_Producto; ?>">
-			<?php //echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?>
-			<?php echo "$" . number_format($_SESSION["precio"][$i] * $_SESSION["cantidad"][$i], 2); ?>
+			<?php echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?>
 			<?php print_r($_SESSION); ?>
 			<br />
 			<?php echo $_SESSION["precio"][$i]; ?>
@@ -119,10 +118,10 @@ sin resultados
 		</td>
 		
 		
-		<td>
+			
 		
 			<?php 
-			$cantidad_precio = $_SESSION["precio"][$i] * $_SESSION["cantidad"][$i];
+			$cantidad_precio = $producto->Costo_Venta * $_SESSION["cantidad"][$i];
 			$importe_total+=$cantidad_precio;
 			
 			?>
@@ -142,7 +141,7 @@ sin resultados
 	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $producto["precio"] - ((100 / $producto["precio"]) * ($producto["descuento"])); ?>" type = "hidden">
 	            */ ?>
 	            
-	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $_SESSION["precio"][$i]; ?>" type = "hidden">
+	            <input name = "amount_<?php echo $inc; ?>" value = "<?php echo $producto->Costo_Venta; ?>" type = "hidden">
 	            
 	            <?php /**
 	            <?php if($producto->descuento == "" || $producto->descuento == "0"){ ?>

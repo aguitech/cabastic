@@ -43,5 +43,7 @@ tr.even{
 tr.odd{
     background:#F5F5F5;	
 }
-
+th{
+	font-weight:bold;
+}
 </style>

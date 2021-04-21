@@ -211,83 +211,40 @@ $( document ).ready(function() {
      console.log( "ready!" );
     
 });
-function enviar_correo_detalle(cliente, nombre, email){
-	var val_confirm = "Deseas enviar un detalle de pago a " + nombre + " al correo: " + email;
-	if(confirm(val_confirm)){
-    	$.ajax({
-            type: "POST",
-            //url:"ajax_graph_hours.php",
-            //url:"ajax_resultado_tipo_producto.php",
-            url:"ajax_enviar_correo_cuentas_por_cobrar_detalle.php",
-            data: { cliente:cliente },
-            success:function(data){
-                //alert(data);
-                
-                /*
-    
-                $("#resultado_filtrado").html(data);
-                
-                $("#resultado_venta").html("");
-                $("#resultado_realizar_pago").html("");
-                
-                
-                var $link = $(this);
-        		    var anchor  = $link.attr('href');
-        		    $('html, body').stop().animate({
-        		        scrollTop: $(anchor).offset().top
-        		    }, 1000);
-        		    $("#menu_mobile").hide();
-                */
-                /*
-               var anchor  = $("#resultados_ventas");
-    		    $('html, body').stop().animate({
-    		        scrollTop: $(anchor).offset().top
-    		    }, 1000);
-    		    */
+function enviar_correo_recordatorio(cliente){
+	$.ajax({
+        type: "POST",
+        //url:"ajax_graph_hours.php",
+        //url:"ajax_resultado_tipo_producto.php",
+        url:"ajax_enviar_correo_cuentas_por_cobrar.php",
+        data: { cliente:cliente },
+        success:function(data){
+            alert(data);
             
-            }
-    	});
-	}
-}
+            /*
 
-		
-function enviar_correo_recordatorio(cliente, nombre, email){
-	var val_confirm = "Deseas enviar un recordatorio de pago a " + nombre + " al correo: " + email;
-	if(confirm(val_confirm)){
-    	$.ajax({
-            type: "POST",
-            //url:"ajax_graph_hours.php",
-            //url:"ajax_resultado_tipo_producto.php",
-            url:"ajax_enviar_correo_cuentas_por_cobrar.php",
-            data: { cliente:cliente },
-            success:function(data){
-                //alert(data);
-                
-                /*
-    
-                $("#resultado_filtrado").html(data);
-                
-                $("#resultado_venta").html("");
-                $("#resultado_realizar_pago").html("");
-                
-                
-                var $link = $(this);
-        		    var anchor  = $link.attr('href');
-        		    $('html, body').stop().animate({
-        		        scrollTop: $(anchor).offset().top
-        		    }, 1000);
-        		    $("#menu_mobile").hide();
-                */
-                /*
-               var anchor  = $("#resultados_ventas");
+            $("#resultado_filtrado").html(data);
+            
+            $("#resultado_venta").html("");
+            $("#resultado_realizar_pago").html("");
+            
+            
+            var $link = $(this);
+    		    var anchor  = $link.attr('href');
     		    $('html, body').stop().animate({
     		        scrollTop: $(anchor).offset().top
     		    }, 1000);
-    		    */
-            
-            }
-    	});
-	}
+    		    $("#menu_mobile").hide();
+            */
+            /*
+           var anchor  = $("#resultados_ventas");
+		    $('html, body').stop().animate({
+		        scrollTop: $(anchor).offset().top
+		    }, 1000);
+		    */
+        
+        }
+	});
 }
 function Eliminar(t_id,t_completo){
 //alert("Eliminar; "+t_id);
@@ -623,16 +580,12 @@ function guardar_pago(){
 	    type: "POST",
 	    data: formData,
 	    success: function (msg) {
-	      //alert(msg)
-	      filtrar_cliente(msg);
-	      
-			
+	      alert(msg)
 	    },
 	    cache: false,
 	    contentType: false,
 	    processData: false
 	});
-	  detalle_venta($("#id_venta").val());
 }
 function filtrar_marca(id){
 
@@ -795,23 +748,16 @@ function cargar_editar(id){
      $result = $obj->get_row($qry_result);
      
      
-     $qry_result_abonos = "select sum(ds_tbl_venta_abono.Monto_Abono) as total from ds_tbl_venta_abono left join ds_tbl_venta on ds_tbl_venta.Id_Venta = ds_tbl_venta_abono.Id_Venta where ds_tbl_venta.Id_Cliente = $id_resultado";
-     //echo $qry_result;
-     //exit;
-     $result_abono = $obj->get_row($qry_result_abonos);
-     
-     
-     $total_restante = $result->total - $result_abono->total;
      ?>
      
      
-    <?php if($total_restante >= 0): ?>
+    
     
      <tr id="element<?php echo $id_resultado; ?>">
-     <td onclick="filtrar_cliente(<?php echo $id_resultado; ?>)"><?php echo $resultado->Fecha_Venta; ?><?php //print_r($result_abono); ?></td>
+     <td onclick="filtrar_cliente(<?php echo $id_resultado; ?>)"><?php echo $resultado->Fecha_Venta; ?><?php //print_r($result); ?></td>
     
      <td onclick="filtrar_cliente(<?php echo $id_resultado; ?>)"><?php echo $resultado->Apellido_Paterno . " " . $resultado->Apellido_Materno . " " . $resultado->Nombre; ?></td>
-     <td onclick="filtrar_cliente(<?php echo $id_resultado; ?>)"><?php echo " &nbsp; $ " . number_format($total_restante, 2) . " MXN"; ?><?php //print_r( $result_abono); ?></td>
+     <td onclick="filtrar_cliente(<?php echo $id_resultado; ?>)"><?php echo " &nbsp; $ " . number_format($result->total, 2) . " MXN"; ?></td>
     
     
     
@@ -829,8 +775,7 @@ function cargar_editar(id){
     
      <div class="dropdown-menu dropdown-menu-right">
      <a onclick="filtrar_cliente(<?php echo $id_resultado; ?>)" class="dropdown-item"><i class="icon-pencil4"></i> Registrar pago</a>
-     <a onclick="enviar_correo_recordatorio('<?php echo $id_resultado; ?>', '<?php echo $resultado->Apellido_Paterno . " " . $resultado->Apellido_Materno . " " . $resultado->Nombre; ?>', '<?php echo $resultado->Correo_Electronico; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Enviar correo</a>
-     <a onclick="enviar_correo_detalle('<?php echo $id_resultado; ?>', '<?php echo $resultado->Apellido_Paterno . " " . $resultado->Apellido_Materno . " " . $resultado->Nombre; ?>', '<?php echo $resultado->Correo_Electronico; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Correo detalle de cuenta</a>
+     <a onclick="enviar_correo_recordatorio('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Enviar correo</a>
      <a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
      
      <?php /**
@@ -844,7 +789,6 @@ function cargar_editar(id){
      </td>
      </tr>
      <?php //endfor; ?>
-     <?php endif; ?>
      <?php endforeach; ?>
     
      </tbody>
@@ -963,6 +907,15 @@ function cargar_editar(id){
                         </style>
 
 
+
+
+
+
+
+
+
+
+
 </div>
 </div>
 <!-- /basic datatable -->
@@ -971,6 +924,9 @@ function cargar_editar(id){
 
 </div>
 <!-- /content area -->
+
+
+
 
 
 

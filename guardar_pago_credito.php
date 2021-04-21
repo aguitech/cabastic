@@ -7,6 +7,16 @@ $tipo_metodo_pago_val = $_POST["tipo_metodo_pago"];
 
 $qry_detalle_venta = "select * from ds_tbl_venta where Id_Venta = $id_venta_val";
 
+
+
+
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+$tipo_cambio_euro_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 2");
+
+$tipo_cambio_euro = $tipo_cambio_euro_val->Valor;
 ?>
 
 <?php /**
