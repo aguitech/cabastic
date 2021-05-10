@@ -1,4 +1,6 @@
 <?php include("includes/includes.php"); ?>
+<?php include("common_files/sesion.php"); ?>
+
 <?php 
 $nombre_seccion = "Detalle de evento";
 $tbl_main = "ds_cat_marca";
@@ -11,10 +13,12 @@ $qry_evento_detalle = "select * from ds_tbl_evento where Id_Evento = {$id_evento
 $evento_detalle = $obj->get_row($qry_evento_detalle);
 ?>
 <?php
+/*
 include_once("login.php");
 ?>
 <?php
 include_once("db.php");
+*/
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){
@@ -51,31 +55,6 @@ if($_POST["Descripcion"] != ""){
 	include "core_title.php";
 
 	 ?>
-
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="global_assets/js/main/jquery.min.js"></script>
-	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script src="full/assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
-	<!-- /theme JS files -->
-
 	<script type="text/javascript">
 		$( document ).ready(function() {
     		console.log( "ready!" );
@@ -299,7 +278,7 @@ if($_POST["Descripcion"] != ""){
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>

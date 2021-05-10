@@ -1,4 +1,3 @@
-
 <?php include("includes/includes.php"); ?>
 <?php /**
 <div>
@@ -27,26 +26,102 @@ $qry_detalle_venta = "select * from ds_tbl_venta where Id_Venta = $id_venta_val"
 
 
 //echo $qry_detalle_venta;
-$qry_pagos_realizados = "select * from ds_tbl_venta_metodo_pago where Id_Venta = $id_venta_val";
+//$qry_pagos_realizados = "select * from ds_tbl_venta_metodo_pago where Id_Venta = $id_venta_val";
+$qry_pagos_realizados = "select * from ds_tbl_venta_metodo_pago left join ds_cat_metodo_pago on ds_cat_metodo_pago.Id_Forma_Pago = ds_tbl_venta_metodo_pago.Id_Metodo_Pago where ds_tbl_venta_metodo_pago.Id_Venta = $id_venta_val";
+
+//echo $qry_pagos_realizados;
 $pagos_realizados = $obj->get_results($qry_pagos_realizados);
 ?>
 <?php 
 $monto_acumulado = 0;
 ?>
-<?php foreach($pagos_realizados as $pago_realizado): ?>
-<div>
-	<?php print_r($pago_realizado); ?>
-	<?php 
-	
-	$monto_val = $pago_realizado->Monto;
-	
-	$id_moneda = $pago_realizado->Id_Moneda;
-	
-	$monto_acumulado += $pago_realizado->Monto;
-	?>
+<?php /**
+<div class="card-header header-elements-inline">
+	<h5 class="card-title">&nbsp;</h5>
+	<div class="header-elements">
+		<div class="list-icons">
+    		<!-- 
+    		<a class="list-icons-item" data-action="collapse"></a>
+    		<a class="list-icons-item" data-action="reload"></a>
+    		-->
+    		<a class="list-icons-item" data-action="remove" onclick="cerrar_cargar()"></a>
+    	</div>
+	</div>
 </div>
-<?php endforeach; ?>
+*/ ?>
+<?php if($pagos_realizados == Array()): ?>
+<h2 style="margin-left:40px;">Sin pagos realizados</h2>
+<?php else: ?>
+<table class="table datatable-basic">
+<tr>
+	<th>Monto</th>
+	<th>M&eacute;todo de pago</th>
+	<th>Moneda</th>
+	<th>Terminaci&oacute;n tarjeta</th>
+	<th>Referencia</th>
+</tr>
+<?php foreach($pagos_realizados as $resultado): ?>
 
+	<?php //print_r($resultado); ?>
+	<?php 
+	$id_resultado = $resultado->Id_Venta_Metodo;
+	$monto_val = $resultado->Monto;
+	
+	$id_moneda = $resultado->Id_Moneda;
+	
+	$monto_acumulado += $resultado->Monto;
+	?>
+	<tr id="elementpago<?php echo $id_resultado; ?>">
+								
+								<td>$<?php echo $resultado->Monto; ?>MXN</td>
+								<td>
+									<?php echo $resultado->Descripcion; ?>
+	
+    	
+								</td>
+								<td>
+									<?php //print_r($resultado); ?>
+									<?php //echo $pago_realizado->Id_Moneda;
+							        if($resultado->Id_Moneda == 1){
+                                	    echo "Pagado en moneda nacional";
+                                	}
+                                	if($resultado->Id_Moneda == 2){
+                                	    echo "Pagado en d&oacute;lares";
+                                	}
+                                	
+                                	?>
+								</td>
+								<td>
+									<?php echo $resultado->Terminacion_Tarjerta; ?>
+	
+    	
+								</td>
+								<td>
+									<?php echo $resultado->Referenci; ?>
+								</td>
+								
+								<td class="text-center">
+									<div class="list-icons">
+										<div class="dropdown">
+											<a href="#" class="list-icons-item" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<div class="dropdown-menu dropdown-menu-right">
+												<a href="#" class="dropdown-item" onclick="eliminar_pago(<?php echo $id_resultado; ?>);"><i class="icon-bin"></i> Eliminar</a>
+												<?php /**
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												*/ ?>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+	
+<?php endforeach; ?>
+</table>
+<?php endif; ?>
 <?php 
 $detalle_venta = $obj->get_row($qry_detalle_venta);
 
@@ -59,32 +134,46 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
     <div class="form-row">
     	<div class="form-group col-md-4">
     		<h2>Detalle de venta</h2>
-    		Fecha de venta: <?php echo $detalle_venta->Fecha_Venta; ?>
+    		<?php /*
+    		Fecha de venta: <?php 
+        			$date = new DateTime($detalle_venta->Fecha_Venta);
+        			echo $date->format('d-m-Y');
+        			//echo $detalle_venta->Fecha_Venta; 
+        			?>
             <br />
-            Monto Total MXN: <?php echo $detalle_venta->MontoTotalMXN; ?>
+            */ ?>
+            Monto Total MXN: $<?php echo number_format($detalle_venta->MontoTotalMXN, 2); ?>
             <br />
-            Monto Total USD: <?php echo $detalle_venta->MontoTotal; ?>
+            Monto Total USD: $<?php echo number_format($detalle_venta->MontoTotal, 2); ?>
     
         </div>
         <div class="form-group col-md-4">
     		<h2>Monto acumulado</h2>
     
-            Monto Total USD: <?php echo $monto_acumulado; ?>
+            Monto Total MXN: $<?php $monto_acumlado_dolar = $monto_acumulado / $tipo_cambio_dolar; 
+            echo number_format($monto_acumulado, 2);
+            ?>
             <br />
-            Monto Total MXN: <?php echo $monto_acumlado_dolar = $monto_acumulado * $tipo_cambio_dolar; ?>
+            Monto Total USD: $<?php echo number_format(($monto_acumulado / $tipo_cambio_dolar), 2); ?>
             		
     	</div>
     	<div class="form-group col-md-4">
     		<h2>Monto restante</h2>
-            Monto Restante USD: <?php echo $monto_restante_usd = $detalle_venta->MontoTotal - $monto_acumlado_dolar; ?>
-            <br />
-            Monto Restante MXN: <?php echo $monto_restante_mxn = $detalle_venta->MontoTotalMXN - $monto_acumulado; ?>
-    		
+            Monto Restante MXN: $<?php $monto_restante_mxn = $detalle_venta->MontoTotalMXN - $monto_acumulado;
+            echo number_format($monto_restante_mxn, 2);
+            ?>
+    		<br />
+            Monto Restante USD: $<?php $monto_restante_usd = $detalle_venta->MontoTotal - $monto_acumlado_dolar;
+            echo number_format($monto_restante_usd, 2);
+            ?>
+            
     		<input type="hidden" id="monto_restante_mxn" value="<?php echo $monto_restante_mxn; ?>" />
     		<input type="hidden" id="monto_restante_usd" value="<?php echo $monto_restante_usd; ?>" />
     		
     	</div>
     </div>
+
+
 
 </div>
 
@@ -109,18 +198,18 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
     	<div class="form-row">
     		<div class="form-group col-md-6">
     			<div>Monto</div>
-    			<input type="text" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
+    			<input type="number" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
             
             </div>
             <div class="form-group col-md-6">
     			<div>Terminaci&oacute;n Tarjerta</div>
-    			<input type="text" placeholder="Terminaci&oacute;n Tarjerta" name="terminacion_tarjeta" id="terminacion_tarjeta" value="" class="form-control" />
+    			<input type="number" placeholder="Terminaci&oacute;n Tarjerta" name="terminacion_tarjeta" id="terminacion_tarjeta" value="" class="form-control" />
     		</div>
     	</div>
     	<div class="form-row">
     		<div class="form-group col-md-6">
     			<div>Referencia</div>
-    			<input type="text" placeholder="Referencia" name="referencia" id="referencia" value="" class="form-control" />
+    			<input type="number" placeholder="Referencia" name="referencia" id="referencia" value="" class="form-control" />
             
             </div>
             <div class="form-group col-md-6">
@@ -133,6 +222,8 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
             </div>
     	</div>
     </div>
+    <?php if($monto_acumulado < $detalle_venta->MontoTotalMXN): ?>
+    
     <div>
 		<div class="form-row">
             <div class="form-group col-md-6">
@@ -144,6 +235,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
         </div>
 		
 	</div>
+	<?php endif; ?>
     <?php endif; ?>
     <?php if($_POST["tipo_metodo_pago"] == 2): ?>
     <div class="subtitulo_seccion_interior">Efectivo</div>
@@ -280,7 +372,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
     	<div class="form-row">
     		<div class="form-group col-md-6">
     			<div>Monto</div>
-    			<input type="text" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
+    			<input type="number" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
             
             </div>
             <div class="form-group col-md-6">
@@ -293,6 +385,8 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
             </div>
     	</div>
     </div>
+    <?php if($monto_acumulado < $detalle_venta->MontoTotalMXN): ?>
+    
     <div>
 		<div class="form-row">
             <div class="form-group col-md-6">
@@ -304,6 +398,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
         </div>
 		
 	</div>
+	<?php endif; ?>
     <?php endif; ?>
     <?php if($_POST["tipo_metodo_pago"] == 3): ?>
     <div class="subtitulo_seccion_interior">Cortes&iacute;a</div>
@@ -312,7 +407,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
     	<div class="form-row">
     		<div class="form-group col-md-6">
     			<div>Monto</div>
-    			<input type="text" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
+    			<input type="number" placeholder="Monto" name="monto" id="monto" value="" class="form-control" />
             
             </div>
             <div class="form-group col-md-6">
@@ -325,6 +420,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
             </div>
     	</div>
     </div>
+    <?php if($monto_acumulado < $detalle_venta->MontoTotalMXN): ?>
     <div>
 		<div class="form-row">
             <div class="form-group col-md-6">
@@ -337,6 +433,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
 		
 	</div>
     <?php endif; ?>
+    <?php endif; ?>
     <?php if($_POST["tipo_metodo_pago"] == 4): ?>
     <div class="subtitulo_seccion_interior">Cr&eacute;dito</div>
     <div>Atenci&oacute;n el resto de la compra ser&aacute; otorgado a cr&eacute;dito</div>
@@ -346,7 +443,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
     	<div class="form-row">
     		<div class="form-group col-md-6">
     			<div>Monto</div>
-    			<input type="text" placeholder="Monto" name="monto" id="monto" value="<?php echo $monto_restante_mxn; ?>" class="form-control" />
+    			<input type="number" placeholder="Monto" name="monto" id="monto" value="<?php echo $monto_restante_mxn; ?>" class="form-control" />
             
             </div>
             <div class="form-group col-md-6">
@@ -359,6 +456,8 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
             </div>
     	</div>
     </div>
+    <?php if($monto_acumulado < $detalle_venta->MontoTotalMXN): ?>
+    
     <div>
 		<div class="form-row">
             <div class="form-group col-md-6">
@@ -370,6 +469,7 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
         </div>
 		
 	</div>
+	<?php endif; ?>
     <?php endif; ?>
 </div>
 <div style="margin-top:50px; margin-bottom:50px;">

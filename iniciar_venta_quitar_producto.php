@@ -128,7 +128,7 @@ if($id_producto == 0){
 <?php }else{ ?>
 	<form id = "paypal_checkout" action = "https://www.paypal.com/cgi-bin/webscr" method = "post">
 	
-	<?php include("punto_venta_actual.php"); ?>
-	
+	<?php include("iniciar_venta_actual.php"); ?>
+	<?php print_r($_SESSION); ?>
 	</form>
 <?php } ?>

@@ -1,9 +1,12 @@
 <?php include("includes/includes.php");
-include_once("login.php");
 include("common_files/sesion.php");
 ?>
 <?php
+/**
+include_once("login.php");
+
 include_once("db.php");
+*/
 ?>
 <?php 
 $nombre_seccion = "Asignar inventario a evento";
@@ -101,30 +104,6 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 	include "core_title.php";
 
 	 ?>
-
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="full/assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="global_assets/js/main/jquery.min.js"></script>
-	<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script src="full/assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/datatables_basic.js"></script>
-	<!-- /theme JS files -->
 
 	<script type="text/javascript">
 		$( document ).ready(function() {
@@ -546,7 +525,7 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
 
 						$("#resultado_filtrados").html(data);
-						
+						DatatableBasic.init();
 						//$("#form_venta").html(data);
 						//$(".select_refresh").formSelect();
 					}
@@ -762,7 +741,7 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<?php include "core_sidebar-mobile-toggler.php"; ?>
@@ -979,12 +958,11 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
                         						
 					</div>
 
-					<div id="resultado_filtrados">
+					<div id="resultado_filtrados" style="width:100%; overflow-x:scroll;">
 
     					<table class="table datatable-basic">
     						<thead>
     							<tr>
-    								<th>ID</th>
     								<th>C&oacute;digo barras</th>
     								
     								<th>Producto</th>
@@ -999,8 +977,9 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
     								
     								<th>Tipo Almac&eacute;n</th>
     								<th>Cantidad</th>
-    								
+    								<?php /**
     								<th class="text-center">Actions</th>
+    								*/ ?>
     							</tr>
     						</thead>
     						<tbody>
@@ -1069,9 +1048,8 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
     							
     							<?php if($resultado->Id_Producto_Detalle != ""){ ?>
     							<tr id="element<?php echo $id_resultado; ?>">
-    								<td><?php echo $id_resultado; ?></td>
     								<td><?php echo $resultado->Codigo_Barras; //print_r($resultado); ?></td>
-    								<td><a href="usuarios_editar.php?id=<?php echo $id_resultado; ?>"><?php echo $nombre; ?></td>
+    								<td><?php echo $nombre; ?></td>
     								<?php /**
     								<td><?php echo $resultado->Descripcion; ?></td>
     								*/ ?>
@@ -1098,7 +1076,7 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
     								<td><?php echo $hexadecimal; ?></td>
     								<td><div style="width:20px; height:20px; border-radius:100%; background:<?php echo $color->Codigo_Hexadecimal; ?>"></div> <?php echo $color->Codigo_Hexadecimal; ?></td>
     								*/ ?>
-    								
+    								<?php /**
     								<td class="text-center">
     									<div class="list-icons">
     										<div class="dropdown">
@@ -1116,13 +1094,13 @@ if($_POST["id_producto"] != "" && $_POST["id_producto_detalle"] != "" && $_POST[
     												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Ver evento</a>
     																			
     												
-    												<?php /**
-    												<a href="usuarios_editar.php?id=<?php echo $id_usuario; ?>" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-    												*/ ?>
+    												
     											</div>
     										</div>
     									</div>
     								</td>
+    								
+    												*/ ?>
     							</tr>
     							<?php } ?>
     							<?php //endfor; ?>

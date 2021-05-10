@@ -50,6 +50,17 @@ $id_venta_val = $_POST["id_venta_val"];
 $id_moneda_val = $_POST["id_moneda_val"];
 $id_metodo_pago = $_POST["id_metodo_pago"];
 
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+
+
+if($id_moneda_val == 2){
+    $monto_val = $tipo_cambio_dolar * $monto_val;
+}else{
+    
+}
+
 $qry_insert_pago = "insert into ds_tbl_venta_metodo_pago (Id_Venta_Metodo, Id_Metodo_Pago, Monto, Terminacion_Tarjerta, Referenci, Id_Venta, Id_Moneda) values ($id_venta_metodo_pago, $id_metodo_pago, $monto_val, $terminacion_tarjeta_val, $referencia_val, $id_venta_val, $id_moneda_val)";
 $obj->query($qry_insert_pago);
 
@@ -85,32 +96,45 @@ $tipo_cambio = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cam
 $tipo_cambio_dolar = $tipo_cambio->Valor;
 ?>
 
+<?php include("iniciar_venta_montos_acumulados"); ?>
 <div style="padding:25px;">
 
     <div class="form-row">
     	<div class="form-group col-md-4">
     		<h2>Detalle de venta</h2>
-    		Fecha de venta: <?php echo $detalle_venta->Fecha_Venta; ?>
+    		<?php /**
+    		Fecha de venta: <?php 
+        			$date = new DateTime($detalle_venta->Fecha_Venta);
+        			echo $date->format('d-m-Y');
+        			//echo $detalle_venta->Fecha_Venta; 
+        			?>
             <br />
-            Monto Total MXN: <?php echo $detalle_venta->MontoTotalMXN; ?>
+            */ ?>
+            Monto Total MXN: $<?php echo number_format($detalle_venta->MontoTotalMXN, 2); ?>
             <br />
-            Monto Total USD: <?php echo $detalle_venta->MontoTotal; ?>
+            Monto Total USD: $<?php echo number_format($detalle_venta->MontoTotal, 2); ?>
     
         </div>
         <div class="form-group col-md-4">
     		<h2>Monto acumulado</h2>
     
-            Monto Total USD: <?php echo $monto_acumulado; ?>
+            Monto Total MXN: $<?php $monto_acumlado_dolar = $monto_acumulado / $tipo_cambio_dolar; 
+            echo number_format($monto_acumulado, 2);
+            ?>
             <br />
-            Monto Total MXN: <?php echo $monto_acumlado_dolar = $monto_acumulado * $tipo_cambio_dolar; ?>
+            Monto Total USD: $<?php echo number_format(($monto_acumulado / $tipo_cambio_dolar), 2); ?>
             		
     	</div>
     	<div class="form-group col-md-4">
     		<h2>Monto restante</h2>
-            Monto Restante USD: <?php echo $monto_restante_usd = $detalle_venta->MontoTotal - $monto_acumlado_dolar; ?>
-            <br />
-            Monto Restante MXN: <?php echo $monto_restante_mxn = $detalle_venta->MontoTotalMXN - $monto_acumulado; ?>
-    		
+            Monto Restante MXN: $<?php $monto_restante_mxn = $detalle_venta->MontoTotalMXN - $monto_acumulado;
+            echo number_format($monto_restante_mxn, 2);
+            ?>
+    		<br />
+            Monto Restante USD: $<?php $monto_restante_usd = $detalle_venta->MontoTotal - $monto_acumlado_dolar;
+            echo number_format($monto_restante_usd, 2);
+            ?>
+            
     		<input type="hidden" id="monto_restante_mxn" value="<?php echo $monto_restante_mxn; ?>" />
     		<input type="hidden" id="monto_restante_usd" value="<?php echo $monto_restante_usd; ?>" />
     		
@@ -119,28 +143,6 @@ $tipo_cambio_dolar = $tipo_cambio->Valor;
 
 </div>
 
-
-
-
-
-
-
-<?php /**
-
-<?php 
-$detalle_venta = $obj->get_row($qry_detalle_venta);
-?>
-
-<?php //print_r($detalle_venta); ?>
-Fecha de venta: <?php echo $detalle_venta->Fecha_Venta; ?>
-<br />
-Monto Total MXN: <?php echo $detalle_venta->MontoTotalMXN; ?>
-<br />
-Monto Total USD: <?php echo $detalle_venta->MontoTotal; ?>
-<br />
-
-
-	*/ ?>
 <div class="form-row">
 	<div class="form-group col-md-3">
     	Monto
@@ -159,11 +161,20 @@ Monto Total USD: <?php echo $detalle_venta->MontoTotal; ?>
 <?php foreach($pagos_realizados as $pago_realizado): ?>
 <div class="form-row">
 	<div class="form-group col-md-3">
-    	<?php echo $pago_realizado->Monto; ?>
+    	$<?php echo $pago_realizado->Monto; ?>MXN
 	</div>
 	<div class="form-group col-md-3">
     	<?php //echo $pago_realizado->Id_Venta; ?>
-    	<?php echo $pago_realizado->Id_Moneda; ?>
+    	<?php //echo $pago_realizado->Id_Moneda; ?>
+    	<?php //echo $pago_realizado->Id_Moneda;
+    	if($pago_realizado->Id_Moneda == 1){
+    	    echo "Pagado en moneda nacional";
+    	}
+    	if($pago_realizado->Id_Moneda == 2){
+    	    echo "Pagado en d&oacute;lares";
+    	}
+    	
+    	?>
 	</div>
 	<div class="form-group col-md-3">
     	<?php echo $pago_realizado->Terminacion_Tarjerta; ?>

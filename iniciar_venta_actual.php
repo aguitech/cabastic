@@ -1,3 +1,7 @@
+<?php 
+$tipo_cambio_dolar_val = $obj->get_row("select * from ds_cat_tipo_cambio where Id_Tipo_Cambio = 1");
+$tipo_cambio_dolar = $tipo_cambio_dolar_val->Valor;
+?>
 <?php if(empty($_SESSION) || $_SESSION["cantidad_productos"] == 0 || $_SESSION["cantidad_productos"] == ""): ?>
 sin resultados
 <?php else: ?>
@@ -43,7 +47,9 @@ sin resultados
 <!--					            <input name = "shipping_1" value = "0" type = "hidden">-->
 <!--					        </div>-->
 
-<h3>Productos agregados</h3>
+<div style="text-align:center; padding-top:40px; border-top:1px solid gray;">
+	<h3>Productos agregados</h3>
+</div>
 <table class="table datatable-basic">
 	<thead>
 	<tr>
@@ -104,21 +110,42 @@ sin resultados
 		<td><?php echo $producto->marca; ?></td>
 		<td><?php echo $producto->color; ?></td>
 		<td><?php echo $producto->talla; ?></td>
-		<td><div id="resultado_precio_normal" onclick="$(this).hide(); $('#resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>').show();"><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></div><div id="resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>" style="display:none;"><input type="text" name="" value="<?php echo $producto->Costo_Venta; ?>" onkeyup="actualizar_precio_admin(this.value, <?php echo $_SESSION["cantidad"][$i]; ?>, <?php echo $producto->Id_Producto; ?>)" /></div></td>
 		<?php /**
-		<td><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></td>
+		<td><div id="resultado_precio_normal" onclick="$(this).hide(); $('#resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>').show();"><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></div><div id="resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>" style="display:none;"><input type="text" name="" value="<?php echo $producto->Costo_Venta; ?>" onkeyup="actualizar_precio_admin(this.value, <?php echo $_SESSION["cantidad"][$i]; ?>, <?php echo $producto->Id_Producto; ?>)" /></div></td>
 		*/ ?>
+		<td>
+			<div id="resultado_precio_normal" onclick="$(this).hide(); $('#resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>').show();">
+			
+			<?php if($_SESSION["precio"][$i] != ""){ ?>
+			<?php echo "$" . number_format($_SESSION["precio"][$i], 2); ?>
+			<?php }else{ ?>
+			<?php echo "$" . number_format($producto->Costo_Venta, 2); ?>
+			
+			<?php } ?>
+			</div>
+			<div id="resultado_precio_actualizar<?php echo $producto->Id_Producto; ?>" style="display:none;">
+				<?php if($_SESSION["precio"][$i] != ""){ ?>
+    			<input type="text" name="" value="<?php echo $_SESSION["precio"][$i]; ?>" onkeyup="actualizar_precio_admin(this.value, <?php echo $_SESSION["cantidad"][$i]; ?>, <?php echo $producto->Id_Producto; ?>)" />
+    			<?php }else{ ?>
+    			<input type="text" name="" value="<?php echo $producto->Costo_Venta; ?>" onkeyup="actualizar_precio_admin(this.value, <?php echo $_SESSION["cantidad"][$i]; ?>, <?php echo $producto->Id_Producto; ?>)" />
+    			<?php } ?>
+    			
+			</div>
+		</td>
+		
+		
+		<?php if($_SESSION["rol"] == 1){ ?>
 		<td>
 			<span id="resultado_precio_administrador<?php echo $producto->Id_Producto; ?>">
 			<?php //echo "$" . number_format($producto->Costo_Venta * $_SESSION["cantidad"][$i], 2); ?>
 			<?php echo "$" . number_format($_SESSION["precio"][$i] * $_SESSION["cantidad"][$i], 2); ?>
-			<?php print_r($_SESSION); ?>
-			<br />
-			<?php echo $_SESSION["precio"][$i]; ?>
+			<?php //print_r($_SESSION); ?>
+			<?php //echo $_SESSION["precio"][$i]; ?>
 			</span>
 		</td>
-		
-		
+		<?php }else{ ?>
+		<td><?php echo "$" . number_format($producto->Costo_Venta, 2); ?></td>
+		<?php } ?>
 		<td>
 		
 			<?php 
@@ -174,7 +201,7 @@ sin resultados
 		<td colspan="9">
 			&nbsp;
 		</td>
-		<td><b>$<?php echo number_format($importe_total, 2); ?></b></td>
+		<td><b id="resultado_total_venta">$<?php echo number_format($importe_total, 2); ?></b></td>
 	</tr>
 	</tbody>
 </table>
@@ -186,15 +213,15 @@ sin resultados
 	<div class="form-row">
         <div class="form-group col-md-3">
          	<div>Descuento</div>
- 			<input type="text" readonly="readonly" placeholder="Descuento porcentaje" name="descuento_porcentaje" id="descuento_porcentaje" value="" class="form-control" />
+ 			<input type="text" placeholder="Descuento porcentaje" name="descuento_porcentaje" id="descuento_porcentaje" value="" class="form-control" onkeyup="descuento_porcentaje_precio(this.value);" />
         </div>
         <div class="form-group col-md-3">
          	<div>Descuento en precio</div>
- 			<input type="text" readonly="readonly"  placeholder="Descuento en precio" name="descuento_precio" id="descuento_precio" value="" class="form-control" />
+ 			<input type="text" placeholder="Descuento en precio" name="descuento_precio" id="descuento_precio" value="" class="form-control" onkeyup="descuento_precio_directo(this.value);" />
         </div>
         <div class="form-group col-md-3">
          	<div>Tipo de cambio</div>
- 		<input type="text" readonly="readonly"  placeholder="Tipo de cambio" name="tipo_cambio" id="tipo_cambio" value="" class="form-control" />
+ 		<input type="text" placeholder="Tipo de cambio" name="tipo_cambio" id="tipo_cambio" value="<?php echo $tipo_cambio_dolar; ?>" class="form-control" onkeyup="descuento_tipo_cambio(this.value);" />
 
         </div>
         
@@ -232,61 +259,63 @@ sin resultados
             width:200px;
        }
     </style>
-
-    <div class="form-row">
-        <div class="form-group col-md-3">
-         	<span class="iniciar_venta_totales_titulos">Sub Total MXN</span>
-         </div>
-         <div class="form-group col-md-3">
- 			<b>$<?php echo number_format($importe_total, 2); ?></b>
+	<div id="resultado_subtotales">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+             	<span class="iniciar_venta_totales_titulos">Sub Total MXN</span>
+             </div>
+             <div class="form-group col-md-3">
+     			<b>$<?php echo number_format($importe_total, 2); ?></b>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-         	<span class="iniciar_venta_totales_titulos">Descuento:</span>
-         </div>
-         <div class="form-group col-md-3">
- 			<b><?php echo number_format(0, 2); ?>%</b>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+             	<span class="iniciar_venta_totales_titulos">Descuento:</span>
+             </div>
+             <div class="form-group col-md-3">
+     			<b><?php echo number_format(0, 2); ?>%</b>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-         	<span class="iniciar_venta_totales_titulos">IVA:</span>
-         </div>
-         <div class="form-group col-md-3">
- 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * .16), 2); ?></b>
- 			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * .0), 2); ?></b>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+             	<span class="iniciar_venta_totales_titulos">IVA:</span>
+             </div>
+             <div class="form-group col-md-3">
+     			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * .16), 2); ?></b>
+     			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * .0), 2); ?></b>
+            </div>
+    	</div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+             	<span class="iniciar_venta_totales_titulos">Total MXN</span>
+             </div>
+             <div class="form-group col-md-3">
+     			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * 1.16) , 2); ?></b>
+     			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * 1.00) , 2); ?></b>
+            </div>
+            <div class="form-group col-md-3">
+             	<span class="iniciar_venta_totales_titulos">Total USD:</span>
+             </div>
+             <div class="form-group col-md-3">
+     			<b class="resultado_iva_normal">$<?php echo number_format((($importe_total * 1.16) / $tipo_cambio_dolar) , 2); ?></b>
+     			<b class="resultado_excentar_iva" style="display:none;"><?php echo number_format((($importe_total * 1.0) / $tipo_cambio_dolar) , 2); ?></b>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+            	<input type="checkbox" name="excentar_iva" id="excentar_iva" onchange="$('.resultado_excentar_iva').toggle(); $('.resultado_iva_normal').toggle();" />
+            </div>
+            <div class="form-group col-md-3">
+            	<div>¿Exentar I.V.A.?</div>
+            	
+            </div>
         </div>
 	</div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-         	<span class="iniciar_venta_totales_titulos">Total MXN</span>
-         </div>
-         <div class="form-group col-md-3">
- 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * 1.16) , 2); ?></b>
- 			<b class="resultado_excentar_iva" style="display:none;">$<?php echo number_format(($importe_total * 1.00) , 2); ?></b>
-        </div>
-        <div class="form-group col-md-3">
-         	<span class="iniciar_venta_totales_titulos">Total USD:</span>
-         </div>
-         <div class="form-group col-md-3">
- 			<b class="resultado_iva_normal">$<?php echo number_format(($importe_total * 1.16) , 2); ?></b>
- 			<b class="resultado_excentar_iva" style="display:none;"><?php echo number_format(($importe_total * 1.0) , 2); ?></b>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-        	<input type="checkbox" name="excentar_iva" id="excentar_iva" onchange="$('.resultado_excentar_iva').toggle(); $('.resultado_iva_normal').toggle();" />
-        </div>
-        <div class="form-group col-md-3">
-        	<div>¿Exentar I.V.A.?</div>
-        	
-        	
-        </div>
-    </div>
-
 </div>
+<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="if($('#id_cliente').val() == ''){ alert('Selecciona un cliente'); }else{ if(confirm('Tu venta ser&aacute; cerrada\ny no podr&aacute;s agregar mas productos.')){ $(this).prop('disabled', true); guardar_venta(); } }"><?php if(isset($resultado->id_venta) && $resultado->id_venta != ""): ?>ACTUALIZAR<?php else: ?>COBRAR<?php endif; ?> <i class="material-icons right">send</i></button>
 
+<?php /**
+<button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="if(confirm('Tu venta ser&aacute; cerrada\ny no podr&aacute;s agregar mas productos.')){ $(this).prop('disabled', true); guardar_venta(); }"><?php if(isset($resultado->id_venta) && $resultado->id_venta != ""): ?>ACTUALIZAR<?php else: ?>COBRAR<?php endif; ?> <i class="material-icons right">send</i></button>
 <button class="btn waves-effect waves-light bg_aguitech" type="button" name="action" onclick="if(confirm('Tu venta ser&aacute; cerrada\ny no podr&aacute;s agregar mas productos.')){ guardar_venta(); }"><?php if(isset($resultado->id_venta) && $resultado->id_venta != ""): ?>ACTUALIZAR<?php else: ?>COBRAR<?php endif; ?> <i class="material-icons right">send</i></button>
-
+*/ ?>
 <?php endif; ?>

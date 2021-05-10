@@ -56,7 +56,7 @@ if($_POST["id"] != ""){
 			*/ ?>
 			<div class="form-row">
                 <div class="form-group col-md-6">
-                 	<div>Tono</div>
+                 	<div class="subtitle_form">Tono</div>
              		<?php /**
              		<input type="text" placeholder="Color" name="Descripcion" id="Descripcion" value="<?php echo $resultado->Descripcion; ?>" />
 				*/ ?>
@@ -68,7 +68,7 @@ if($_POST["id"] != ""){
         			</div>
                 </div>
                 <div class="form-group col-md-6">
-                 	<div>C&oacute;digo Hexadecimal</div>
+                 	<div class="subtitle_form">C&oacute;digo Hexadecimal</div>
          			<?php /**
          			<input type="text" placeholder="Codigo_Hexadecimal" name="Codigo_Hexadecimal" id="Codigo_Hexadecimal" value="<?php echo $resultado->Codigo_Hexadecimal; ?>" />
 			

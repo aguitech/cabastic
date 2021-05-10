@@ -553,15 +553,18 @@ $gasto_importacion = $adicionales[1];
 			if(select_divisa_costo == 1){
 				var nuevo_valor_precio = ((parseFloat(costo_compra)) * 1.2) * 2;
 				nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+				var moneda_valor_str = "dólares";
 			}
 			if(select_divisa_costo == 2){
 				
 				var nuevo_valor_precio = (((parseFloat(costo_compra)) * 1.2) * 1.2) * 2;
 				nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+				var moneda_valor_str = "euros";
 			}
             if(select_divisa_costo == 3){
             	var nuevo_valor_precio = (parseFloat(costo_compra)) * 2;
             	nuevo_valor_precio = nuevo_valor_precio.toFixed(2);
+            	var moneda_valor_str = "pesos";
             }
 
             if($("#precio_venta").val() == ""){
@@ -574,7 +577,7 @@ $gasto_importacion = $adicionales[1];
 			
 			//
 
-			$("#precio_sugerido").html("Precio sugerido: " + nuevo_valor_precio)
+			$("#precio_sugerido").html("Precio sugerido: " + nuevo_valor_precio + " " + moneda_valor_str)
 			
 
 			//alert(nuevo_valor_precio);
@@ -1771,7 +1774,7 @@ $gasto_importacion = $adicionales[1];
             
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            	<div style="" class="contenedor_agregar_titulo">
+                            	<div style="" class="contenedor_agregar_titulo subtitle_form">
                             		Tipo de producto
                             	</div>
                             	<select name="id_tipo_producto" id="id_tipo_producto" class="form-control" onchange="filtrar_tipo_productos(this.value); filtrar_resultados_tabla();">
@@ -1787,7 +1790,7 @@ $gasto_importacion = $adicionales[1];
             					*/ ?>
                             </div>
                             <div class="form-group col-md-6">
-                           		<div style="" class="contenedor_agregar_titulo">
+                           		<div style="" class="contenedor_agregar_titulo subtitle_form">
                             		Categoría producto
                             	
                             	</div>
@@ -1814,7 +1817,7 @@ $gasto_importacion = $adicionales[1];
                         </div>
 						<div class="form-row">
                             <div class="form-group col-md-6">
-                             	<div>Filtro por marca:</div>
+                             	<div class="subtitle_form">Filtro por marca:</div>
                                 <?php 
         						$qry_marca = "select * from ds_cat_marca order by Descripcion asc";
         						$marcas = $obj->get_results($qry_marca);
@@ -1827,7 +1830,7 @@ $gasto_importacion = $adicionales[1];
         						</select>
                             </div>
                             <div class="form-group col-md-6">
-                             	<div>Filtro por g&eacute;nero:</div>
+                             	<div class="subtitle_form">Filtro por g&eacute;nero:</div>
                              	<div id="resultado_filtrado_marca_genero">
                                 
                                     <?php 
@@ -1848,7 +1851,7 @@ $gasto_importacion = $adicionales[1];
 						</div>
 						<div class="form-row">
                             <div class="form-group col-md-6">
-                             	<div>Filtro por producto:</div>
+                             	<div class="subtitle_form">Filtro por producto:</div>
                              	<div id="resultado_filtrado_marca">
                                     <select name="id_producto" id="id_producto" class="form-control" onchange="filtrar_resultados_tabla()">
             							<option value="">Seleccionar</option>
@@ -1860,7 +1863,7 @@ $gasto_importacion = $adicionales[1];
         						</div>
                             </div>
                             <div class="form-group col-md-6">
-                             	<div>Filtro por almacen:</div>
+                             	<div class="subtitle_form">Filtro por almacen:</div>
                              	<div id="resultado_filtrado_marca">
                                     <select name="id_almacen" id="id_almacen" class="form-control" onchange="filtrar_resultados_tabla()">
             							<option value="">Seleccionar</option>
@@ -1873,7 +1876,7 @@ $gasto_importacion = $adicionales[1];
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                             	<div>Filtro por talla:</div>
+                             	<div class="subtitle_form">Filtro por talla:</div>
                              	<div id="resultado_filtrado_producto">
                              		<?php 
             						$qry_tallas = "select * from ds_cat_talla order by Descripcion asc";
@@ -1889,7 +1892,7 @@ $gasto_importacion = $adicionales[1];
         						</div>
                             </div>
                             <div class="form-group col-md-6">
-                             	<div>Filtro por color:</div>
+                             	<div class="subtitle_form">Filtro por color:</div>
                                 <div id="resultado_filtrado_talla">
                                     <select name="id_color" id="id_color" class="form-control" onchange="filtrar_resultados_tabla()">
             							<option value="">Seleccionar</option>
