@@ -81,18 +81,18 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								</span>
 							</a>
 						</li>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7 ): ?>
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link <?php if($url_actual == "/colores.php" || $url_actual == "/divisas.php" || $url_actual == "/marcas.php" || $url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php" || $url_actual == "/sustancias.php" || $url_actual == "/tallas.php" || $url_actual == "/tipos_producto.php"): ?>menu_seleccionado<?php endif; ?>" ><i class="icon-copy"></i> <span>Cat&aacute;logos</span></a>
+							<a href="#" class="nav-link <?php if($url_actual == "/colores.php" || $url_actual == "/divisas.php" || $url_actual == "/marcas.php" || $url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php" || $url_actual == "/sustancias.php" || $url_actual == "/tallas.php" || $url_actual == "/tipos_producto.php" || $url_actual == "/tipos_gastos.php"): ?>menu_seleccionado<?php endif; ?>" ><i class="icon-copy"></i> <span>Cat&aacute;logos</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
 								<li class="nav-item"><a href="colores.php" class="nav-link <?php if($url_actual == "/colores.php"): ?>active<?php endif; ?>">Colores</a></li>
 								<?php endif; ?>
 								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 4  || $id_rol == 5): ?>
 								<li class="nav-item"><a href="divisas.php" class="nav-link  <?php if($url_actual == "/divisas.php"): ?>active<?php endif; ?>">Divisas</a></li>
 								<?php endif; ?>
-								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+								<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
 								<li class="nav-item"><a href="marcas.php" class="nav-link <?php if($url_actual == "/marcas.php"): ?>active<?php endif; ?>">Marcas</a></li>
 								<li class="nav-item"><a onclick="$('#submenu_productos').show();" class="nav-link <?php if($url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php"): ?>active<?php endif; ?>">Productos</a></li>
 								<div style="display:none;" id="submenu_productos">
@@ -106,6 +106,8 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								<li class="nav-item"><a href="tallas.php" class="nav-link <?php if($url_actual == "/tallas.php"): ?>active<?php endif; ?>">Tallas</a></li>
 								<li class="nav-item"><a href="tipos_producto.php" class="nav-link <?php if($url_actual == "/tipos_producto.php"): ?>active<?php endif; ?>">Tipo Producto</a></li>
 								<?php endif; ?>
+								<li class="nav-item"><a href="tipos_gastos.php" class="nav-link <?php if($url_actual == "/tipos_gastos.php"): ?>active<?php endif; ?>">Tipos de Gastos</a></li>
+								
 							</ul>
 						</li>
 						<?php endif; ?>
@@ -126,18 +128,18 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5 || $id_rol == 6): ?>
 						
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link <?php if($url_actual == "/empleados.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-user-tie"></i> <span>Empleados</span></a>
+							<a href="#" class="nav-link <?php if($url_actual == "/empleados.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-user-tie"></i> <span>Usuarios</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<?php /**
 								<li class="nav-item"><a href="" class="nav-link active">Alta de empleado</a></li>
 								<li class="nav-item"><a href="" class="nav-link active">Baja de empleado</a></li>
 								*/ ?>
-								<li class="nav-item"><a href="empleados.php" class="nav-link <?php if($url_actual == "/empleados.php"): ?>active<?php endif; ?>">Lista de empleados</a></li>
+								<li class="nav-item"><a href="empleados.php" class="nav-link <?php if($url_actual == "/empleados.php"): ?>active<?php endif; ?>">Lista de usuarios</a></li>
 							</ul>
 						</li>
 						<?php endif; ?>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/eventos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-copy"></i> <span>Eventos</span></a>
@@ -150,7 +152,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7  || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-file-presentation"></i> <span>Inventario</span></a>
@@ -217,6 +219,25 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
+						<?php if($id_rol == 1 || $id_rol == 5 || $id_rol == 8): ?>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link <?php if($url_actual == "/cuentas_por_pagar.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-truck"></i> <span>Cuentas por pagar</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+								<li class="nav-item"><a href="cuentas_por_pagar.php" class="nav-link <?php if($url_actual == "/cuentas_por_pagar.php"): ?>active<?php endif; ?>">Mostrar cuentas</a></li>
+							</ul>
+						</li>
+						<?php endif; ?>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link <?php if($url_actual == "/gastos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-truck"></i> <span>Gastos</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+								<li class="nav-item"><a href="gastos.php" class="nav-link <?php if($url_actual == "/gastos.php"): ?>active<?php endif; ?>">Mostrar Gastos</a></li>
+							</ul>
+						</li>
+						
+						
+						
 						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5 || $id_rol == 6): ?>
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-stats-growth"></i> <span>Reportes</span></a>
@@ -262,7 +283,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						*/ ?>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 8): ?>
+						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/ventas.php" || $url_actual == "/entregas_pendientes.php" || $url_actual == "/envios_entregados.php" || $url_actual == "/ordenes_de_compra_historial.php" || $url_actual == "/iniciar_venta.php" || $url_actual == "/devolucion_ventas.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-cart2"></i> <span>Ventas</span></a>
