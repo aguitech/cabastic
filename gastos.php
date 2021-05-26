@@ -150,7 +150,7 @@ if($_POST["Monto"] != ""){
     }
     
 }
-$usuarios = $obj->get_results("select * from ds_tbl_empleado");
+$usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_Rol != 8");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -693,6 +693,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado");
 		                	</div>
 	                	</div>
 					</div>
+					<?php if($_SESSION["rol"] == 1): ?>
 					<div>
 						<select class="form-control" name="" id="usuario_IDE" onchange="window.location='./cuentas_por_pagar.php?usuario=' + $('#usuario_IDE').val();">
 							<option value="">Selecciona</option>
@@ -701,101 +702,105 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado");
 							<?php endforeach; ?>
 						</select>
 					</div>
-					<table class="table datatable-basic">
-						<thead>
-							<tr>
-								<th>Tipo de Gasto</th>
-								<th>Monto</th>
-								<th>Nombre</th>
-								<th>Comprobante</th>
-								<th>Estatus de pago</th>
-								<th class="text-center">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						<?php
-						//}
-						/**
-                        Id_Venta	Id_Cliente	Fecha_Venta	MontoTotal	Id_Evento	DescuentoPorcentaje	DescuentoPrecio	TipoCambio	MontoTotalMXN	IdEmpleado	plazo	frecuencia	id_Motivo_Cancelacion	fecha_Cancelacion
-						*/
-						?>
-						<?php 
-						
-						if($_SESSION["rol"] == 1){
-						    //$qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto order by $tbl_main.Fecha desc";
-						    if($_GET["usuario"] != ""){
-						        $id_user_get = $_GET["usuario"];
-						        
-						        $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado where ds_tbl_gasto.Id_Empleado = $id_user_get order by $tbl_main.Fecha desc";
-						    }else{
-						        $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado order by $tbl_main.Fecha desc";
-						        
-						    }
-						}else{
-						    
-						    $id_usuario = $_SESSION["idusuario"];
-						    
-						    //$qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto where ds_tbl_gasto.Id_Empleado = $id_usuario order by $tbl_main.Fecha desc";
-						    $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado where ds_tbl_gasto.Id_Empleado = $id_usuario order by $tbl_main.Fecha desc";
-						    
-						}
-						
-						
-						$resultados = $obj->get_results($qry_resultados);
-						
-						
-						?>
-						<?php foreach($resultados as $resultado): ?>
-						
-						
-							<?php 
-							$id_resultado=$resultado->Id_Gasto;
-							
-							?>
-								
-							<tr id="element<?php echo $id_resultado; ?>">
-								<td><?php echo $resultado->Tipo_Gasto; ?></td>
-								<td>$<?php echo number_format($resultado->Monto, 2); ?>MXN</td>
-								<td><?php echo $resultado->Nombre; ?></td>
-								
-								<td><a href="images/gastos/<?php echo $resultado->Comprobante; ?>" target="_blank"><?php echo $resultado->Comprobante; ?></a></td>
-								<td>
-									<?php if($resultado->Estatus_Pago == 0): ?>Por pagar<?php endif; ?>
-									<?php if($resultado->Estatus_Pago == 1): ?>Pagado<?php endif; ?>
-									
-								</td>
-								<td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-right">
-												<?php /**?>
-												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
-												
-												
-												<a onclick="asignar_empleado('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Asignar Empleado</a>
-												<a onclick="asignar_inventario('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Asignar Inventario</a>
-												<a onclick="iniciar_venta('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Iniciar Venta</a>
-												<a onclick="if(confirm('¿Estas seguro de cerrar el evento?\n¡No es reversible est&aacute; acci&oacute;n!')){ cierre_evento('<?php echo $id_resultado; ?>') }" class="dropdown-item"><i class="icon-pencil4"></i> Cierre de evento</a>
-												<a onclick="ver_evento('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Ver evento</a>
-													
-												*/ ?>
-												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-												
-																	
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<?php endforeach; ?>
-
-						</tbody>
-					</table>
+					<?php endif; ?>
+					<div style="width:100%; overflow-x:scroll;">
+    					<table class="table datatable-basic">
+    						<thead>
+    							<tr>
+    								<th>Tipo de Gasto</th>
+    								<th>Monto</th>
+    								<th>Nombre</th>
+    								<th>Fecha</th>
+    								<th>Comprobante</th>
+    								<th>Estatus de pago</th>
+    								<th class="text-center">Acciones</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							
+    						<?php
+    						//}
+    						/**
+                            Id_Venta	Id_Cliente	Fecha_Venta	MontoTotal	Id_Evento	DescuentoPorcentaje	DescuentoPrecio	TipoCambio	MontoTotalMXN	IdEmpleado	plazo	frecuencia	id_Motivo_Cancelacion	fecha_Cancelacion
+    						*/
+    						?>
+    						<?php 
+    						
+    						if($_SESSION["rol"] == 1){
+    						    //$qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto order by $tbl_main.Fecha desc";
+    						    if($_GET["usuario"] != ""){
+    						        $id_user_get = $_GET["usuario"];
+    						        
+    						        $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado where ds_tbl_gasto.Id_Empleado = $id_user_get order by $tbl_main.Fecha desc";
+    						    }else{
+    						        $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado order by $tbl_main.Fecha desc";
+    						        
+    						    }
+    						}else{
+    						    
+    						    $id_usuario = $_SESSION["idusuario"];
+    						    
+    						    //$qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto where ds_tbl_gasto.Id_Empleado = $id_usuario order by $tbl_main.Fecha desc";
+    						    $qry_resultados = "select * from $tbl_main left join ds_cat_tipo_gasto on ds_cat_tipo_gasto.Id_Tipo_Gasto = $tbl_main.Id_Tipo_Gasto left join ds_tbl_empleado on ds_tbl_empleado.Id_Empleado = $tbl_main.Id_Empleado where ds_tbl_gasto.Id_Empleado = $id_usuario order by $tbl_main.Fecha desc";
+    						    
+    						}
+    						
+    						
+    						$resultados = $obj->get_results($qry_resultados);
+    						
+    						
+    						?>
+    						<?php foreach($resultados as $resultado): ?>
+    						
+    						
+    							<?php 
+    							$id_resultado=$resultado->Id_Gasto;
+    							
+    							?>
+    								
+    							<tr id="element<?php echo $id_resultado; ?>">
+    								<td><?php echo $resultado->Tipo_Gasto; ?></td>
+    								<td>$<?php echo number_format($resultado->Monto, 2); ?>MXN</td>
+    								<td><?php echo $resultado->Nombre; ?></td>
+    								<td><?php echo $resultado->Fecha; ?></td>
+    								<td><a href="images/gastos/<?php echo $resultado->Comprobante; ?>" target="_blank"><?php echo $resultado->Comprobante; ?></a></td>
+    								<td>
+    									<?php if($resultado->Estatus_Pago == 0): ?>Por pagar<?php endif; ?>
+    									<?php if($resultado->Estatus_Pago == 1): ?>Pagado<?php endif; ?>
+    									
+    								</td>
+    								<td class="text-center">
+    									<div class="list-icons">
+    										<div class="dropdown">
+    											<a href="#" class="list-icons-item" data-toggle="dropdown">
+    												<i class="icon-menu9"></i>
+    											</a>
+    
+    											<div class="dropdown-menu dropdown-menu-right">
+    												<?php /**?>
+    												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+    												
+    												
+    												<a onclick="asignar_empleado('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Asignar Empleado</a>
+    												<a onclick="asignar_inventario('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Asignar Inventario</a>
+    												<a onclick="iniciar_venta('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Iniciar Venta</a>
+    												<a onclick="if(confirm('¿Estas seguro de cerrar el evento?\n¡No es reversible est&aacute; acci&oacute;n!')){ cierre_evento('<?php echo $id_resultado; ?>') }" class="dropdown-item"><i class="icon-pencil4"></i> Cierre de evento</a>
+    												<a onclick="ver_evento('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Ver evento</a>
+    													
+    												*/ ?>
+    												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+    												
+    																	
+    											</div>
+    										</div>
+    									</div>
+    								</td>
+    							</tr>
+    							<?php endforeach; ?>
+    
+    						</tbody>
+    					</table>
+					</div>
 				</div>
 				<!-- /basic datatable -->
 

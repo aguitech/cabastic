@@ -81,7 +81,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 								</span>
 							</a>
 						</li>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7 ): ?>
+						<?php if($id_rol == 1 || $id_rol == 3  || $id_rol == 4 || $id_rol == 5 || $id_rol == 6 || $id_rol == 7 ): ?>
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/colores.php" || $url_actual == "/divisas.php" || $url_actual == "/marcas.php" || $url_actual == "/productos.php" || $url_actual == "/asignar_precio_venta.php" || $url_actual == "/asignar_costo_compra.php" || $url_actual == "/sustancias.php" || $url_actual == "/tallas.php" || $url_actual == "/tipos_producto.php" || $url_actual == "/tipos_gastos.php"): ?>menu_seleccionado<?php endif; ?>" ><i class="icon-copy"></i> <span>Cat&aacute;logos</span></a>
 
@@ -152,7 +152,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
+						<?php if($id_rol == 1 || $id_rol == 3  || $id_rol == 5 || $id_rol == 6 || $id_rol == 7): ?>
 						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-file-presentation"></i> <span>Inventario</span></a>
@@ -238,7 +238,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 						
 						
 						
-						<?php if($id_rol == 1 || $id_rol == 2 || $id_rol == 5 || $id_rol == 6): ?>
+						<?php if($id_rol == 1 || $id_rol == 5 || $id_rol == 6): ?>
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-stats-growth"></i> <span>Reportes</span></a>
 

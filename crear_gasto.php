@@ -57,6 +57,7 @@ $fecha_val = date("m/d/Y");
              		<div class="subtitle_form">Comprobante</div>
     				<input type="file" placeholder="Comprobante" name="Comprobante" id="Comprobante" value="<?php echo $resultado->Comprobante; ?>"  class="form-control" />
             	</div>
+            	<?php if($_SESSION["rol"] == 1): ?>
             	<?php if($_POST["id"] != ""): ?>
             	<div class="form-group col-md-6">
                 	
@@ -68,6 +69,7 @@ $fecha_val = date("m/d/Y");
          			</select>
          			
                 </div>
+                <?php endif; ?>
                 <?php endif; ?>
             </div>
             
