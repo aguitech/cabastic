@@ -453,10 +453,28 @@ $url_crear_name = "crear_venta.php";
 								
 								<td><?php echo $resultado->evento; ?></td>
 								<td><?php echo $resultado->Fecha_Venta; ?></td>
-								<td><?php echo $resultado->MontoTotalMXN; ?></td>
-								<td><?php $iva_valor = $resultado->MontoTotalMXN * .16; echo $iva_valor; ?></td>
+								<td>
+									<?php 
+									if($resultado->ExcentarIva == 1){
+									    $subtotal_valor = $resultado->MontoTotalMXN;
+									}else{
+									    $subtotal_valor = $resultado->MontoTotalMXN / 1.16;
+									}
+									?>
+									<?php
+									
+									echo $subtotal_valor;
+									
+									?>
 								
-								<td><?php echo $resultado->MontoTotalMXN + $iva_valor; ?></td>
+								</td>
+								<td>
+									
+									<?php echo $resultado->MontoTotalMXN - $subtotal_valor; ?>
+									
+								</td>
+								
+								<td><?php echo $resultado->MontoTotalMXN; ?></td>
 								
 								
 								

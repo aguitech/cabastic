@@ -701,13 +701,16 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 			   var id_almacen =  $("#id_almacen").val();
 			   var id_tipo_producto =  $("#id_tipo_producto").val();
 			   var id_categoria =  $("#id_categoria").val();
+
+			   var id_evento =  $("#id_evento").val();
+			   
 			   
 			   
 			   $.ajax({
 					type: "POST",
 					url:"ajax_iniciar_venta_filtrar_tabla.php",
 					//data: { limit:val_limit, offset:val_offset },
-					data: { id_marca:id_marca, id_producto:id_producto, id_talla:id_talla, id_color:id_color, id_genero:id_genero, id_almacen:id_almacen, id_tipo_producto:id_tipo_producto, id_categoria:id_categoria },
+					data: { id_marca:id_marca, id_producto:id_producto, id_talla:id_talla, id_color:id_color, id_genero:id_genero, id_almacen:id_almacen, id_tipo_producto:id_tipo_producto, id_categoria:id_categoria, id_evento:id_evento },
 					success:function(data){
 						console.log(data);
 						//$('#fondo_especial').slideDown('slow'); $('#banner_especial').show('slow');
@@ -1317,10 +1320,20 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
                             <div class="form-group col-md-6">
                              	<div class="bold_text">Evento:</div>
                                 <?php 
-        						$qry_evento = "select * from ds_tbl_evento";
+                                $fecha_hoy_inicio = date("Y-m-d");
+                                $fecha_hoy_fin = date("Y-m-d") . " 23:59:59";
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) >= '{$fecha_hoy}' and  date(Fecha_Cierre) <= '{$fecha_hoy}'";
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) >= '{$fecha_hoy}' and  date(Fecha_Cierre) <= '{$fecha_hoy}'";
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) >= '{$fecha_hoy_inicio}' and  date(Fecha_Cierre) <= '{$fecha_hoy_fin}'";
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) >= '{$fecha_hoy_inicio}' and  date(Fecha_Cierre) <= '{$fecha_hoy_fin}'";
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) BETWEEN CAST('" . $fecha_hoy_inicio . "' AS DATE) AND CAST('" . $fecha_hoy_inicio . "' AS DATE) and  date(Fecha_Cierre) <= '{$fecha_hoy_fin}'";
+                                ///BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2014-02-28' AS DATE);
+                                //$qry_evento = "select * from ds_tbl_evento where date(Fecha_Inicio) <= '{$fecha_hoy_inicio}' and  date(Fecha_Cierre) <= '{$fecha_hoy_fin}'";
+                                $qry_evento = "select * from ds_tbl_evento where (date(Fecha_Inicio) <= '{$fecha_hoy_inicio}' or date(Fecha_Inicio) >= '{$fecha_hoy_inicio}') and  date(Fecha_Cierre) >= '{$fecha_hoy_fin}'";
+                                //echo $qry_evento;
         						$eventos = $obj->get_results($qry_evento);
         						?>
-                                <select name="id_evento" id="id_evento" class="form-control" <?php if($_GET["id_evento"]){ ?>readonly="readonly" disabled="disabled" <?php } ?>>
+                                <select name="id_evento" id="id_evento" class="form-control" <?php if($_GET["id_evento"]){ ?>readonly="readonly" disabled="disabled" <?php } ?> onchange="filtrar_resultados_tabla();">
         							<?php /**
         							<option value="">Selecciona evento</option>
         							*/ ?>

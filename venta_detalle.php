@@ -90,31 +90,56 @@ if($_POST["devolucion_cantidad"] != "" && $_POST["id_entrega"] != ""){
     //echo $qry_edit_enviado;
     $obj->query($qry_edit_enviado);
     
+    if($id_evento == 1){
+        $qry_inventario_evento = "select * from ds_tbl_inventario_almacen where Id_Producto_Detalle = $id_producto_detalle_val";
+        $inventario_almacen = $obj->get_row($qry_inventario_evento);
+        
+        
+        $nueva_cantidad_inventario_almacen = $inventario_almacen->Cantidad_Inventario + $devolucion_cantidad;
+        $id_inventario_almacen = $inventario_almacen->Id_Inventario;
+        
+        //ds_tbl_inventario_evento
+        //ds_tbl_inventario_evento
+        //REVISAR ESTAR LINEA
+        //$qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val";
+        $qry_disminuir_inventario_almacen = "update ds_tbl_inventario_almacen set Cantidad_Inventario = $nueva_cantidad_inventario_almacen where ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val";
+        //echo $qry_disminuir_inventario_evento;
+        
+        
+        //echo $qry_disminuir_inventario_evento;
+        $obj->query($qry_disminuir_inventario_almacen);
+        
+        
+    }else{
+        $qry_inventario_evento = "select * from ds_tbl_inventario_evento where Id_Evento = $id_evento and Id_Producto_Detalle = $id_producto_detalle_val";
+        $inventario_evento = $obj->get_row($qry_inventario_evento);
+        
+        
+        $nueva_cantidad_inventario_evento = $inventario_evento->Cantidad + $devolucion_cantidad;
+        $id_inventario_evento = $inventario_evento->Id_Inventario_Evento;
+        
+        //ds_tbl_inventario_evento
+        //ds_tbl_inventario_evento
+        //REVISAR ESTAR LINEA
+        //$qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val";
+        $qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val and ds_tbl_inventario_evento.Id_Inventario_Evento = $id_inventario_evento";
+        //echo $qry_disminuir_inventario_evento;
+        
+        
+        //echo $qry_disminuir_inventario_evento;
+        $obj->query($qry_disminuir_inventario_evento);
+    }
     
-    $qry_inventario_evento = "select * from ds_tbl_inventario_evento where Id_Evento = $id_evento and Id_Producto_Detalle = $id_producto_detalle_val";
-    $inventario_evento = $obj->get_row($qry_inventario_evento);
     
-    
-    $nueva_cantidad_inventario_evento = $inventario_evento->Cantidad + $devolucion_cantidad;
-    $id_inventario_evento = $inventario_evento->Id_Inventario_Evento;
-    
-    //ds_tbl_inventario_evento
-    //ds_tbl_inventario_evento
-    //REVISAR ESTAR LINEA
-    //$qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val";
-    $qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_val and ds_tbl_inventario_evento.Id_Inventario_Evento = $id_inventario_evento";
-    //echo $qry_disminuir_inventario_evento;
-    
-    
-    //echo $qry_disminuir_inventario_evento;
-    $obj->query($qry_disminuir_inventario_evento);
     
     
     
 }
-
+//print_r($_POST);
 if($_POST["id_direccion"] != ""){
     //ds_tbl_entrega_venta_productos
+    //echo "asdf";
+    
     $id_direccion = $_POST["id_direccion"];
     if($id_direccion == "ENTREGA_FISICA"){
         $id_direccion = 0;
@@ -152,54 +177,125 @@ if($_POST["id_direccion"] != ""){
             
             $id_evento = $resultado->Id_Evento;
             
-            $qry_inventario_evento = "select * from ds_tbl_inventario_evento where Id_Evento = $id_evento and Id_Producto_Detalle = $id_producto_detalle_value";
-            //echo $qry_inventario_evento;
-            $inventario_evento = $obj->get_row($qry_inventario_evento);
             
-            
-            //print_r($inventario_evento);
-            
-            if($entrega_fisica == 1){
-            
-                if($inventario_evento->Cantidad >= $producto_value){
+            if($id_evento == 1){
                 
-                    //echo "Si hay disponibles";
                 
-                    $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
-                    $obj->query($qry_insert_entrega);
-                    //echo $qry_insert_entrega;
+                $qry_inventario_evento = "select * from ds_tbl_inventario_almacen where Id_Producto_Detalle = $id_producto_detalle_value";
+                //echo $qry_inventario_evento;
+                $inventario_evento = $obj->get_row($qry_inventario_evento);
+                
+                
+                //print_r($inventario_evento);
+                
+                //echo $entrega_fisica;
+                
+                if($entrega_fisica == 1){
                     
-                    
-                    //ds_tbl_inventario_evento
-                    
-                    
-                    
-                    
-                    if($entrega_fisica == 1){
-                    
+                    if($inventario_evento->Cantidad_Inventario >= $producto_value){
+                        
+                        //echo "Si hay disponibles";
+                        
+                        $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
+                        //echo $qry_insert_entrega;
+                        $obj->query($qry_insert_entrega);
+                        
+                        
+                        //ds_tbl_inventario_evento
+                        
+                        //echo $qry_insert_entrega;
+                        
+                        
+                        //if($entrega_fisica == 1){
+                            
                         //echo "ENTEGANDO FISICAMENT";
+                            
+                            
+                            $nueva_cantidad_inventario_evento = $inventario_evento->Cantidad_Inventario - $producto_value;
+                            //$id_inventario_evento_val = $inventario_evento->Id_Inventario_Evento;
+                            
+                            
+                            $qry_disminuir_inventario_evento = "update ds_tbl_inventario_almacen set Cantidad_Inventario = $nueva_cantidad_inventario_evento where ds_tbl_inventario_almacen.Id_Producto_Detalle = $id_producto_detalle_value";
+                            //echo $qry_edit_enviado;
+                            //echo $qry_disminuir_inventario_evento;
+                            $obj->query($qry_disminuir_inventario_evento);
+                        //}else{
+                            //echo "sin productos disponibles";
+                        //}
                         
-                        
-                        $nueva_cantidad_inventario_evento = $inventario_evento->Cantidad - $producto_value;
-                        $id_inventario_evento_val = $inventario_evento->Id_Inventario_Evento;
-                        
-                        
-                        $qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_value";
-                        //echo $qry_edit_enviado;
-                        $obj->query($qry_disminuir_inventario_evento);
-                    }else{
-                        //echo "sin productos disponibles";
                     }
+                }else{
+                    
+                    
+                    $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
+                    //echo $qry_insert_entrega;
+                    //echo $qry_insert_entrega;
+                    $obj->query($qry_insert_entrega);
                     
                 }
+                
+                
+                
+                
+                
+                
+                
             }else{
-
                 
-                $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
-                //echo $qry_insert_entrega;
-                $obj->query($qry_insert_entrega);
                 
+                
+                
+                $qry_inventario_evento = "select * from ds_tbl_inventario_evento where Id_Evento = $id_evento and Id_Producto_Detalle = $id_producto_detalle_value";
+                //echo $qry_inventario_evento;
+                $inventario_evento = $obj->get_row($qry_inventario_evento);
+                
+                
+                //print_r($inventario_evento);
+                
+                if($entrega_fisica == 1){
+                    
+                    if($inventario_evento->Cantidad >= $producto_value){
+                        
+                        //echo "Si hay disponibles";
+                        
+                        $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
+                        $obj->query($qry_insert_entrega);
+                        //echo $qry_insert_entrega;
+                        
+                        
+                        //ds_tbl_inventario_evento
+                        
+                        
+                        
+                        
+                        if($entrega_fisica == 1){
+                            
+                            //echo "ENTEGANDO FISICAMENT";
+                            
+                            
+                            $nueva_cantidad_inventario_evento = $inventario_evento->Cantidad - $producto_value;
+                            $id_inventario_evento_val = $inventario_evento->Id_Inventario_Evento;
+                            
+                            
+                            $qry_disminuir_inventario_evento = "update ds_tbl_inventario_evento set Cantidad = $nueva_cantidad_inventario_evento where ds_tbl_inventario_evento.Id_Evento = $id_evento and ds_tbl_inventario_evento.Id_Producto_Detalle = $id_producto_detalle_value";
+                            //echo $qry_edit_enviado;
+                            $obj->query($qry_disminuir_inventario_evento);
+                        }else{
+                            //echo "sin productos disponibles";
+                        }
+                        
+                    }
+                }else{
+                    
+                    
+                    $qry_insert_entrega = "insert into ds_tbl_entrega_venta_productos (Id_Entrega, Id_Domicilio, Cantidad, Id_Producto_detalle, Id_Venta, Id_Cliente, Entrega_Fisica, Fecha_Entrega) values ($next_id, $id_direccion, $producto_value, $id_producto_detalle_value, $id_venta, $id_cliente, $entrega_fisica, '{$fecha_entrega}')";
+                    //echo $qry_insert_entrega;
+                    $obj->query($qry_insert_entrega);
+                    
+                }
             }
+            
+            
         }
         
         
@@ -1371,6 +1467,7 @@ if($_POST["Descripcion"] != ""){
 								<th>Producto</th>
 								<th>Entrega F&iacute;sica</th>
 								<th>Domicilio</th>
+								<th>Estatus</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -1422,7 +1519,21 @@ if($_POST["Descripcion"] != ""){
 									</select>
 								</td>
 								*/ ?>
+								<td>
+									<?php
+									if($resultado->Id_Estatus_Entrega_Producto == 1){
+									    echo "En almacen";
+									}else if($resultado->Id_Estatus_Entrega_Producto == 2){
+									    echo "En paqueteria";
+									}else if($resultado->Id_Estatus_Entrega_Producto == 3){
+									    echo "Entregado";
+									}else{
+									    echo "Por definir";
+									} 
+									
+									?>
 								
+								</td>
 								<td class="text-center">
 									<div class="list-icons">
 										<div class="dropdown">
@@ -1590,9 +1701,6 @@ if($_POST["Descripcion"] != ""){
 								<td><?php echo $resultado->Cantidad; ?></td>
 								
 								<td><?php echo $resultado->Monto_Venta; ?></td>
-								
-								
-								
 								
 								
 								<td class="text-center">
