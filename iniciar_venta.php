@@ -52,6 +52,25 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
 	 <script src='select2/dist/js/select2.min.js' type='text/javascript'></script>
         <link href='select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
 	<script type="text/javascript">
+	function validar_sku(sku_val){
+		var val_page = "";
+		   var val_categoria = "";
+		   
+		   $.ajax({
+				type: "POST",
+				url:"/iniciar_venta_validar_sku.php",
+				//url:"/views_online/punto_venta_agregar_producto.php",
+				//data: { limit:val_limit, offset:val_offset },
+				data: { sku:sku_val },
+				success:function(data){
+					console.log(data);
+					//$("#form_venta").html(data);
+					$("#resultado_venta").html(data);
+					$("#sku_search").val("");
+					//$(".select_refresh").formSelect();
+				}
+			});
+	}
 	function cancelar_venta(id){
 		if(confirm("¿Seguro de cancelar la venta?")){
 			$.ajax({
@@ -1491,6 +1510,10 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
             						</select>
         						</div>
                             </div>
+                            <div class="form-group col-md-6">
+                             	<div class="bold_text">SKU:</div>
+                                <input type="text" name="sku_search" id="sku_search" class="form-control" onchange="validar_sku(this.value)" />
+                            </div>
                         </div>
                         
                         <div class="form-row">
@@ -1612,12 +1635,14 @@ $productos = $obj->get_results("select * from ds_tbl_producto group by Nombre or
     							
     							//echo $qry_resultados;
     						
-    							if($_GET["id_evento"] != ""){
+    							if($_GET["id_evento"] != "1"){
+    							    $id_evento = $_GET["id_evento"];
     							    $qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_almacen on ds_tbl_inventario_almacen.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where $tbl_main.Id_Producto != '0' or  $tbl_main.Id_Producto != '' order by $tbl_main.Descripcion asc";
-    							    
+    							    //$qry_resultados = "select ds_tbl_producto.Descripcion, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, inven.cantidad from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left JOIN (select id_Producto_Detalle, cantidad from ds_tbl_inventario_evento where id_Evento = 30) as  inven on ds_tbl_producto_detalle.id_Producto_Detalle = inven.id_Producto_Detalle ORDER BY `inven`.`cantidad`  DESC";
     							}else{
     							    $qry_resultados = "select *, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, ds_tbl_inventario_evento.Cantidad as Cantidad_Inventario from $tbl_main left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left join ds_tbl_inventario_evento on ds_tbl_inventario_evento.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where $tbl_main.Id_Producto != '0' or  $tbl_main.Id_Producto != '' order by $tbl_main.Descripcion asc";
-    							    
+    							    $id_evento = $_GET["id_evento"];
+    							    //$qry_resultados = "select ds_tbl_producto.Descripcion, ds_cat_marca.Descripcion as marca, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color, inven.cantidad from ds_tbl_producto left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.id_Producto left join ds_cat_marca on ds_cat_marca.id_marca = ds_tbl_producto.Id_Marca left join ds_tbl_precio_venta_producto on ds_tbl_precio_venta_producto.Id_Producto_Detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla left join ds_cat_color on ds_cat_color.Id_Color = ds_tbl_producto_detalle.Id_Color left JOIN (select id_Producto_Detalle, cantidad from ds_tbl_inventario_evento where id_Evento = $id_evento) as  inven on ds_tbl_producto_detalle.id_Producto_Detalle = inven.id_Producto_Detalle ORDER BY `inven`.`cantidad`  DESC";
     							}
     							
     							$resultados = $obj->get_results($qry_resultados);

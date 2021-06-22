@@ -19,7 +19,7 @@ if($_POST["Descripcion"] != ""){
         $id_editar = $_POST["editar"];
         //$qry_edit = "update ds_cat_tipo_sustancia set Descripcion = '{$val_descripcion}', Abreviatura = '{$val_abreviatura}', Comentario = '{$val_comentario}', Activo = $val_activo, Fecha_Actualiza = '{$fecha_hoy}' where Id_Tipo_Sustancia = $id_editar";
         //echo $qry_edit;
-        $qry_edit = "update ds_cat_talla set Descripcion = '{$val_descripcion}', Activo = $val_activo where Id_Tipo_Producto = $id_editar";
+        $qry_edit = "update ds_cat_tipo_sustancia set Descripcion = '{$val_descripcion}', Activo = $val_activo where Id_Tipo_Producto = $id_editar";
         //
         $obj->query($qry_edit);
     }else{
@@ -430,7 +430,7 @@ if($_POST["Descripcion"] != ""){
 					<table class="table datatable-basic">
 						<thead>
 							<tr>
-								<th>Talla</th>
+								<th>Tipo de Producto</th>
 								<th>Estatus</th>
 								
 								<th class="text-center">Acciones</th>

@@ -3,7 +3,7 @@
 <?php 
 $nombre_seccion = "Cuentas por pagar";
 $tbl_main = "ds_tbl_cuenta_pagar";
-$nombre_simple = "cuenta por pagar";
+$nombre_simple = "factura";
 $url_name = "cuentas_por_pagar.php";
 $url_crear_name = "crear_cuenta_por_pagar.php";
 ?>
@@ -696,7 +696,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     					<table class="table datatable-basic">
     						<thead>
     							<tr>
-    								<th>Monto</th>
+    								<th>Monto MXN</th>
     								<th>Nombre</th>
     								<th>Fecha</th>
     								<th>Comprobante</th>
@@ -746,7 +746,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     							?>
     								
     							<tr id="element<?php echo $id_resultado; ?>">
-    								<td>$<?php echo number_format($resultado->Monto, 2); ?>MXN</td>
+    								<td style="text-align:right;">$<?php echo number_format($resultado->Monto, 2); ?></td>
     								<td><?php echo $resultado->Nombre; ?></td>
     								<td><?php echo $resultado->Fecha; ?></td>
     								
@@ -755,6 +755,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     								<td>
     									<?php if($resultado->Estatus_Pago == 0): ?>Por pagar<?php endif; ?>
     									<?php if($resultado->Estatus_Pago == 1): ?>Pagado<?php endif; ?>
+    									<?php if($resultado->Estatus_Pago == 2): ?>Rechazado<?php endif; ?>
     									
     								</td>
     								
@@ -777,8 +778,9 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     												<a onclick="ver_evento('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Ver evento</a>
     													
     												*/ ?>
+    												<?php if($resultado->Estatus_Pago == 0): ?>
     												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-    												
+    												<?php endif; ?>
     																	
     											</div>
     										</div>

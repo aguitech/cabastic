@@ -35,10 +35,12 @@ $fecha_val = date("m/d/Y");
         
                 </div>
                 <div class="form-group col-md-6">
+                
                  	<div class="subtitle_form">Fecha de Inicio del evento</div>
+                <?php /**?>
                  	<input type="date" min="<?php echo date("Y-m-d"); ?>" placeholder="Fecha de Inicio del evento" name="Fecha_Inicio" id="Fecha_Inicio" value="<?php echo $resultado->Fecha_Inicio; ?>" class="form-control" />
                  	
-                 	
+                 	*/ ?>
                  	
                  	<div class="form-group">
 									<?php /**
@@ -59,8 +61,9 @@ $fecha_val = date("m/d/Y");
             <div class="form-row">
             	<div class="form-group col-md-6">
                  	<div class="subtitle_form">Fecha de Cierre del evento</div>
+                 	<?php /**
                  	<input type="date" min="<?php echo date("Y-m-d"); ?>" placeholder="Fecha de Cierre del evento" name="Fecha_Cierre" id="Fecha_Cierre" value="<?php echo $resultado->Fecha_Cierre; ?>" class="form-control" />
-                 	
+                 	*/ ?>
                  	<div class="form-group">
 									<?php /**
 									<label>Basic single date picker: </label>

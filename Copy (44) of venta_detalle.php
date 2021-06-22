@@ -1518,4 +1518,58 @@ if($_POST["Descripcion"] != ""){
 							<?php 
 							//[0] => stdClass Object ( [Id_Producto] => 256 
 							//[Nombre] => 01 VW3024 MOSCA JACKET [Descripcion] 
-							//=> [Id_Marca] => 1 [Id_Tipo_Producto] => 
+							//=> [Id_Marca] => 1 [Id_Tipo_Producto] => 14
+							//[Id_Tipo_Sustancia] => 1 [Activo] => 1 
+							//[Fecha_Alta] => 2020-07-21 22:10:43 
+							//[Id_Categoria_Producto] => 79 
+							
+							$id_resultado=$resultado->Id_Talla;
+							$nombre=$resultado->Nombre;
+							$hexadecimal=$resultado->Descripcion;
+							?>
+								
+							<tr id="element<?php echo $id_resultado; ?>">
+								
+								<td><?php echo $resultado->Cantidad; ?></td>
+								
+								<td><?php echo $resultado->Monto_Venta; ?></td>
+								
+								
+								
+								
+								
+								<td class="text-center">
+									<div class="list-icons">
+										<div class="dropdown">
+											<a href="#" class="list-icons-item" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<div class="dropdown-menu dropdown-menu-right">
+												<a href="#" class="dropdown-item" onclick="Eliminar(<?php echo $id_resultado; ?>,'<?php echo $completo." (".$nombre.")"; ?>');"><i class="icon-bin"></i> Eliminar</a>
+												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
+												
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<?php //endfor; ?>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+					*/ ?>
+				</div>
+				<!-- /basic datatable -->
+			</div>
+			<!-- /content area -->
+
+			<!-- Footer -->
+			<?php include "core_footer.php"; ?>
+			<!-- /footer -->
+		</div>
+		<!-- /main content --
+	</div>
+	<!-- /page content -->
+</body>
+</html>

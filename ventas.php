@@ -398,9 +398,9 @@ $url_crear_name = "crear_venta.php";
 							<tr>
 								<th>Evento</th>
 								<th>Fecha</th>
-								<th>Monto</th>
-								<th>I.V.A.</th>
-								<th>Total</th>
+								<th>Monto MXN</th>
+								<th>I.V.A. MXN</th>
+								<th>Total MXN</th>
 								<th>Cliente</th>
 								
 								<th class="text-center">Acciones</th>
@@ -453,7 +453,7 @@ $url_crear_name = "crear_venta.php";
 								
 								<td><?php echo $resultado->evento; ?></td>
 								<td><?php echo $resultado->Fecha_Venta; ?></td>
-								<td>
+								<td style="text-align:right;">
 									<?php 
 									if($resultado->ExcentarIva == 1){
 									    $subtotal_valor = $resultado->MontoTotalMXN;
@@ -461,20 +461,20 @@ $url_crear_name = "crear_venta.php";
 									    $subtotal_valor = $resultado->MontoTotalMXN / 1.16;
 									}
 									?>
-									<?php
+									$<?php
 									
-									echo $subtotal_valor;
+									echo number_format($subtotal_valor, 2);
 									
 									?>
 								
 								</td>
-								<td>
+								<td style="text-align:right;">
 									
-									<?php echo $resultado->MontoTotalMXN - $subtotal_valor; ?>
+									$<?php echo number_format($resultado->MontoTotalMXN - $subtotal_valor, 2); ?>
 									
 								</td>
 								
-								<td><?php echo $resultado->MontoTotalMXN; ?></td>
+								<td style="text-align:right;">$<?php echo number_format($resultado->MontoTotalMXN, 2); ?></td>
 								
 								
 								

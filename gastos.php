@@ -695,7 +695,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
 					</div>
 					<?php if($_SESSION["rol"] == 1): ?>
 					<div>
-						<select class="form-control" name="" id="usuario_IDE" onchange="window.location='./cuentas_por_pagar.php?usuario=' + $('#usuario_IDE').val();">
+						<select class="form-control" name="" id="usuario_IDE" onchange="window.location='./gastos.php?usuario=' + $('#usuario_IDE').val();">
 							<option value="">Selecciona</option>
 							<?php foreach($usuarios as $usuario_ciclo): ?>
 							<option value="<?php echo $usuario_ciclo->Id_Empleado; ?>" <?php if($_GET["usuario"] == $usuario_ciclo->Id_Empleado): ?>selected="selected"<?php endif; ?>><?php echo $usuario_ciclo->Nombre; ?></option>
@@ -708,7 +708,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     						<thead>
     							<tr>
     								<th>Tipo de Gasto</th>
-    								<th>Monto</th>
+    								<th>Monto MXN</th>
     								<th>Nombre</th>
     								<th>Fecha</th>
     								<th>Comprobante</th>
@@ -717,7 +717,6 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     							</tr>
     						</thead>
     						<tbody>
-    							
     						<?php
     						//}
     						/**
@@ -760,7 +759,7 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     								
     							<tr id="element<?php echo $id_resultado; ?>">
     								<td><?php echo $resultado->Tipo_Gasto; ?></td>
-    								<td>$<?php echo number_format($resultado->Monto, 2); ?>MXN</td>
+    								<td style="text-align:right;">$<?php echo number_format($resultado->Monto, 2); ?></td>
     								<td><?php echo $resultado->Nombre; ?></td>
     								<td><?php echo $resultado->Fecha; ?></td>
     								<td><a href="images/gastos/<?php echo $resultado->Comprobante; ?>" target="_blank"><?php echo $resultado->Comprobante; ?></a></td>
@@ -788,8 +787,9 @@ $usuarios = $obj->get_results("select * from ds_tbl_empleado where id_Empleado_R
     												<a onclick="ver_evento('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Ver evento</a>
     													
     												*/ ?>
+    												<?php if($resultado->Estatus_Pago == 0): ?>
     												<a onclick="cargar_editar('<?php echo $id_resultado; ?>')" class="dropdown-item"><i class="icon-pencil4"></i> Editar</a>
-    												
+    												<?php endif; ?>
     																	
     											</div>
     										</div>

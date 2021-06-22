@@ -1,9 +1,9 @@
 <?php include("includes/includes.php"); ?>
 <?php include("common_files/sesion.php"); ?>
 <?php 
-$nombre_seccion = "Empleados";
+$nombre_seccion = "Usuarios";
 $tbl_main = "ds_tbl_empleado";
-$nombre_simple = "empleado";
+$nombre_simple = "usuario";
 $url_name = "empleados.php";
 $url_crear_name = "crear_empleado.php";
 ?>
@@ -19,18 +19,19 @@ $correo_electronico = $_POST["Correo_Electronico"];
 $telefono = $_POST["Telefono"];
 $contrasena = md5($_POST["Contrasena"]);
 $celular = $_POST["Celular"];
-$codigo_cliente = $_POST["Codigo_Cliente"];
+$codigo_empleado = $_POST["Codigo_Empleado"];
 
 
-$calle = $_POST["Calle"];
+$calle = $_POST["Domicilio_Particular"];
 $colonia = $_POST["Colonia"];
-$id_codigo_postal = $_POST["Id_Codigo_Postal"];
+$codigo_postal = $_POST["Codigo_Postal"];
 $usuario = $_POST["Usuario"];
 $contrasena_usuario = $_POST["Contrasena_Usuario"];
 $id_empleado_alta = $_POST["Id_Empleado_Alta"];
 $id_empleado_rol = $_POST["Id_Empleado_Rol"];
 $id_pago_empleado = $_POST["Id_Pago_Empleado"];
 
+$id_empleado_alta = $_SESSION["idusuario"];
 
 $activo = $_POST["Activo"];
 
@@ -41,7 +42,9 @@ if($nombre != ""){
         /**
         $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
         */
-        $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Cliente = '{$codigo_cliente}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = '{$activo}' where Id_Empleado = $id_editar";
+        //$qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Empleado = '{$codigo_empleado}', Usuario = '{$usuario}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = {$activo}, Calle = '{$calle}', Colonia = '{$colonia}', Codigo_Postal = '{$codigo_postal}' where Id_Empleado = $id_editar";
+        $qry_update = "update $tbl_main set Nombre = '{$nombre}', Apellido_Paterno = '{$apellido_paterno}', Apellido_Materno = '{$apellido_materno}', CURP = '{$curp}', Correo_Electronico = '{$correo_electronico}', Telefono = '{$telefono}', Celular = '{$celular}', Codigo_Empleado = '{$codigo_empleado}', Usuario = '{$usuario}', Contrasena = '{$contrasena}', Fecha_Alta = '{$fecha_hoy}', Fecha_Actualiza = '{$fecha_hoy}', Activo = {$activo}, Calle = '{$calle}', Colonia = '{$colonia}', Codigo_Postal = '{$codigo_postal}', Id_Empleado_Rol = {$id_empleado_rol} where Id_Empleado = $id_editar";
+        //echo $qry_update;
         $obj->query($qry_update);
     }else{
         //Textos completos	Id_Cliente	Nombre	Apellido_Paterno	Apellido_Materno	CURP	Correo_Electronico	Telefono	Celular	Codigo_Cliente	Contrasena	Fecha_Alta	Fecha_Actualiza	Es_Comisionista	Activo
@@ -49,7 +52,8 @@ if($nombre != ""){
         
         //$qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Contrasena, Fecha_Alta, Fecha_Actualiza, Activo) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
 
-        $qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Codigo_Cliente, Usuario, Contrasena_Usuario, Fecha_Alta, Fecha_Actualiza, Activo) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$codigo_cliente}', '{$usuario}','{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', '{$activo}')";
+        //$qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Usuario, Contrasena_Usuario, Fecha_Alta, Fecha_Actualiza, Activo, Calle, Colonia, Codigo_Postal, Codigo_Empleado) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$usuario}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', {$activo}, '{$calle}', '{$colonia}', '{$codigo_postal}', '{$codigo_empleado}')";
+        $qry_insert = "insert into $tbl_main (Nombre, Apellido_Paterno, Apellido_Materno, CURP, Correo_Electronico, Telefono, Celular, Usuario, Contrasena_Usuario, Fecha_Alta, Fecha_Actualiza, Activo, Calle, Colonia, Codigo_Postal, Codigo_Empleado, Id_Empleado_Rol, Id_Empleado_Alta) values ('{$nombre}', '{$apellido_paterno}', '{$apellido_materno}', '{$curp}', '{$correo_electronico}', '{$telefono}', '{$celular}', '{$usuario}', '{$contrasena}', '{$fecha_hoy}', '{$fecha_hoy}', {$activo}, '{$calle}', '{$colonia}', '{$codigo_postal}', '{$codigo_empleado}', {$id_empleado_rol}, {$id_empleado_alta})";
         
         //echo $qry_insert;
         $obj->query($qry_insert);

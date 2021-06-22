@@ -55,6 +55,7 @@ $motivos_devolucion = $obj->get_results("select * from ds_cat_motivo_devolucion_
     			<?php endforeach; ?>
     			</select>
     		</td>
+    		<?php /**
     		<td>
     			<select name="motivo_cancelacion">
     			<?php foreach($motivos_cancelacion as $motivo): ?>
@@ -62,6 +63,7 @@ $motivos_devolucion = $obj->get_results("select * from ds_cat_motivo_devolucion_
     			<?php endforeach; ?>
     			</select>
     		</td>
+    		*/ ?>
     	</tr>
     </table>
     <div class="form-row">

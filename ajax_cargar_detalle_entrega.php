@@ -5,7 +5,8 @@
 $id = $_POST["id"];
 //$qry_entrega = "select * from ds_tbl_entrega_venta_productos where Id_Entrega = $id";
 //$qry_entrega = "select * from ds_tbl_entrega_venta_productos left join ds_tbl_producto_detalle on ds_tbl_entrega_venta_productos.Id_Producto_detalle = ds_tbl_producto_detalle.Id_Producto_Detalle where ds_tbl_entrega_venta_productos.Id_Entrega = $id";
-$qry_entrega = "select * from ds_tbl_entrega_venta_productos left join ds_tbl_producto_detalle on ds_tbl_entrega_venta_productos.Id_Producto_detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto where ds_tbl_entrega_venta_productos.Id_Entrega = $id";
+//$qry_entrega = "select * from ds_tbl_entrega_venta_productos left join ds_tbl_producto_detalle on ds_tbl_entrega_venta_productos.Id_Producto_detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto where ds_tbl_entrega_venta_productos.Id_Entrega = $id";
+$qry_entrega = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from ds_tbl_entrega_venta_productos left join ds_tbl_producto_detalle on ds_tbl_entrega_venta_productos.Id_Producto_detalle = ds_tbl_producto_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto_detalle.Id_Producto = ds_tbl_producto.Id_Producto left join ds_cat_color on ds_tbl_producto_detalle.Id_Color = ds_cat_color.Id_Color left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla where ds_tbl_entrega_venta_productos.Id_Entrega = $id";
 //echo $qry_entrega;
 $entrega = $obj->get_row($qry_entrega);
 
@@ -41,7 +42,9 @@ $estatus_entrega_producto = $obj->get_results("select * from ds_cat_estatus_entr
     	</div>
     	<div class="form-row">
             <div class="form-group col-md-6">
-                <?php echo $entrega->Cantidad; ?> <?php echo $entrega->Nombre; ?> <?php echo $entrega->Descripcion; print_r($entrega); ?>
+                <?php echo $entrega->Cantidad; ?> <?php if($entrega->Cantidad > 1): ?>piezas<?php else: ?>pieza<?php endif; ?> <?php echo $entrega->Nombre; ?>, Descripci&oacute;n: <?php echo $entrega->Descripcion; ?>
+                <br />
+                Color: <?php echo $entrega->color; ?>, Talla: <?php echo $entrega->talla; ?>
             </div>
             <div class="form-group col-md-6">
              	
@@ -50,21 +53,21 @@ $estatus_entrega_producto = $obj->get_results("select * from ds_cat_estatus_entr
         <div class="form-row">
             <div class="form-group col-md-6">
             	Estatus Entrega de Producto<br />
-                 <select class="status_entrega form-control" name="Id_Estatus_Entrega_Producto">
+                 <select class="status_entrega form-control" name="Id_Estatus_Entrega_Producto" <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?>>
     			<option value="0" <?php if(0 == $entrega->Id_Estatus_Entrega_Producto){ ?>selected="selected"<?php } ?>>Selecciona</option>
     			<?php foreach($estatus_entrega_producto as $status_entrega){ ?>
-    				<option value="<?php echo $status_entrega->Id_Estatus_Entrega_Producto; ?>" <?php if($status_entrega->Id_Estatus_Entrega_Producto == $entrega->Id_Estatus_Entrega_Producto){ ?>selected="selected"<?php } ?>><?php echo $status_entrega->Descripcion; ?></option>
+    				<option value="<?php echo $status_entrega->Id_Estatus_Entrega_Producto; ?>" <?php if($status_entrega->Id_Estatus_Entrega_Producto == $entrega->Id_Estatus_Entrega_Producto){ ?>selected="selected"<?php } ?> <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?>><?php echo $status_entrega->Descripcion; ?></option>
     			<?php } ?>
     			</select>
             </div>
             <div class="form-group col-md-6">
-             	
+             	<?php //print_r($entrega); ?>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 N&uacute;mero de referencia de env&iacute;o<br />
-        		<input type="text" class="form-control" name="Num_Referencia_Envio" value="<?php echo $entrega->Num_Referencia_Envio; ?>" />
+        		<input type="text" class="form-control" name="Num_Referencia_Envio" value="<?php echo $entrega->Num_Referencia_Envio; ?>" <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?> />
             </div>
             <div class="form-group col-md-6">
              	&nbsp;
@@ -73,8 +76,8 @@ $estatus_entrega_producto = $obj->get_results("select * from ds_cat_estatus_entr
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                Nombre persona que recibio<br />
-        		<input type="text" class="form-control" name="Nombre_Recibio" value="<?php echo $entrega->Nombre_Recibio; ?>" />
+                Paqueter&iacute;a<br />
+        		<input type="text" class="form-control" name="Paqueteria" value="<?php echo $entrega->Paqueteria; ?>" <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?> />
             </div>
             <div class="form-group col-md-6">
              	&nbsp;
@@ -82,8 +85,8 @@ $estatus_entrega_producto = $obj->get_results("select * from ds_cat_estatus_entr
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                Paqueteria<br />
-        		<input type="text" class="form-control" name="Paqueteria" value="<?php echo $entrega->Paqueteria; ?>" />
+                Nombre persona que recibio<br />
+        		<input type="text" class="form-control" name="Nombre_Recibio" value="<?php echo $entrega->Nombre_Recibio; ?>" <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?> />
             </div>
             <div class="form-group col-md-6">
              	&nbsp;
@@ -92,7 +95,7 @@ $estatus_entrega_producto = $obj->get_results("select * from ds_cat_estatus_entr
         <div class="form-row">
             <div class="form-group col-md-6">
                  Notas<br />
-        		<input type="text" class="form-control" name="Notas" value="<?php echo $entrega->Notas; ?>" />
+        		<input type="text" class="form-control" name="Notas" value="<?php echo $entrega->Notas; ?>" <?php if($entrega->Id_Estatus_Entrega_Producto == 4 || $entrega->Entrega_Fisica == 1): ?>readonly="readonly"<?php endif; ?> />
             </div>
             <div class="form-group col-md-6">
              	&nbsp;

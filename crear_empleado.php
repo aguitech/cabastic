@@ -1,4 +1,4 @@
- <?php
+<?php
 include("includes/includes.php");
 if($_POST["id"] != ""){
     $id = $_POST["id"];
@@ -6,6 +6,7 @@ if($_POST["id"] != ""){
     $resultado = $obj->get_row($qry_id);
     //print_r($resultado);
 }
+$roles_empleado = $obj->get_results("select * from ds_cat_empleado_rol");
 ?>
 
 <div style="width:100%;" class="content_form_crear">
@@ -94,7 +95,7 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div class="subtitle_form">Domicilio Particular</div>
-    				<input type="text" placeholder="Domicilio Particular" name="Domicilio_Particular" id="Domicilio_Particular" value="<?php echo $resultado->Domicilio_Particular; ?>"  class="form-control" />
+    				<input type="text" placeholder="Domicilio Particular" name="Domicilio_Particular" id="Domicilio_Particular" value="<?php echo $resultado->Calle; ?>"  class="form-control" />
             	</div>
             	<div class="form-group col-md-6">
                 
@@ -111,19 +112,41 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
             	<div class="form-group col-md-6">
                 
              		<div class="subtitle_form">Nombre Usuario</div>
-    				<input type="text" placeholder="Nombre Usuario" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>"  class="form-control" />
+    				<input type="text" placeholder="Nombre Usuario" name="Usuario" id="Usuario" value="<?php echo $resultado->Usuario; ?>"  class="form-control" />
             	</div>
             </div>
             <div class="form-row">
             	<div class="form-group col-md-6">
                 
              		<div class="subtitle_form">Contrase&ntilde;a a utilizar</div>
-    				<input type="password" placeholder="Contrase&ntilde;a a utilizar" name="Codigo_Postal" id="Codigo_Postal" value="<?php echo $resultado->Codigo_Postal; ?>"  class="form-control" />
+    				<input type="password" placeholder="Contrase&ntilde;a a utilizar" name="Contrasena" id="Contrasena" value=""  class="form-control" />
             	</div>
             	<div class="form-group col-md-6">
                 
              		<div class="subtitle_form">Rol de empleado</div>
-             		<input type="text" placeholder="Rol de empleado" name="Activo" id="Activo" value="<?php echo $resultado->Activo; ?>"  class="form-control" />
+             		<select name="Id_Empleado_Rol" id="Id_Empleado_Rol" class="form-control">
+             			<?php foreach($roles_empleado as $rol): ?>
+             			<option value="<?php echo $rol->Id_Empleado_Rol; ?>" <?php if($rol->Id_Empleado_Rol == $resultado->Id_Empleado_Rol): ?>selected="selected"<?php endif; ?>><?php echo $rol->Descripcion; ?></option>
+             			<?php endforeach; ?>
+             		
+             		</select>
+             		
+            	</div>
+            </div>
+            <div class="form-row">
+            	<div class="form-group col-md-6">
+					
+             		<div class="subtitle_form">Estatus</div>
+             		<select name="Activo" id="Activo" class="form-control">
+             			<option value="1">Activo</option>
+             			<option value="0">Inactivo</option>
+             			
+             		
+             		</select>
+            	</div>
+            	<div class="form-group col-md-6">
+                
+             		
             	</div>
             </div>
             
@@ -164,4 +187,4 @@ Id_Cliente	Nombre	Apellido_Paterno		CURP	Correo_Electronico	Telefono	Celular	Cod
 <br />
 
 </form>
-</div> 
+</div>

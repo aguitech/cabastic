@@ -228,6 +228,9 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						<?php endif; ?>
+						 
+						<?php if($id_rol != 8): ?>
+						
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link <?php if($url_actual == "/gastos.php"): ?>menu_seleccionado<?php endif; ?>"><i class="icon-truck"></i> <span>Gastos</span></a>
 
@@ -236,7 +239,7 @@ $url_actual = $_SERVER["SCRIPT_URL"];
 							</ul>
 						</li>
 						
-						
+						<?php endif; ?>
 						
 						<?php if($id_rol == 1 || $id_rol == 5 || $id_rol == 6): ?>
 						<li class="nav-item nav-item-submenu">

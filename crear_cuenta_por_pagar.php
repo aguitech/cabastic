@@ -36,7 +36,7 @@ $fecha_val = date("m/d/Y");
                  	<?php 
                  	$tipos_gastos = $obj->get_results("select * from ds_cat_tipo_gasto");
                  	?>
-         			<select name="Id_Tipo_Gasto" id="Id_Tipo_Gasto" class="form-control">
+         			<select name="Id_Tipo_Gasto" id="Id_Tipo_Gasto" class="form-control" <?php if($_SESSION["rol"] == 1): ?>readonly="readonly"<?php endif; ?>>
          				<?php foreach($tipos_gastos as $tipos_gasto): ?>
          				<option value="<?php echo $tipos_gasto->Id_Tipo_Gasto; ?>"><?php echo $tipos_gasto->Tipo_Gasto; ?></option>
          				<?php endforeach; ?>
@@ -45,7 +45,7 @@ $fecha_val = date("m/d/Y");
                 </div>
                 <div class="form-group col-md-6">
                  	<div class="subtitle_form">Monto</div>
-                 	<input type="text" placeholder="Monto" name="Monto" id="Monto" value="<?php echo $resultado->Monto; ?>" class="form-control" />
+                 	<input type="text" placeholder="Monto" name="Monto" id="Monto" value="<?php echo $resultado->Monto; ?>" class="form-control" <?php if($_SESSION["rol"] == 1): ?>readonly="readonly"<?php endif; ?> />
 
                  	
                 </div>
@@ -55,7 +55,7 @@ $fecha_val = date("m/d/Y");
             	<div class="form-group col-md-6">
                 
              		<div class="subtitle_form">Comprobante</div>
-    				<input type="file" placeholder="Comprobante" name="Comprobante" id="Comprobante" value="<?php echo $resultado->Comprobante; ?>"  class="form-control" />
+    				<input type="file" placeholder="Comprobante" name="Comprobante" id="Comprobante" value="<?php echo $resultado->Comprobante; ?>"  class="form-control" <?php if($_SESSION["rol"] == 1): ?>readonly="readonly"<?php endif; ?> />
             	</div>
             </div>
             
@@ -73,7 +73,7 @@ $fecha_val = date("m/d/Y");
                  	<select name="Estatus_Pago" id="Estatus_Pago" class="form-control">
          				<option value="0" <?php if($resultado->Estatus_Pago == 0): ?>selected="selected"<?php endif; ?>>Por pagar</option>
 						<option value="1" <?php if($resultado->Estatus_Pago == 1): ?>selected="selected"<?php endif; ?>>Pagado</option>
-
+						<option value="2" <?php if($resultado->Estatus_Pago == 2): ?>selected="selected"<?php endif; ?>>Rechazado</option>
          			</select>
          			
                 </div>

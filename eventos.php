@@ -12,10 +12,16 @@ $url_crear_name = "crear_evento.php";
 ?>
 <?php 
 if($_POST["Descripcion"] != ""){
-    print_r($_POST);
+    //print_r($_POST);
     $val_evento = $_POST["Descripcion"];
-    $val_fecha_inicio = $_POST["Fecha_Inicio"] . " 00:00:00";
-    $val_fecha_cierre = $_POST["Fecha_Cierre"] . " 23:59:59";
+    $date = new DateTime($_POST["Fecha_Inicio"]); 
+    $date->format('Y-m-d H:i:s');
+    //$val_fecha_inicio = $_POST["Fecha_Inicio"] . " 00:00:00";
+    
+    $val_fecha_inicio =  $date->format('Y-m-d H:i:s');;
+    //$val_fecha_cierre = $_POST["Fecha_Cierre"] . " 23:59:59";
+    $date_cierre = new DateTime($_POST["Fecha_Cierre"] . " 23:59:59"); 
+    $val_fecha_cierre = $date_cierre->format('Y-m-d H:i:s');
     $val_calle = $_POST["Calle"];
     
     $val_colonia = $_POST["Colonia"];

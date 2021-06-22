@@ -22,7 +22,8 @@ $id_cliente = $resultado->Id_Cliente;
 // [id_entrega] => 912 [devolucion_cantidad] => 1 [Id_Estatus_Entrega_Producto] => 2 [] => 578yiuhuhk [] => hkjhjkhjkhjk [action] =>
 //echo $_POST["id_direccion"];
 //if($_POST["id_entrega"] != "" && ($_POST["Num_Referencia_Envio"] != "" && $_POST["Nombre_Recibio"] != "" && $_POST[""] != "" && $_POST[""] != "" && $_POST[""] != "")){
-if($_POST["id_entrega"] != "" && ($_POST["Num_Referencia_Envio"] != "" && $_POST["Nombre_Recibio"] != "")){
+//if($_POST["id_entrega"] != "" && ($_POST["Num_Referencia_Envio"] != "" && $_POST["Nombre_Recibio"] != "")){
+if($_POST["id_entrega"] != ""){
     $id_entrega = $_POST["id_entrega"];
     
     //
@@ -1109,7 +1110,8 @@ if($_POST["Descripcion"] != ""){
 					<?php 
 					//$qry_prductos_ventas = "select * from ds_tbl_venta_detalle where Id_Venta = $id_venta";
 					//$qry_prductos_ventas = "select * from ds_tbl_venta_detalle left join left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto_Detalle = ds_tbl_venta_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_venta_detalle.Id_Venta = $id_venta";
-					$qry_prductos_ventas = "select * from ds_tbl_venta_detalle left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto_Detalle = ds_tbl_venta_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_venta_detalle.Id_Venta = $id_venta";
+					//$qry_prductos_ventas = "select * from ds_tbl_venta_detalle left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto_Detalle = ds_tbl_venta_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto where ds_tbl_venta_detalle.Id_Venta = $id_venta";
+					$qry_prductos_ventas = "select *, ds_cat_talla.Descripcion as talla, ds_cat_color.Descripcion as color from ds_tbl_venta_detalle left join ds_tbl_producto_detalle on ds_tbl_producto_detalle.Id_Producto_Detalle = ds_tbl_venta_detalle.Id_Producto_Detalle left join ds_tbl_producto on ds_tbl_producto.Id_Producto = ds_tbl_producto_detalle.Id_Producto left join ds_cat_color on ds_tbl_producto_detalle.Id_Color = ds_cat_color.Id_Color left join ds_cat_talla on ds_tbl_producto_detalle.Id_Talla = ds_cat_talla.Id_Talla where ds_tbl_venta_detalle.Id_Venta = $id_venta";
 					//echo $qry_prductos_ventas;
 					//echo $qry_venta_detalle;
 						//$resultados = $obj->get_results($qry_resultados);
@@ -1122,6 +1124,8 @@ if($_POST["Descripcion"] != ""){
 							<tr>
 								<th>Cantidad</th>
 								<th>Producto</th>
+								<th>Color</th>
+								<th>Talla</th>
 								<th>Precio</th>
 							</tr>
 						</thead>
@@ -1158,8 +1162,9 @@ if($_POST["Descripcion"] != ""){
 								<td><?php echo $resultado->Cantidad; ?></td>
 								
 								<td><?php echo $resultado->Nombre; ?></td>
-								
-								<td><?php echo $resultado->MontoVenta; ?></td>
+								<td><?php echo $resultado->color; ?></td>
+								<td><?php echo $resultado->talla; ?></td>
+								<td>$<?php echo number_format($resultado->MontoVenta,2); ?>MXN</td>
 								
 								
 
@@ -1179,6 +1184,8 @@ if($_POST["Descripcion"] != ""){
 								<th>Disponibles</th>
 								<th>Cantidad</th>
 								<th>Producto</th>
+								<th>Color</th>
+								<th>Talla</th>
 								<th>Precio</th>
 								<th class="text-center">Acciones</th>
 							</tr>
@@ -1231,8 +1238,10 @@ if($_POST["Descripcion"] != ""){
 								<td><?php echo $resultado->Cantidad; ?></td>
 								
 								<td><?php echo $resultado->Nombre; ?></td>
+								<td><?php echo $resultado->color; ?></td>
+								<td><?php echo $resultado->talla; ?></td>
 								
-								<td><?php echo $resultado->MontoVenta; ?></td>
+								<td>$<?php echo number_format($resultado->MontoVenta, 2); ?>MXN</td>
 								
 								
 								
@@ -1362,7 +1371,7 @@ if($_POST["Descripcion"] != ""){
 	?>
 	<tr id="elementpago<?php echo $id_resultado; ?>">
 								
-								<td>$<?php echo $resultado->Monto; ?>MXN</td>
+								<td>$<?php echo number_format($resultado->Monto, 2); ?>MXN</td>
 								<td>
 									<?php echo $resultado->Descripcion; ?>
 	
@@ -1522,13 +1531,15 @@ if($_POST["Descripcion"] != ""){
 								<td>
 									<?php
 									if($resultado->Id_Estatus_Entrega_Producto == 1){
-									    echo "En almacen";
+									    echo "En Proveedor";
 									}else if($resultado->Id_Estatus_Entrega_Producto == 2){
-									    echo "En paqueteria";
+									    echo "En almacen";
 									}else if($resultado->Id_Estatus_Entrega_Producto == 3){
+									    echo "En paqueteria";
+									}else if($resultado->Id_Estatus_Entrega_Producto == 4 || $resultado->Entrega_Fisica == "1"){
 									    echo "Entregado";
 									}else{
-									    echo "Por definir";
+									    echo "Por entregar";
 									} 
 									
 									?>
